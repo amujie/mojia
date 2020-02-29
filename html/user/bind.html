@@ -1,0 +1,26 @@
+{include file="public/header"} 
+{include file="user/banner"} 
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">绑定{if$ac=='phone'}手机{else}邮箱{/if}</h2>
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/info')}">返回</a>
+		</ul>
+	</div>
+	<form class="layui-form mo-user-form mo-cols-rows mo-pnxs-5px mo-pnmd-10px mo-lhxs-40px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+		<div class="mo-pzxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
+		<div class="mo-cols-rows mo-mtxs-5px">
+			<span class="mo-form-name">{if$ac=='phone'}手机{else}邮箱{/if}</span>
+			<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="text" name="to" placeholder="请输入{if$ac=='phone'}手机号码{else}邮箱地址{/if}" maxlength="20" />
+			<input type="hidden" name="ac" value="{$ac}">
+		</div>
+		<div class="mo-cols-rows mo-mtxs-5px">
+			<span class="mo-form-name">验证</span>
+			<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="code" placeholder="请输入邮箱验证码" maxlength="8" />
+			<a class="mo-part-more mo-prxs-10px mo-pnxs-10px mo-lhxs-44px mo-back-white" href="javascript:;" data-url="{:mac_url('user/bindmsg')}" lay-submit lay-filter="bindmsg">获取验证码</a>
+		</div>
+		<span class="mo-user-tips mo-lhxs-20px mo-paxs-5px mo-text-gules mo-cols-show">&emsp;</span>
+		<a class="mo-user-btns mo-part-btns mo-bord-round mo-back-mojia mo-cols-show mo-mbxs-10px" href="javascript:;" data-url="{:mac_url('user/bind')}" data-jump="{:mac_url('user/info')}" lay-submit lay-filter="center">确认绑定</a>
+	</form>
+</div>
+{include file="public/footer"}

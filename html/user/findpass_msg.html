@@ -1,0 +1,49 @@
+{include file="public/header"}
+<div class="mo-cols-lays mo-cols-minh mo-back-white">
+	<div class="mo-part-core mo-part-maxw">
+		<h2 class="mo-fsxs-18px mo-coxs-center">{$param['ac_text']}找回密码</h2>
+		<form class="layui-form mo-user-form mo-cols-rows mo-pnxs-15px mo-lhxs-40px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+			<input type="hidden" name="ac" value="{$param['ac']}">
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">{$param['ac_text']}</span>
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="{$param['ac']=='phone'?'tel':$param['ac']}"  name="to" placeholder="请输入您绑定的{$param['ac_text']}" maxlength="40" />
+			</div>
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">验证</span>
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="code" placeholder="请输入邮{$param['ac_text']}证码" maxlength="8" />
+				<a class="mo-part-more mo-prxs-10px mo-pnxs-10px mo-lhxs-44px mo-back-white" href="javascript:;" data-url="{:mac_url('user/findpass_msg')}" lay-submit lay-filter="bindmsg">获取验证码</a>
+			</div>
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">密码</span>
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd" placeholder="请输入密码" maxlength="20" />
+			</div>
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">密码</span>
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd2" placeholder="再次输入密码" maxlength="20" />
+			</div>
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">验证</span>
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="verify" placeholder="输入验证码" maxlength="6" />
+				<img class="mo-part-more mo-part-curs mo-java-verify" height="44" src="{:mac_url('verify/index')}" title="看不清楚? 换一张！" />
+			</div>
+			<span class="mo-user-tips mo-lhxs-20px mo-text-gules mo-paxs-5px mo-cols-show">&emsp;</span>
+			<a class="mo-user-btns mo-part-btns mo-bord-round mo-back-mojia mo-cols-show" href="javascript:;" data-url="{:mac_url('user/findpass_reset')}" data-jump="{:mac_url('user/login')}" lay-submit lay-filter="center">提交</a>
+			<div class="mo-cols-rows mo-lhxs-40px">
+				<a class="mo-cols-info mo-cols-xs3 mo-coxs-left" href="{:mac_url('user/reg')}">注册账号</a>
+				{if$param['ac']=='email'}
+				{if$GLOBALS['config']['user']['reg_phone_sms']}
+				<a class="mo-cols-info mo-cols-xs3 mo-coxs-center" href="{:mac_url('user/findpass_msg')}?ac=phone">手机找回</a>
+				{/if}
+				<a class="mo-cols-info{if$GLOBALS['config']['user']['reg_phone_sms']} mo-cols-xs3{else} mo-cols-xs6{/if} mo-coxs-center" href="{:mac_url('user/findpass')}">密保找回</a>
+				{elseif$param['ac']=='phone'}
+				{if$GLOBALS['config']['user']['reg_email_sms']}
+				<a class="mo-cols-info mo-cols-xs3 mo-coxs-center" href="{:mac_url('user/findpass_msg')}?ac=email">邮箱找回</a>
+				{/if}
+				<a class="mo-cols-info{if$GLOBALS['config']['user']['reg_email_sms']} mo-cols-xs3{else} mo-cols-xs6{/if} mo-coxs-center" href="{:mac_url('user/findpass')}">密保找回</a>
+				{/if}
+				<a class="mo-cols-info mo-cols-xs3 mo-coxs-right" href="{:mac_url('user/login')}">立即登录</a>
+			</div>
+		</form>
+	</div>
+</div>
+{include file="public/footer"}

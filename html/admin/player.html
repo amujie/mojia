@@ -1,0 +1,132 @@
+<div class="layui-tab-item">
+	<table class="layui-table" style="margin-top:0">
+		<colgroup>
+			<col width="110">
+			<col width="130">
+			<col width="100">
+			<col width="150">
+			<col width="110">
+			<col width="110">
+			<col>
+		</colgroup>
+		<thead>
+			<tr>
+				<th>名称</th>
+				<th>关键字</th>
+				<th>回复</th>
+				<th>图片</th>
+				<th>上传</th>
+	            <th>查看</th>
+				<th>状态</th>
+			</tr> 
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="2"><input type="input" name="mojia[play][chat][name]" value="{$mojia['play']['chat']['name']}" class="layui-input" placeholder="扫码观看"></td>
+				<td colspan="3"><input type="input" name="mojia[play][chat][pics]" value="{$mojia['play']['chat']['pics']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
+				<td>公众号二维码</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="input" name="mojia[play][chat][send]" value="{$GLOBALS['config']['weixin']['gjc1']}" class="layui-input" placeholder="关键字"></td>
+				<td colspan="2"><input type="input" name="mojia[play][chat][code]" value="{$GLOBALS['config']['weixin']['gjcm1']}" class="layui-input" placeholder="回复"></td>
+				<td>
+					<input type="hidden" name="mojia[play][chat][type]" value="{$mojia['play']['chat']['type']}" />
+					<select multiple="multiple" lay-filter="home">
+						<option value="">全部</option>
+						{maccms:type order="asc" by="sort" id="vo" flag="vod"}
+						<option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$mojia['play']['chat']['type']))} selected{/if}>{$vo.type_name}</option>
+						{/maccms:type}
+					</select>
+				</td>
+				<td>选择对应分类即可</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><input type="input" name="mojia[play][logo][name]" value="{$mojia['play']['logo']['name']}" class="layui-input" placeholder="视频标志"></td>
+				<td colspan="3"><input type="input" name="mojia[play][logo][pics]" value="{$mojia['play']['logo']['pics']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
+				<td>
+					<input type="radio" name="mojia[play][logo][state]" value="1" title="开启"{if$mojia['play']['logo']['state']==1} checked{/if}>
+					<input type="radio" name="mojia[play][logo][state]" value="0" title="关闭"{if$mojia['play']['logo']['state']==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="input" name="mojia[play][logo][width]" value="{$mojia['play']['logo']['width']}" class="layui-input" placeholder="宽度"></td>
+				<td><input type="input" name="mojia[play][logo][height]" value="{$mojia['play']['logo']['height']}" class="layui-input" placeholder="高度"></td>
+				<td><input type="input" name="mojia[play][logo][margin]" value="{$mojia['play']['logo']['margin']}" class="layui-input" placeholder="边距"></td>
+				<td>
+					<select name="mojia[play][logo][float]" lay-filter="">
+						<option value="left"{if$mojia['play']['logo']['float']=='left'} selected{/if}>左侧</option>
+						<option value="right"{if$mojia['play']['logo']['float']=='right'} selected{/if}>右侧</option>
+					</select>
+				</td>
+				<td>视频播放器logo</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[play][cover][name]" value="{$mojia['play']['cover']['name']}" class="layui-input" placeholder="视频封面"></td>
+				<td colspan="3"><input type="input" name="mojia[play][cover][pics]" value="{$mojia['play']['cover']['pics']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
+				<td>
+					<input type="radio" name="mojia[play][cover][state]" value="1" title="开启"{if$mojia['play']['cover']['state']==1} checked{/if}>
+					<input type="radio" name="mojia[play][cover][state]" value="0" title="关闭"{if$mojia['play']['cover']['state']==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[play][advs][name]" value="{$mojia['play']['advs']['name']}" class="layui-input" placeholder="视频广告"></td>
+				<td><input type="input" name="mojia[play][advs][tips]" value="{$mojia['play']['advs']['tips']}" class="layui-input" placeholder="广告倒计时"></td>
+				<td><input type="input" name="mojia[play][advs][time]" value="{$mojia['play']['advs']['time']}" class="layui-input" placeholder="倒计时时间"></td>
+				<td colspan="2"><input type="input" name="mojia[play][advs][link]" value="{$mojia['play']['advs']['link']}" class="layui-input" placeholder="广告链接"></td>
+				<td>
+					<input type="hidden" name="mojia[play][advs][group]" value="{$mojia['play']['advs']['group']}" />
+					<select multiple="multiple" lay-filter="home">
+						<option value="">请选择</option>
+						{maccms:foreach name=":model('Group')->getCache('group_list')"}
+						<option value="{$vo['group_id']}"{if in_array($vo['group_id'], explode(',',$mojia['play']['advs']['group']))} selected{/if}>{$vo['group_name']}</option>
+						{/maccms:foreach}
+					</select>
+				</td>
+				<td>视频加载前广告,任意网页均可</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[play][load][name]" value="{$mojia['play']['load']['name']}" class="layui-input" placeholder="加载提示"></td>
+				<td colspan="5"><input type="input" name="mojia[play][load][tips]" value="{$mojia['play']['load']['tips']}" class="layui-input" placeholder="正在加载"></td>
+				<td>视频加载提示</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[play][copy][name]" value="{$mojia['play']['copy']['name']}" class="layui-input" placeholder="版权提示"></td>
+				<td colspan="5"><input type="input" name="mojia[play][copy][tips]" value="{$mojia['play']['copy']['tips']}" class="layui-input" placeholder="请填写版权提示"></td>
+				<td>涉及侵权的视频提示</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[play][parse][name]" value="{$mojia['play']['parse']['name']}" class="layui-input" placeholder="默认解析"></td>
+				<td colspan="5"><input type="input" name="mojia[play][parse][link]" value="{$mojia['play']['parse']['link']}" class="layui-input" placeholder="请填写接口地址"></td>
+				<td>默认解析接口</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[play][other][name]" value="{$mojia['play']['other']['name']}" class="layui-input" placeholder="其他设置"></td>
+				<td>
+					<select name="mojia[play][other][pass]" lay-verify="">
+						<option value="1"{if$mojia['play']['other']['pass']==1} selected{/if}>开启加密</option>
+						<option value="0"{if$mojia['play']['other']['pass']==0} selected{/if}>关闭加密</option>
+					</select>
+				</td>
+				<td colspan="2">
+					<select name="mojia[play][other][auto]" lay-verify="">
+						<option value="1"{if$mojia['play']['other']['auto']==1} selected{/if}>开启自动播放</option>
+						<option value="0"{if$mojia['play']['other']['auto']==0} selected{/if}>关闭自动播放</option>
+					</select>
+				</td>
+				<td colspan="2">
+					<select name="mojia[play][other][cuts]" lay-verify="">
+						<option value="1"{if$mojia['play']['other']['cuts']==1} selected{/if}>开启视频解析切换</option>
+						<option value="0"{if$mojia['play']['other']['cuts']==0} selected{/if}>关闭视频解析切换</option>
+					</select>
+				</td>
+				<td>其他设置</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

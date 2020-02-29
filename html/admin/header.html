@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>魔加主题设置</title>
+		{include file="basics/config"}
+		{include file="admin/config"}
+		<meta name="renderer" content="webkit" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta http-equiv="Cache-Control" content="no-transform" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="{$template}asset/inc/css/layui.css?v={$version}" rel="stylesheet" type="text/css" />
+		<link href="{$template}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
+		<script src="{$template}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var magic = {
+				'mojia': '{$config["webtest"]}',
+				'admin': parent.document.URL.split('php'),
+				'path': '{$install}',
+				'tpl': '{$template}',
+				'ver': '{$version}'
+			};
+		</script>
+	</head>
+	<body>

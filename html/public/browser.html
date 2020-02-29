@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="mo-part-view">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{$GLOBALS['config']['site']['site_name']}</title>
+		{include file="basics/config"}
+		<meta name="renderer" content="webkit" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta http-equiv="Cache-Control" content="no-transform" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="{$mojia['other']['icon']['pics']|mac_url_img}" rel="apple-touch-icon-precomposed" />
+		<link href="{$mojia['other']['icon']['pics']|mac_url_img}" rel="shortcut icon" type="image/ico" />
+		<link href="{$template}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
+		{include file="basics/colour"}
+	</head>
+	<body class="mo-brow-info mo-part-view">
+		<a class="mo-cols-hide" href="javascript:;" id="browser" rel="noreferrer"></a>
+		<div class="mo-brow-tips mo-cols-rows mo-text-white mo-paxs-20px">
+			<p>点击右上角选择浏览器打开</p>
+			<p>可以继续浏览本站哦~</p>
+		</div>
+		<div class="mo-brow-main mo-cols-rows mo-text-black mo-paxs-20px mo-coxs-center mo-cols-xs12 mo-cols-minw">
+			<p>点击右上角或复制网址自行打开</p>
+			<p>避免微信和QQ屏蔽本站网址</p>
+			<p>请理解支持</p>
+			<a class="mo-brow-link mo-mtxs-10px mo-pnxs-10px mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;" data-clipboard-text="{$maccms.http_url}">点此复制本站网址</a>
+		</div>
+		<div class="mo-brow-foot mo-cols-rows mo-text-black mo-coxs-center mo-cols-xs12 mo-cols-minw">Copyright&nbsp;{:date('Y', time())}&nbsp;{$_SERVER['HTTP_HOST']}&nbsp;Inc.</div>
+		<script src="{$template}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var magic = {
+				'path': '{$install}',
+				'tpl': '{$template}',
+				'ver': '{$version}'
+			};
+			layui.config({
+				version: magic.ver,
+				base: magic.tpl + 'asset/js/'
+			}).use(['other'], function() {
+				var other = layui.other;
+				other.global.browser();
+			});
+		</script>
+	</body>
+</html>

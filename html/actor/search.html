@@ -1,0 +1,15 @@
+{include file="public/header"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/search"}
+	<div class="mo-cols-rows">
+		{assign name="magic_detail" value="hide"}
+		{maccms:actor num="10" paging="yes" half="3" pageurl="actor/search" order="desc" by="time"}
+		{include file="basics/actinfo"}
+		<dl class="mo-deta-info mo-part-bbsd mo-bord-muted mo-maxs-5px mo-mrmd-10px mo-mlmd-10px"></dl>
+		{/maccms:actor}
+		{assign name="magic_detail" value="show"}
+	</div>
+	{include file="basics/paging"}
+</div>
+{include file="module/relate"}
+{include file="public/footer"}

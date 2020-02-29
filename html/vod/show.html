@@ -1,0 +1,29 @@
+{include file="public/header"}
+{include file="basics/filter"}
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">
+			<a class="mo-mrxs-5px mo-mrmd-10px{if$param.by==''||$param.by=='time'} mo-text-mojia{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'time' ],'show')}">按时间</a>
+        	<a class="mo-mrxs-5px mo-mrmd-10px{if$param.by=='hits'} mo-text-mojia{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'hits' ],'show')}">按人气</a>
+        	<a class="mo-mrxs-5px mo-mrmd-10px{if$param.by=='score'} mo-text-mojia{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'score' ],'show')}">按评分</a>
+		</h2>
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px">当前第&nbsp;<span id="mo-page-this" class="mo-text-mojia">1</span>&nbsp;页，共&nbsp;<span class="mo-text-mojia">{:mac_data_count($obj.type_id,'all','vod')}</span>&nbsp;条视频</li>
+		</ul>
+	</div>
+	<ul class="mo-cols-rows">
+		{if stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true}
+		{maccms:vod num="48" pageurl="vod/show" paging="yes" half="3" type="current" order="desc" by="time"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
+		{include file="basics/vodpic" type="broad" scale="16by9"}
+		</li>
+		{/maccms:vod}{else}{maccms:vod num="48" pageurl="vod/show" paging="yes" half="3" type="current" order="desc" by="time"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+		{include file="basics/vodpic" type="highs" scale="2by3"}
+		</li>
+		{/maccms:vod}
+		{/if}
+	</ul>
+	{include file="basics/paging"}
+</div>
+{include file="public/footer"}

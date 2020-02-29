@@ -1,0 +1,10 @@
+{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
+<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-lazy-highs mo-byxs-2by3 mo-cols-rows mo-bord-round" href="{:mac_url_role_detail($vo)}" data-original="{$mojia['other']['chain']['apis']}{$vo.role_pic|mac_url_img}" {if$magic_detail=='hide'} style="background-image:url({$mojia['other']['chain']['apis']}{:mac_url_img(trim($vo.role_pic))})"{/if}>
+	<span class="mo-situ-play"></span>
+	<span class="mo-situ-tips mo-fsxs-12px mo-bord-round mo-back-mojia">人气{$vo.role_hits}</span>
+	<span class="mo-situ-rema mo-part-ramp mo-fsxs-12px mo-text-white mo-coxs-center">{$vo.role_remarks|mac_filter_html}</span>
+</a>
+{if$magic_detail!='hide'}
+<a class="mo-situ-name mo-fsxs-14px mo-coxs-center mo-comd-left mo-wrap-arow" href="{:mac_url_role_detail($vo)}"{if$vo.role_color} style="color:#{$vo.role_color}!important"{/if}>{$vo.role_name|mac_filter_html}<span class="mo-plxs-5px mo-fsxs-12px mo-text-muted">{$vo.role_actor|mac_filter_html}饰</span></a>
+<span class="mo-situ-desc mo-fsxs-12px mo-wrap-arow mo-text-muted mo-coxs-none mo-colg-block">{$vo['data']['vod_name']}</span>
+{/if}

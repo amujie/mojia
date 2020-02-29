@@ -1,0 +1,74 @@
+<div class="mo-head-info mo-back-white mo-cols-minw mo-bsmd-shadow">
+	<div class="mo-cols-case">
+		<div class="mo-navs-info">
+			<div class="mo-navs-left mo-part-slip mo-cols-info mo-cols-xs12 mo-cols-md6 mo-cols-lg8">
+				<ul class="mo-navs-boxs mo-cols-zero">
+					{maccms:foreach name="$mojia['nav']" id="sub"}{if$sub['desktop']}
+					<li class="mo-navs-item mo-coxs-iblock mo-fsxs-16px"><a class="mo-text-hover mo-cols-show{if$sub['type']=='cat'&&($sub['id']==$obj.type_id||$sub['id']==$obj.type_1.type_id||$sub['id']==$obj.parent.type_id)} mo-text-mojia mo-part-bold mo-java-navs{elseif$sub['type']=='mid'&&$maccms.mid==$sub['id']} mo-text-mojia mo-part-bold mo-java-navs{/if}" href="{$sub['link']}">{if$sub['type']=='logo'}<img class="mo-navs-logo mo-cols-show" width="auto" height="30" alt="{$sub['name']|mac_filter_html}" src="{$sub['src']|mac_url_img}" /></a>{else}{$sub['name']|mac_filter_html}{/if}</a></li>
+					{/if}{/maccms:foreach}
+				</ul>
+			</div>
+			<div class="mo-navs-right mo-cols-xs12">
+				<form class="mo-navs-search mo-navs-form" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+					<a class="mo-navs-switch mo-navs-cuts mo-fsxs-14px mo-java-event" href="javascript:;"><span class="mo-navs-name" data-type="{:in_array($maccms['mid'],array('4','5','6','7','9','10'))?1:mac_default($maccms.mid,'1')}" data-href="{:mac_url(mac_get_mid_code(in_array($maccms['mid'],array('4','5','6','7','9','10'))?1:mac_default($maccms.mid,'1')).'/search')}">{:mac_get_mid_text(in_array($maccms['mid'],array('4','5','6','7','9','10'))?1:mac_default($maccms.mid,'1'))}</span><span class="mo-part-move mo-edge-info mo-edge-bottom mo-bord-upper"></span></a>
+					<input class="mo-navs-input mo-bord-muted mo-bord-focus mo-back-muted mo-fsxs-14px mo-java-fixed mo-java-event" type="search" placeholder="请输入关键字"{if$maccms.aid==13||$maccms.aid==23||$maccms.aid==33||$maccms.aid==83||$maccms.aid==113} value="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}"{/if} />
+					<a class="mo-navs-submit mo-cols-show mo-pnxs-10px mo-fsxs-20px mo-lhxs-30px mo-lhmd-36px mo-icon-font mo-icon-sousuo"></a>
+				</form>
+				<ul class="mo-navs-btns">
+					<li class="mo-navs-font"><a class="mo-navs-record mo-cols-show mo-java-event" href="javascript:;"><i class="mo-cols-show mo-fsxs-24px mo-icon-font mo-icon-bofangjilu"></i></a></li>
+					<li class="mo-navs-font"><a class="{if$user.user_id}mo-navs-center {else}mo-navs-logins {/if}mo-cols-show mo-java-event mo-cols-zero" href="javascript:;">{if$user.user_id}<img class="mo-part-coin" width="24" height="24" src="{:mac_get_user_portrait($user['user_id'])}" />{else}<i class="mo-fsxs-24px mo-icon-font mo-icon-shequ"></i>{/if}</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="mo-pops-info mo-pops-switch mo-fsxs-14px mo-back-white mo-bsmd-shadow mo-cols-hide mo-java-ceal mo-anim-upbit">
+			<ul class="mo-cols-rows mo-paxs-10px">
+				{maccms:foreach name=":explode(',','1,2,3,8,11')" id="sub"}{if mac_data_count(0,'all',mac_get_mid_code($sub))}{php}$magic_search=in_array($maccms['mid'],array('4','5','6','7','9','10'))?'1':mac_default($maccms['mid'],'1');{/php}
+				<li data-type="{$sub}" data-href="{:mac_url(mac_get_mid_code($sub).'/search')}" class="mo-pops-opts mo-bord-muted mo-cols-cell mo-paxs-10px mo-part-curs mo-coxs-center mo-java-event{if$sub==$magic_search} mo-text-mojia{/if}">{$sub|mac_get_mid_text}</li>
+				{/if}{/maccms:foreach}
+			</ul>
+		</div>
+		<div class="mo-pops-info mo-pops-search mo-fsxs-14px mo-back-white mo-bsmd-shadow mo-cols-hide mo-java-ceal mo-anim-upbit">
+			<div class="mo-pops-keys mo-cols-hide">
+				<ul class="mo-pops-list mo-pzxs-10px"></ul>
+			</div>
+			<div class="mo-pops-recs">
+				<div class="mo-pnxs-15px mo-lhxs-40px mo-cols-rows">
+					<span class="mo-cols-info mo-cols-xs9">搜索历史</span>
+					<a class="mo-coxs-right mo-pops-clear mo-java-event mo-cols-info mo-cols-xs3" href="javascript:;">清空</a>
+				</div>
+				<ul class="mo-pops-list mo-cols-rows">
+					<li class="mo-pops-item mo-cols-info mo-cols-xs6"><a class="mo-pnxs-15px mo-lhxs-30px mo-wrap-arow" href="javascript:;">暂无搜索记录</a></li>
+				</ul>
+			</div>
+			<div class="mo-pops-hots">
+				<div class="mo-pnxs-15px mo-lhxs-40px mo-cols-rows">
+					<span class="mo-cols-info mo-cols-xs9">热门搜索</span>
+				</div>
+				<ul class="mo-pops-list mo-pbxs-10px mo-cols-rows">
+					{maccms:foreach name=":explode(',',$GLOBALS['config']['app']['search_hot'])" id="sub"}
+					<li class="mo-pops-item mo-cols-info mo-cols-xs6"><a class="mo-pnxs-15px mo-lhxs-30px mo-java-event mo-wrap-arow" href="{:mac_url('vod/search',['wd'=>$sub])}"><span class="mo-part-seal mo-back-items mo-back-item{$key+1}">{$key+1}</span><span class="mo-pops-text">{$sub|mac_filter_html}</span></a></li>
+					{/maccms:foreach}
+				</ul>
+			</div>
+		</div>
+		<div class="mo-pops-info mo-pops-record mo-fsxs-14px mo-back-white mo-bsmd-shadow mo-cols-hide mo-java-ceal mo-anim-upbit">
+			<div class="mo-pnxs-15px mo-lhxs-40px mo-cols-rows">
+				<span class="mo-cols-info mo-cols-xs9">观看记录</span>
+				<a class="mo-coxs-right mo-pops-clear mo-java-event mo-cols-info mo-cols-xs3" href="javascript:;">清空</a>
+			</div>
+			<ul class="mo-pops-list mo-pbxs-10px mo-cols-rows">
+				<li class="mo-pops-item mo-cols-rows"><a class="mo-pnxs-15px mo-lhxs-30px mo-wrap-arow" href="javascript:;">暂无观看记录</a></li>
+			</ul>
+		</div>
+		<div class="mo-pops-info mo-pops-logins mo-fsxs-14px mo-back-white mo-bsmd-shadow mo-cols-hide mo-java-ceal mo-anim-upbit">
+			<div class="mo-pnxs-15px mo-lhxs-40px mo-cols-rows">
+				<span class="mo-cols-info mo-cols-info mo-cols-xs9">用户登录</span>
+				<a class="mo-coxs-right mo-cols-info mo-cols-xs3" href="javascript:;">关闭</a>
+			</div>
+			{include file="user/ajax_login"}
+		</div>
+		<div class="mo-pops-info mo-pops-center mo-fsxs-14px mo-back-white mo-bsmd-shadow mo-cols-hide mo-java-ceal mo-anim-upbit">
+			{include file="user/navbar"}
+	    </div>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+{include file="public/header"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/search"}
+	{maccms:art num="10" paging="yes" half="3" pageurl="art/search" order="desc" by="time"}
+	{include file="basics/artinfo"}
+	{/maccms:art}
+	{include file="basics/paging"}
+</div>
+{include file="module/relate"}
+{include file="public/footer"}

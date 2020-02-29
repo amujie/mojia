@@ -1,0 +1,17 @@
+{include file="public/header"}
+{include file="module/siteer"}
+<div class="mo-cols-case mo-cols-rows">
+	{maccms:type ids="parent" order="asc" by="sort" mid="11" id="magic"}
+	<div class="mo-cols-lays mo-back-white">
+		{include file="basics/titles"}
+		<ul class="mo-cols-rows">
+			{maccms:website num="12" type="'.$magic['type_id'].'" order="asc" by="sort"}
+			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+				{include file="basics/webpic"}
+			</li>
+			{/maccms:website}
+		</ul>
+	</div>
+	{/maccms:type}
+</div>
+{include file="public/footer"}

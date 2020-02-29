@@ -1,0 +1,46 @@
+<script type="text/javascript">
+	if(/MSIE\s[0-9]/i.test(navigator.userAgent) && location.href.indexOf('label/update') == -1) {
+		location.href = '{:mac_url("label/update")}';
+	}
+</script>
+<style type="text/css">
+	.mo-bord-muted,
+	.mo-bord-muted:after,
+	.mo-bord-muted:before {border-color: {$mojia['color']['lines']['back']}!important}
+	.mo-bord-focus:focus {border-color: {$mojia['color']['mojia']['back']} !important}
+	.mo-bord-lower {border-bottom-color: {$mojia['color']['delta']['back']}!important}
+	.mo-bord-upper {border-top-color: {$mojia['color']['delta']['back']} !important}
+	.mo-bord-round {border-radius: {$mojia['other']['part']['round']} !important;overflow: hidden}
+	.mo-back-items {background: {$mojia['color']['items']['back']} !important;color: {$mojia['color']['items']['text']} !important}
+	.mo-back-item1 {background: {$mojia['color']['item1']['back']} !important;color: {$mojia['color']['item1']['text']} !important}
+	.mo-back-item2 {background: {$mojia['color']['item2']['back']} !important;color: {$mojia['color']['item2']['text']} !important}
+	.mo-back-item3 {background: {$mojia['color']['item3']['back']} !important;color: {$mojia['color']['item3']['text']} !important}
+	.mo-back-white {background: {$mojia['color']['white']['back']} !important;color: {$mojia['color']['white']['text']} !important}
+	.mo-back-black {background: {$mojia['color']['black']['back']} !important;color: {$mojia['color']['black']['text']} !important}
+	.mo-back-fixed {background: {$mojia['color']['fixed']['back']} !important;color: {$mojia['color']['fixed']['text']} !important}
+	.mo-back-click {background: {$mojia['color']['click']['back']};color: {$mojia['color']['click']['text']}}
+	.mo-back-muted {background-color: {$mojia['color']['muted']['back']} !important;color: {$mojia['color']['muted']['text']} !important}
+	.mo-back-write:visited {background: {$mojia['color']['write']['back']};color: {$mojia['color']['write']['text']};border-color: {$mojia['color']['write']['back']}}
+	.mo-back-mojia {background: {$mojia['color']['mojia']['back']} !important;color: {$mojia['color']['mojia']['text']} !important;border-color: {$mojia['color']['mojia']['back']} !important;opacity: 1 !important}
+	.mo-back-hover:hover {background: {$mojia['color']['mojia']['back']} !important;color: {$mojia['color']['mojia']['text']} !important;border-color: {$mojia['color']['mojia']['back']} !important}
+	.mo-back-disad {background: {$mojia['color']['disad']['back']} !important;color: {$mojia['color']['disad']['text']} !important;border-color: {$mojia['color']['lines']['back']} !important;opacity: 1 !important}
+	.mo-text-white {color: {$mojia['color']['plain']['text']}!important}
+	.mo-text-black {color: {$mojia['color']['darks']['text']}!important}
+	.mo-text-muted {color: {$mojia['color']['dusts']['text']}!important}
+	.mo-text-gules {color: {$mojia['color']['gules']['text']}!important}
+	.mo-text-green {color: {$mojia['color']['green']['text']}!important}
+	.mo-text-blush {color: {$mojia['color']['blush']['text']}!important}
+	.mo-text-disad {color: {$mojia['color']['disad']['text']}!important}
+	.mo-text-mojia {color: {$mojia['color']['mojia']['back']} !important}
+	.mo-text-hover:hover {color: {$mojia['color']['mojia']['back']} !important}
+	.mo-lazy-color {background-color: {$mojia['color']['lazys']['back']} !important;color: {$mojia['color']['lazys']['text']} !important}
+	{if$mojia['other']['bigs']['pics']}
+	.mo-lazy-broad {background-image: url("{$mojia['other']['bigs']['pics']|mac_url_img}")}
+	{/if}{if$mojia['other']['lazy']['pics']}
+	.mo-lazy-highs {background-image: url("{$mojia['other']['lazy']['pics']|mac_url_img}")}
+	{/if}{if$mojia['other']['move']['pics']}
+	.mo-body-backs {background-image: url("{$mojia['other']['move']['pics']|mac_url_img}")}
+	{/if}{if$mojia['other']['table']['pics']}@media(min-width:768px) {
+	.mo-body-backs {background-image: url("{$mojia['other']['table']['pics']|mac_url_img}")}}
+	{/if}
+</style>

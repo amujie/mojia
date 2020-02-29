@@ -1,0 +1,23 @@
+{include file="public/header"}
+{include file="user/banner"}
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px"><a class="mo-mrxs-5px mo-mrmd-10px{if$param.level==''} mo-text-mojia{/if}" href="{:url('user/reward')}">一级下线</a><a class="mo-mrxs-5px mo-mrmd-10px{if$param.level==2} mo-text-mojia{/if}" href="{:url('user/reward')}?level=2">二级下线</a><a class="mo-mrxs-5px mo-mrmd-10px{if$param.level==3} mo-text-mojia{/if}" href="{:url('user/reward')}?level=3">三级下线</a></h2>
+		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/index')}">返回</a>
+		</ul>
+	</div>
+	<form class="mo-user-form" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+		<ul class="mo-cols-rows mo-paxs-0px{if count($list)} mo-pamd-5px{/if}">
+			{volist name="list" id="vo"}
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">{$vo.user_name}</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$vo.user_reg_time|mac_day}</span>
+			</li>
+			{/volist}
+		</ul>
+		{include file="basics/paging"}
+	</form>
+</div>
+{include file="public/footer"}

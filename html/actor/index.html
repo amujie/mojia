@@ -1,0 +1,15 @@
+{include file="public/header"}
+{include file="module/actors"}
+{maccms:type ids="parent" order="asc" by="sort" mid="8" id="magic"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles"}
+	<ul class="mo-cols-rows">
+		{maccms:actor num="12" type="'.$magic['type_id'].'" order="desc" by="time"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+		{include file="basics/actpic"}
+		</li>
+		{/maccms:actor}
+	</ul>
+</div>
+{/maccms:type}
+{include file="public/footer"}

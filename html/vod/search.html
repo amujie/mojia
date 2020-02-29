@@ -1,0 +1,19 @@
+{include file="public/header"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/search"}
+	<div class="mo-cols-rows">
+		{assign name="magic_detail" value="hide"}
+		{maccms:vod num="10" paging="yes" half="3" pageurl="vod/search" order="desc" by="time"}
+		{include file="basics/vodinfo"}
+		{/maccms:vod}
+		{assign name="magic_detail" value="show"}
+	</div>
+	{include file="basics/paging"}
+</div>
+{empty name="$__PAGING__.record_total"}
+{include file="module/notice"}
+{assign name="magic_gbook" value="gbook"}
+{include file="gbook/report"}
+{/empty}
+{include file="module/relate"}
+{include file="public/footer"}

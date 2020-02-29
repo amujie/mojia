@@ -1,0 +1,22 @@
+<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+	{if$magic}
+	<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$magic.type_name}</h2>
+	<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
+		{maccms:type num="8" parent="'.$magic['type_id'].'" order="asc" by="sort"}
+		<li class="mo-coxs-none mo-comd-iblock mo-fsxs-14px"><a class="mo-coxs-iblock" href="{:mac_url_type($vo)}">{$vo.type_name|mac_filter_html}</a><span class="mo-coxs-iblock mo-pnxs-5px">/</span></li>
+		{/maccms:type}
+		<li class="mo-coxs-iblock mo-fsxs-14px"><a href="{:mac_url_type($magic)}">更多</a></li>
+	</ul>
+	{elseif$head}
+	<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$head.type_name|mac_filter_html}</h2>
+	<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+		<li class="mo-coxs-iblock mo-fsxs-14px"><a href="{:mac_url_type($head)}">更多</a></li>
+	</ul>
+	{else}
+	<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$obj.type_name|mac_filter_html}</h2>
+	<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+		<li class="mo-coxs-iblock mo-fsxs-14px">当前第&nbsp;<span id="mo-page-this" class="mo-text-mojia">1</span>&nbsp;页，共&nbsp;<span id="mo-page-sums" class="mo-text-mojia">0</span>&nbsp;条结果</li>
+		<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{if$obj.parent}{:mac_url_type($obj.parent)}{else}{:mac_url(mac_get_mid_code($maccms.mid).'/index')}{/if}">返回</a>
+	</ul>
+	{/if}
+</div>

@@ -1,0 +1,37 @@
+{include file="public/header"} 
+{include file="user/banner"} 
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">升级会员</h2>
+		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/index')}">返回</a>
+		</ul>
+	</div>
+	<form class="mo-user-form" action="{:mac_url('user/upgrade')}" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+		<ul class="mo-cols-rows mo-paxs-0px mo-pamd-5px">
+			{volist name="group_list" id="vo"}{if$vo.group_id>2}
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow">{$vo.group_name}包天：{$vo.group_points_day}积分</span>
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow mo-coxs-right"><a class="mo-paxs-5x10 mo-part-btns mo-bord-round mo-back-mojia" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_day}" data-long="day" data-url="{:mac_url('user/upgrade')}" lay-submit lay-filter="group">升级</a></span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow">{$vo.group_name}包周：{$vo.group_points_week}积分</span>
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow mo-coxs-right"><a class="mo-paxs-5x10 mo-part-btns mo-bord-round mo-back-mojia" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_week}" data-long="week" data-url="{:mac_url('user/upgrade')}" lay-submit lay-filter="group">升级</a></span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow">{$vo.group_name}包月：{$vo.group_points_month}积分</span>
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow mo-coxs-right"><a class="mo-paxs-5x10 mo-part-btns mo-bord-round mo-back-mojia" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_month}" data-long="month" data-url="{:mac_url('user/upgrade')}" lay-submit lay-filter="group">升级</a></span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow">{$vo.group_name}包年：{$vo.group_points_year}积分</span>
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow mo-coxs-right"><a class="mo-paxs-5x10 mo-part-btns mo-bord-round mo-back-mojia" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_year}" data-long="year" data-url="{:mac_url('user/upgrade')}" lay-submit lay-filter="group">升级</a></span>
+			</li>
+			{/if}{/volist}
+		</ul>
+	</form>
+</div>
+{include file="public/footer"}

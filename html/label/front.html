@@ -1,0 +1,18 @@
+{assign name="maccms['aid']" value="73"}
+{include file="public/header"}
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$mojia['home']['hots']['name']}</h2>
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url_type(['type_mid'=>1],['id'=>1],'show')}">筛选</a></li>
+		</ul>
+	</div>
+	<ul class="mo-cols-rows">
+		{maccms:vod num="96" order="desc" by="time" level="'.$_GET['level'].'"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+		{include file="basics/vodpic" type="highs" scale="2by3"}
+		</li>
+		{/maccms:vod}
+	</ul>
+</div>
+{include file="public/footer"}

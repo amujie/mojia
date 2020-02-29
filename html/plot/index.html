@@ -1,0 +1,28 @@
+{include file="public/header"}
+<div class="mo-cols-case mo-cols-rows">
+	{maccms:type ids="parent" order="asc" by="sort" flag="vod" id="magic"}
+	<div class="mo-cols-lays mo-back-white">
+		{include file="basics/titles"}
+		{if stristr($magic['type_name'],'直播')==true}
+		<ul class="mo-cols-rows">
+			{assign name="advs" value="$mojia['home']['class']['advs']"}{include file="basics/vodads" type="broad" scale="16by9" xs="xs6" sm="sm4" lg="lg3"}
+			{maccms:vod num="12" type="'.$magic['type_id'].'" order="desc" by="time" plot="1"}
+			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
+			{include file="basics/vodpic" type="broad" scale="16by9"}
+			</li>
+			{/maccms:vod}
+		</ul>
+		{else}
+		<ul class="mo-cols-rows">
+			{assign name="advs" value="$mojia['home']['class']['advs']"}{include file="basics/vodads" type="highs" scale="2by3" xs="xs4" sm="sm3" lg="lg2"}
+			{maccms:vod num="12" type="'.$magic['type_id'].'" order="desc" by="time" plot="1"}
+			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+			{include file="basics/vodpic" type="highs" scale="2by3"}
+			</li>
+			{/maccms:vod}
+		</ul>
+		{/if}
+	</div>
+	{/maccms:type}
+</div>
+{include file="public/footer"}

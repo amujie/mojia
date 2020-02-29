@@ -1,0 +1,106 @@
+<div class="layui-tab-item">
+	<table class="layui-table" style="margin-top:0">
+		<colgroup>
+			<col width="110">
+			<col width="150">
+			<col width="300">
+			<col width="300">
+			<col>
+		</colgroup>
+		<thead>
+			<tr>
+				<th>名称</th>
+				<th>状态</th>
+				<th colspan="2">代码</th>
+	            <th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="input" name="mojia[advs][head][name]" value="{$mojia['advs']['head']['name']}" class="layui-input" placeholder="全站顶部"></td>
+				<td>
+					<input type="hidden" name="mojia[advs][head][group]" value="{$mojia['advs']['head']['group']}" />
+					<select multiple="multiple" lay-filter="home">
+						<option value="">请选择</option>
+						{maccms:foreach name=":model('Group')->getCache('group_list')"}
+						<option value="{$vo['group_id']}"{if in_array($vo['group_id'], explode(',',$mojia['advs']['head']['group']))} selected{/if}>{$vo['group_name']}</option>
+						{/maccms:foreach}
+					</select>
+				</td>
+				<td colspan="2"><textarea name="mojia[advs][head][area]" class="layui-textarea" placeholder="全站导航栏下方,固定位广告">{$mojia['advs']['head']['area']}</textarea></td>
+				<td>全站导航栏下方,固定位广告</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[advs][foot][name]" value="{$mojia['advs']['foot']['name']}" class="layui-input" placeholder="全站底部"></td>
+				<td>
+					<input type="hidden" name="mojia[advs][foot][group]" value="{$mojia['advs']['foot']['group']}" />
+					<select multiple="multiple" lay-filter="home">
+						<option value="">请选择</option>
+						{maccms:foreach name=":model('Group')->getCache('group_list')"}
+						<option value="{$vo['group_id']}"{if in_array($vo['group_id'], explode(',',$mojia['advs']['foot']['group']))} selected{/if}>{$vo['group_name']}</option>
+						{/maccms:foreach}
+					</select>
+				</td>
+				<td colspan="2"><textarea name="mojia[advs][foot][area]" class="layui-textarea" placeholder="移动端导航栏上方,固定位广告">{$mojia['advs']['foot']['area']}</textarea></td>
+				<td>移动端导航栏上方,固定位广告</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[advs][play][name]" value="{$mojia['advs']['play']['name']}" class="layui-input" placeholder="播放上方"></td>
+				<td>
+					<input type="hidden" name="mojia[advs][play][group]" value="{$mojia['advs']['play']['group']}" />
+					<select multiple="multiple" lay-filter="home">
+						<option value="">请选择</option>
+						{maccms:foreach name=":model('Group')->getCache('group_list')"}
+						<option value="{$vo['group_id']}"{if in_array($vo['group_id'], explode(',',$mojia['advs']['play']['group']))} selected{/if}>{$vo['group_name']}</option>
+						{/maccms:foreach}
+					</select>
+				</td>
+				<td colspan="2"><textarea name="mojia[advs][play][area]" class="layui-textarea" placeholder="播放器上方广告,固定位广告">{$mojia['advs']['play']['area']}</textarea></td>
+				<td>播放器上方广告,固定位广告</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[advs][built][name]" value="{$mojia['advs']['built']['name']}" class="layui-input" placeholder="播放内置"></td>
+				<td>
+					<input type="hidden" name="mojia[advs][built][group]" value="{$mojia['advs']['built']['group']}" />
+					<select multiple="multiple" lay-filter="home">
+						<option value="">请选择</option>
+						{maccms:foreach name=":model('Group')->getCache('group_list')"}
+						<option value="{$vo['group_id']}"{if in_array($vo['group_id'], explode(',',$mojia['advs']['built']['group']))} selected{/if}>{$vo['group_name']}</option>
+						{/maccms:foreach}
+					</select>
+				</td>
+				<td colspan="2"><textarea name="mojia[advs][built][area]" class="layui-textarea" placeholder="播放器前置广告,固定位广告">{$mojia['advs']['union']['area']}</textarea></td>
+				<td>播放器前置广告,固定位广告</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[advs][list][name]" value="{$mojia['advs']['list']['name']}" class="layui-input" placeholder="播放列表"></td>
+				<td>
+					<input type="hidden" name="mojia[advs][list][group]" value="{$mojia['advs']['list']['group']}" />
+					<select multiple="multiple" lay-filter="home">
+						<option value="">请选择</option>
+						{maccms:foreach name=":model('Group')->getCache('group_list')"}
+						<option value="{$vo['group_id']}"{if in_array($vo['group_id'], explode(',',$mojia['advs']['list']['group']))} selected{/if}>{$vo['group_name']}</option>
+						{/maccms:foreach}
+					</select>
+				</td>
+				<td colspan="2"><textarea name="mojia[advs][list][area]" class="layui-textarea" placeholder="播放列表上方,固定位广告">{$mojia['advs']['list']['area']}</textarea></td>
+				<td>播放列表上方,固定位广告</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[advs][float][name]" value="{$mojia['advs']['float']['name']}" class="layui-input" placeholder="漂浮广告"></td>
+				<td>
+					<input type="hidden" name="mojia[advs][float][group]" value="{$mojia['advs']['float']['group']}" />
+					<select multiple="multiple" lay-filter="home">
+						<option value="">请选择</option>
+						{maccms:foreach name=":model('Group')->getCache('group_list')"}
+						<option value="{$vo['group_id']}"{if in_array($vo['group_id'], explode(',',$mojia['advs']['float']['group']))} selected{/if}>{$vo['group_name']}</option>
+						{/maccms:foreach}
+					</select>
+				</td>
+				<td><textarea name="mojia[advs][float][left]" class="layui-textarea" placeholder="左侧漂浮广告,固定位广告">{$mojia['advs']['float']['left']}</textarea></td>
+				<td><textarea name="mojia[advs][float][right]" class="layui-textarea" placeholder="右侧漂浮广告,固定位广告">{$mojia['advs']['float']['right']}</textarea></td>
+				<td>对联广告</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

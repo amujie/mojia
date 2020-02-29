@@ -1,0 +1,18 @@
+{if$mojia['home']['site']['state']}
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$mojia['home']['site']['name']}</h2>
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url_website_index()}">更多</a></li>
+		</ul>
+	</div>
+	<ul class="mo-cols-rows">
+		{assign name="advs" value="$mojia['home']['site']['advs']"}{include file="basics/vodads" type="broad" scale="5by3" xs="xs4" sm="sm3" lg="lg2"}
+		{maccms:website num="'.($mojia['home']['site']['num']-$advert).'" type="'.$mojia['home']['site']['type'].'" level="'.$mojia['home']['site']['level'].'" order="'.$mojia['home']['site']['order'].'" by="'.$mojia['home']['site']['sort'].'"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{if$mojia['home']['site']['num']=='6'&&$key>(4-$advert)} mo-cosm-none mo-colg-block{/if}">
+			{include file="basics/webpic"}
+		</li>
+		{/maccms:website}
+	</ul>
+</div>
+{/if}

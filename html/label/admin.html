@@ -1,0 +1,39 @@
+{include file="admin/header"}
+<form class="mo-main-info layui-form layui-form-pane" action="{$maccms.path_tpl}asset/exc/create.php?id=opt" autocomplete="off">
+	<div class="layui-tab">
+		<ul class="layui-tab-title">
+			<li class="layui-this">欢迎使用</li>
+			<li>导航设置</li>
+			<li>首页设置</li>
+			<li>播放设置</li>
+			<li>配色设置</li>
+			<li>广告设置</li>
+			<li>其他设置</li>
+		</ul>
+		<div class="layui-tab-content">
+			{include file="admin/mojias"}
+			{include file="admin/navbar"}
+			{include file="admin/indexs"}
+			{include file="admin/player"}
+			{include file="admin/colour"}
+			{include file="admin/advert"}
+			{include file="admin/others"}
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button type="submit" lay-filter="submit" lay-submit="" class="layui-btn">立即保存</button>
+					<button type="reset" lay-filter="reset" lay-submit="" class="layui-btn layui-btn-warm">默认设置</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	layui.config({
+		version: magic.ver,
+		base: magic.tpl + 'asset/js/'
+	}).use(['admin'], function() {
+		var admin = layui.admin;
+		admin.global.init();
+	});
+</script>
+{include file="admin/footer"}

@@ -1,0 +1,10 @@
+{include file="public/include"}
+{include file="basics/navbar"}
+{include file="basics/tabbar"}
+<div class="mo-main-info">
+<div class="mo-cols-case">
+{if in_array($user['group_id'], explode(',',$mojia['advs']['head']['group']))}
+<div class="mo-back-white mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px">
+{$mojia['advs']['head']['area']}
+</div>
+{/if}

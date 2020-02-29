@@ -1,0 +1,63 @@
+{include file="public/header"}
+<div class="mo-cols-lays mo-cols-minh mo-back-white">
+	<div class="mo-part-core mo-part-maxw">
+		<h2 class="mo-fsxs-18px mo-coxs-center">会员注册</h2>
+		<form class="layui-form mo-user-form mo-cols-rows mo-pnxs-15px mo-lhxs-40px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">账号</span>
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="text" name="user_name" placeholder="请输入账号" maxlength="16" />
+			</div>
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">密码</span>
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd" placeholder="请输入密码" maxlength="20" />
+			</div>
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">密码</span>
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd2" placeholder="再次输入密码" maxlength="20" />
+			</div>
+			{if$user_config.reg_phone_sms}
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">手机</span>
+				<input type="hidden" name="ac" value="phone">
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="to" placeholder="请输入手机号码" maxlength="11" />
+			</div>
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">验证</span>
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="code" placeholder="请输入手机验证码" maxlength="8" />
+				<a class="mo-part-more mo-prxs-10px mo-pnxs-10px mo-lhxs-44px mo-back-white" href="javascript:;" data-url="{:mac_url('user/reg_msg')}" lay-submit lay-filter="bindmsg">获取验证码</a>
+			</div>
+			{elseif$user_config.reg_email_sms}
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">邮箱</span>
+				<input type="hidden" name="ac" value="email">
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="to" placeholder="请输入邮箱号码" maxlength="40" />
+			</div>
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">验证</span>
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="code" placeholder="请输入邮箱验证码" maxlength="8" />
+				<a class="mo-part-more mo-prxs-10px mo-pnxs-10px mo-lhxs-44px mo-back-white" href="javascript:;" data-url="{:mac_url('user/reg_msg')}" lay-submit lay-filter="bindmsg">获取验证码</a>
+			</div>
+			{/if}{if$GLOBALS['config']['user']['reg_verify']}
+			<div class="mo-cols-rows mo-mtxs-5px">
+				<span class="mo-form-name">验证</span>
+				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="verify" placeholder="输入验证码" maxlength="6" />
+				<img class="mo-part-more mo-part-curs mo-java-verify" height="44" src="{:mac_url('verify/index')}" title="看不清楚? 换一张！" />
+			</div>
+			{/if}
+			<span class="mo-user-tips mo-lhxs-20px mo-text-gules mo-paxs-5px mo-cols-show">&emsp;</span>
+			<a class="mo-user-btns mo-part-btns mo-bord-round mo-back-mojia mo-cols-show" href="javascript:;" data-url="{:mac_url('user/reg')}" data-jump="{:mac_url('user/index')}" lay-submit lay-filter="center">注册</a>
+			<div class="mo-cols-rows mo-lhxs-40px">
+				<a class="mo-cols-info mo-cols-xs3 mo-coxs-left" href="{:mac_url('user/findpass')}">忘记密码</a>
+				{if$GLOBALS['config']['connect']['weixin']['status']}
+				<a class="mo-cols-info{if$GLOBALS['config']['connect']['qq']['status']} mo-cols-xs3{else} mo-cols-xs6{/if} mo-coxs-center" href="{:mac_url('user/oauth')}?type=weixin">微信登录</a>
+				{/if}{if$GLOBALS['config']['connect']['qq']['status']}
+				<a class="mo-cols-info{if$GLOBALS['config']['connect']['weixin']['status']} mo-cols-xs3{else} mo-cols-xs6{/if} mo-coxs-center" href="{:mac_url('user/oauth')}?type=qq">QQ登录</a>
+				{/if}{if!$GLOBALS['config']['connect']['weixin']['status']&&!$GLOBALS['config']['connect']['qq']['status']}
+				<a class="mo-cols-info mo-cols-xs6 mo-coxs-center" href="javascript:;">&emsp;</a>
+				{/if}
+				<a class="mo-cols-info mo-cols-xs3 mo-coxs-right" href="{:mac_url('user/login')}">立即登录</a>
+			</div>
+		</form>
+	</div>
+</div>
+{include file="public/footer"}

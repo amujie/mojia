@@ -1,0 +1,181 @@
+{if in_array($user['group_id'], explode(',',$mojia['advs']['list']['group']))}
+<div class="mo-back-white mo-mtsm-10px mo-mtmd-20px">
+{$mojia['advs']['list']['area']}
+</div>
+{/if}{php}$magic_role = model("Role")->listCacheData('{"rid":"'.$obj['vod_id'].'"}');{/php}
+<div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over mo-java-play mo-java-page" data-name="{$obj.vod_name|mac_filter_html}" data-nums="{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}" data-show="{$obj['vod_play_list'][$param['sid']]['player_info']['show']|mac_default='详情'}">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-part-slip mo-cols-xs9 mo-cols-sm10">
+			{if$obj.vod_play_list}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if$maccms.aid!=16&&$maccms.aid!=104} mo-text-mojia{/if}" href="javascript:;">播放列表</a>
+			{/if}{if$maccms.aid==104}{assign name="param['nid']" value="$param['page']"}{/if}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if!$obj.vod_play_list&&!$obj.vod_down_list} mo-text-mojia{/if}" href="javascript:;">剧情简介</a>
+			{if$GLOBALS['config']['comment']['status']&&$maccms.mid!=10}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">发表评论</a>
+			{/if}{if$obj.vod_down_list}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if$maccms.aid==16||!$obj.vod_play_list} mo-text-mojia{/if}" href="javascript:;">下载列表</a>
+			{/if}{if$obj.vod_plot_list}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if$maccms.aid==104} mo-text-mojia{/if}" href="javascript:;">分集剧情</a>
+			{/if}{if$magic_role['list']}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">角色介绍</a>
+			{/if}{assign name="short['sid']" value="$param['sid']"}
+		</h2>
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+			{if$mojia['other']['edit']['state']&&model("Admin")->checkLogin()['code']==1}
+			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a href="{$install}{$mojia['other']['edit']['link']}/admin/{:mac_get_mid_code($maccms['mid'])}/info/id/{$obj[mac_get_mid_code($maccms['mid']).'_id']}.html" target="_blank">编辑</a></li>
+			{/if}
+			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-comm-report" href="javascript:;" data-href="{:mac_url('gbook/report')}">报错</a></li>
+		</ul>
+	</div>
+	{if$obj.vod_play_list}{if$maccms.aid!=15}{assign name="param['sid']" value=":key($obj.vod_play_list)"}{/if}
+	<div class="mo-tabs-item mo-pamd-5px{if$maccms.aid!=16&&$maccms.aid!=104} mo-cols-show{else} mo-cols-hide{/if}">
+		<div class="mo-cols-rows mo-part-over">
+			<ul class="mo-cols-rows">
+				{maccms:foreach name="obj.vod_play_list" id="sub"}
+				<li class="mo-paxs-5px mo-cols-info mo-cols-xs4 mo-cols-md3 mo-cols-lg2">
+					<a class="mo-back-hover mo-back-click mo-coxs-center mo-paxs-10px mo-bord-round mo-coxs-left mo-cols-show{if$maccms.aid==15}{if$sub.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}{elseif$key==$param['sid']} mo-back-mojia{/if}" href="{:mac_url_vod_play($obj,['sid'=>$sub.sid,'nid'=>$param.nid])}"><i class="mo-prxs-2px mo-icon-font mo-icon-play mo-icon-{$obj['vod_play_list'][$sub['sid']]['player_info']['from']}"></i>{$sub.player_info.show}</a>
+				</li>
+				{/maccms:foreach}
+			</ul>
+			<ul class="mo-drop-head mo-paxs-5px mo-cols-rows mo-part-over">
+				<li class="mo-pzmd-5px mo-cols-info mo-cols-xs5 mo-wrap-arow">{$obj['vod_play_list'][$param['sid']]['player_info']['tip']|mac_default='播放列表'}</li>
+				<li class="mo-pzmd-5px mo-cols-info mo-cols-xs7 mo-coxs-right mo-drop-info">
+					<a class="mo-coxs-iblock mo-drop-sort" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-paixu"></i><span class="mo-drop-name">正序</span></a>
+					<!-- <a class="mo-coxs-iblock mo-drop-btns mo-plxs-5px mo-java-event" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-play mo-icon-{$obj['vod_play_list'][$param['sid']]['player_info']['from']}"></i>{$obj['vod_play_list'][$param['sid']]['player_info']['show']}<span class="mo-part-move mo-edge-info mo-edge-bottom mo-bord-upper"></span></a>
+					<div class="mo-drop-foot mo-paxs-5px mo-bord-round mo-back-white mo-cols-rows mo-cols-hide mo-java-ceal">
+						{maccms:foreach name="obj.vod_play_list" id="sub"}
+						<a class="mo-back-hover mo-paxs-10px mo-bord-round mo-coxs-left mo-cols-show{if$maccms.aid==15}{if$sub.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}{elseif$key==$param['sid']} mo-back-mojia{/if}" href="{:mac_url_vod_play($obj,['sid'=>$sub.sid,'nid'=>$param.nid])}"><i class="mo-prxs-2px mo-icon-font mo-icon-play mo-icon-{$obj['vod_play_list'][$sub['sid']]['player_info']['from']}"></i>{$sub.player_info.show}</a>
+						{/maccms:foreach}
+					</div> -->
+				</li>
+			</ul>
+			<ul class="mo-drop-boxs mo-cols-rows">
+				{maccms:foreach name="obj['vod_play_list'][$param['sid']]['urls']" id="sub"}
+				<li class="mo-paxs-5px{if$obj.type_1.type_name=='电影'||$obj.type.type_name=='电影'||$obj.type_1.type_name=='综艺'||$obj.type.type_name=='综艺'} mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-md3 mo-cols-lg2{else} mo-cols-info mo-cols-xs3 mo-cols-lg2 mo-cols-xl1{/if}">
+					<a class="mo-part-btns mo-fsxs-14px mo-bord-muted mo-bord-round mo-cols-show mo-wrap-arow mo-lhxs-40px mo-back-click mo-back-write{if$key==$param.nid} mo-back-mojia{/if}" href="{:mac_url_vod_play($obj,['sid'=>$param['sid'],'nid'=>$sub.nid])}">{:str_replace(array('第','集'),'',$sub.name)}</a>
+				</li>
+				{/maccms:foreach}
+			</ul>
+		</div>
+	</div>
+	{/if}
+	<div class="mo-tabs-item{if!$obj.vod_play_list&&!$obj.vod_down_list} mo-cols-show{else} mo-cols-hide{/if}">
+		{if$maccms.aid==15}{assign name="magic_detail" value="hide"}{include file="basics/vodinfo"}{assign name="magic_detail" value="show"}{/if}
+		<p class="mo-paxs-5px mo-pamd-10px mo-ptxs-0px">
+			{$obj.vod_content|mac_filter_html|mac_default='暂无剧情简介'}
+		</p>
+	</div>
+	{if$GLOBALS['config']['comment']['status']&&$maccms.mid!=10}
+	<div class="mo-tabs-item mo-cols-hide">
+		<div class="mo-comm-critic"></div>
+	</div>
+	{/if}{if$obj.vod_down_list}{if$maccms.aid!=16}{assign name="param['sid']" value=":key($obj.vod_down_list)"}{else}{assign name="param['sid']" value="$short['sid']"}{/if}
+	<div class="mo-tabs-item mo-pamd-5px{if$maccms.aid==16||!$obj.vod_play_list} mo-cols-show{else} mo-cols-hide{/if}">
+		<div class="mo-cols-rows mo-part-over">
+			<ul class="mo-cols-rows">
+				{maccms:foreach name="obj.vod_down_list" id="sub"}
+				<li class="mo-paxs-5px mo-cols-info mo-cols-xs4 mo-cols-md3 mo-cols-lg2">
+					<a class="mo-back-hover mo-back-click mo-coxs-center mo-paxs-10px mo-bord-round mo-coxs-left mo-cols-show{if$maccms.aid==15}{if$sub.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}{elseif$key==$param['sid']} mo-back-mojia{/if}" href="{:mac_url_vod_down($obj,['sid'=>$sub.sid,'nid'=>$param.nid])}"><i class="mo-prxs-2px mo-icon-font mo-icon-play mo-icon-{$obj['vod_play_list'][$sub['sid']]['player_info']['from']}"></i>{$sub.player_info.show}</a>
+				</li>
+				{/maccms:foreach}
+			</ul>
+			<ul class="mo-drop-head mo-paxs-5px mo-cols-rows mo-part-over">
+				<li class="mo-pzmd-5px mo-cols-info mo-cols-xs5 mo-wrap-arow">{$obj['vod_down_list'][$param['sid']]['player_info']['tip']|mac_default='下载列表'}</li>
+				<li class="mo-pzmd-5px mo-cols-info mo-cols-xs7 mo-coxs-right mo-drop-info">
+					<a class="mo-coxs-iblock mo-drop-sort" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-paixu"></i><span class="mo-drop-name">正序</span></a>
+					<!-- <a class="mo-coxs-iblock mo-drop-btns mo-plxs-5px mo-java-event" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-down mo-icon-{$obj['vod_down_list'][$param['sid']]['player_info']['from']}"></i>{$obj['vod_down_list'][$param['sid']]['player_info']['show']}<span class="mo-part-move mo-edge-info mo-edge-bottom mo-bord-upper"></span></a>
+					<div class="mo-drop-foot mo-paxs-5px mo-bord-round mo-back-white mo-cols-rows mo-cols-hide mo-java-ceal">
+						{maccms:foreach name="obj.vod_down_list" id="sub"}
+						<a class="mo-back-hover mo-paxs-10px mo-bord-round mo-cols-show{if$maccms.aid==16}{if$sub.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}{elseif$key==$param['sid']} mo-back-mojia{/if}" href="{:mac_url_vod_down($obj,['sid'=>$sub.sid,'nid'=>$param.nid])}"><i class="mo-prxs-2px mo-icon-font mo-icon-down mo-icon-{$obj['vod_down_list'][$sub['sid']]['player_info']['from']}"></i>{$sub.player_info.show}</a>
+						{/maccms:foreach}
+					</div> -->
+				</li>
+			</ul>
+			{if$maccms.aid==16&&$obj.vod_points_down==0}
+			<ul class="mo-cols-rows">
+				{maccms:foreach name="obj['vod_down_list'][$param['sid']]['urls']" id="sub"}
+				<li class="mo-cols-rows mo-cols-info mo-cols-xs12">
+					<div class="mo-paxs-5px mo-cols-info mo-cols-xs8 mo-cols-sm9 mo-cols-lg10">
+						<input class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}" />
+					</div>
+					<div class="mo-paxs-5px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+						<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click{if$key==$param.nid} mo-back-mojia{/if}" href="{if stristr('xunlei|http',$obj['vod_down_list'][$param['sid']]['player_info']['from'])==true}thunder://{if$mojia['other']['demo']['state']}{:base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ')}{else}{:base64_encode('AA'.$sub.url.'ZZ')}{/if}{else}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}{/if}" target="_blank">下载{$sub.name}</a>
+					</div>
+				</li>
+				{/maccms:foreach}
+			</ul>
+			{else}{if$param.nid}
+			<ul class="mo-cols-rows">
+				<li class="mo-cols-rows">
+					{if$popedom.code==1||$popedom.code==''}
+					<div class="mo-paxs-5px mo-cols-info mo-cols-xs8 mo-cols-sm9 mo-cols-lg10">
+						<input class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url']}" />
+					</div>
+					<div class="mo-paxs-5px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+						<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show" href="{if stristr('xunlei|http',$obj['vod_down_list'][$param['sid']]['player_info']['from'])==true}thunder://{if$mojia['other']['demo']['state']}{:base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ')}{else}{:base64_encode('AA'.$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url'].'ZZ')}{/if}{else}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}{/if}" target="_blank">下载{$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['name']}</a>
+					</div>
+					{else}
+					<div class="mo-paxs-5px mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg8">
+						<input class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$popedom.msg}" />
+					</div>
+					<div class="mo-paxs-5px mo-cols-info mo-cols-xs6 mo-cols-sm3 mo-cols-lg2">
+						<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show" href="{:mac_url('user/buy')}" target="_blank">马上充值</a>
+					</div>
+					<div class="mo-paxs-5px mo-cols-info mo-cols-xs6 mo-cols-sm3 mo-cols-lg2">
+						<a class="mo-java-power mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-mojia" href="javascript:;" data-name="{if$obj.player_info.flag=='play'}播放{else}下载{/if}" data-type="{if$obj.player_info.flag=='play'}4{else}5{/if}">确认购买</a>
+					</div>
+					{/if}
+				</li>
+			</ul>
+			{/if}
+			<ul class="mo-drop-boxs mo-cols-rows">
+				{maccms:foreach name="obj['vod_down_list'][$param['sid']]['urls']" id="sub"}
+				<li class="mo-paxs-5px{if$obj.type_1.type_name=='电影'||$obj.type.type_name=='电影'||$obj.type_1.type_name=='综艺'||$obj.type.type_name=='综艺'} mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-md3 mo-cols-lg2{else} mo-cols-info mo-cols-xs3 mo-cols-lg2 mo-cols-xl1{/if}">
+					<a class="mo-part-btns mo-fsxs-14px mo-bord-muted mo-bord-round mo-cols-show mo-wrap-arow mo-lhxs-40px mo-back-click mo-back-write{if$key==$param.nid} mo-back-mojia{/if}" href="{:mac_url_vod_down($obj,['sid'=>$param['sid'],'nid'=>$sub.nid])}">{:str_replace(array('第','集'),'',$sub.name)}</a>
+				</li>
+				{/maccms:foreach}
+			</ul>
+			{/if}
+		</div>
+	</div>
+	{/if}{if$obj.vod_plot_list}
+	<div class="mo-tabs-item mo-pamd-5px{if$maccms.aid==104} mo-cols-show{else} mo-cols-hide{/if}">
+		{if$param.nid}
+		<div class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
+		<div class="mo-cols-rows mo-part-over">
+			<ul class="mo-drop-head mo-paxs-5px mo-cols-rows mo-part-over">
+				<li class="mo-pzmd-5px mo-cols-info mo-cols-xs5 mo-wrap-arow">{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}</li>
+			</ul>
+			<div class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
+			<p class="mo-paxs-5px mo-ptxs-0px mo-mtsm-5px">{if$obj['vod_plot_list'][$param['nid']]['detail']}{$obj['vod_plot_list'][$param['nid']]['detail']}{else}暂无{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}剧情简介{/if}</p>
+		</div>
+		{/if}
+		<div class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
+		<div class="mo-cols-rows mo-part-over">
+			<ul class="mo-drop-head mo-paxs-5px mo-cols-rows mo-part-over">
+				<li class="mo-pzmd-5px mo-cols-info mo-cols-xs5 mo-wrap-arow">剧情列表</li>
+				<li class="mo-pzmd-5px mo-cols-info mo-cols-xs7 mo-coxs-right mo-drop-info">
+					<a class="mo-coxs-iblock mo-drop-sort" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-paixu"></i><span class="mo-drop-name">正序</span></a>
+				</li>
+			</ul>
+			<div class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
+			<ul class="mo-drop-boxs mo-cols-rows">
+				{maccms:foreach name="obj['vod_play_list'][$param['sid']]['urls']" id="sub"}
+				<li class="mo-paxs-5px{if$obj.type_1.type_name=='电影'||$obj.type.type_name=='电影'||$obj.type_1.type_name=='综艺'||$obj.type.type_name=='综艺'} mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-md3 mo-cols-lg2{else} mo-cols-info mo-cols-xs3 mo-cols-lg2 mo-cols-xl1{/if}">
+					<a class="mo-part-btns mo-fsxs-14px mo-bord-muted mo-bord-round mo-cols-show mo-wrap-arow mo-lhxs-40px mo-back-click mo-back-write{if$key==$param.nid} mo-back-mojia{/if}" href="{:mac_url_plot_detail($obj,['page'=>$key])}">{:str_replace(array('第','集'),'',$sub.name)}</a>
+				</li>
+				{/maccms:foreach}
+			</ul>
+		</div>
+	</div>
+	{/if}{if$magic_role['list']}
+	<div class="mo-tabs-item mo-cols-hide">
+		<div class="mo-paxs-5px mo-pamd-10px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
+		{assign name="magic_detail" value="hide"}
+		{maccms:role num="10" rid="'.$obj['vod_id'].'" order="asc" by="sort"}
+		{include file="basics/rolinfo"}
+		{/maccms:role}
+		{assign name="magic_detail" value="show"}
+	</div>
+	{/if}
+</div>

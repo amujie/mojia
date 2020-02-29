@@ -1,0 +1,43 @@
+{assign name="maccms['aid']" value="72"}
+{include file="public/header"}
+<div class="mo-cols-lays mo-back-white">
+	<h1 class="mo-paxs-5px mo-pamd-10px mo-coxs-center mo-fsxs-18px">本周热门排行</h1>
+</div>
+<div class="mo-cols-case mo-cols-rows">
+	{maccms:type num="24" order="asc" by="sort" flag="vod" id="magic"}
+	<div class="mo-cols-lays mo-back-white mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg4">
+		<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+			<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$magic.type_name}</h2>
+			<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+				<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url_type($magic)}">更多</a></li>
+			</ul>
+		</div>
+		<ul class="mo-cols-rows">
+			{assign name="magic_detail" value="hide"}
+			{maccms:vod num="1" type="'.$magic['type_id'].'" order="desc" by="hits_week"}
+			<dl class="mo-cols-rows">
+				<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4">
+					{include file="basics/vodpic" type="highs" scale="2by3"}
+				</dt>
+				<dd class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs7">
+					<h3 class="mo-wrap-arow mo-fsxs-16px"><a href="{:mac_url_vod_detail($vo)}"{if$vo.vod_color} style="color:#{$vo.vod_color}!important"{/if}>{$vo.vod_name|mac_filter_html}</a></h3>
+					<ul class="mo-cols-rows">
+						<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">主演:&nbsp;</span>{$vo.vod_actor|mac_url_create='actor','vod','search'}</li>
+						<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">导演:&nbsp;</span>{$vo.vod_director|mac_url_create='director','vod','search'}</li>
+						<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">年份:&nbsp;</span>{$vo.vod_year|mac_url_create='year','vod','search'}</li>
+						<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">更新:&nbsp;</span>{$vo.vod_time|date='Y-m-d',###}</li>
+					</ul>
+				</dd>
+			</dl>
+			{/maccms:vod}{assign name="magic_detail" value="show"}
+			{maccms:vod num="8" start="2" type="'.$magic['type_id'].'" order="desc" by="hits_week"}
+			<li class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+				<a class="mo-cols-info mo-cols-xs9 mo-wrap-arow" href="{:mac_url_vod_detail($vo)}"><span class="mo-part-seal mo-back-items mo-back-item{$key+1}">{$key+1}</span>{$vo.vod_name|mac_filter_html}</a>
+				<span class="mo-cols-info mo-cols-xs3 mo-text-mojia mo-coxs-right">{$vo.vod_hits_week}</span>
+			</li>
+			{/maccms:vod}
+		</ul>
+	</div>
+	{/maccms:type}
+</div>
+{include file="public/footer"}

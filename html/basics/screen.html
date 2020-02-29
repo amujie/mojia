@@ -1,0 +1,54 @@
+<div class="mo-paxs-10px mo-cols-lays mo-back-white mo-cols-rows">
+	<dl class="mo-scre-info mo-scre-type mo-bord-muted mo-part-slip mo-paxs-10x5 mo-pamd-1510 mo-cols-info mo-cols-xs12 mo-cols-md6 mo-cols-lg4">
+		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">{if$obj.childids||$obj.parent.childids}分类{else}类型{/if}</dt>
+		{if$obj.childids||$obj.parent.childids}
+		{maccms:type num="8" ids="current" order="asc" by="sort" flag="vod"}
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($vo,['area'=>$param.area,'year'=>$param.year,'class'=>$param.class],'show')}">{$vo.type_name|mac_filter_html}</a></dd>
+		{/maccms:type}
+		{elseif$obj.type_extend.class}
+		{maccms:foreach name=":explode(',',$obj.type_extend.class)"}
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['area'=>$param.area,'year'=>$param.year,'class'=>$vo],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{elseif$obj.parent.type_extend.class}
+		{maccms:foreach name=":explode(',',$obj.parent.type_extend.class)"}
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['area'=>$param.area,'year'=>$param.year,'class'=>$vo],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{else}
+		{maccms:foreach name=":explode(',',$maccms.vod_extend_class)"}
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['area'=>$param.area,'year'=>$param.year,'class'=>$vo],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{/if}
+	</dl>
+	<dl class="mo-scre-info mo-scre-type mo-bord-muted mo-part-slip mo-paxs-10x5 mo-pamd-1510 mo-cols-info mo-cols-xs12 mo-cols-md6 mo-cols-lg4 mo-comd-none mo-colg-block">
+		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">年代</dt>
+		{if$obj.type_extend.year}
+		{maccms:foreach name=":explode(',',$obj.type_extend.year)"}
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['area'=>$param.area,'year'=>$vo,'class'=>$param.class],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{elseif$obj.parent.type_extend.year}
+		{maccms:foreach name=":explode(',',$obj.parent.type_extend.year)"}
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['area'=>$param.area,'year'=>$vo,'class'=>$param.class],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{else}
+		{maccms:foreach name=":explode(',',$maccms.vod_extend_year)"}
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['area'=>$param.area,'year'=>$vo,'class'=>$param.class],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{/if}
+	</dl>
+	<dl class="mo-scre-info mo-scre-type mo-bord-muted mo-part-slip mo-paxs-10x5 mo-pamd-1510 mo-cols-info mo-cols-xs12 mo-cols-md6 mo-cols-lg4">
+		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">地区</dt>
+		{if$obj.type_extend.area}
+		{maccms:foreach name=":explode(',',$obj.type_extend.area)"}
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['area'=>$vo,'year'=>$param.year,'class'=>$param.class],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{elseif$obj.parent.type_extend.area}
+		{maccms:foreach name=":explode(',',$obj.parent.type_extend.area)"}
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['area'=>$vo,'year'=>$param.year,'class'=>$param.class],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{else}
+		{maccms:foreach name=":explode(',',$maccms.vod_extend_area)"}
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['area'=>$vo,'year'=>$param.year,'class'=>$param.class],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{/if}
+	</dl>
+</div>

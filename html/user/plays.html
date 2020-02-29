@@ -1,0 +1,26 @@
+{include file="public/header"}
+{include file="user/banner"}
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">播放记录</h2>
+		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px" data-type="4" data-url="{:mac_url('user/ulog_del')}">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-whole mo-plxs-5px" href="javascript:;">全选</a></li>
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-reset mo-plxs-5px" href="javascript:;">删除</a></li>
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-clear mo-plxs-5px" href="javascript:;">清空</a></li>
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/index')}">返回</a>
+		</ul>
+	</div>
+	<form class="mo-user-form" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+		<ul class="mo-cols-rows mo-paxs-0px{if count($list)} mo-pamd-5px{/if}">
+			{volist name="list" id="vo"}
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow"><input class="mo-form-comp mo-mrxs-5px" name="ids[]" type="checkbox" value="{$vo.ulog_id}"><a target="_blank" href="{$vo.data.link}">[{$vo.data.type.type_name}]&nbsp;{$vo.data.name}&nbsp;[第{$vo.ulog_nid}集]</a></span>
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow mo-coxs-right">消费{$vo.ulog_points}积分</span>
+			</li>
+			{/volist}
+		</ul>
+		{include file="basics/paging"}
+	</form>
+</div>
+{include file="public/footer"}

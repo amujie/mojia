@@ -1,0 +1,36 @@
+{include file="basics/config"} 
+<div class="mo-have-info mo-cols-rows mo-back-white">
+	<div class="mo-have-body mo-cols-rows mo-byxs-16by9">
+		<div class="mo-have-main">
+			<img width="100%" height="100%" src="{back}" />
+			<div class="mo-have-left">
+				<img class="mo-have-boxs mo-part-core" width="100%" height="auto" src="{image}" />
+			</div>
+			<div class="mo-have-right">
+				<div class="mo-cols-rows mo-cols-xs12 mo-text-white mo-paxs-10px mo-pamd-20px mo-pbmd-10px">
+					<h4 class="mo-fsxs-16px mo-fsxs-18px mo-wrap-arow">{title}</h4>
+				</div>
+				<div class="mo-cols-rows mo-cols-xs12 mo-text-white mo-pnxs-10px mo-pnmd-20px">
+					<p class="mo-fsxs-12px mo-fsxs-16px mo-lhxs-20px mo-lhmd-24px">{keywords}</p>
+				</div>
+				<div class="mo-have-code mo-paxs-10px mo-pamd-20px">
+					<img src="{$mojia['other']['icon']['pics']|mac_url_img}" id="mo-have-pics" class="mo-cols-hide" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mo-cols-rows mo-paxs-10px">
+		<li class="mo-cols-info mo-cols-xs3 mo-paxs-5px mo-fsxs-12px mo-fsmd-14px">
+			<a class="mo-have-shut mo-lhxs-34px mo-back-click mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-bord-muted" href="javascript:;">关闭</a>
+		</li>
+		<li class="mo-cols-info mo-cols-xs5 mo-paxs-5px mo-fsxs-12px mo-fsmd-14px">
+			<a class="mo-have-copy mo-lhxs-34px mo-back-click mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-bord-muted" href="javascript:;">复制标题+网址</a>
+		</li>
+		<li class="mo-cols-info mo-cols-xs4 mo-paxs-5px mo-fsxs-12px mo-fsmd-14px">
+			<a class="mo-have-link mo-lhxs-34px mo-back-click mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-bord-muted" href="javascript:;">复制网址</a>
+		</li>
+		<li class="mo-cols-info mo-cols-xs12 mo-paxs-5px mo-fsxs-12px mo-fsmd-14px mo-mtxs-5px">
+			<a class="mo-have-btns mo-lhxs-34px mo-back-click mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;" data-clipboard-text="{$maccms.http_url}">生成海报分享给好友</a>
+		</li>
+	</div>
+</div>

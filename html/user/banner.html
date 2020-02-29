@@ -1,0 +1,25 @@
+<div class="mo-user-info mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px">
+	<div class="mo-situ-pics mo-lazy-color mo-byxs-3by2 mo-bymd-5by2" style="background-image:url({$mojia['other']['chain']['apis']}{$maccms.path_tpl}asset/img/user.jpg)">
+		<div class="mo-part-core mo-coxs-center">
+			<div class="mo-user-avat mo-user-hove">
+				<a class="mo-user-avat mo-part-coin mo-user-load mo-cols-show mo-text-white mo-fsxs-24px mo-icon-font mo-icon-chuangzuo" href="javascript:;" data-role="{:mac_url('user/portrait')}"></a>
+				<img class="mo-user-avat mo-part-coin mo-cols-show" src="{:mac_get_user_portrait($obj['user_id'])}?v={:time()}" />
+			</div>
+			<span class="mo-cols-show mo-text-white mo-lhxs-34px">{$obj.user_nick_name|mac_default=$obj.user_name}</span>
+		</div>
+	</div>
+	<ul class="mo-cols-rows mo-paxs-5px mo-pamd-10px mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px mo-back-white">
+		<li class="mo-cols-rows mo-lhxs-24px mo-bord-muted mo-cols-cell mo-paxs-5px mo-pamd-10px mo-coxs-center">
+			<span class="mo-cols-show mo-text-gules mo-fsxs-14px">{$obj.user_points}</span>
+			<span class="mo-cols-show">我的积分</span>
+		</li>
+		<li class="mo-cols-rows mo-lhxs-24px mo-bord-muted mo-cols-cell mo-paxs-5px mo-pamd-10px mo-coxs-center mo-line-left mo-bord-muted">
+			<span class="mo-cols-show mo-text-gules mo-fsxs-14px">{$obj.group.group_name}</span>
+			<span class="mo-cols-show">我的等级</span>
+		</li>
+		<li class="mo-cols-rows mo-lhxs-24px mo-bord-muted mo-cols-cell mo-paxs-5px mo-pamd-10px mo-coxs-center mo-line-left mo-bord-muted">
+			<span class="mo-cols-show mo-text-gules mo-fsxs-14px">{if$obj['user_end_time']}{:date('Y-m-d',$obj['user_end_time'])}{else}无限制{/if}</span>
+			<span class="mo-cols-show">到期时间</span>
+		</li>
+	</ul>
+</div>

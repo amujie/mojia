@@ -1,0 +1,17 @@
+{include file="basics/config"}{maccms:art ids="'.$mojia['home']['note']['alert'].'"}
+<div class="mo-note-info mo-cols-rows">
+	<div class="mo-cols-info mo-cols-xs12 mo-cols-md5 mo-coxs-none mo-comd-block">
+		<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-2by3 mo-cols-rows" href="{:mac_url_art_detail($vo)}" style="background-image:url({$mojia['other']['chain']['apis']}{$vo.art_pic|mac_url_img})"></a>
+	</div>
+	<div class="mo-cols-info mo-cols-xs12 mo-cols-md7 mo-cols-high">
+		<a class="mo-note-clear mo-note-dels mo-coxs-right mo-text-muted mo-cols-show mo-java-event" href="javascript:;">×</a>
+		<h2 class="mo-wrap-arow mo-fsxs-16px mo-fssm-18px mo-coxs-center"><a class="mo-part-bold" href="{:mac_url_art_detail($vo)}"{if$vo.art_color} style="color:#{$vo.art_color}!important"{/if}>{$vo.art_name|mac_filter_html}</a></h2>
+		<div class="mo-paxs-20px">
+			{$vo.art_content|mac_url_content_img}
+		</div>
+		<div class="mo-note-foot mo-paxs-20px mo-coxs-center mo-back-white mo-cols-info mo-cols-xs12">
+			<a class="mo-note-clear mo-pnxs-10px mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="{$vo.art_jumpurl|mac_default='javascript:;'}">{$vo.art_sub|mac_default='关闭按钮'}</a>
+		</div>
+	</div>
+</div>
+{/maccms:art}

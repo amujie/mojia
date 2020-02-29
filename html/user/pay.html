@@ -1,0 +1,57 @@
+{include file="public/header"} 
+{include file="user/banner"} 
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">充值中心</h2>
+		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/buy')}">返回</a>
+		</ul>
+	</div>
+	<form class="mo-user-form" action="{:mac_url('user/gopay')}" autocomplete="off" method="post" target="_blank">
+		<ul class="mo-cols-rows mo-paxs-0px mo-pamd-5px">
+			<li class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<input type="hidden" name="order_code" value="{$info.order_code}">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">订单编号</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$info.order_code}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<input type="hidden" name="order_id" value="{$info.order_id}">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">订单金额</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$info.order_price}元</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<input type="hidden" name="paytype" value="1">
+				{volist name="ext_list" id="vo"}
+				<input class="mo-form-comp mo-mrxs-5px" type="radio" name="payment" value="{$key}"{if$key==key($ext_list)} checked{/if} id="payment{$key}" /><label class="mo-mrxs-5px" for="payment{$key}">{$vo}</label>
+				{/volist}
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				{if$GLOBALS['config']['pay']['alipay']['account']}
+				<div class="mo-tabs-item mo-tabs-alipay mo-mbxs-5px{if key($ext_list)=='alipay'} mo-cols-show{else} mo-cols-hide{/if}"></div>
+				{/if}{if$GLOBALS['config']['pay']['codepay']['appid']}
+				<div class="mo-tabs-item mo-tabs-codepay mo-mbxs-5px{if key($ext_list)=='codepay'} mo-cols-show{else} mo-cols-hide{/if}">
+					{maccms:foreach name=":explode(',',$GLOBALS['config']['pay']['codepay']['type'])"}
+					<input class="mo-user-radio mo-form-comp mo-mrxs-5px" type="radio" name="codepay" value="{$vo}"{if$vo==1} checked{/if} id="codepay{$key}" /><label class="mo-mrxs-5px" for="codepay{$key}">{if$vo==1}支付宝{elseif$vo==2}QQ钱包{elseif$vo==3}微信{/if}</label>
+					{/maccms:foreach}
+				</div>
+				{/if}{if$GLOBALS['config']['pay']['weixin']['appid']}
+				<div class="mo-tabs-item mo-tabs-weixin mo-mbxs-5px{if key($ext_list)=='weixin'} mo-cols-show{else} mo-cols-hide{/if}"></div>
+				{/if}{if$GLOBALS['config']['pay']['zhapay']['appid']}
+				<div class="mo-tabs-item mo-tabs-zhapay mo-mbxs-5px{if key($ext_list)=='zhapay'} mo-cols-show{else} mo-cols-hide{/if}">
+					{maccms:foreach name=":explode(',',$GLOBALS['config']['pay']['zhapay']['type'])"}
+					<input class="mo-user-radio mo-form-comp mo-mrxs-5px" type="radio" name="zhapay" value="{$vo}"{if$vo==1} checked{/if} id="zhapay{$key}" /><label class="mo-mrxs-5px" for="zhapay{$key}">{if$vo==1}支付宝{elseif$vo==2}QQ钱包{elseif$vo==3}微信{/if}</label>
+					{/maccms:foreach}
+				</div>
+				{/if}
+			</li>
+			<li class="mo-paxs-5px">
+				<button class="mo-cols-xs12 mo-user-btns mo-part-btns mo-bord-round mo-back-mojia mo-cols-show" type="submit">提交</button>
+			</li>
+		</ul>
+	</form>
+</div>
+{include file="public/footer"}

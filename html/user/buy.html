@@ -1,0 +1,40 @@
+{include file="public/header"} 
+{include file="user/banner"} 
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">充值中心</h2>
+		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/index')}">返回</a>
+		</ul>
+	</div>
+	<form class="layui-form mo-cols-rows mo-pnxs-5px mo-pnmd-10px mo-lhxs-40px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+		<div class="mo-pzxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
+		<div class="mo-cols-rows mo-mtxs-5px">
+			<span class="mo-form-name">充值金额</span>
+			<input type="hidden" name="flag" value="pay" />
+			<input class="mo-form-left mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" lay-verify="required" type="tel" name="price" value="10" placeholder="充值金额" maxlength="20" />
+		</div>
+		<span class="mo-lhxs-20px mo-paxs-5px mo-text-gules mo-cols-show">最小充值金额为{$GLOBALS['config']['pay']['min']}元，1元={$GLOBALS['config']['pay']['scale']}积分</span>
+		<a class="mo-part-btns mo-bord-round mo-back-mojia mo-cols-show mo-mbxs-10px" href="javascript:;" data-url="{:mac_url('user/buy')}" data-pay="{:mac_url('user/pay')}" lay-submit lay-filter="pay">充值</a>
+	</form>
+	<form class="layui-form mo-user-form mo-cols-rows mo-pnxs-5px mo-pnmd-10px mo-lhxs-40px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+		<div class="mo-pzxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
+		<div class="mo-cols-rows mo-mtxs-5px">
+			<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">充值卡</span>
+			<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{if$mojia['other']['call']['link']}<a href="{$mojia['other']['call']['link']}" target="_blank">联系客服</a>{/if}{if$GLOBALS['config']['pay']['url']}<a class="mo-plxs-10px" href="{$GLOBALS['config']['pay']['url']}" target="_blank">点我购买</a>{/if}</span>
+			<input type="hidden" name="flag" value="card" />
+		</div>
+		<div class="mo-pzxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
+		<div class="mo-cols-rows mo-mtxs-5px">
+			<span class="mo-form-name">充值卡号</span>
+			<input class="mo-form-left mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" lay-verify="required" type="text" name="card_no" placeholder="充值卡号" maxlength="40" />
+		</div>
+		<div class="mo-cols-rows mo-mtxs-5px">
+			<span class="mo-form-name">充值卡密</span>
+			<input class="mo-form-left mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" lay-verify="required" type="text" name="card_pwd" placeholder="充值卡密" maxlength="40" />
+		</div>
+		<span class="mo-user-tips mo-lhxs-20px mo-paxs-5px mo-text-gules mo-cols-show">&emsp;</span>
+		<a class="mo-user-btns mo-part-btns mo-bord-round mo-back-mojia mo-cols-show mo-mbxs-10px" href="javascript:;" data-url="{:mac_url('user/buy')}" lay-submit lay-filter="card">充值</a>
+	</form>
+</div>
+{include file="public/footer"}

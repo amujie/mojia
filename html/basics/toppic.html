@@ -1,0 +1,8 @@
+{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
+<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-lazy-broad mo-byxs-2by1 mo-cols-rows mo-bord-round" href="{:mac_url_topic_detail($vo)}" data-original="{$mojia['other']['chain']['apis']}{:mac_url_img(trim($vo.topic_pic))}">
+	<ul class="mo-situ-rema mo-part-ramp mo-pzxs-10px mo-pzlg-20px">
+		<li class="mo-cols-show mo-lhxs-24px mo-fsxs-16px mo-text-white mo-coxs-center"><i class="mo-icon-font mo-icon-zhuanti"></i>专题</li>
+		<li class="mo-cols-show mo-lhxs-24px mo-fsxs-14px mo-text-white mo-coxs-center">—— {if$vo.topic_rel_vod|count}{$vo.topic_rel_vod|explode=',',###|count}个影片{else}{$vo.topic_rel_art|explode=',',###|count}篇文章{/if} ——</li>
+		<li class="mo-cols-show mo-lhxs-24px mo-fsxs-12px mo-text-white mo-coxs-center">{$vo.topic_name}</li>
+	</ul>
+</a>

@@ -1,0 +1,26 @@
+{if$mojia['home']['class']['state']}
+{maccms:type ids="'.$mojia['home']['class']['type'].'" order="asc" by="sort" flag="vod" id="magic"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles"}
+	{if stristr($magic['type_name'],'直播')==true}
+	<ul class="mo-cols-rows">
+		{assign name="advs" value="$mojia['home']['class']['advs']"}{include file="basics/vodads" type="broad" scale="16by9" xs="xs6" sm="sm4" lg="lg3"}
+		{maccms:vod num="'.($mojia['home']['class']['num']==6?4-$advert:8-$advert).'" type="'.$magic['type_id'].'" level="'.$mojia['home']['class']['level'].'" order="'.$mojia['home']['class']['order'].'" by="'.$mojia['home']['class']['sort'].'"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{if$mojia['home']['class']['num']=='6'&&$key>(3-$advert)} mo-cosm-none mo-colg-block{elseif$mojia['home']['class']['num']=='12'&&$key>(6-$advert)} mo-cosm-none mo-colg-block{/if}">
+		{include file="basics/vodpic" type="broad" scale="16by9"}
+		</li>
+		{/maccms:vod}
+	</ul>
+	{else}
+	<ul class="mo-cols-rows">
+		{assign name="advs" value="$mojia['home']['class']['advs']"}{include file="basics/vodads" type="highs" scale="2by3" xs="xs4" sm="sm3" lg="lg2"}
+		{maccms:vod num="'.($mojia['home']['class']['num']-$advert).'" type="'.$magic['type_id'].'" level="'.$mojia['home']['class']['level'].'" order="'.$mojia['home']['class']['order'].'" by="'.$mojia['home']['class']['sort'].'"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{if$mojia['home']['class']['num']=='6'&&$key>(4-$advert)} mo-cosm-none mo-colg-block{/if}">
+		{include file="basics/vodpic" type="highs" scale="2by3"}
+		</li>
+		{/maccms:vod}
+	</ul>
+	{/if}
+</div>
+{/maccms:type}
+{/if}

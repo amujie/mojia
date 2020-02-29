@@ -1,0 +1,13 @@
+{assign name="advert" value="$advs?1:0"}{if$advs}{maccms:art ids="'.$advs.'"}
+<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-[xs] mo-cols-[sm] mo-cols-[lg]">
+	<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-lazy-[type] mo-byxs-[scale] mo-cols-rows mo-bord-round" href="{$vo.art_jumpurl|mac_default=mac_url_art_detail($vo)}" data-original="{$mojia['other']['chain']['apis']}{:mac_url_img(trim($vo.art_pic))}">
+		<span class="mo-situ-play mo-situ-npic"></span>
+		<span class="mo-situ-tips mo-fsxs-12px mo-text-white mo-back-mojia">{$vo.art_sub|mac_default='广告'}</span>
+		<span class="mo-situ-rema mo-part-ramp mo-fsxs-12px mo-text-white mo-coxs-center">{$vo.art_remarks|mac_default='吐血推荐'}</span>
+	</a>
+	<a class="mo-situ-name mo-fsxs-14px mo-coxs-center mo-comd-left mo-wrap-arow" href="{$vo.art_jumpurl|mac_default=mac_url_art_detail($vo)}"{if$vo.art_color} style="color:#{$vo.art_color}!important"{/if}>{$vo.art_name|mac_filter_html}</a>
+	<span class="mo-situ-desc mo-fsxs-12px mo-wrap-arow mo-text-muted mo-coxs-none mo-colg-block">
+	{$vo.art_from|mac_default='吐血推荐'}
+	</span>
+</li>
+{/maccms:art}{/if}

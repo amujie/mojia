@@ -1,0 +1,58 @@
+{include file="public/header"}
+<div class="mo-cols-lays mo-back-white mo-cols-rows">
+	{include file="basics/topinfo"}
+</div>
+<div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over mo-java-page">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-part-slip mo-cols-xs10">
+			{if$obj.vod_list|count}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="javascript:;">关联视频</a>
+			{/if}{if$obj.art_list|count}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if!$obj.vod_list|count} mo-text-mojia{/if}" href="javascript:;">关联文章</a>
+			{/if}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if!$obj.vod_list|count&&!$obj.art_list|count} mo-text-mojia{/if}" href="javascript:;">专题简介</a>
+			{if$GLOBALS['config']['comment']['status']}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">发表评论</a>
+			{/if}
+		</h2>
+		{if$mojia['other']['edit']['state']&&model("Admin")->checkLogin()['code']==1}
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a href="{$install}{$mojia['other']['edit']['link']}/admin/{:mac_get_mid_code($maccms['mid'])}/info/id/{$obj[mac_get_mid_code($maccms['mid']).'_id']}.html" target="_blank">编辑</a></li>
+		</ul>
+		{/if}
+	</div>
+	{if$obj.vod_list|count}
+	<div class="mo-tabs-item mo-pamd-5px mo-cols-show">
+		<ul class="mo-cols-rows">
+			{maccms:foreach name="$obj.vod_list"}
+			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+			{include file="basics/vodpic" type="highs" scale="2by3"}
+			</li>
+			{/maccms:foreach}
+		</ul>
+	</div>
+	{/if}{if$obj.art_list|count}
+	<div class="mo-tabs-item mo-pamd-5px mo-cols-hide">
+		<ul class="mo-cols-rows">
+			{maccms:foreach name="$obj.art_list" id="vo"}
+			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
+				{include file="basics/artpic"}
+			</li>
+			{/maccms:foreach}
+		</ul>
+	</div>
+	{/if}
+	<div class="mo-tabs-item mo-pamd-5px{if!$obj.vod_list|count&&!$obj.art_list|count} mo-cols-show{else} mo-cols-hide{/if}">
+		<div class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
+		<div class="mo-paxs-5px mo-ptxs-0px mo-mtsm-5px">
+			{$obj.topic_content|mac_default='暂无简介'}
+		</div>
+	</div>
+	{if$GLOBALS['config']['comment']['status']}
+	<div class="mo-tabs-item mo-cols-hide">
+		<div class="mo-comm-critic"></div>
+	</div>
+	{/if}
+</div>
+{include file="module/relate"}
+{include file="public/footer"}

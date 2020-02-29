@@ -1,0 +1,21 @@
+{include file="public/header"}
+{include file="module/banner"}
+{if$obj.childids}
+{maccms:type ids="current" order="asc" by="sort" id="head"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles"}
+	{maccms:art num="10" type="'.$head['type_id'].'" order="desc" by="time"}
+	{include file="basics/artinfo"}
+	{/maccms:art}
+</div>
+{/maccms:type}
+{else}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles"}
+	{maccms:art num="10" paging="yes" half="3" type="current" order="desc" by="time"}
+	{include file="basics/artinfo"}
+	{/maccms:art}
+	{include file="basics/paging"}
+</div>
+{/if}
+{include file="public/footer"}

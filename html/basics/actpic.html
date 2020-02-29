@@ -1,0 +1,14 @@
+{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
+<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-lazy-highs mo-byxs-2by3 mo-cols-rows mo-bord-round" href="{$vo|mac_url_actor_detail}" data-original="{$mojia['other']['chain']['apis']}{:mac_url_img(trim($vo.actor_pic))}">
+	<span class="mo-situ-play mo-situ-npic"></span>
+	{if$vo.actor_score>0}
+	<span class="mo-situ-tips mo-fsxs-12px mo-bord-round mo-back-mojia">{$vo.actor_score}</span>
+	{/if}
+	<span class="mo-situ-rema mo-part-ramp mo-fsxs-12px mo-text-white mo-coxs-center">{if$vo.actor_serial}更新至{$vo.actor_serial}{else}{$vo.actor_remarks|mac_default=$vo.actor_hits.'浏览'}{/if}</span>
+</a>
+{if$magic_detail!='hide'}
+<a class="mo-situ-name mo-fsxs-14px mo-coxs-center mo-comd-left mo-wrap-arow" href="{$vo|mac_url_actor_detail}" {if$vo.actor_color} style="color:#{$vo.actor_color}!important" {/if}>{$vo.actor_name}</a>
+<span class="mo-situ-desc mo-fsxs-12px mo-wrap-arow mo-text-muted mo-coxs-none mo-colg-block">
+{$vo.actor_actor|mac_default=$vo.actor_area.$vo.type.type_name|mac_filter_html}
+</span>
+{/if}

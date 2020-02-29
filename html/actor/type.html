@@ -1,0 +1,28 @@
+{include file="public/header"}
+{if$obj.childids}
+{maccms:type ids="current" order="asc" by="sort" id="head"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles"}
+	<ul class="mo-cols-rows">
+		{maccms:actor num="12" type="'.$head['type_id'].'" order="desc" by="time"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+		{include file="basics/actpic"}
+		</li>
+		{/maccms:actor}
+	</ul>
+</div>
+{/maccms:type}
+{else}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles"}
+	<ul class="mo-cols-rows">
+		{maccms:actor num="48" paging="yes" half="3" type="current" order="desc" by="time"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+		{include file="basics/actpic"}
+		</li>
+		{/maccms:actor}
+	</ul>
+	{include file="basics/paging"}
+</div>
+{/if}
+{include file="public/footer"}

@@ -1,0 +1,64 @@
+{include file="public/header"}
+{include file="user/banner"}
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">积分提现</h2>
+		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/index')}">返回</a>
+		</ul>
+	</div>
+	<form class="layui-form mo-user-form mo-cols-rows mo-pnxs-5px mo-pnmd-10px mo-lhxs-40px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+		<div class="mo-pzxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
+		<div class="mo-cols-rows mo-mtxs-5px">
+			<span class="mo-form-name">银行名称</span>
+			<input class="mo-form-text mo-form-left mo-cols-info mo-cols-xs12" lay-verify="required" type="text" name="cash_bank_name" placeholder="开户行名称或支付宝微信" maxlength="40" />
+		</div>
+		<div class="mo-cols-rows mo-mtxs-5px">
+			<span class="mo-form-name">银行账号</span>
+			<input class="mo-form-text mo-form-left mo-cols-info mo-cols-xs12" lay-verify="required" type="text" name="cash_bank_no" placeholder="银行卡号或支付宝微信账号" maxlength="40" />
+		</div>
+		<div class="mo-cols-rows mo-mtxs-5px">
+			<span class="mo-form-name">收款姓名</span>
+			<input class="mo-form-text mo-form-left mo-cols-info mo-cols-xs12" lay-verify="required" type="text" name="cash_payee_name" placeholder="收款人姓名与上方账户对应" maxlength="40" />
+		</div>
+		<div class="mo-cols-rows mo-mtxs-5px">
+			<span class="mo-form-name">提现金额</span>
+			<input class="mo-form-text mo-form-left mo-cols-info mo-cols-xs12" lay-verify="required" type="text" name="cash_money" placeholder="请输入提现金额" maxlength="40" />
+		</div>
+		<span class="mo-user-tips mo-lhxs-20px mo-paxs-5px mo-text-gules mo-cols-show">最低提现金额:&nbsp;{$GLOBALS['config']['user']['cash_min']}元，剩余{$GLOBALS['user']['user_points']}积分，1元等于{$GLOBALS['config']['user']['cash_ratio']}积分，相当于{$GLOBALS['user']['user_points']/$GLOBALS['config']['user']['cash_ratio']}元</span>
+		<a class="mo-user-btns mo-part-btns mo-bord-round mo-back-mojia mo-cols-show mo-mbxs-10px" href="javascript:;" data-url="{:mac_url('user/cash')}" lay-submit lay-filter="center">提交审核</a>
+	</form>
+</div>
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">提现记录</h2>
+		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px" data-type="0" data-url="{:mac_url('user/cash_del')}">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-whole mo-plxs-5px" href="javascript:;">全选</a></li>
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-reset mo-plxs-5px" href="javascript:;">删除</a></li>
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-clear mo-plxs-5px" href="javascript:;">清空</a></li>
+		</ul>
+	</div>
+	<form class="mo-user-form" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+		<ul class="mo-cols-rows mo-paxs-0px{if count($list)} mo-pamd-5px{/if}">
+			{volist name="list" id="vo"}
+			<li class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow"><input class="mo-form-comp mo-mrxs-5px" name="ids[]" type="checkbox" value="{$vo.cash_id}">{if$vo.cash_status==1}<span class="mo-text-green">已审核</span>{else}<span class="mo-text-gules">未审核</span>{/if}</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$vo.cash_time|mac_day}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">银行:&nbsp;{$vo.cash_bank_name}</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">提现{$vo.cash_money}元&nbsp;&nbsp;积分-{$vo.cash_points}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">姓名:&nbsp;{$vo.cash_payee_name}</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">账号:&nbsp;{$vo.cash_bank_no}</span>
+			</li>
+			{/volist}
+		</ul>
+		{include file="basics/paging"}
+	</form>
+</div>
+{include file="public/footer"}

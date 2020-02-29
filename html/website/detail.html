@@ -1,0 +1,41 @@
+{include file="public/header"}
+<div class="mo-cols-lays mo-back-white mo-cols-rows">
+	{include file="basics/webinfo"}
+</div>
+<div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over mo-java-page">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-part-slip mo-cols-xs10">
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="javascript:;">站点简介</a>
+			{if$GLOBALS['config']['comment']['status']}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">发表评论</a>
+			{/if}{if$obj.website_pic}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">站点截图</a>
+			{/if}
+		</h2>
+		{if$mojia['other']['edit']['state']&&model("Admin")->checkLogin()['code']==1}
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a href="{$install}{$mojia['other']['edit']['link']}/admin/{:mac_get_mid_code($maccms['mid'])}/info/id/{$obj[mac_get_mid_code($maccms['mid']).'_id']}.html" target="_blank">编辑</a></li>
+		</ul>
+		{/if}
+	</div>
+	<div class="mo-tabs-item mo-pamd-5px mo-cols-show">
+		<div class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
+		<div class="mo-paxs-5px mo-ptxs-0px mo-mtsm-5px">
+			{$obj.website_content|mac_default='暂无站点简介'}
+		</div>
+	</div>
+	{if$GLOBALS['config']['comment']['status']}
+	<div class="mo-tabs-item mo-cols-hide">
+		<div class="mo-comm-critic"></div>
+	</div>
+	{/if}{if$obj.website_pic}
+	<div class="mo-tabs-item mo-pamd-5px mo-cols-hide">
+		<div class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
+		<div class="mo-paxs-5px mo-pamd-10px">
+			<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-16by9 mo-cols-rows mo-bord-round" href="{$obj.website_pic|mac_url_img}" data-original="{$mojia['other']['chain']['apis']}{:mac_url_img(trim($obj.website_pic))}" target="_blank"></a>
+		</div>
+	</div>
+	{/if}
+</div>
+{include file="module/relate"}
+{include file="public/footer"}

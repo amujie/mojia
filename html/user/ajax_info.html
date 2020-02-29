@@ -1,0 +1,94 @@
+{include file="public/header"} 
+{include file="user/banner"} 
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">我的资料</h2>
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/info')}">修改</a>
+		</ul>
+	</div>
+	<form class="mo-user-form" action="{:mac_url('user/ulog_del')}" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+		<ul class="mo-cols-rows mo-paxs-0px mo-pamd-5px">
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">用户名</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_name}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">昵称</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_nick_name}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">所属会员组</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.group.group_name}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">到期时间</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_end_time|mac_day|mac_default='无限期'}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">账户积分</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_points}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">QQ号码</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_qq|mac_default='未填写'}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">邮件地址</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_email|mac_default='未填写'}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">联系电话</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_phone|mac_default='未填写'}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">注册时间</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_reg_time|mac_day|mac_default='未知'}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">登录时间</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_login_time|mac_day}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">登录IP</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_login_ip|long2ip}</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">推广次数</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_extend}</span>
+			</li>
+			{if$GLOBALS['config']['user']['invite_reg_points']}
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">推广访问</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">
+					<input class="mo-cols-info mo-cols-xs9 mo-cols-md10 mo-lhxs-30px mo-pnxs-5px mo-part-bord mo-bord-round mo-bord-muted mo-back-muted" id="visit" value="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/visit')}?uid={$obj.user_id}" />
+					<a class="mo-user-link mo-cols-info mo-cols-xs3 mo-cols-md2 mo-lhxs-30px mo-coxs-center mo-part-bord mo-bord-round mo-back-mojia" href="javascript:;" data-clipboard-target="#visit">复制</a>
+				</span>
+			</li>
+			{/if}{if$GLOBALS['config']['user']['invite_visit_points']}
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">推广注册</span>
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">
+					<input class="mo-cols-info mo-cols-xs9 mo-cols-md10 mo-lhxs-30px mo-pnxs-5px mo-part-bord mo-bord-round mo-bord-muted mo-back-muted" id="reg" value="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/reg')}?uid={$obj.user_id}" />
+					<a class="mo-user-link mo-cols-info mo-cols-xs3 mo-cols-md2 mo-lhxs-30px mo-coxs-center mo-part-bord mo-bord-round mo-back-mojia" href="javascript:;" data-clipboard-target="#reg">复制</a>
+				</span>
+			</li>
+			{/if}
+		</ul>
+	</form>
+</div> 
+{include file="public/footer"}

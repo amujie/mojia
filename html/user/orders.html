@@ -1,0 +1,28 @@
+{include file="public/header"} 
+{include file="user/banner"} 
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px"><a class="mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="{:mac_url('user/orders')}">在线充值记录</a><a class="mo-mrxs-5px mo-mrmd-10px" href="{:mac_url('user/cards')}">充值卡记录</a></h2>
+		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/index')}">返回</a>
+		</ul>
+	</div>
+	<form class="mo-user-form" action="{:mac_url('user/orders')}" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+		<ul class="mo-cols-rows mo-paxs-0px{if count($list)} mo-pamd-5px{/if}">
+			{volist name="list" id="vo"}
+			<li class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow">{$vo.order_code}</span>
+				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow mo-coxs-right">充值{$vo.order_points}积分</span>
+			</li>
+			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
+			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
+				<span class="mo-cols-info mo-cols-xs7 mo-wrap-arow">{$vo.order_time|mac_day}</span>
+				<span class="mo-cols-info mo-cols-xs5 mo-wrap-arow mo-coxs-right">{if$vo.order_status}<span class="mo-text-green">已支付{$vo.order_price}元</span>{else}<a class="mo-paxs-5x10 mo-part-btns mo-bord-round mo-back-mojia" href="{:mac_url('user/pay')}?order_code={$vo.order_code}">支付{$vo.order_price}元</a>{/if}</span>
+			</li>
+			{/volist}
+		</ul>
+		{include file="basics/paging"}
+	</form>
+</div>
+{include file="public/footer"}

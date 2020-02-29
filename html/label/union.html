@@ -1,0 +1,30 @@
+{include file="admin/header"}
+<table class="layui-table">
+	<tbody>
+		<tr>
+			<td width="50"><a class="layui-btn layui-btn-primary mo-unit-addtor" href="javascript:;"><i class="layui-icon">&#xe654;</i>添加资源</a></td>
+			<td style="min-width: 110px"><input class="layui-input mo-unit-input" type="text" required lay-verify="required" placeholder="请输入关键字" autocomplete="off"></td>
+			<td width="50"><a class="layui-btn mo-unit-search" href="javascript:;">立即搜索</a></td>
+			<td width="50"><a class="layui-btn layui-btn-primary mo-unit-severs" href="javascript:;">添加解析</a></td>
+			<td width="50"><a class="layui-btn layui-btn-{if$collect_break_vod}danger{else}primary{/if} searchs" href="{if$collect_break_vod}{:Cache::get('collect_break_vod')}?flag=vod{else}javascript:;{/if}">视频断点</a></td>
+			<td width="50"><a class="layui-btn layui-btn-{if$collect_break_art}danger{else}primary{/if} searchs" href="{if$collect_break_art}{:Cache::get('collect_break_art')}?flag=art{else}javascript:;{/if}">文章断点</a></td>
+			<td width="50"><a class="layui-btn layui-btn-{if$collect_break_actor}danger{else}primary{/if} searchs" href="{if$collect_break_actor}{:Cache::get('collect_break_actor')}?flag=art{else}javascript:;{/if}">演员断点</a></td>
+			<td width="50"><a class="layui-btn layui-btn-{if$collect_break_role}danger{else}primary{/if} searchs" href="{if$collect_break_role}{:Cache::get('collect_break_role')}?flag=art{else}javascript:;{/if}">角色断点</a></td>
+			<td width="50"><a class="layui-btn layui-btn-{if$collect_break_website}danger{else}primary{/if} searchs" href="{if$collect_break_website}{:Cache::get('collect_break_website')}?flag=art{else}javascript:;{/if}">网址断点</a></td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<div class="mo-unit-table"></div>
+<script type="text/javascript">
+	layui.config({
+		version: magic.ver,
+		base: magic.tpl + 'asset/js/'
+	}).extend({
+		income: '{/}' + magic.mojia + '/template/mojia/asset/js/income'
+	}).use(['union'], function() {
+		var union = layui.union;
+		union.global.init();
+	});
+</script>
+{include file="admin/footer"}

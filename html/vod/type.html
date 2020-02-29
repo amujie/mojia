@@ -1,0 +1,42 @@
+{include file="public/header"}
+{include file="module/banner"}
+{include file="basics/screen"}
+{if$obj.childids}
+{maccms:type ids="current" order="asc" by="sort" id="head"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles"}
+	<ul class="mo-cols-rows">
+		{maccms:vod num="12" type="'.$head['type_id'].'" order="desc" by="time"}
+		{if stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'直播')==true}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
+		{include file="basics/vodpic" type="broad" scale="16by9"}
+		</li>
+		{else}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+		{include file="basics/vodpic" type="highs" scale="2by3"}
+		</li>
+		{/if}
+		{/maccms:vod}
+	</ul>
+</div>
+{/maccms:type}
+{else}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles"}
+	<ul class="mo-cols-rows">
+		{maccms:vod num="48" paging="yes" half="3" type="current" order="desc" by="time"}
+		{if stristr($obj['type']['type_name'].$obj['type_1']['type_name'],'直播')==true}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
+		{include file="basics/vodpic" type="broad" scale="16by9"}
+		</li>
+		{else}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+		{include file="basics/vodpic" type="highs" scale="2by3"}
+		</li>
+		{/if}
+		{/maccms:vod}
+	</ul>
+	{include file="basics/paging"}
+</div>
+{/if}
+{include file="public/footer"}

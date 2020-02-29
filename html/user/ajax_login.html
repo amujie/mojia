@@ -1,0 +1,30 @@
+<form class="mo-pops-form mo-cols-rows mo-pnxs-15px mo-lhxs-40px mo-java-event" autocomplete="off" action="{:mac_url('user/login')}" data-jump="{:mac_url('user/index')}">
+	<div class="mo-cols-rows mo-mtxs-5px">
+		<span class="mo-form-name">账号</span>
+		<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="text" name="user_name" placeholder="账号/邮箱/手机号" maxlength="16" />
+	</div>
+	<div class="mo-cols-rows mo-mtxs-5px">
+		<span class="mo-form-name">密码</span>
+		<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd" placeholder="输入密码" maxlength="20" />
+	</div>
+	{if$GLOBALS['config']['user']['login_verify']}
+	<div class="mo-cols-rows mo-mtxs-5px">
+		<span class="mo-form-name">验证</span>
+		<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="verify" placeholder="输入验证码" maxlength="4" />
+		<img class="mo-part-more mo-part-curs mo-java-verify" height="44" src="{:mac_url('verify/index')}" title="看不清楚? 换一张！" />
+	</div>
+	{/if}
+	<span class="mo-pops-tips mo-lhxs-20px mo-text-gules mo-paxs-5px mo-cols-show">&emsp;</span>
+	<a class="mo-pops-login mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-show" href="javascript:;">登录</a>
+	<div class="mo-cols-rows mo-lhxs-40px">
+		<a class="mo-cols-info mo-cols-xs3 mo-coxs-left" href="{:mac_url('user/findpass')}">忘记密码</a>
+		{if$GLOBALS['config']['connect']['weixin']['status']}
+		<a class="mo-cols-info{if$GLOBALS['config']['connect']['qq']['status']} mo-cols-xs3{else} mo-cols-xs6{/if} mo-coxs-center" href="{:mac_url('user/oauth')}?type=weixin">微信登录</a>
+		{/if}{if$GLOBALS['config']['connect']['qq']['status']}
+		<a class="mo-cols-info{if$GLOBALS['config']['connect']['weixin']['status']} mo-cols-xs3{else} mo-cols-xs6{/if} mo-coxs-center" href="{:mac_url('user/oauth')}?type=qq">QQ登录</a>
+		{/if}{if!$GLOBALS['config']['connect']['weixin']['status']&&!$GLOBALS['config']['connect']['qq']['status']}
+		<a class="mo-cols-info mo-cols-xs6 mo-coxs-center">&emsp;</a>
+		{/if}
+		<a class="mo-cols-info mo-cols-xs3 mo-coxs-right" href="{:mac_url('user/reg')}">注册账号</a>
+	</div>
+</form>

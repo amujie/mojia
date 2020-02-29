@@ -1,0 +1,44 @@
+{include file="public/header"}
+{include file="module/notice"}
+{assign name="magic_gbook" value="gbook"}
+{include file="gbook/report"}
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">留言板</h2>
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock">当前第&nbsp;<span id="mo-page-this" class="mo-text-mojia">1</span>&nbsp;页，共&nbsp;<span id="mo-page-sums" class="mo-text-mojia">0</span>&nbsp;条留言</li>
+		</ul>
+	</div>
+		<ul class="mo-comm-info mo-cols-rows">
+			{maccms:gbook num="'.$GLOBALS['config']['gbook']['pagesize'].'" paging="yes" half="3" order="desc" by="id"}
+			<li class="mo-part-btsd mo-bord-muted mo-ptxs-5px mo-ptmd-10px mo-mtxs-5px mo-mrxs-5px mo-mlxs-5px"></li>
+			<li class="mo-cols-rows mo-maxs-5px mo-mamd-10px">
+				<img class="mo-comm-avat mo-part-peer mo-part-coin" src="{:mac_get_user_portrait($vo['user_id'])}" />
+				<div class="mo-comm-left">
+					<span class="mo-part-bold">{$vo.gbook_name}</span>
+					<span class="mo-part-more mo-fsxs-12px mo-fssm-14px">{$vo.gbook_time|mac_day}</span>
+				</div>
+				<div class="mo-comm-left">
+					<p class="mo-pzxs-5px">{:moJiaFace($vo['gbook_content'])}</p>
+					{if$vo.gbook_reply}
+					<div class="mo-part-bbsd mo-bord-muted mo-ptxs-5px mo-ptmd-10px"></div>
+					<div class="mo-cols-rows mo-mtxs-10px mo-mtmd-20px">
+						<img class="mo-comm-avat mo-part-peer mo-part-coin" src="{$mojia['other']['icon']['pics']|mac_default=substr($maccms['path_tpl'], strlen($maccms['path'])).'asset/img/favicon.png'|mac_url_img}"/>
+						<div class="mo-comm-left">
+							<span class="mo-part-bold">管理员</span>
+							<span class="mo-part-more mo-fsxs-12px mo-fssm-14px">{$vo.gbook_reply_time|mac_day}</span>
+						</div>
+						<div class="mo-comm-left">
+							<p class="mo-pzxs-5px">{:moJiaFace($vo['gbook_reply'])}</p>
+						</div>
+					</div>
+					{/if}
+				</div>
+			</li>
+			{/maccms:gbook}{if$__PAGING__.record_total==0}
+			<li class="mo-coxs-center mo-paxs-5px mo-pamd-10px">还没有人留言哎！</li>
+			{/if}
+		</ul>
+		{include file="basics/paging"}
+</div>
+{include file="public/footer"}

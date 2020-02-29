@@ -1,0 +1,56 @@
+{include file="public/header"}
+<div class="mo-cols-lays mo-back-white mo-cols-rows">
+	{assign name="magic_detail" value="hide"}
+	{include file="basics/actinfo"}
+	{assign name="magic_detail" value="show"}
+</div>
+{php}$actor = model("Vod")->listCacheData('{"actor":"'.$obj['actor_name'].'","order":"desc","by":"time","key":"actor","id":"vo"}');{/php}
+{php}$director = model("Vod")->listCacheData('{"director":"'.$obj['actor_name'].'","order":"desc","by":"time","key":"actor","id":"vo"}');{/php}
+<div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over mo-java-page">
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-part-slip mo-cols-xs10">
+			{if array_merge($actor['list'],$director['list'])}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="javascript:;">{$obj.type.type_name}作品</a>
+			{/if}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if!array_merge($actor['list'],$director['list'])} mo-text-mojia{/if}" href="javascript:;">明星简介</a>
+			{if$GLOBALS['config']['comment']['status']}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">发表评论</a>
+			{/if}
+		</h2>
+		{if$mojia['other']['edit']['state']&&model("Admin")->checkLogin()['code']==1}
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a href="{$install}{$mojia['other']['edit']['link']}/admin/{:mac_get_mid_code($maccms['mid'])}/info/id/{$obj[mac_get_mid_code($maccms['mid']).'_id']}.html" target="_blank">编辑</a></li>
+		</ul>
+		{/if}
+	</div>
+	{if array_merge($actor['list'],$director['list'])}
+	<div class="mo-tabs-item mo-cols-show">
+		<ul class="mo-cols-rows">
+			{maccms:foreach name=":array_unique(array_merge($actor['list'],$director['list']), SORT_REGULAR)"}
+			{if stristr($obj['type']['type_name'].$obj['type_1']['type_name'],'主持')==true}
+			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
+			{include file="basics/vodpic" type="broad" scale="16by9"}
+			</li>
+			{else}
+			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+			{include file="basics/vodpic" type="highs" scale="2by3"}
+			</li>
+			{/if}
+			{/maccms:foreach}
+		</ul>
+	</div>
+	{/if}
+	<div class="mo-tabs-item mo-pamd-5px{if!array_merge($actor['list'],$director['list'])} mo-cols-show{else} mo-cols-hide{/if}">
+		<div class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
+		<div class="mo-paxs-5px mo-ptxs-0px mo-mtsm-5px">
+			{$obj.actor_content|mac_default='暂无站点简介'}
+		</div>
+	</div>
+	{if$GLOBALS['config']['comment']['status']}
+	<div class="mo-tabs-item mo-cols-hide">
+		<div class="mo-comm-critic"></div>
+	</div>
+	{/if}
+</div>
+{include file="module/relate"}
+{include file="public/footer"}

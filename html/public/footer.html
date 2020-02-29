@@ -1,0 +1,68 @@
+</div></div>
+<div class="mo-foot-info mo-back-white mo-cols-minw mo-cols-lays mo-paxs-10px mo-pzmd-25px">
+	<div class="mo-cols-case mo-java-union" data-union="{:in_array($maccms['mid'],explode(',',$mojia['other']['union']['type']))}" data-url="{$mojia['other']['union']['link']}">
+		<p class="mo-coxs-center mo-lhmd-34px mo-fsxs-14px">{$mojia['other']['foot']['code']}</p>
+		<p class="mo-coxs-center mo-lhmd-34px mo-fsxs-14px">{$maccms.site_tj}</p>
+		<p class="mo-coxs-center mo-lhmd-34px mo-fsxs-14px">
+			<a class="mo-coxs-iblock" href="{:mac_url('rss/index')}" target="_blank">RSS订阅</a>
+			<span class="mo-coxs-iblock">&nbsp;-&nbsp;</span>
+			<a class="mo-coxs-iblock" href="{:mac_url('rss/baidu')}" target="_blank">百度蜘蛛</a>
+			<span class="mo-coxs-iblock">&nbsp;-&nbsp;</span>
+			<a class="mo-coxs-iblock" href="{:mac_url('rss/google')}" target="_blank">谷歌爬虫</a>
+			<span class="mo-coxs-iblock">&nbsp;-&nbsp;</span>
+			<a class="mo-coxs-iblock" href="{:mac_url('map/index')}" target="_blank">网站地图</a>
+		</p>
+		<p class="mo-coxs-center mo-lhmd-34px mo-fsxs-14px">&copy;&nbsp;{:date('Y')}&nbsp;{$maccms.site_url}&nbsp;Theme&nbsp;by&nbsp;<a class="mo-text-hover" href="{$mojia['other']['copy']['link']}" target="_blank">{$mojia['other']['copy']['tips']}</a></p>
+	</div>
+</div>
+<div class="mo-goto-info mo-java-fadein">
+	<ul class="mo-coxs-block">
+		{if$mojia['other']['call']['link']}
+		<li class="mo-bsxs-shadow"><a class="mo-goto-calls mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-zixun mo-java-event" href="{$mojia['other']['call']['link']}" target="_blank"></a></li>
+		{/if}{if$mojia['other']['chat']['state']}
+		<li class="mo-bsxs-shadow"><a class="mo-goto-chats mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-weixin mo-java-event" href="javascript:;" data-tips="{$mojia['other']['chat']['tips']}" data-link="{$mojia['other']['chat']['link']}" data-pics="{$mojia['other']['chat']['pics']|mac_url_img}"></a></li>
+		{/if}{if$mojia['other']['share']['state']}
+		<li class="mo-bsxs-shadow"><a class="mo-goto-share mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-fenxiang mo-java-event" href="javascript:;" data-api="{$mojia['other']['share']['apis']}"></a></li>
+		{/if}
+		<li class="mo-bsxs-shadow"><a class="mo-goto-toper mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-hide mo-coxs-center mo-back-white mo-icon-font mo-icon-xiangshang" href="javascript:;"></a></li>
+	</ul>
+</div>
+{if in_array($user['group_id'], explode(',',$mojia['advs']['float']['group']))}
+<div class="mo-coup-info">
+	<div class="mo-coup-item mo-coup-left">
+		{$mojia['advs']['float']['left']}
+	</div>
+	<div class="mo-coup-item mo-coup-right">
+		{$mojia['advs']['float']['right']}
+	</div>
+</div>
+{/if}
+<script src="{$template}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var magic = {
+		'path': '{$install}',
+		'depr': '{$GLOBALS["config"]["app"]["pathinfo_depr"]}',
+		'tips': '{:file_exists("runtime/temp/".md5("mojia").".php") ? require("runtime/temp/".md5("mojia").".php"):""}',
+		'ver': '{$version}',
+		'tpl': '{$template}',
+		'key': '{$verify["key"]}',
+		'tga': '{$verify["tga"]}',
+		'url': '{$verify["url"]}',
+		'mid': '{$maccms.mid}',
+		'aid': '{$maccms.aid}',
+		'rid': '{$obj[mac_get_mid_code($maccms["mid"])."_id"]}',
+		'sid': '{$param.sid}',
+		'nid': '{$param.nid}',
+		'wap': '{$GLOBALS["config"]["site"]["site_wapurl"]}',
+		'mob': '{$GLOBALS["config"]["site"]["mob_status"]}'
+	};
+	layui.config({
+		version:magic.ver,
+		base: magic.tpl + 'asset/js/'
+	}).use(['mojia'], function() {
+		var mojia = layui.mojia;
+		mojia.moload.mojia();
+	});
+</script>
+</body>
+</html>

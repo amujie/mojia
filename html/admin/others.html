@@ -1,0 +1,188 @@
+<div class="layui-tab-item">
+	<table class="layui-table" style="margin-top:0">
+		<colgroup>
+			<col width="110">
+			<col width="300">
+			<col width="110">
+			<col width="110">
+			<col>
+		</colgroup>
+		<thead>
+			<tr>
+				<th>名称</th>
+				<th>接口</th>
+				<th>链接</th>
+				<th>链接</th>
+	            <th>备注</th>
+			</tr> 
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="input" name="mojia[other][close][name]" value="{$mojia['other']['close']['name']}" class="layui-input" placeholder="关站设置"></td>
+				<td><input type="input" name="mojia[other][close][tips]" value="{$mojia['other']['close']['tips']}" class="layui-input" placeholder="请填写站点关闭提示"></td>
+				<td colspan="2"><input type="input" name="mojia[other][close][time]" value="{$mojia['other']['close']['time']}" class="layui-input mo-date-time" placeholder="请填写下次开启站点时间"></td>
+				<td>
+					<input type="radio" name="mojia[other][close][state]" value="1" title="开启"{if$GLOBALS['config']['site']['site_status']==1} checked{/if}>
+					<input type="radio" name="mojia[other][close][state]" value="0" title="关闭"{if$GLOBALS['config']['site']['site_status']==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][edit][name]" value="{$mojia['other']['edit']['name']}" class="layui-input" placeholder="编辑按钮"></td>
+				<td colspan="2"><input type="input" name="mojia[other][edit][link]" value="{$mojia['other']['edit']['link']}" class="layui-input" placeholder="请填写后台入口文件,如admin.php"></td>
+				<td>
+					<select name="mojia[other][edit][debug]" lay-verify="">
+						<option value="1"{if$mojia['other']['edit']['debug']==1} selected{/if}>开启调试</option>
+						<option value="0"{if$mojia['other']['edit']['debug']==0} selected{/if}>关闭调试</option>
+					</select>
+				</td>
+				<td>
+					<input type="radio" name="mojia[other][edit][state]" value="1" title="开启"{if$mojia['other']['edit']['state']==1} checked{/if}>
+					<input type="radio" name="mojia[other][edit][state]" value="0" title="关闭"{if$mojia['other']['edit']['state']==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][demo][name]" value="{$mojia['other']['demo']['name']}" class="layui-input" placeholder="站点演示"></td>
+				<td colspan="3"><input type="input" name="mojia[other][demo][link]" value="{$mojia['other']['demo']['link']}" class="layui-input" placeholder="演示数据地址"></td>
+				<td>
+					<input type="radio" name="mojia[other][demo][state]" value="1" title="开启"{if$mojia['other']['demo']['state']==1} checked{/if}>
+					<input type="radio" name="mojia[other][demo][state]" value="0" title="关闭"{if$mojia['other']['demo']['state']==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><input type="input" name="mojia[other][chat][name]" value="{$mojia['other']['chat']['name']}" class="layui-input" placeholder="公众号码"></td>
+				<td><input type="input" name="mojia[other][chat][tips]" value="{$mojia['other']['chat']['tips']}" class="layui-input" placeholder="请填写提示语"></td>
+				<td colspan="2"><input type="input" name="mojia[other][chat][link]" value="{$mojia['other']['chat']['link']}" class="layui-input" placeholder="请填写公众号链接"></td>
+				<td>
+					<input type="radio" name="mojia[other][chat][state]" value="1" title="开启"{if$mojia['other']['chat']['state']==1} checked{/if}>
+					<input type="radio" name="mojia[other][chat][state]" value="0" title="关闭"{if$mojia['other']['chat']['state']==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][chat][pics]" value="{$mojia['other']['chat']['pics']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
+				<td>微信公众号二维码</td>
+			</tr>
+			<tr>
+				<td rowspan="3"><input type="input" name="mojia[other][share][name]" value="{$mojia['other']['share']['name']}" class="layui-input" placeholder="分享设置"></td>
+				<td><input type="input" name="mojia[other][share][apis]" value="{$mojia['other']['share']['apis']}" class="layui-input" placeholder="请填写接口地址"></td>
+				<td colspan="2"><input type="input" name="mojia[other][share][host]" value="{$mojia['other']['share']['host']}" class="layui-input" placeholder="请填写分享域名"></td>
+				<td>
+					<input type="radio" name="mojia[other][share][state]" value="1" title="开启"{if$mojia['other']['share']['state']==1} checked{/if}>
+					<input type="radio" name="mojia[other][share][state]" value="0" title="关闭"{if$mojia['other']['share']['state']==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][share][image]" value="{$mojia['other']['share']['image']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
+				<td>分享默认图片</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][share][backs]" value="{$mojia['other']['share']['backs']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
+				<td>分享框背景图</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][icon][name]" value="{$mojia['other']['icon']['name']}" class="layui-input" placeholder="网站标志"></td>
+				<td><input type="input" name="mojia[other][icon][pics]" value="{$mojia['other']['icon']['pics']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
+				<td>网站favicon小图标</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][lazy][name]" value="{$mojia['other']['lazy']['name']}" class="layui-input" placeholder="默认小图"></td>
+				<td><input type="input" name="mojia[other][lazy][pics]" value="{$mojia['other']['lazy']['pics']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
+				<td>竖版懒加载默认图片</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][bigs][name]" value="{$mojia['other']['bigs']['name']}" class="layui-input" placeholder="默认大图"></td>
+				<td><input type="input" name="mojia[other][bigs][pics]" value="{$mojia['other']['bigs']['pics']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
+				<td>横版懒加载默认图片</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][move][name]" value="{$mojia['other']['move']['name']}" class="layui-input" placeholder="移动背景"></td>
+				<td><input type="input" name="mojia[other][move][pics]" value="{$mojia['other']['move']['pics']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
+				<td>移动端网页背景图片</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][table][name]" value="{$mojia['other']['table']['name']}" class="layui-input" placeholder="桌面背景"></td>
+				<td><input type="input" name="mojia[other][table][pics]" value="{$mojia['other']['table']['pics']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
+				<td>桌面端网页背景图片</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><input type="input" name="mojia[other][taoke][name]" value="{$mojia['other']['taoke']['name']}" class="layui-input" placeholder="淘客设置"></td>
+				<td><input type="input" name="mojia[other][taoke][secret]" value="{$mojia['other']['taoke']['secret']}" class="layui-input" placeholder="APP_SECRET"></td>
+				<td colspan="2"><input type="input" name="mojia[other][taoke][key]" value="{$mojia['other']['taoke']['key']}" class="layui-input" placeholder="APP_KEY"></td>
+				<td>大淘客基本设置</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="input" name="mojia[other][taoke][pid]" value="{$mojia['other']['taoke']['pid']}" class="layui-input" placeholder="PID"></td>
+				<td>
+					<input type="hidden" name="mojia[other][taoke][type]" value="{$mojia['home']['taoke']['type']}" />
+					<select multiple="multiple" lay-filter="home">
+						<option value="">请选择</option>
+						{maccms:foreach name=":explode(',','0,1,2,3,5,6,7,8,11')"}
+						<option value="{$vo}"{if in_array($vo, explode(',',$mojia['other']['taoke']['type']))} selected{/if}>{$vo|mac_get_mid_text|mac_default='首页'}</option>
+						{/maccms:foreach}
+					</select>
+				</td>
+				<td>选择触发更新缓存模块</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][union][name]" value="{$mojia['other']['union']['name']}" class="layui-input" placeholder="触发任务"></td>
+				<td colspan="2"><input type="input" name="mojia[other][union][link]" value="{$mojia['other']['union']['link']}" class="layui-input" placeholder="请填写触发链接"></td>
+				<td>
+					<input type="hidden" name="mojia[other][union][type]" value="{$mojia['home']['union']['type']}" />
+					<select multiple="multiple" lay-filter="home">
+						<option value="">请选择</option>
+						{maccms:foreach name=":explode(',','0,1,2,3,5,6,7,8,11')"}
+						<option value="{$vo}"{if in_array($vo, explode(',',$mojia['other']['union']['type']))} selected{/if}>{$vo|mac_get_mid_text|mac_default='首页'}</option>
+						{/maccms:foreach}
+					</select>
+				</td>
+				<td>选择触发模块</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][call][name]" value="{$mojia['other']['call']['name']}" class="layui-input" placeholder="在线客服"></td>
+				<td colspan="3"><input type="input" name="mojia[other][call][link]" value="{$mojia['other']['call']['link']}" class="layui-input" placeholder="请填写跳转链接"></td>
+				<td>跳转链接</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][part][name]" value="{$mojia['other']['part']['name']}" class="layui-input" placeholder="圆角尺寸"></td>
+				<td colspan="3"><input type="input" name="mojia[other][part][round]" value="{$mojia['other']['part']['round']}" class="layui-input" placeholder="请填写圆角尺寸"></td>
+				<td>全站圆角大小</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][chain][name]" value="{$mojia['other']['chain']['name']}" class="layui-input" placeholder="图片盗链"></td>
+				<td colspan="3"><input type="input" name="mojia[other][chain][apis]" value="{$mojia['other']['chain']['apis']}" class="layui-input" placeholder="请填写接口地址"></td>
+				<td>解决图片403问题</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][copy][name]" value="{$mojia['other']['copy']['name']}" class="layui-input" placeholder="版权设置"></td>
+				<td><input type="input" name="mojia[other][copy][tips]" value="{$mojia['other']['copy']['tips']}" class="layui-input" placeholder="请填写主题名称"></td>
+				<td colspan="2"><input type="input" name="mojia[other][copy][link]" value="{$mojia['other']['copy']['link']}" class="layui-input" placeholder="请填写主题链接"></td>
+				<td>网站底部主题版权设置</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][head][name]" value="{$mojia['other']['head']['name']}" class="layui-input" placeholder="头部代码"></td>
+				<td colspan="3"><textarea name="mojia[other][head][code]" class="layui-textarea" placeholder="网页头部代码">{$mojia['other']['head']['code']}</textarea></td>
+				<td>支持填写html代码,例如某些统计站点需要验证meta标签等</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][foot][name]" value="{$mojia['other']['foot']['name']}" class="layui-input" placeholder="底部代码"></td>
+				<td colspan="3"><textarea name="mojia[other][foot][code]" class="layui-textarea" placeholder="网页底部代码">{$mojia['other']['foot']['code']}</textarea></td>
+				<td>支持填写html代码,例如统计代码</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
