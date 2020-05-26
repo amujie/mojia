@@ -19,7 +19,7 @@ layui.define(['jquery'], function(exports) {
 			'info': [{
 				'name': '苹果CMS魔加影视模板',
 				'link': 'https://jq.qq.com/?_wv=1027&k=51Zakp5',
-				'pics': magic.mojia + '/template/mojia/asset/img/advert.jpg',
+				'pics': 'https://cdn.jsdelivr.net/gh/amujie/mojia@latest/asset/img/advert.jpg',
 				'tips': '苹果CMS魔加影视模板'
 			}]
 		},
