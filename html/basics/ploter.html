@@ -1,0 +1,18 @@
+{if$obj.vod_plot_list}
+{assign name="__LIST__" value=":array('total'=>count($obj['vod_plot_list']),'limit'=>10,'page'=>$param['page'],'pageurl'=>mac_url_vod_plot($obj,['page' => 'PAGELINK']),'half'=>3)"}
+{assign name="__PAGING__" value=":mac_page_param($__LIST__['total'],$__LIST__['limit'],$__LIST__['page'],$__LIST__['pageurl'],$__LIST__['half'])"}
+{assign name="start" value=":(intval($param['page'])-1) * $__LIST__['limit']"}
+{lt name="start" value="0"}{assign name="start" value="0"}{/lt}
+{assign name="vod_plot_list" value=":array_slice($obj['vod_plot_list'],$start,$__LIST__['limit'])"}
+{volist name="$vod_plot_list" id="vo"}
+<div class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
+<div class="mo-cols-rows mo-part-over">
+	<ul class="mo-drop-head mo-paxs-5px mo-cols-rows mo-part-over">
+		<li class="mo-pzmd-5px mo-cols-info mo-cols-xs5 mo-wrap-arow">{$vo['name']}</li>
+	</ul>
+	<div class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
+	<p class="mo-paxs-5px mo-ptxs-0px mo-mtsm-5px">{$vo['detail']}</p>
+</div>
+{/volist}
+{include file="basics/paging"}
+{/if}

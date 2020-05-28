@@ -1,5 +1,15 @@
 <div class="layui-tab-item">
 	<table class="layui-table" style="margin-top:0">
+		<tr>
+			<td width="90"><button type="button" class="layui-btn layui-btn-primary"{if$mojia['color']['type']['name']==1} style="background-color:#ff5f00;color:#ffffff;"{/if} lay-filter="colour" lay-submit="" data-back="#ff5f00" data-type="1" data-color="#ffffff,#333333,#f6f6f6,#666666,#000000,#ffffff,#dedede,#333333,#f8f8f8,#333333,#ededed,#333333,#cacaca,#333333,#dfdfdf,#c9c9c9,#ff5f00,#ffffff,#ff0d29,#ffffff,#ff920b,#ffffff,#ffc600,#ffffff,#7f7f8c,#ffffff,#999999,#dedede,#ffffff,#333333,#666666,#ff0d29,#28bd98,#ff6f6f">默认简橙</button></td>
+			<td width="90"><button type="button" class="layui-btn layui-btn-primary"{if$mojia['color']['type']['name']==2} style="background-color:#0bbe06;color:#ffffff;"{/if} lay-filter="colour" lay-submit="" data-back="#0bbe06" data-type="2" data-color="#333333,#999999,#2b2a2a,#999999,#000000,#999999,#666666,#999999,#555555,#999999,#444444,#999999,#555555,#999999,#888888,#aaaaaa,#0bbe06,#ffffff,#ff0d29,#ffffff,#ff920b,#ffffff,#ffc600,#ffffff,#7f7f8c,#ffffff,#666666,#2a2a2a,#ffffff,#333333,#666666,#ff0d29,#28bd98,#ff6f6f">夜间模式</button></td>
+			<td width="90"><button type="button" class="layui-btn layui-btn-primary"{if$mojia['color']['type']['name']==3} style="background-color:#d22222;color:#ffffff;"{/if} lay-filter="colour" lay-submit="" data-back="#d22222" data-type="3" data-color="#ffffff,#333333,#f6f6f6,#666666,#000000,#ffffff,#dedede,#333333,#f8f8f8,#333333,#ededed,#333333,#cacaca,#333333,#dfdfdf,#c9c9c9,#d22222,#ffffff,#ff0d29,#ffffff,#ff920b,#ffffff,#ffc600,#ffffff,#7f7f8c,#ffffff,#999999,#dedede,#ffffff,#333333,#666666,#ff0d29,#28bd98,#ff6f6f">红色节日</button></td>
+			<td width="90"><button type="button" class="layui-btn layui-btn-primary"{if$mojia['color']['type']['name']==4} style="background-color:#1e9fff;color:#ffffff;"{/if} lay-filter="colour" lay-submit="" data-back="#1e9fff" data-type="4" data-color="#ffffff,#333333,#f6f6f6,#666666,#000000,#ffffff,#dedede,#333333,#f8f8f8,#333333,#ededed,#333333,#cacaca,#333333,#dfdfdf,#c9c9c9,#1e9fff,#ffffff,#ff0d29,#ffffff,#ff920b,#ffffff,#ffc600,#ffffff,#7f7f8c,#ffffff,#999999,#dedede,#ffffff,#333333,#666666,#ff0d29,#28bd98,#ff6f6f">天空之城</button></td>
+			<td width="90"><button type="button" class="layui-btn layui-btn-primary"{if$mojia['color']['type']['name']==5} style="background-color:#fb7299;color:#ffffff;"{/if} lay-filter="colour" lay-submit="" data-back="#fb7299" data-type="5" data-color="#ffffff,#333333,#f6f6f6,#666666,#000000,#ffffff,#dedede,#333333,#f8f8f8,#333333,#ededed,#333333,#cacaca,#333333,#dfdfdf,#c9c9c9,#fb7299,#ffffff,#ff0d29,#ffffff,#ff920b,#ffffff,#ffc600,#ffffff,#7f7f8c,#ffffff,#999999,#dedede,#ffffff,#333333,#666666,#ff0d29,#28bd98,#ff6f6f">老夫的少女心</button></td>
+			<td>快捷配色选择<input type="hidden" name="mojia[color][type][name]" value="{$mojia['color']['type']['name']}"></td>
+		</tr>
+	</table>
+	<table class="layui-table" style="margin-top:0">
 		<colgroup>
 			<col width="110">
 			<col width="200">
@@ -30,25 +40,25 @@
 			<tr>
 				<td><input type="text" name="mojia[color][muted][name]" value="{$mojia['color']['muted']['name']}" class="layui-input" placeholder="辅助颜色"></td>
 				<td><input type="text" name="mojia[color][muted][back]" value="{$mojia['color']['muted']['back']}" class="layui-input" placeholder="#f6f6f6"></td>
-				<td><div class="mo-look-btns mo-look-btns6"></div></td>
+				<td><div class="mo-look-btns mo-look-btns2"></div></td>
 				<td><input type="text" name="mojia[color][muted][text]" value="{$mojia['color']['muted']['text']}" class="layui-input" placeholder="#666666"></td>
-				<td><div class="mo-look-btns mo-look-btns7"></div></td>
+				<td><div class="mo-look-btns mo-look-btns3"></div></td>
 				<td>全局背景色</td>
 			</tr>
 			<tr>
 				<td><input type="text" name="mojia[color][black][name]" value="{$mojia['color']['black']['name']}" class="layui-input" placeholder="播放背景"></td>
 				<td><input type="text" name="mojia[color][black][back]" value="{$mojia['color']['black']['back']}" class="layui-input" placeholder="#000000"></td>
-				<td><div class="mo-look-btns mo-look-btns2"></div></td>
+				<td><div class="mo-look-btns mo-look-btns4"></div></td>
 				<td><input type="text" name="mojia[color][black][text]" value="{$mojia['color']['black']['text']}" class="layui-input" placeholder="#ffffff"></td>
-				<td><div class="mo-look-btns mo-look-btns3"></div></td>
+				<td><div class="mo-look-btns mo-look-btns5"></div></td>
 				<td>播放器背景色</td>
 			</tr>
 			<tr>
 				<td><input type="text" name="mojia[color][lazys][name]" value="{$mojia['color']['lazys']['name']}" class="layui-input" placeholder="加载背景"></td>
 				<td><input type="text" name="mojia[color][lazys][back]" value="{$mojia['color']['lazys']['back']}" class="layui-input" placeholder="#dedede"></td>
-				<td><div class="mo-look-btns mo-look-btns4"></div></td>
+				<td><div class="mo-look-btns mo-look-btns6"></div></td>
 				<td><input type="text" name="mojia[color][lazys][text]" value="{$mojia['color']['lazys']['text']}" class="layui-input" placeholder="#333333"></td>
-				<td><div class="mo-look-btns mo-look-btns5"></div></td>
+				<td><div class="mo-look-btns mo-look-btns7"></div></td>
 				<td>懒加载背景色</td>
 			</tr>
 			<tr>
@@ -61,7 +71,7 @@
 			</tr>
 			<tr>
 				<td><input type="text" name="mojia[color][click][name]" value="{$mojia['color']['click']['name']}" class="layui-input" placeholder="普通按钮"></td>
-				<td><input type="text" name="mojia[color][click][back]" value="{$mojia['color']['click']['back']}" class="layui-input" placeholder="#ffffff"></td>
+				<td><input type="text" name="mojia[color][click][back]" value="{$mojia['color']['click']['back']}" class="layui-input" placeholder="#ededed"></td>
 				<td><div class="mo-look-btns mo-look-btns10"></div></td>
 				<td><input type="text" name="mojia[color][click][text]" value="{$mojia['color']['click']['text']}" class="layui-input" placeholder="#333333"></td>
 				<td><div class="mo-look-btns mo-look-btns11"></div></td>
@@ -69,7 +79,7 @@
 			</tr>
 			<tr>
 				<td><input type="text" name="mojia[color][write][name]" value="{$mojia['color']['write']['name']}" class="layui-input" placeholder="访问按钮"></td>
-				<td><input type="text" name="mojia[color][write][back]" value="{$mojia['color']['write']['back']}" class="layui-input" placeholder="#f8f8f8"></td>
+				<td><input type="text" name="mojia[color][write][back]" value="{$mojia['color']['write']['back']}" class="layui-input" placeholder="#cacaca"></td>
 				<td><div class="mo-look-btns mo-look-btns12"></div></td>
 				<td><input type="text" name="mojia[color][write][text]" value="{$mojia['color']['write']['text']}" class="layui-input" placeholder="#333333"></td>
 				<td><div class="mo-look-btns mo-look-btns13"></div></td>
@@ -77,7 +87,7 @@
 			</tr>
 			<tr>
 				<td><input type="text" name="mojia[color][disad][name]" value="{$mojia['color']['disad']['name']}" class="layui-input" placeholder="禁用按钮"></td>
-				<td><input type="text" name="mojia[color][disad][back]" value="{$mojia['color']['disad']['back']}" class="layui-input" placeholder="#fbfbfb"></td>
+				<td><input type="text" name="mojia[color][disad][back]" value="{$mojia['color']['disad']['back']}" class="layui-input" placeholder="#dfdfdf"></td>
 				<td><div class="mo-look-btns mo-look-btns14"></div></td>
 				<td><input type="text" name="mojia[color][disad][text]" value="{$mojia['color']['disad']['text']}" class="layui-input" placeholder="#c9c9c9"></td>
 				<td><div class="mo-look-btns mo-look-btns15"></div></td>
@@ -101,7 +111,7 @@
 			</tr>
 			<tr>
 				<td><input type="text" name="mojia[color][item2][name]" value="{$mojia['color']['item2']['name']}" class="layui-input" placeholder="排行第二"></td>
-				<td><input type="text" name="mojia[color][item2][back]" value="{$mojia['color']['item2']['back']}" class="layui-input" placeholder="ff920b"></td>
+				<td><input type="text" name="mojia[color][item2][back]" value="{$mojia['color']['item2']['back']}" class="layui-input" placeholder="#ff920b"></td>
 				<td><div class="mo-look-btns mo-look-btns20"></div></td>
 				<td><input type="text" name="mojia[color][item2][text]" value="{$mojia['color']['item2']['text']}" class="layui-input" placeholder="#ffffff"></td>
 				<td><div class="mo-look-btns mo-look-btns21"></div></td>

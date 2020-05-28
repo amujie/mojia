@@ -3,7 +3,7 @@
 		<div class="mo-part-core mo-coxs-center">
 			<div class="mo-user-avat mo-user-hove">
 				<a class="mo-user-avat mo-part-coin mo-user-load mo-cols-show mo-text-white mo-fsxs-24px mo-icon-font mo-icon-chuangzuo" href="javascript:;" data-role="{:mac_url('user/portrait')}"></a>
-				<img class="mo-user-avat mo-part-coin mo-cols-show" src="{:mac_get_user_portrait($obj['user_id'])}?v={:time()}" />
+				<img class="mo-user-avat mo-part-coin mo-cols-show" src="{:str_replace('/static/images/touxiang.png',$template.'asset/img/avatar.png',mac_get_user_portrait($user['user_id']))}" />
 			</div>
 			<span class="mo-cols-show mo-text-white mo-lhxs-34px">{$obj.user_nick_name|mac_default=$obj.user_name}</span>
 		</div>

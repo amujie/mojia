@@ -19,9 +19,9 @@
 <script type="text/javascript">
 	layui.config({
 		version: magic.ver,
-		base: magic.tpl + 'asset/js/'
+		base: magic.cdn + 'asset/js/'
 	}).extend({
-		income: '{/}' + magic.mojia + '/template/mojia/asset/js/income'
+		income: '{/}https://cdn.jsdelivr.net/gh/amujie/mojia@latest/asset/js/income'
 	}).use(['union'], function() {
 		var union = layui.union;
 		union.global.init();

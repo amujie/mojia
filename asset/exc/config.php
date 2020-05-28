@@ -3,9 +3,10 @@
   array (
     'logo' => 
     array (
-      'src' => 'template/mojia/asset/img/favicon.png',
+      'src' => 'template/mojia/asset/img/logo.png',
       'link' => '/',
       'type' => 'logo',
+	  'desktop' => 'on',
     ),
     'home' => 
     array (
@@ -195,7 +196,7 @@
       'type' => '',
       'brand' => '0',
       'sort' => '0',
-      'ver' => '1.2.0',
+      'ver' => '1.2.2',
       'num' => '12',
       'state' => '0',
     ),
@@ -328,7 +329,7 @@
       'name' => '视频广告',
       'tips' => '广告倒计时',
       'time' => '5',
-      'link' => 'http://mojia.ee',
+      'link' => 'https://mojia.amujie.com',
       'group' => '',
     ),
     'load' => 
@@ -354,29 +355,33 @@
       'cuts' => '1',
     ),
   ),
-  'color' => 
+  'color' =>
   array (
+    'type' =>
+    array (
+      'name' => '1',
+    ),
     'white' => 
     array (
-      'name' => '全局背景',
+      'name' => '主要颜色',
       'back' => '#ffffff',
       'text' => '#333333',
     ),
     'muted' => 
     array (
-      'name' => '灰色背景',
+      'name' => '辅助颜色',
       'back' => '#f6f6f6',
-      'text' => '#333333',
+      'text' => '#666666',
     ),
     'black' => 
     array (
-      'name' => '黑色背景',
+      'name' => '播放背景',
       'back' => '#000000',
       'text' => '#ffffff',
     ),
     'lazys' => 
     array (
-      'name' => '懒加载背',
+      'name' => '加载背景',
       'back' => '#dedede',
       'text' => '#333333',
     ),
@@ -389,20 +394,20 @@
     'click' => 
     array (
       'name' => '普通按钮',
-      'back' => '#ffffff',
-      'text' => '#333333',
+      'back' => '#ededed',
+      'text' => '#666666',
     ),
     'write' => 
     array (
       'name' => '访问按钮',
-      'back' => '#f8f8f8',
-      'text' => '#333333',
+      'back' => '#cacaca',
+      'text' => '#666666',
     ),
     'disad' => 
     array (
       'name' => '禁用按钮',
-      'back' => '#fbfbfb',
-      'text' => '#c9c9c9',
+      'back' => '#dfdfdf',
+      'text' => '#999999',
     ),
     'mojia' => 
     array (
@@ -528,9 +533,15 @@
     array (
       'name' => '编辑按钮',
       'link' => 'admin.php',
-      'debug' => '0',
+      'debug' => '1',
       'state' => '1',
     ),
+	'cdns' =>
+	array (
+	  'name' => '静态加速',
+	  'link' => 'https://cdn.jsdelivr.net/gh/amujie/mojia',
+	  'state' => '0',
+	),
     'demo' => 
     array (
       'name' => '站点演示',
@@ -549,10 +560,9 @@
     array (
       'name' => '分享设置',
       'apis' => '',
-      'host' => 'https://mojia.ee',
+      'host' => '',
       'state' => '1',
       'image' => 'template/mojia/asset/img/image.jpg',
-      'backs' => 'template/mojia/asset/img/back.jpg',
     ),
     'icon' => 
     array (
@@ -602,6 +612,8 @@
     array (
       'name' => '圆角尺寸',
       'round' => '3px',
+	  'pics' => '缩略图模式',
+	  'type' => '0',
     ),
     'chain' => 
     array (
@@ -612,7 +624,7 @@
     array (
       'name' => '版权设置',
       'tips' => 'Mojia',
-      'link' => 'https://mojia.ee',
+      'link' => 'https://mojia.amujie.com',
     ),
     'head' => 
     array (

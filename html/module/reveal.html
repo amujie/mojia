@@ -3,14 +3,14 @@
 	<ul class="mo-cols-rows">
 		{maccms:art num="'.$mojia['home']['shop']['num'].'" type="'.$mojia['home']['shop']['type'].'" level="'.$mojia['home']['shop']['level'].'" order="'.$mojia['home']['shop']['order'].'" by="'.$mojia['home']['shop']['sort'].'"}
 		<li class="mo-cols-info mo-cols-xs6 mo-cols-lg4{if$mojia['home']['shop']['num']=='3'&&$key>2} mo-coxs-none mo-colg-block{/if}">
-			<h2 class="mo-paxs-5px mo-pamd-10px mo-fsxs-18px mo-coxs-center mo-wrap-arow">{$vo.art_name|mac_filter_html}</h2>
-			<p class="mo-coxs-center mo-wrap-arow mo-text-muted">{$vo.art_sub|mac_filter_html|mac_default='主题演示'}</p>
+			<h2 class="mo-mnxs-5px mo-paxs-5px mo-pamd-10px mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-coxs-center mo-wrap-arow">{$vo.art_name|mac_filter_html}</h2>
+			<p class="mo-pnmd-10px mo-fsxs-12px mo-fsss-14px mo-coxs-center mo-wrap-arow mo-text-muted">{$vo.art_sub|mac_filter_html|mac_default='主题演示'}</p>
 			<div class="mo-paxs-5px mo-pamd-10px">
 				<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-2by1" data-original="{$mojia['other']['chain']['apis']}{$vo.art_pic|mac_url_img}"></a>
 			</div>
 			<ul class="mo-paxs-5px mo-pamd-10px mo-cols-rows">
-				<li class="mo-cols-cell mo-coxs-center"><a class="mo-part-btns mo-bord-muted mo-bord-round mo-mrxs-5px mo-mrmd-10px mo-wrap-arow mo-back-mojia" href="{$vo.art_jumpurl}" target="_blank">{$vo.art_from|mac_default='主题演示'}</a></li>
-				<li class="mo-cols-cell mo-coxs-center"><a class="mo-part-btns mo-bord-muted mo-bord-round mo-mlxs-5px mo-mlmd-10px mo-wrap-arow" href="{:mac_url_art_detail($vo)}">查看详情</a></li>
+				<li class="mo-cols-cell mo-coxs-center"><a class="mo-part-btns mo-bord-muted mo-bord-round mo-lhss-30px mo-lhxs-34px mo-mrxs-5px mo-mrmd-10px mo-wrap-arow mo-back-click" href="{:mac_url_art_detail($vo)}">查看详情</a></li>
+				<li class="mo-cols-cell mo-coxs-center"><a class="mo-part-btns mo-bord-muted mo-bord-round mo-lhss-30px mo-lhxs-34px mo-mlxs-5px mo-mlmd-10px mo-wrap-arow mo-back-mojia" href="{$vo.art_jumpurl}" target="_blank">{$vo.art_from|mac_default='主题演示'}</a></li>
 			</ul>
 		</li>
 		{/maccms:art}

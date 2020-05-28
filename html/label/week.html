@@ -1,5 +1,12 @@
+{include file="basics/config"}{if$mojia['other']['part']['type']}
+{maccms:vod weekday="'.$_GET['week'].'" num="'.($_GET['nums']==6?4:8).'" type="'.$mojia['home']['class']['type'].'" order="'.$mojia['home']['class']['order'].'" by="'.$mojia['home']['class']['sort'].'"}
+<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{if$mojia['home']['week']['num']=='6'&&$key>(3-$advert)} mo-cosm-none mo-colg-block{elseif$mojia['home']['week']['num']=='12'&&$key>(6-$advert)} mo-cosm-none mo-colg-block{/if}">
+{include file="basics/vodpic" type="broad" scale="16by9"}
+</li>
+{/maccms:vod}{else}
 {maccms:vod weekday="'.$_GET['week'].'" num="'.$_GET['nums'].'" type="'.$mojia['home']['class']['type'].'" order="'.$mojia['home']['class']['order'].'" by="'.$mojia['home']['class']['sort'].'"}
 <li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{if$key>4} mo-cosm-none mo-colg-block{/if}">
-	{include file="basics/vodpic" type="highs" scale="2by3"}
+{include file="basics/vodpic" type="highs" scale="2by3"}
 </li>
 {/maccms:vod}
+{/if}

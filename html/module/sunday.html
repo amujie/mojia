@@ -4,17 +4,26 @@
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$mojia['home']['week']['name']}</h2>
 		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
 			{assign name="week" value=":array('日','一','二','三','四','五','六')"}{maccms:foreach name="$week"}
-			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-coxs-iblock mo-week-btns{if date('w')==$key} mo-text-mojia{/if}" href="javascript:;">{if date('w')==$key}<span class="mo-coxs-iblock mo-week-name">今</span><span class="mo-coxs-none mo-cosm-iblock">日</span>{else}<span class="mo-coxs-none mo-cosm-iblock">周</span><span class="mo-week-name mo-cosm-iblock">{$week[$key]}</span>{/if}</a>{if$key<6}<span class="mo-coxs-iblock mo-pnxs-5px">|</span>{/if}</li>
+			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-coxs-iblock mo-week-btns{if date('w')==$key} mo-text-mojia{/if}" href="javascript:;">{if date('w')==$key}<span class="mo-coxs-iblock mo-week-name">今</span><span class="mo-coxs-none mo-cosm-iblock">日</span>{else}<span class="mo-coxs-none mo-cosm-iblock">周</span><span class="mo-week-name mo-cosm-iblock">{$week[$key]}</span>{/if}</a>{if$key<6}<span class="mo-coxs-iblock mo-pnxs-5px">/</span>{/if}</li>
 			{/maccms:foreach}
 		</ul>
 	</div>
 	<ul class="mo-week-boxs mo-cols-rows" data-href="{:mac_url('label/week')}" data-week="{$week[date('w')]}" data-nums="{$mojia['home']['week']['num']}">
+		{if$mojia['other']['part']['type']}
+		{assign name="advs" value="$mojia['home']['week']['advs']"}{include file="basics/vodads" type="broad" scale="16by9" xs="xs6" sm="sm4" lg="lg3"}
+		{maccms:vod num="'.($mojia['home']['week']['num']==6?4-$advert:8-$advert).'" type="'.$magic['type_id'].'" level="'.$mojia['home']['week']['level'].'" order="'.$mojia['home']['week']['order'].'" by="'.$mojia['home']['week']['sort'].'"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{if$mojia['home']['week']['num']=='6'&&$key>(3-$advert)} mo-cosm-none mo-colg-block{elseif$mojia['home']['week']['num']=='12'&&$key>(6-$advert)} mo-cosm-none mo-colg-block{/if}">
+		{include file="basics/vodpic" type="broad" scale="16by9"}
+		</li>
+		{/maccms:vod}
+		{else}
 		{assign name="advs" value="$mojia['home']['week']['advs']"}{include file="basics/vodads" type="highs" scale="2by3" xs="xs4" sm="sm3" lg="lg2"}
 		{maccms:vod weekday="'.$week[date('w')].'" num="'.($mojia['home']['week']['num']-$advert).'" type="'.$mojia['home']['class']['type'].'" order="'.$mojia['home']['class']['order'].'" by="'.$mojia['home']['class']['sort'].'"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{if$mojia['home']['week']['num']=='6'&&$key>(4-$advert)} mo-cosm-none mo-colg-block{/if}">
 		{include file="basics/vodpic" type="highs" scale="2by3"}
 		</li>
 		{/maccms:vod}
+		{/if}
 	</ul>
 </div>
 {/if}

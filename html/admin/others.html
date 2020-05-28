@@ -41,6 +41,14 @@
 				</td>
 			</tr>
 			<tr>
+				<td><input type="input" name="mojia[other][cdns][name]" value="{$mojia['other']['cdns']['name']}" class="layui-input" placeholder="静态加速"></td>
+				<td colspan="3"><input type="input" name="mojia[other][cdns][link]" value="{$mojia['other']['cdns']['link']}" class="layui-input" placeholder="静态文件加速地址"></td>
+				<td>
+					<input type="radio" name="mojia[other][cdns][state]" value="1" title="开启"{if$mojia['other']['cdns']['state']==1} checked{/if}>
+					<input type="radio" name="mojia[other][cdns][state]" value="0" title="关闭"{if$mojia['other']['cdns']['state']==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
 				<td><input type="input" name="mojia[other][demo][name]" value="{$mojia['other']['demo']['name']}" class="layui-input" placeholder="站点演示"></td>
 				<td colspan="3"><input type="input" name="mojia[other][demo][link]" value="{$mojia['other']['demo']['link']}" class="layui-input" placeholder="演示数据地址"></td>
 				<td>
@@ -64,7 +72,7 @@
 				<td>微信公众号二维码</td>
 			</tr>
 			<tr>
-				<td rowspan="3"><input type="input" name="mojia[other][share][name]" value="{$mojia['other']['share']['name']}" class="layui-input" placeholder="分享设置"></td>
+				<td rowspan="2"><input type="input" name="mojia[other][share][name]" value="{$mojia['other']['share']['name']}" class="layui-input" placeholder="分享设置"></td>
 				<td><input type="input" name="mojia[other][share][apis]" value="{$mojia['other']['share']['apis']}" class="layui-input" placeholder="请填写接口地址"></td>
 				<td colspan="2"><input type="input" name="mojia[other][share][host]" value="{$mojia['other']['share']['host']}" class="layui-input" placeholder="请填写分享域名"></td>
 				<td>
@@ -77,12 +85,6 @@
 				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
 				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
 				<td>分享默认图片</td>
-			</tr>
-			<tr>
-				<td><input type="input" name="mojia[other][share][backs]" value="{$mojia['other']['share']['backs']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
-				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
-				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
-				<td>分享框背景图</td>
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][icon][name]" value="{$mojia['other']['icon']['name']}" class="layui-input" placeholder="网站标志"></td>
@@ -159,8 +161,15 @@
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][part][name]" value="{$mojia['other']['part']['name']}" class="layui-input" placeholder="圆角尺寸"></td>
-				<td colspan="3"><input type="input" name="mojia[other][part][round]" value="{$mojia['other']['part']['round']}" class="layui-input" placeholder="请填写圆角尺寸"></td>
-				<td>全站圆角大小</td>
+				<td><input type="input" name="mojia[other][part][round]" value="{$mojia['other']['part']['round']}" class="layui-input" placeholder="请填写圆角尺寸"></td>
+				<td><input type="input" name="mojia[other][part][pics]" value="{$mojia['other']['part']['pics']}" class="layui-input" placeholder="缩略图模式"></td>
+				<td>
+					<select name="mojia[other][part][type]" lay-verify="">
+						<option value="1"{if$mojia['other']['part']['type']==1} selected{/if}>横版</option>
+						<option value="0"{if$mojia['other']['part']['type']==0} selected{/if}>竖版</option>
+					</select>
+				</td>
+				<td>缩略图设置</td>
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][chain][name]" value="{$mojia['other']['chain']['name']}" class="layui-input" placeholder="图片盗链"></td>

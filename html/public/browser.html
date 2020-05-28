@@ -12,7 +12,7 @@
 		<meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="{$mojia['other']['icon']['pics']|mac_url_img}" rel="apple-touch-icon-precomposed" />
 		<link href="{$mojia['other']['icon']['pics']|mac_url_img}" rel="shortcut icon" type="image/ico" />
-		<link href="{$template}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
+		<link href="{$cdnpath}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
 		{include file="basics/colour"}
 	</head>
 	<body class="mo-brow-info mo-part-view">
@@ -28,11 +28,11 @@
 			<a class="mo-brow-link mo-mtxs-10px mo-pnxs-10px mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;" data-clipboard-text="{$maccms.http_url}">点此复制本站网址</a>
 		</div>
 		<div class="mo-brow-foot mo-cols-rows mo-text-black mo-coxs-center mo-cols-xs12 mo-cols-minw">Copyright&nbsp;{:date('Y', time())}&nbsp;{$_SERVER['HTTP_HOST']}&nbsp;Inc.</div>
-		<script src="{$template}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
+		<script src="{$cdnpath}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var magic = {
 				'path': '{$install}',
-				'tpl': '{$template}',
+				'tpl': '{$cdnpath}',
 				'ver': '{$version}'
 			};
 			layui.config({

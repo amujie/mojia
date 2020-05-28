@@ -37,28 +37,30 @@
 	</div>
 </div>
 {/if}
-<script src="{$template}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
+<script src="{$cdnpath}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	var magic = {
 		'path': '{$install}',
+		'temp': '{:file_exists("runtime/temp/".md5("mojia").".php") ? require("runtime/temp/".md5("mojia").".php"):""}',
 		'depr': '{$GLOBALS["config"]["app"]["pathinfo_depr"]}',
-		'tips': '{:file_exists("runtime/temp/".md5("mojia").".php") ? require("runtime/temp/".md5("mojia").".php"):""}',
 		'ver': '{$version}',
 		'tpl': '{$template}',
+		'cdn': '{$cdnpath}',
 		'key': '{$verify["key"]}',
 		'tga': '{$verify["tga"]}',
 		'url': '{$verify["url"]}',
-		'mid': '{$maccms.mid}',
-		'aid': '{$maccms.aid}',
+		'tid': '{$verify["tid"]}',
+		'mid': '{$maccms["mid"]}',
+		'aid': '{$maccms["aid"]}',
 		'rid': '{$obj[mac_get_mid_code($maccms["mid"])."_id"]}',
-		'sid': '{$param.sid}',
-		'nid': '{$param.nid}',
+		'sid': '{$param["sid"]}',
+		'nid': '{$param["nid"]}',
 		'wap': '{$GLOBALS["config"]["site"]["site_wapurl"]}',
 		'mob': '{$GLOBALS["config"]["site"]["mob_status"]}'
 	};
 	layui.config({
 		version:magic.ver,
-		base: magic.tpl + 'asset/js/'
+		base: magic.cdn + 'asset/js/'
 	}).use(['mojia'], function() {
 		var mojia = layui.mojia;
 		mojia.moload.mojia();

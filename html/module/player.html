@@ -59,7 +59,7 @@
 		{if in_array($user['group_id'], explode(',',$mojia['advs']['built']['group']))}
 		<div class="mo-play-buil mo-part-zero mo-back-white">
 			<a class="mo-part-advs mo-java-advs mo-coxs-center mo-fsxs-20px mo-text-white mo-cosm-none" href="javascript:;">×</a>
-			{$mojia['advs']['built']['area']}11
+			{$mojia['advs']['built']['area']}
 		</div>
 		{/if}
 	</div>
@@ -81,6 +81,11 @@
 			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
 				<a class="mo-play-somake" href="javascript:;"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shoucang"></i>收藏</a>
 			</li>
+			{if$obj.vod_down_list}
+			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
+				<a class="mo-play-somake" href="{:mac_url_vod_down($obj,['sid'=>$param.sid,'nid'=>$param.nid])}" target="_blank"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shangchuan"></i>下载</a>
+			</li>
+			{/if}
 			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
 				<a class="mo-play-prev{if$param.nid==1} mo-part-bans mo-text-disad{/if}" href="{$obj.player_info.link_pre}"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shangyige"></i>上集</a>
 			</li>
@@ -110,4 +115,8 @@
 		{/if}
 	</ul>
 </div>
-{/if}{/if}
+{/if}{/if}{if in_array($user['group_id'], explode(',',$mojia['advs']['list']['group']))}
+<div class="mo-back-white mo-mtsm-10px mo-mtmd-20px">
+{$mojia['advs']['list']['area']}
+</div>
+{/if}

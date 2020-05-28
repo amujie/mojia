@@ -4,7 +4,6 @@
 {assign name="seo_des" value="$maccms.site_description"}
 {assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url(mac_get_mid_code($maccms['mid']).'/index')"}
 {assign name="seo_image" value=":mac_url_img($mojia['other']['share']['image'])"}
-{assign name="seo_back" value=":mac_url_img($mojia['other']['share']['backs'])"}
 {switch name="$maccms.aid"}{case value="2"}
 {assign name="seo_title" value="分类导航 - "}
 {/case}{case value="4"}
@@ -135,7 +134,6 @@
 <meta itemprop="keywords" content="{$seo_key}" />
 <meta itemprop="description" content="{$seo_des}" />
 <meta itemprop="uploadDate" content="{:date('Y-m-d',time())}" />
-<meta itemprop="background" content="{$seo_back}" />
 <meta itemprop="image" content="{$seo_image}" />
 <meta itemprop="url" content="{$seo_url}" />
 <meta property="og:type" content="{$seo_type}" />

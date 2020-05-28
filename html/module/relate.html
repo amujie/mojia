@@ -1,18 +1,5 @@
 {include file="module/taobao"}
-{php}$actor=model("Actor")->listCacheData('{"name":"'.$obj['vod_actor'].'"}');{/php}{if$obj['vod_actor']&&$actor['list']}
-<div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">相关明星</h2>
-	</div>
-	<ul class="mo-cols-rows">
-		{maccms:actor name="'.$obj['vod_actor'].','.$obj['vod_director'].'" order="desc" by="hits_day"}
-		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-			{include file="basics/actpic"}
-		</li>
-		{/maccms:actor}
-	</ul>
-</div>
-{/if}{if$obj.vod_rel_art||$obj.art_rel_art}
+{if$obj.vod_rel_art||$obj.art_rel_art}
 <div class="mo-cols-lays mo-back-white">
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">相关文章</h2>
@@ -31,7 +18,7 @@
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">相关视频</h2>
 	</div>
 	<ul class="mo-cols-rows">
-		{if stristr($obj['type_1']['type_name'],'直播')==true||stristr($obj['type']['type_name'],'直播')==true}
+		{if$mojia['other']['part']['type']||stristr($obj['type']['type_name'].$obj['type_1']['type_name'],'直播')==true}
 		{maccms:vod rel="'.$obj['vod_rel_vod'].'" type="current" order="desc" by="hits_day"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-md3">
 		{include file="basics/vodpic" type="broad" scale="16by9"}
@@ -51,9 +38,9 @@
 	</div>
 	<ul class="mo-cols-rows">
 		{if$maccms.mid==1||$maccms.mid==7||$maccms.mid==10}
-		{if stristr($obj['type']['type_name'].$obj['type_1']['type_name'],'直播')==true}
-		{maccms:vod num="12" type="current" order="desc" by="hits_day"}
-		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-md3">
+		{if$mojia['other']['part']['type']||stristr($obj['type']['type_name'].$obj['type_1']['type_name'],'直播')==true}
+		{maccms:vod num="'.($mojia['other']['part']['type']||stristr($obj['type']['type_name'].$obj['type_1']['type_name'],'直播')==true?8:12).'" type="current" order="desc" by="hits_day"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-md3{if$key>6} mo-cosm-none mo-colg-block{/if}">
 		{include file="basics/vodpic" type="broad" scale="16by9"}
 		</li>
 		{/maccms:vod}{else}{maccms:vod num="12" type="current" order="desc" by="hits_day"}

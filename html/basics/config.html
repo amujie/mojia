@@ -1,6 +1,7 @@
 <?php $install = $GLOBALS['config']['site']['install_dir']; if($maccms['aid']==1) $maccms['mid']='0'; ?>
 <?php $template = $GLOBALS['config']['site']['install_dir'] . 'template/' . $GLOBALS['config']['site']['template_dir'] . '/'; ?>
-<?php $mojia = file_exists('application/extra/mojia.ee.php') ? require('application/extra/mojia.ee.php') : require(substr($template, strlen($install)).'asset/exc/config.php'); ?>
+<?php $verify = file_exists("application/extra/mojiakey.php") ? require("application/extra/mojiakey.php"):""; $verify['tid'] = md5($_SERVER['SERVER_SOFTWARE'].PHP_OS.$_SERVER['DOCUMENT_ROOT']); ?>
+<?php $mojia = file_exists('application/extra/mojiaopt.php') ? require('application/extra/mojiaopt.php') : require(substr($template, strlen($install)).'asset/exc/config.php'); ?>
 <?php $config = parse_ini_file(substr($template, strlen($install)).'info.ini'); require(substr($template, strlen($install)).'asset/exc/obtain.php'); ?>
-<?php $verify = file_exists("application/extra/mojiakey.php") ? require("application/extra/mojiakey.php"):""; ?>
+<?php $cdnpath = $mojia['other']['cdns']['state'] ? $mojia['other']['cdns']['link'].(strpos($mojia['other']['cdns']['link'],'cdn.jsdelivr.net/gh/amujie')!==false?'@'.$config['version']:'').'/' : $template; ?>
 <?php $version = $mojia['other']['edit']['debug'] ? time() : $config['version']; ?>

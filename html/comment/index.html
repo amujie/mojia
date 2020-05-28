@@ -5,7 +5,7 @@
 	{maccms:foreach name="__LIST__" id="vo"}
 	<li class="mo-part-btsd mo-bord-muted mo-ptxs-5px mo-ptmd-10px mo-mtxs-5px mo-mrxs-5px mo-mlxs-5px"></li>
 	<li class="mo-cols-rows mo-part-over mo-maxs-5px mo-mamd-10px">
-		<img class="mo-comm-avat mo-part-peer mo-part-coin" src="{:mac_get_user_portrait($vo['user_id'])}"/>
+		<img class="mo-comm-avat mo-part-peer mo-part-coin" src="{:str_replace('/static/images/touxiang.png',$template.'asset/img/avatar.png',mac_get_user_portrait($vo['user_id']))}"/>
 		<div class="mo-comm-left">
 			<span class="mo-part-bold">{$vo.comment_name}{$obj.user_nick_name|mac_default=$obj.user_name}</span>
 			<span class="mo-part-more mo-fsxs-12px mo-fssm-14px">{$vo.comment_time|date='Y-m-d H:i:s',###}</span>
@@ -22,7 +22,7 @@
 		{maccms:foreach name="$vo.sub" id="child"}
 		<div class="mo-comm-east mo-part-bbsd mo-bord-muted mo-ptxs-5px mo-ptmd-10px"></div>
 		<div class="mo-comm-east mo-cols-rows mo-part-over mo-mtxs-10px mo-mtmd-20px">
-			<img class="mo-comm-avat mo-part-peer mo-part-coin" src="{php} echo mac_get_user_portrait($child['user_id']); {/php}"/>
+			<img class="mo-comm-avat mo-part-peer mo-part-coin" src="{:str_replace('/static/images/touxiang.png',$template.'asset/img/avatar.png',mac_get_user_portrait($child['user_id']))}"/>
 			<div class="mo-comm-left">
 				<span class="mo-part-bold">{$child.comment_name}</span>
 				<span class="mo-part-more mo-fsxs-12px mo-fssm-14px">{$child.comment_time|mac_day}</span>

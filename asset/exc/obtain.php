@@ -5,15 +5,17 @@ function moJiaPath($path) {
 	$version = parse_ini_file('../../info.ini');
 	$maccms = file_exists($install . 'application/extra/maccms.php') ? @require ($install . 'application/extra/maccms.php') : @require ('application/extra/maccms.php');
 	if ($path == 'mojia') {
-		return file_exists($install . 'application/extra/mojia.ee.php') ? @require ($install . 'application/extra/mojia.ee.php') : @require ('config.php');
+		return file_exists($install . 'application/extra/mojiaopt.php') ? @require ($install . 'application/extra/mojiaopt.php') : @require ('config.php');
 	} elseif ($path == 'temp') {
 		return $maccms['site']['install_dir'] . 'template/' . $maccms['site']['template_dir'] . '/';
 	} elseif ($path == 'base') {
 		return @require ($install . 'application/database.php');
 	} elseif ($path == 'home') {
 		return $maccms['site']['install_dir'];
+	} elseif ($path == 'cdns') {
+		return 'https://cdn.jsdelivr.net/gh/amujie/mojia@latest/';
 	} elseif ($path == 'down') {
-		return $version['webtest'] . '/template/';
+		return 'https://cdn.jsdelivr.net/gh/amujie/download@latest/';
 	} elseif ($path == 'path') {
 		return $install;
 	}
@@ -121,14 +123,16 @@ function moJiaCurlGet($url) {
 
 // 下载主题文件
 function moJiaDownload($href, $path, $name) {
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $href);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120);
-	$file = curl_exec($ch);
-	curl_close($ch);
-	$down = fopen($path . $name, 'w+');
-	fwrite($down, $file);
+	$curl = curl_init($href); 
+	$down = fopen($path . $name, 'w+'); 
+	curl_setopt($curl, CURLOPT_HEADER, 0);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+	curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+	$result = curl_exec($curl); 
+	curl_close($curl); 
+	fwrite($down, $result);
 	fclose($down);
 	return true;
 }
@@ -137,10 +141,17 @@ function moJiaDownload($href, $path, $name) {
 function moJiaIsExists($href) {
 	$curl = curl_init();
 	curl_setopt($curl, CURLOPT_URL, $href);
+	curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36');
+	curl_setopt($curl, CURLOPT_REFERER, $href);
+	curl_setopt($curl, CURLOPT_AUTOREFERER, 1);
 	curl_setopt($curl, CURLOPT_HEADER, 1);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 20);
 	curl_setopt($curl, CURLOPT_TIMEOUT, 10);
+	curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 20);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($curl, CURLOPT_ENCODING, '');
 	curl_setopt($curl, CURLOPT_NOBODY, 1);
 	curl_exec($curl);
 	$code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
