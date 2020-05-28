@@ -533,14 +533,14 @@
     array (
       'name' => '编辑按钮',
       'link' => 'admin.php',
-      'debug' => '1',
+      'debug' => '0',
       'state' => '1',
     ),
 	'cdns' =>
 	array (
 	  'name' => '静态加速',
 	  'link' => 'https://cdn.jsdelivr.net/gh/amujie/mojia',
-	  'state' => '0',
+	  'state' => '1',
 	),
     'demo' => 
     array (
