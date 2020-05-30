@@ -21,7 +21,7 @@
 				<a class="mo-swip-prev mo-text-white mo-coxs-center mo-coxs-none mo-cosm-block mo-icon-font mo-icon-shangyiye" href="javascript:;"></a>
 			</div>
 			<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
-				<a class="mo-deta-play mo-cols-rows mo-pnxs-10px mo-mrxs-10px mo-part-btns mo-bord-round mo-back-mojia mo-cols-info" href="{$privilege['shortUrl']}" target="_blank">领取{$details.couponPrice}元券</a>
+				<a class="mo-deta-play mo-cols-rows mo-pnxs-10px mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{$privilege['shortUrl']}" target="_blank">领取{$details.couponPrice}元券</a>
 			</div>
 		</dt>
 		<dd class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs8 mo-cols-sm7{if$maccms.aid!=13} mo-cols-lg5{else} mo-cols-lg10{/if}">
@@ -43,10 +43,11 @@
 			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="javascript:;">商品简介</a>
 		</h2>
 	</div>
-	<div class="mo-cols-show mo-pamd-5px">
-		<div class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
-		<div class="mo-paxs-5px mo-ptxs-0px mo-mtsm-5px">
-			{$details.desc}
+	<div class="mo-cols-show">
+		<div class="mo-pamd-5px">
+			<div class="mo-paxs-5px mo-ptxs-0px">
+				{$details.desc|mac_default='暂无站点简介'}
+			</div>
 		</div>
 	</div>
 </div>

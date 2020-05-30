@@ -1,8 +1,9 @@
 <div class="mo-paxs-5px mo-pamd-10px mo-back-white">
 	<ul class="mo-cols-rows">
+		{assign name="count" value="1"}
 		{maccms:foreach name=":require('application/extra/vodserver.php')"}
-		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4">
-			<a class="mo-play-parse mo-pnxs-5px mo-part-btns mo-bord-muted mo-bord-round mo-wrap-arow" data-parse="{$vo['des']}" href="javascript:;">{$vo.show}</a>
+		<li class="mo-paxs-5px mo-cols-info mo-cols-xs4{if$count++<4} mo-cols-topo{/if}">
+			<a class="mo-play-parse mo-pnxs-5px mo-lhxs-34px mo-part-btns mo-back-click mo-bord-muted mo-bord-round mo-wrap-arow{if$vo['des']==$_POST['des']} mo-back-mojia{/if}" data-parse="{$vo['des']}" href="javascript:;">{$vo.show}</a>
 		</li>
 		{/maccms:foreach}
 	</ul>

@@ -28,7 +28,7 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 				form.on('submit(submit)', function(data) {
 					$.post($('.layui-form-pane').attr('action'), data.field, function(data) {
 						$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'chat=chat&send=' + $('input[name="mojia[play][chat][send]"]').val() + '&code=' + $('input[name="mojia[play][chat][code]"]').val() + '&close=' + $('input[name="mojia[other][close][state]"]:checked').val());
-						$.get(magic.tpl + 'asset/exc/create.php?id=url&tao=tao');
+						$.post(magic.tpl + 'asset/exc/create.php?id=url&tao=tao');
 						layer.msg(data.msg, {
 							time: 1000
 						}, function() {
@@ -121,12 +121,12 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 				return version != 0 ? version : (news.length - nows.length);
 			},
 			'update': function() {
-				$.getJSON(magic.tpl + '/asset/exc/create.php?id=url&ver=new', function(data) {
+				$.post(magic.tpl + '/asset/exc/create.php?id=url&ver=new', function(data) {
 					var newmojia = data.ver;
 					var password = data.key;
 					if (mojia.global.contra(0, $('.mo-opts-vers').text(), newmojia) > 0) {
 						$('.mo-opts-news').html('最新版：' + newmojia + '<a href="javascript:;" class="mo-opts-btns mo-pnxs-10px" style="color:red">立即更新</a>').css('color', 'red');
-						$.getJSON(magic.tpl + '/asset/exc/create.php?id=url&ver=log', function(data) {
+						$.post(magic.tpl + '/asset/exc/create.php?id=url&ver=log', function(data) {
 							var output = '<table class="layui-table mo-logs-form"><tbody>';
 							for (var i = 0; i < data[newmojia].length; i++) output += '<tr><td width="20" align="center" class="mo-logs-nums">' + (i + 1) + '</td><td class="mo-logs-item">' + data[newmojia][i] + '</td></tr>';
 							output += '</tbody></table>';
@@ -154,7 +154,7 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 				$.post(magic.tpl + 'asset/exc/create.php?id=upd', 'ver=' + news + '&key=' + pass, function(data) {
 					layer.close(index);
 					if (data.code == 1) {
-						$.get(magic.path + 'template/mojia-' + news + '/asset/exc/create.php?id=url&ver=now', function(data) {
+						$.post(magic.path + 'template/mojia-' + news + '/asset/exc/create.php?id=url&ver=now', function(data) {
 							if (data.ver == news) {
 								mojia.global.withfl(news);
 							} else {
@@ -172,7 +172,7 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 			'withfl': function(news) {
 				layer.alert('升级成功', function(index) {
 					$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'tpl=mojia-' + news);
-					$.get($('.j-ajax', parent.document).attr('href'), function(data) {
+					$.post($('.j-ajax', parent.document).attr('href'), function(data) {
 						layer.msg(data.msg, {
 							time: 1000
 						}, function() {

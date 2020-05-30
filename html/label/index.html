@@ -22,11 +22,11 @@
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$mojia['home']['taoke']['name']}</h2>
 	</div>
 	<ul class="mo-cols-rows">
-		{maccms:foreach name=":moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list',array('pageSize'=>'100','cids'=>$mojia['home']['taoke']['type'],'taoQiangGou'=>$mojia['home']['taoke']['qiang'],'brand'=>$mojia['home']['taoke']['brand'],'sort'=>$mojia['home']['taoke']['sort'],'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']['list']"}{if$key lt 96}
+		{maccms:foreach name=":array_slice(moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list',array('pageSize'=>'100','cids'=>$mojia['home']['taoke']['type'],'taoQiangGou'=>$mojia['home']['taoke']['qiang'],'brand'=>$mojia['home']['taoke']['brand'],'sort'=>$mojia['home']['taoke']['sort'],'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']['list'],0,96)"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{if$mojia['other']['video']['num']=='6'&&$key>(4-$advert)} mo-cosm-none mo-colg-block{/if}">
 		{include file="basics/taopic" type="highs" scale="2by3"}
 		</li>
-		{/if}{/maccms:foreach}
+		{/maccms:foreach}
 	</ul>
 </div>
 {include file="public/footer"}

@@ -28,11 +28,11 @@
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][edit][name]" value="{$mojia['other']['edit']['name']}" class="layui-input" placeholder="编辑按钮"></td>
-				<td colspan="2"><input type="input" name="mojia[other][edit][link]" value="{$mojia['other']['edit']['link']}" class="layui-input" placeholder="请填写后台入口文件,如admin.php"></td>
-				<td>
-					<select name="mojia[other][edit][debug]" lay-verify="">
-						<option value="1"{if$mojia['other']['edit']['debug']==1} selected{/if}>开启调试</option>
-						<option value="0"{if$mojia['other']['edit']['debug']==0} selected{/if}>关闭调试</option>
+				<td><input type="input" name="mojia[other][edit][link]" value="{$mojia['other']['edit']['link']}" class="layui-input" placeholder="请填写后台入口文件,如admin.php"></td>
+				<td colspan="2">
+					<select name="mojia[other][edit][search]" lay-verify="">
+						<option value="1"{if$mojia['other']['edit']['search']==1} selected{/if}>开启联想搜索功能</option>
+						<option value="0"{if$mojia['other']['edit']['search']==0} selected{/if}>关闭联想搜索功能</option>
 					</select>
 				</td>
 				<td>
@@ -42,7 +42,13 @@
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][cdns][name]" value="{$mojia['other']['cdns']['name']}" class="layui-input" placeholder="静态加速"></td>
-				<td colspan="3"><input type="input" name="mojia[other][cdns][link]" value="{$mojia['other']['cdns']['link']}" class="layui-input" placeholder="静态文件加速地址"></td>
+				<td><input type="input" name="mojia[other][cdns][link]" value="{$mojia['other']['cdns']['link']}" class="layui-input" placeholder="静态文件加速地址"></td>
+				<td colspan="2">
+					<select name="mojia[other][cdns][debug]" lay-verify="">
+						<option value="1"{if$mojia['other']['cdns']['debug']==1} selected{/if}>显示版本号后缀</option>
+						<option value="0"{if$mojia['other']['cdns']['debug']==0} selected{/if}>显示时间戳后缀</option>
+					</select>
+				</td>
 				<td>
 					<input type="radio" name="mojia[other][cdns][state]" value="1" title="开启"{if$mojia['other']['cdns']['state']==1} checked{/if}>
 					<input type="radio" name="mojia[other][cdns][state]" value="0" title="关闭"{if$mojia['other']['cdns']['state']==0} checked{/if}>

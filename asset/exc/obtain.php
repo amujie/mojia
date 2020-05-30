@@ -2,7 +2,6 @@
 // 主题路径
 function moJiaPath($path) {
 	$install = '../../../../';
-	$version = parse_ini_file('../../info.ini');
 	$maccms = file_exists($install . 'application/extra/maccms.php') ? @require ($install . 'application/extra/maccms.php') : @require ('application/extra/maccms.php');
 	if ($path == 'mojia') {
 		return file_exists($install . 'application/extra/mojiaopt.php') ? @require ($install . 'application/extra/mojiaopt.php') : @require ('config.php');
@@ -83,9 +82,12 @@ function moJiaDaTaoKe($api, $param, $appSecret) {
 
 // 表情转换
 function moJiaFace($data) {
+	$version = parse_ini_file(moJiaPath('temp') . 'info.ini');
+	$mojia = file_exists('application/extra/mojiaopt.php') ? @require ('application/extra/mojiaopt.php') : @require ('config.php'); ;
+	$cdnpath = $mojia['other']['cdns']['state'] ? $mojia['other']['cdns']['link'] . (strpos($mojia['other']['cdns']['link'], 'cdn.jsdelivr.net/gh/amujie') !== false ? '@' . $version['version'] : '') . '/' : moJiaPath('temp');
 	preg_match_all('/(?:\[)[^(?:\])]+]/i', $data, $match);
 	foreach ($match[0] as $key => $value) {
-		$data = str_replace($match[0][$key], '<img class="mo-part-mtop" width="auto" height="24" src="' . moJiaPath('temp') . 'asset/face/' . str_replace(array('[', ']'), '', $match[0][$key]) . (strstr($match[0][$key], 'qq') ? '.gif' : '.png') . '"/>', $data);
+		$data = str_replace($match[0][$key], '<img class="mo-part-mtop" width="auto" height="24" src="' . $cdnpath . 'asset/face/' . str_replace(array('[', ']'), '', $match[0][$key]) . (strstr($match[0][$key], 'qq') ? '.gif' : '.png') . '"/>', $data);
 	}
 	return $data;
 }
@@ -123,15 +125,15 @@ function moJiaCurlGet($url) {
 
 // 下载主题文件
 function moJiaDownload($href, $path, $name) {
-	$curl = curl_init($href); 
-	$down = fopen($path . $name, 'w+'); 
+	$curl = curl_init($href);
+	$down = fopen($path . $name, 'w+');
 	curl_setopt($curl, CURLOPT_HEADER, 0);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
 	curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-	$result = curl_exec($curl); 
-	curl_close($curl); 
+	$result = curl_exec($curl);
+	curl_close($curl);
 	fwrite($down, $result);
 	fclose($down);
 	return true;

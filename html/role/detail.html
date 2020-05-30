@@ -12,16 +12,12 @@
 			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">发表评论</a>
 			{/if}
 		</h2>
-		{if$mojia['other']['edit']['state']&&model("Admin")->checkLogin()['code']==1}
-		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
-			<li class="mo-coxs-iblock mo-fsxs-14px"><a href="{$install}{$mojia['other']['edit']['link']}/admin/{:mac_get_mid_code($maccms['mid'])}/info/id/{$obj[mac_get_mid_code($maccms['mid']).'_id']}.html" target="_blank">编辑</a></li>
-		</ul>
-		{/if}
 	</div>
-	<div class="mo-tabs-item mo-pamd-5px mo-cols-show">
-		<div class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
-		<div class="mo-paxs-5px mo-ptxs-0px mo-mtsm-5px">
-			{$vo.role_content|mac_default='暂无简介'}
+	<div class="mo-tabs-item mo-cols-show">
+		<div class="mo-pamd-5px">
+			<div class="mo-paxs-5px mo-ptxs-0px">
+				{$vo.role_content|mac_default='暂无简介'}
+			</div>
 		</div>
 	</div>
 	{if$GLOBALS['config']['comment']['status']}

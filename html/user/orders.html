@@ -18,7 +18,7 @@
 			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
 			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
 				<span class="mo-cols-info mo-cols-xs7 mo-wrap-arow">{$vo.order_time|mac_day}</span>
-				<span class="mo-cols-info mo-cols-xs5 mo-wrap-arow mo-coxs-right">{if$vo.order_status}<span class="mo-text-green">已支付{$vo.order_price}元</span>{else}<a class="mo-paxs-5x10 mo-part-btns mo-bord-round mo-back-mojia" href="{:mac_url('user/pay')}?order_code={$vo.order_code}">支付{$vo.order_price}元</a>{/if}</span>
+				<span class="mo-cols-info mo-cols-xs5 mo-wrap-arow mo-coxs-right">{if$vo.order_status}<span class="mo-text-green">已支付{$vo.order_price}元</span>{else}<a class="mo-paxs-5x10 mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia" href="{:mac_url('user/pay')}?order_code={$vo.order_code}">支付{$vo.order_price}元</a>{/if}</span>
 			</li>
 			{/volist}
 		</ul>

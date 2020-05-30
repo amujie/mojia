@@ -42,7 +42,7 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 						$.each(mojia.symbol, function(list, name) {
 							html += '<div class="mo-face-item mo-part-btsd mo-part-blsd mo-bord-muted mo-cols-zero' + (list == 'qq' ? ' mo-cols-show' : ' mo-cols-hide') + '">';
 							$.each(name.code, function(nums, info) {
-								html += '<a class="mo-face-pics  mo-part-brsd mo-part-bbsd mo-bord-muted mo-coxs-center mo-cols-show mo-coxs-iblock mo-java-face" href="javascript:;" data-code="[' + list + '/' + info[1] + ']" title="' + info[0] + '"><img width="24" height="24" src="' + magic.tpl + 'asset/face/' + list + '/' + info[1] + '.' + (list == 'qq' ? 'gif' : 'png') + '"/></a>';
+								html += '<a class="mo-face-pics  mo-part-brsd mo-part-bbsd mo-bord-muted mo-coxs-center mo-cols-show mo-coxs-iblock mo-java-face" href="javascript:;" data-code="[' + list + '/' + info[1] + ']" title="' + info[0] + '"><img width="24" height="24" src="' + magic.cdn + 'asset/face/' + list + '/' + info[1] + '.' + (list == 'qq' ? 'gif' : 'png') + '"/></a>';
 							});
 							html += '</div>';
 						});
@@ -134,13 +134,13 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 				});
 			},
 			'repo': function(that) {
-				$.get(magic.path + 'index.php/comment/report?id=' + that.attr('data-id'), function(data) {
+				$.post(magic.path + 'index.php/comment/report?id=' + that.attr('data-id'), function(data) {
 					layer.msg(data.msg);
 					that.html('已举报');
 				});
 			},
 			'digg': function(that) {
-				$.get(magic.path + 'index.php/ajax/digg.html?mid=' + that.attr('data-mid') + '&id=' + that.attr('data-id') + '&type=' + that.attr('data-type'), function(data) {
+				$.post(magic.path + 'index.php/ajax/digg?mid=' + that.attr('data-mid') + '&id=' + that.attr('data-id') + '&type=' + that.attr('data-type'), function(data) {
 					layer.msg(data.msg);
 					if (data.code != 1) return false;
 					if (that.attr('data-type') == 'up') that.html('已支持(' + data.data.up + ')');
@@ -150,24 +150,26 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 		},
 		'message': {
 			'init': function() {
+				if (magic.mid == 5) mojia.message.show($('.mo-page-text').val());
 				mojia.global.count('.mo-comm-gbform');
 				common.global.submit('.mo-comm-gbooks', '.mo-comm-gbform');
 				if (magic.aid == 13) $('.mo-comm-gbform').find('textarea').val('求片：请管理员添加《' + $('.mo-java-hunt').text() + '》谢谢！');
 				$(document).on('click', '.mo-comm-report', function() {
-					$.get($(this).attr('data-href'), function(data) {
+					var that = $(this);
+					$.post($(this).attr('data-href'), function(data) {
 						$('.mo-java-left').addClass('mo-part-left');
 						layer.open({
 							type: 1,
 							btn: false,
 							id: 'report',
 							title: '视频报错',
-							skin: 'mo-bord-round',
+							skin: 'mo-open-info mo-bord-round',
 							content: data,
 							shadeClose: true,
 							success: function(layero) {
 								$(layero).addClass('mo-back-white');
-								$(layero).find('.layui-layer-title').addClass('mo-back-white mo-bord-muted');
-								$('.mo-comm-gbform').find('textarea').val('《' + $('.mo-java-play').attr('data-name') + '》' + $('.mo-java-play').attr('data-nums') + '［' + $('.mo-java-play').attr('data-show') + '］存在问题请检查修复。页面地址：' + location.href);
+								$(layero).find('.layui-layer-title').addClass('mo-open-head mo-back-white mo-part-zero');
+								$('.mo-comm-gbform').find('textarea').val('《' + $('.mo-java-play').attr('data-name') + '》' + $('.mo-java-play').attr('data-nums') + '［' + that.attr('data-show') + '］存在问题请检查修复。页面地址：' + location.href);
 								mojia.global.count('.mo-comm-gbform');
 							}
 						});
@@ -175,6 +177,31 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 				});
 				$(document).on('click', '.mo-comm-gbooks', function() {
 					mojia.message.firm();
+				});
+				$(document).on('click', '.mo-page-jump', function() {
+					if ($('.mo-page-info').attr('data-aid') == 4) {
+						var count = document.documentElement.clientWidth > 767 ? 100 : 90;
+						mojia.message.show($('.mo-page-text').val());
+						$('html,body').animate({
+							scrollTop: $('.mo-java-page').offset().top - count
+						}, 200);
+					}
+				});
+				$(document).on('click', '.mo-page-item', function() {
+					if ($('.mo-page-info').attr('data-aid') == 4) {
+						var count = document.documentElement.clientWidth > 767 ? 100 : 90;
+						mojia.message.show($(this).attr('data-nums'));
+						$('html,body').animate({
+							scrollTop: $('.mo-java-page').offset().top - count
+						}, 200);
+					}
+				});
+			},
+			'show': function(page) {
+				$.get(magic.path + 'index.php/gbook/ajax?page=' + page, function(data) {
+					$('.mo-comm-gbajax').html(data);
+				}).error(function() {
+					$('.mo-comm-gbajax').html('<p class="mo-coxs-center mo-paxs-5px mo-pamd-10px">评论加载失败，<a class="mo-comm-record mo-text-mojia" href="javascript:;">重新加载</a></p>');
 				});
 			},
 			'firm': function() {

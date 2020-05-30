@@ -5,9 +5,9 @@
 		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
 			{if$maccms.aid==13||$maccms.aid==15||$maccms.aid==16||$maccms.aid==34}
 			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_vod_detail($vo)}">查看详情</a>
-			{/if}{if$maccms.aid!=15&&count($vo['vod_play_list'])}
+			{/if}{if!$obj.vod_pwd&&$maccms.aid!=15&&count($vo['vod_play_list'])}
 			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_vod_play($vo,'first')}">立即播放</a>
-			{/if}{if$maccms.aid!=16&&count($vo['vod_down_list'])}
+			{/if}{if!$obj.vod_pwd&&$maccms.aid!=16&&count($vo['vod_down_list'])}
 			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_vod_down($vo,'first')}">资源下载</a>
 			{/if}
 		</div>

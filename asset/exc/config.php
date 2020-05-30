@@ -6,7 +6,7 @@
       'src' => 'template/mojia/asset/img/logo.png',
       'link' => '/',
       'type' => 'logo',
-	  'desktop' => 'on',
+      'desktop' => 'on',
     ),
     'home' => 
     array (
@@ -30,7 +30,7 @@
     array (
       'id' => '1',
       'icon' => 'mo-icon-shuju',
-      'name' => '精英律师',
+      'name' => '',
       'link' => '/index.php/vod/detail/id/1.html',
       'type' => 'vod',
     ),
@@ -175,7 +175,7 @@
       'type' => '',
       'level' => '9',
       'sort' => 'time',
-      'sub' => '8',
+      'sub' => '9',
       'num' => '5',
       'state' => '0',
     ),
@@ -192,10 +192,10 @@
     'taoke' => 
     array (
       'name' => '精品推荐',
-      'qiang' => '0',
+      'qiang' => '',
       'type' => '',
-      'brand' => '0',
-      'sort' => '0',
+      'brand' => '',
+      'sort' => '2',
       'ver' => '1.2.2',
       'num' => '12',
       'state' => '0',
@@ -246,7 +246,7 @@
     ),
     'class' => 
     array (
-      'name' => '分类列表',
+      'name' => '视频分类',
       'advs' => '',
       'type' => '1,2,3,4',
       'level' => '',
@@ -254,6 +254,17 @@
       'order' => 'desc',
       'num' => '12',
       'state' => '1',
+    ),
+    'inform' => 
+    array (
+      'name' => '文章分类',
+      'advs' => '',
+      'type' => '',
+      'level' => '',
+      'sort' => 'time',
+      'order' => 'desc',
+      'num' => '8',
+      'state' => '0',
     ),
     'actor' => 
     array (
@@ -273,7 +284,7 @@
       'sort' => 'time',
       'order' => 'desc',
       'num' => '6',
-      'state' => '1',
+      'state' => '0',
     ),
     'site' => 
     array (
@@ -311,7 +322,7 @@
     'logo' => 
     array (
       'name' => '视频标志',
-      'pics' => 'template/mojia/asset/img/favicon.png',
+      'pics' => 'template/mojia/asset/img/logo.png',
       'state' => '0',
       'width' => '25%',
       'height' => '60px',
@@ -352,36 +363,36 @@
       'name' => '其他设置',
       'pass' => '1',
       'auto' => '1',
-      'cuts' => '1',
+      'cuts' => '0',
     ),
   ),
-  'color' =>
+  'color' => 
   array (
-    'type' =>
+    'type' => 
     array (
       'name' => '1',
     ),
     'white' => 
     array (
-      'name' => '主要颜色',
+      'name' => '全局背景',
       'back' => '#ffffff',
       'text' => '#333333',
     ),
     'muted' => 
     array (
-      'name' => '辅助颜色',
+      'name' => '灰色背景',
       'back' => '#f6f6f6',
       'text' => '#666666',
     ),
     'black' => 
     array (
-      'name' => '播放背景',
+      'name' => '黑色背景',
       'back' => '#000000',
       'text' => '#ffffff',
     ),
     'lazys' => 
     array (
-      'name' => '加载背景',
+      'name' => '懒加载背',
       'back' => '#dedede',
       'text' => '#333333',
     ),
@@ -395,19 +406,19 @@
     array (
       'name' => '普通按钮',
       'back' => '#ededed',
-      'text' => '#666666',
+      'text' => '#333333',
     ),
     'write' => 
     array (
       'name' => '访问按钮',
       'back' => '#cacaca',
-      'text' => '#666666',
+      'text' => '#333333',
     ),
     'disad' => 
     array (
       'name' => '禁用按钮',
       'back' => '#dfdfdf',
-      'text' => '#999999',
+      'text' => '#c9c9c9',
     ),
     'mojia' => 
     array (
@@ -533,15 +544,16 @@
     array (
       'name' => '编辑按钮',
       'link' => 'admin.php',
-      'debug' => '0',
+      'search' => '1',
       'state' => '1',
     ),
-	'cdns' =>
-	array (
-	  'name' => '静态加速',
-	  'link' => 'https://cdn.jsdelivr.net/gh/amujie/mojia',
-	  'state' => '1',
-	),
+    'cdns' => 
+    array (
+      'name' => '静态加速',
+      'link' => 'https://cdn.jsdelivr.net/gh/amujie/mojia',
+      'debug' => '1',
+      'state' => '1',
+    ),
     'demo' => 
     array (
       'name' => '站点演示',
@@ -579,7 +591,7 @@
       'name' => '默认大图',
       'pics' => '',
     ),
-    'move' =>
+    'move' => 
     array (
       'name' => '移动背景',
       'pics' => '',
@@ -612,8 +624,8 @@
     array (
       'name' => '圆角尺寸',
       'round' => '3px',
-	  'pics' => '缩略图模式',
-	  'type' => '0',
+      'pics' => '缩略图模式',
+      'type' => '0',
     ),
     'chain' => 
     array (

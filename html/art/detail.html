@@ -8,9 +8,6 @@
 				<span class="mo-fsxs-14px mo-prxs-5px mo-coxs-iblock">{$obj.art_time|mac_day}</span>
 				<span class="mo-fsxs-14px mo-pnxs-5px mo-coxs-iblock">{$obj.type.type_name}</span>
 				<span class="mo-fsxs-14px mo-pnxs-5px mo-coxs-iblock">{$obj.art_hits}阅读</span>
-				{if$mojia['other']['edit']['state']&&model("Admin")->checkLogin()['code']==1}
-				<a class="mo-fsxs-14px mo-plxs-5px mo-coxs-iblock" href="{$install}{$mojia['other']['edit']['link']}/admin/{:mac_get_mid_code($maccms['mid'])}/info/id/{$obj[mac_get_mid_code($maccms['mid']).'_id']}.html" target="_blank">编辑</a>
-				{/if}
 			</div>
 		</div>
 		<div class="mo-pnxs-5px mo-pamd-10px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
@@ -24,7 +21,7 @@
 		{include file="basics/sidebar"}
 	</div>
 </div>
-<div class="mo-cols-lays mo-back-white mo-cols-rows">
+<div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over">
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">我要评论</h2>
 	</div>

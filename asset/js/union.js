@@ -196,7 +196,6 @@ layui.define(['jquery', 'form', 'layer', 'income'], function(exports) {
 					btnAlign: 'c',
 					skin: 'mo-open-info mo-open-' + time,
 					success: function() {
-						$('.layui-layer-content').addClass('mo-open-head');
 						$('.layui-layer-btn').find('a').addClass('mo-open-item mo-bord-muted').css('color', '#333').css('border-color', '#dedede').css('background-color', '#fff');
 						for (var i = 0; i < data.length; i++) {
 							$(document).on('click', '.mo-open-' + time + ' .layui-layer-btn' + i, function(every) {

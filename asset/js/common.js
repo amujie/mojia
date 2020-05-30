@@ -10,6 +10,7 @@ layui.define(['jquery'], function(exports) {
 				mojia.global.event();
 				mojia.global.verify();
 				mojia.global.paging();
+				mojia.global.passer();
 				mojia.global.jumper(3);
 				mojia.picing.init('.mo-situ-lazy');
 				this.scroll('.mo-java-show', '.mo-scre-show');
@@ -19,12 +20,12 @@ layui.define(['jquery'], function(exports) {
 				this.scroll('.mo-java-navs', '.mo-navs-left');
 				if (magic.mob != 0 && magic.wap != location.host && mojia.global.mobile()) location.href = location.href.replace(location.host, magic.wap);
 				if (magic.aid == 15) {
-					$.get(magic.path + 'index.php/user/ajax_ulog/?ac=set&mid=' + magic.mid + '&id=' + magic.rid + '&sid=' + magic.sid + '&nid=' + magic.nid + '&type=4');
+					$.post(magic.path + 'index.php/user/ajax_ulog/?ac=set&mid=' + magic.mid + '&id=' + magic.rid + '&sid=' + magic.sid + '&nid=' + magic.nid + '&type=4');
 				} else if (magic.aid == 16) {
-					$.get(magic.path + 'index.php/user/ajax_ulog/?ac=set&mid=' + magic.mid + '&id=' + magic.rid + '&sid=' + magic.sid + '&nid=' + magic.nid + '&type=5');
+					$.post(magic.path + 'index.php/user/ajax_ulog/?ac=set&mid=' + magic.mid + '&id=' + magic.rid + '&sid=' + magic.sid + '&nid=' + magic.nid + '&type=5');
 				}
 				if (magic.aid == 15 || magic.aid == 24 || magic.aid == 34 || magic.aid == 84 || magic.aid == 94 || magic.aid == 114) {
-					$.get(magic.path + 'index.php/ajax/hits?mid=' + magic.mid + '&id=' + magic.rid + '&type=update');
+					$.post(magic.path + 'index.php/ajax/hits?mid=' + magic.mid + '&id=' + magic.rid + '&type=update');
 				}
 				if (magic.mid == 5 || magic.aid == 13 || $('.mo-comm-critic').length) {
 					layui.use('social', function() {
@@ -32,10 +33,10 @@ layui.define(['jquery'], function(exports) {
 					});
 				}
 				if ($('.mo-java-taoke').attr('data-taoke')) {
-					$.get(magic.tpl + 'asset/exc/create.php?id=url&tao=tao');
+					$.post(magic.tpl + 'asset/exc/create.php?id=url&tao=tao');
 				}
 				if ($('.mo-java-union').attr('data-union')) {
-					$.get($('.mo-java-union').attr('data-url'));
+					$.post($('.mo-java-union').attr('data-url'));
 				}
 				if ($('.mo-swip-container').length) {
 					layui.use('swiper', function() {
@@ -68,6 +69,23 @@ layui.define(['jquery'], function(exports) {
 						layui.center.global.init();
 					});
 				}
+				if ($('.mo-chat-info').attr('data-chat') == 1) {
+					$('.mo-chat-info').show();
+					if (mojia.cookie.get('mo_wechat')) {
+						$('.mo-chat-info').hide();
+						$('.mo-down-info').show();
+					}
+					$(document).on('click', '.mo-chat-submit', function() {
+						if (mojia.base64.decode($('.mo-chat-info').attr('data-word').substring(3)) != $('.mo-chat-input').val()) {
+							$('.mo-chat-input').val('').attr('placeholder', '口令错误！请重新输入').focus();
+							return false;
+						} else {
+							mojia.cookie.set('mo_wechat', $('.mo-chat-info').attr('data-word'), 1);
+							$('.mo-chat-info').hide();
+							$('.mo-down-info').show();
+						}
+					});
+				}
 			},
 			'event': function() {
 				$(document).on('click', '.mo-java-advs', function() {
@@ -76,7 +94,7 @@ layui.define(['jquery'], function(exports) {
 				$('.mo-week-btns').click(function() {
 					$('.mo-week-btns').removeClass('mo-text-mojia');
 					$(this).addClass('mo-text-mojia');
-					$.get($('.mo-week-boxs').attr('data-href') + '?week=' + $(this).find('.mo-week-name').text().replace('今', $('.mo-week-boxs').attr('data-week')) + '&nums=' + $('.mo-week-boxs').attr('data-nums'), function(data) {
+					$.post($('.mo-week-boxs').attr('data-href') + '?week=' + $(this).find('.mo-week-name').text().replace('今', $('.mo-week-boxs').attr('data-week')) + '&nums=' + $('.mo-week-boxs').attr('data-nums'), function(data) {
 						$('.mo-week-boxs').html(data);
 					});
 				});
@@ -98,6 +116,14 @@ layui.define(['jquery'], function(exports) {
 					$(boxs).scrollLeft(offset - center);
 				}
 			},
+			'passer': function() {
+				$(document).on('click', '.mo-pass-btns', function() {
+					$.get(magic.path + 'index.php/ajax/pwd?id=' + magic.rid + '&mid=' + magic.mid + '&type=' + $(this).attr('data-type') + '&pwd=' + $('.mo-pass-text').val(), function(data) {
+						$('.mo-pass-tips').text(data.msg);
+						if (data.code == 1) location.reload();
+					});
+				});
+			},
 			'mobile': function() {
 				return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 			},
@@ -115,12 +141,12 @@ layui.define(['jquery'], function(exports) {
 			},
 			'paging': function() {
 				$(document).on('click', '.mo-page-jump', function() {
-					if ($('.mo-page-info').attr('data-aid') != 5) {
+					if ($('.mo-page-info').attr('data-aid') != 4 && $('.mo-page-info').attr('data-aid') != 5) {
 						location.href = $(this).attr('data-href').replace('PAGELINK', $('.mo-page-text').val());
 					}
 				});
 				$(document).on('click', '.mo-page-item', function() {
-					if ($('.mo-page-info').attr('data-aid') != 5) {
+					if ($('.mo-page-info').attr('data-aid') != 4 && $('.mo-page-info').attr('data-aid') != 5) {
 						location.href = $(this).attr('data-href');
 					}
 				});
@@ -198,22 +224,38 @@ layui.define(['jquery'], function(exports) {
 		},
 		'navbar': {
 			'init': function() {
+				this.loading($('.mo-head-info').children());
 				this.login('.mo-pops-login', '.mo-pops-form');
-				mojia.player.tabs('.mo-pops-hots', '.mo-pops-boxs', 'mo-text-mojia');
 				this.cutout('mo_record', '.mo-pops-recs .mo-pops-clear');
 				this.cutout('mo_history', '.mo-pops-record .mo-pops-clear');
-				this.output('mo_record', '.mo-pops-recs');
-				this.output('mo_history', '.mo-pops-record .mo-pops-list');
+				$(document).on('click', '.mo-navs-loop', function() {
+					mojia.navbar.loading($('.mo-head-info').children());
+				});
+			},
+			'loading': function(that) {
+				$.post(that.attr('data-url'), 'mid=' + that.attr('type-mid') + '&aid=' + that.attr('type-aid') + '&tid=' + that.attr('type-tid') + '&pid=' + that.attr('type-pid'), function(data) {
+					that.html(data);
+					mojia.player.tabs('.mo-pops-hots', '.mo-pops-boxs', 'mo-text-mojia');
+					mojia.navbar.output('mo_history', '.mo-pops-record .mo-pops-list');
+					mojia.navbar.output('mo_record', '.mo-pops-recs');
+				}).error(function() {
+					that.html('<p class="mo-navs-ajax mo-coxs-center">导航栏加载失败，<a class="mo-navs-record mo-text-mojia" href="javascript:;">重新加载</a></p>');
+				});
 			},
 			'login': function(str, form) {
 				mojia.global.submit(str, form);
-				$(str).click(function() {
+				$(document).on('click', str, function() {
 					$.post($(form).attr('action'), $(form).serialize(), function(data) {
 						$('.mo-pops-tips').text(data.msg);
 						if (data.code == 1) location.reload();
 						else $('.mo-java-verify').click();
 					}, 'json');
 				});
+			},
+			'adding': function(str) {
+				$(str).remove();
+				$('body').append('<div class="mo-part-mask mo-back-muted mo-comd-none mo-java-dels"></div>');
+				$('.mo-java-left').addClass('mo-part-left');
 			},
 			'output': function(type, str) {
 				var jsondata = [];
@@ -254,7 +296,7 @@ layui.define(['jquery'], function(exports) {
 							mojia.cookie.set('mo_notice', count + 1, 1);
 							layer.closeAll();
 						});
-						$.get(magic.path + 'index.php/label/notice.html', function(data) {
+						$.post(magic.path + 'index.php/label/notice.html', function(data) {
 							$('.mo-java-left').addClass('mo-part-left');
 							layui.layer.open({
 								type: 1,
@@ -273,15 +315,19 @@ layui.define(['jquery'], function(exports) {
 			},
 			'wechat': function(str) {
 				$(document).on('click', str, function() {
+					var that = $(this);
 					layui.use(['layer'], function() {
 						$('.mo-java-left').addClass('mo-part-left');
-						var that = $(this);
 						layer.open({
 							shadeClose: true,
 							btn: that.attr('data-link') ? '我要关注' : '关闭',
-							skin: 'mo-bord-round',
+							skin: 'mo-open-info mo-bord-round',
 							title: that.attr('data-tips'),
 							content: '<div class="mo-goto-code mo-part-toos mo-part-maxw mo-coxs-center mo-paxs-5px mo-pamd-10px"><img width="100%" src="' + that.attr('data-pics') + '"/></div>',
+							success: function(layero, index) {
+								$(layero).addClass('mo-back-white');
+								$(layero).find('.layui-layer-title').addClass('mo-open-head mo-back-white mo-part-zero');
+							},
 							yes: function(layero, index) {
 								if (that.attr('data-link')) {
 									location.href = that.attr('data-link');
@@ -297,7 +343,7 @@ layui.define(['jquery'], function(exports) {
 						var load = layer.load();
 						var that = $(this);
 						$('.mo-java-left').addClass('mo-part-left');
-						$.get(magic.path + 'index.php/label/share.html', function(data) {
+						$.post(magic.path + 'index.php/label/share.html', function(data) {
 							layer.close(load);
 							$('.mo-java-left').addClass('mo-part-left');
 							layer.open({
@@ -394,7 +440,7 @@ layui.define(['jquery'], function(exports) {
 				$(that).click(function() {
 					var that = $(this);
 					layer.confirm('您确认购买此条数据' + that.attr('data-name') + '权限吗？', function(index) {
-						$.get(magic.path + 'index.php/user/ajax_buy_popedom.html?id=' + magic.rid + '&mid=' + magic.mid + '&sid=' + magic.sid + '&nid=' + magic.nid + '&type=' + that.attr('data-type'), function(data) {
+						$.post(magic.path + 'index.php/user/ajax_buy_popedom.html?id=' + magic.rid + '&mid=' + magic.mid + '&sid=' + magic.sid + '&nid=' + magic.nid + '&type=' + that.attr('data-type'), function(data) {
 							layer.msg(data.msg);
 							if (data.code == 1) location.reload();
 						});
@@ -430,6 +476,7 @@ layui.define(['jquery'], function(exports) {
 				}).find('img').css('width', '100%').css('height', '100%').css('max-width', '100%').css('max-height', '100%');
 			},
 			'judge': function(str) {
+				if (!$(str).attr('data-sole')) return false;
 				if ($(str).attr('data-state') == 1) {
 					mojia.player.iframe(str, str);
 				} else if (!mojia.global.mobile() && JSON.parse($(str).attr('data-live'))) {
@@ -455,11 +502,13 @@ layui.define(['jquery'], function(exports) {
 							$(str).hide();
 							setTimeout(function() {
 								$('.mo-play-trysee').show().css('z-index', '99');
+								$('.mo-java-left').addClass('mo-part-left');
 								iframe.src = '';
 							}, 1000 * 60 * $(str).attr('data-trys'));
 						}
 					} else {
 						$('.mo-play-trysee').show().css('z-index', '99');
+						$('.mo-java-left').addClass('mo-part-left');
 					}
 				} else if ($(str).attr('data-groupid') < 3 && $(str).attr('data-points') == 0) {
 					iframe.onload = function() {
@@ -467,6 +516,7 @@ layui.define(['jquery'], function(exports) {
 						$(str).hide();
 						setTimeout(function() {
 							$('.mo-play-trysee').show().css('z-index', '99');
+							$('.mo-java-left').addClass('mo-part-left');
 							iframe.src = '';
 						}, 1000 * 60 * $(str).attr('data-trys'));
 					}
@@ -499,7 +549,7 @@ layui.define(['jquery'], function(exports) {
 						live: JSON.parse(live),
 						video: {
 							url: mojia.player.video(str),
-							type: (/MSIE\s[0-9]/i.test(navigator.userAgent)) || mojia.player.video(str).indexOf('.m3u8') > -1 ? 'customHls' : 'auto',
+							type: (!/MSIE\s[0-9]|MQQBrowser/i.test(navigator.userAgent)) && mojia.player.video(str).indexOf('.m3u8') > -1 ? 'customHls' : 'auto',
 							pic: $(str).attr('data-pics'),
 							customType: {
 								'customHls': function(video, player) {
@@ -547,15 +597,18 @@ layui.define(['jquery'], function(exports) {
 								if ($(str).attr('data-groupid') < 3 && $(str).attr('data-points') == 0 || $(str).attr('data-points') > 0) {
 									if ($(str).attr('data-trys') > 0 && player.video.currentTime > $(str).attr('data-trys') * 60) {
 										$('.mo-play-trysee').show().css('z-index', '99');
+										$('.mo-java-left').addClass('mo-part-left');
 										player.seek(0);
 										player.pause();
 									}
 								} else {
 									$('.mo-play-trysee').show().css('z-index', '99');
+									$('.mo-java-left').addClass('mo-part-left');
 								}
 							} else if ($(str).attr('data-groupid') < 3 && $(str).attr('data-points') == 0) {
 								if ($(str).attr('data-trys') > 0 && player.video.currentTime > $(str).attr('data-trys') * 60) {
 									$('.mo-play-trysee').show().css('z-index', '99');
+									$('.mo-java-left').addClass('mo-part-left');
 									player.seek(0);
 									player.pause();
 								}
@@ -579,21 +632,26 @@ layui.define(['jquery'], function(exports) {
 					$('.mo-play-load').show().css('z-index', '100');
 					$('.mo-play-player').remove();
 					$('.mo-play-parse').removeClass('mo-back-mojia');
+					$('.mo-play-switch').attr('data-des', $(this).attr('data-parse'))
 					$(this).addClass('mo-back-mojia');
 					mojia.player.iframe('.mo-play-load', this);
 					layer.closeAll();
 				});
 				$(document).on('click', '.mo-play-switch', function() {
-					$.get(magic.path + 'index.php/label/parse.html', function(data) {
+					$.post(magic.path + 'index.php/label/parse.html', 'des=' + $('.mo-play-switch').attr('data-des'), function(data) {
 						$('.mo-java-left').addClass('mo-part-left');
 						layer.open({
 							type: 1,
 							id: 'parse',
-							skin: 'mo-bord-round',
+							skin: 'mo-open-info mo-bord-round',
 							title: '视频无法播放请切换视频解析接口',
 							shadeClose: true,
 							content: data,
-							btn: false
+							btn: false,
+							success: function(layero) {
+								$(layero).addClass('mo-back-white');
+								$(layero).find('.layui-layer-title').addClass('mo-open-head mo-back-white mo-part-zero');
+							}
 						});
 					});
 				});
@@ -631,7 +689,7 @@ layui.define(['jquery'], function(exports) {
 			},
 			'store': function(str) {
 				$('.mo-play-somake').click(function() {
-					$.get(magic.path + 'index.php/user/ajax_ulog/?ac=set&mid=' + magic.mid + '&id=' + magic.rid + '&sid=' + magic.sid + '&nid=' + magic.nid + '&type=' + str, function(data) {
+					$.post(magic.path + 'index.php/user/ajax_ulog/?ac=set&mid=' + magic.mid + '&id=' + magic.rid + '&sid=' + magic.sid + '&nid=' + magic.nid + '&type=' + str, function(data) {
 						layer.msg(data.msg);
 						if (data.code == 1) $('.mo-play-somake').find('.mo-icon-font').addClass('mo-icon-shoucang1');
 						else $('.mo-navs-logins').click();

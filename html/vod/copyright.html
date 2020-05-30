@@ -1,0 +1,16 @@
+{include file="public/header"}
+<div class="mo-cols-lays mo-back-white mo-part-minh">
+	<div class="mo-jump-info mo-part-core mo-part-maxw">
+		<h3 class="mo-jump-head mo-paxs-10px mo-maxs-10px mo-fsxs-16px mo-fsmd-20px mo-bord-muted"><span class="mo-jump-span mo-fsxs-24px">提示</span>《{$obj['vod_name']}》</h3>
+		<div class="mo-cols-rows mo-paxs-10px">
+			<div class="mo-jump-tips">
+				<p class="mo-lhxs-40px">{$GLOBALS['config']['app']['copyright_notice']}</p>
+			</div>
+			<div class="mo-jump-tips mo-cols-rows">
+				<p class="mo-lhxs-40px mo-cols-info mo-cols-xs6"><a class="mo-jump-href" href="{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['url']}" target="_blank">立即前往</a></p>
+				<p class="mo-lhxs-40px mo-cols-info mo-cols-xs6"><a href="{:mac_url('index/index')}">打开网站首页</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="public/footer"}

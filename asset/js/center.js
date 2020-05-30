@@ -153,7 +153,7 @@ layui.define(['jquery', 'layer', 'form', 'upload', 'clipboard'], function(export
 			},
 			'wechat': function(str) {
 				setInterval(function() {
-					$.get($(str).attr('data-info') + '?order_id=' + $(str).attr('data-code'), function(data) {
+					$.post($(str).attr('data-info') + '?order_id=' + $(str).attr('data-code'), function(data) {
 						if (data.info.order_status == 1) {
 							layer.msg('支付完成，即将跳转到会员中心', {
 								icon: 1,

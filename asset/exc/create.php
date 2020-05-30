@@ -142,18 +142,18 @@ function moJiaCollect() {
 function moJiaCommon() {
 	if (isset($_GET['ver'])) {
 		$version = parse_ini_file('../../info.ini');
-		$versnew = moJiaCurlGet(moJiaPath('cdns') . 'info.ini?v='.time());
-		preg_match_all('/version=([\w\W]*?)adsdir/i', preg_replace('/\s+/','',$versnew), $match);
+		$versnew = moJiaCurlGet(moJiaPath('cdns') . 'info.ini?v=' . time());
+		preg_match_all('/version=([\w\W]*?)adsdir/i', preg_replace('/\s+/', '', $versnew), $match);
 		if (@$_GET['ver'] == 'now') {
 			echo json_encode(array('ver' => $version['version']));
 		} elseif (@$_GET['ver'] == 'new') {
 			echo json_encode(array('ver' => $match[1][0], 'key' => md5('mojia_' . $match[1][0])));
 		} elseif (@$_GET['ver'] == 'log') {
-			echo moJiaCurlGet(moJiaPath('cdns') . 'about/changelog.json?v='.time());
+			echo moJiaCurlGet(moJiaPath('cdns') . 'about/changelog.json?v=' . time());
 		}
 	} elseif (isset($_GET['tao'])) {
 		$mojia = moJiaPath('mojia');
-		$taoke = moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list', array('pageSize' => '50', 'cids' => $mojia['home']['taoke']['type'], 'taoQiangGou' => $mojia['home']['taoke']['qiang'], 'brand' => $mojia['home']['taoke']['brand'], 'sort' => $mojia['home']['taoke']['sort'], 'version' => $mojia['home']['taoke']['ver'], 'appKey' => $mojia['other']['taoke']['key']), $mojia['other']['taoke']['secret']);
+		$taoke = moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list', array('pageSize' => '50', 'cids' => $mojia['home']['taoke']['type'], 'juHuaSuan' => $mojia['home']['taoke']['qiang'] == 1 ? 1 : '', 'taoQiangGou' => $mojia['home']['taoke']['qiang'] == 2 ? 1 : '', 'tmall' => $mojia['home']['taoke']['qiang'] == 3 ? 1 : '', 'tchaoshi' => $mojia['home']['taoke']['qiang'] == 4 ? 1 : '', 'goldSeller' => $mojia['home']['taoke']['qiang'] == 5 ? 1 : '', 'haitao' => $mojia['home']['taoke']['qiang'] == 6 ? 1 : '', 'specialId' => $mojia['home']['taoke']['brand'], 'sort' => $mojia['home']['taoke']['sort'], 'version' => $mojia['home']['taoke']['ver'], 'appKey' => $mojia['other']['taoke']['key']), $mojia['other']['taoke']['secret']);
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiatao.php', '<?php return ' . var_export(array_slice($taoke['data']['list'], 0, $mojia['home']['taoke']['num']), true) . ';?>')) {
 			die(json_encode(array('msg' => '更新成功')));
 		} else {
@@ -166,8 +166,9 @@ function moJiaCommon() {
 			die(json_encode(array('msg' => '更新失败')));
 		}
 	} elseif (isset($_POST['key'])) {
+		$output = moJiaCurlGet(@$_POST['key']);
 		parse_str(parse_url(@$_POST['key'], PHP_URL_QUERY));
-		die($output?$output:json_encode(dns_get_record($name,DNS_TXT)));
+		die($output ? $output : json_encode(dns_get_record($name, DNS_TXT)));
 	} else {
 		$mojia = moJiaPath('mojia');
 		$url = $mojia['other']['share']['host'] ? $mojia['other']['share']['host'] . parse_url(@$_POST['url'], PHP_URL_PATH) : @$_POST['url'];

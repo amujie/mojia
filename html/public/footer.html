@@ -17,7 +17,9 @@
 </div>
 <div class="mo-goto-info mo-java-fadein">
 	<ul class="mo-coxs-block">
-		{if$mojia['other']['call']['link']}
+		{if$obj[mac_get_mid_code($maccms['mid']).'_id']&&$mojia['other']['edit']['state']&&model("Admin")->checkLogin()['code']==1}
+		<li class="mo-bsxs-shadow"><a class="mo-goto-calls mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-chuangzuo mo-java-event" href="{$install}{$mojia['other']['edit']['link']}/admin/{:mac_get_mid_code($maccms['mid'])}/info/id/{$obj[mac_get_mid_code($maccms['mid']).'_id']}.html" target="_blank"></a></li>
+		{/if}{if$mojia['other']['call']['link']}
 		<li class="mo-bsxs-shadow"><a class="mo-goto-calls mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-zixun mo-java-event" href="{$mojia['other']['call']['link']}" target="_blank"></a></li>
 		{/if}{if$mojia['other']['chat']['state']}
 		<li class="mo-bsxs-shadow"><a class="mo-goto-chats mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-weixin mo-java-event" href="javascript:;" data-tips="{$mojia['other']['chat']['tips']}" data-link="{$mojia['other']['chat']['link']}" data-pics="{$mojia['other']['chat']['pics']|mac_url_img}"></a></li>
