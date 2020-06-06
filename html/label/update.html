@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html class="mo-shut-info mo-part-view">
 	<head>
-		<meta charset="UTF-8" />
+		{include file="tinier/config,tinier/metaer"}
 		<title>浏览器升级提示 - {$GLOBALS['config']['site']['site_name']}</title>
-		{include file="basics/config"}
-		<meta name="renderer" content="webkit" />
-		<meta http-equiv="Cache-Control" content="no-siteapp" />
-		<meta http-equiv="Cache-Control" content="no-transform" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="{$mojia['other']['icon']['pics']|mac_url_img}" rel="apple-touch-icon-precomposed" />
-		<link href="{$mojia['other']['icon']['pics']|mac_url_img}" rel="shortcut icon" type="image/ico" />
-		<link href="{$template}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
-		{include file="basics/colour"}
+		<link href="{$cdnpath}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
+		{include file="tinier/colour"}
 	</head>
 	<body class="mo-shut-info mo-part-view mo-cols-minw">
 		<div class="mo-shut-main mo-part-core mo-cols-minw mo-coxs-center">
-			<h2 class="mo-shut-head mo-text-white">扫描二维码手机看大片</h2>
+			<h2 class="mo-shut-head mo-text-white">扫描二维码打开</h2>
 			<div class="mo-part-maxw mo-coxs-center">
 				<div class="mo-code-info mo-coxs-center mo-paxs-5px mo-pamd-10px">
 					<img src="{$mojia['other']['icon']['pics']|mac_url_img}" id="mo-code-pics" class="mo-cols-hide" />
@@ -54,11 +46,12 @@
 			</div>
 		</div>
 		<div class="mo-shut-foot mo-cols-rows mo-text-white mo-coxs-center mo-cols-xs12 mo-cols-minw">Copyright&nbsp;{:date('Y', time())}&nbsp;{$_SERVER['HTTP_HOST']}&nbsp;Inc.</div>
-		<script src="{$template}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
+		<script src="{$cdnpath}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var magic = {
 				'path': '{$install}',
 				'tpl': '{$template}',
+				'cdn': '{$cdnpath}',
 				'ver': '{$version}'
 			};
 			layui.config({

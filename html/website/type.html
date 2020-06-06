@@ -1,28 +1,25 @@
 {include file="public/header"}
-{if$obj.childids}
-{maccms:type ids="current" order="asc" by="sort" id="head"}
+{if$obj.childids}{maccms:type ids="current" order="asc" by="sort" id="magic"}
 <div class="mo-cols-lays mo-back-white">
-	{include file="basics/titles"}
+	{include file="basics/titles" module="type" title=":mac_filter_html($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
 	<ul class="mo-cols-rows">
-		{maccms:website num="12" type="'.$head['type_id'].'" order="desc" by="time"}
+		{maccms:website num="12" type="'.$magic['type_id'].'" order="desc" by="time"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-		{include file="basics/webpic"}
+		{include file="basics/picture" type="website" style=":mac_default(' mo-lazy-highs mo-byxs-16by9')" tips=":mac_default($vo['website_hits'].'浏览')" remark=":mac_default(mac_substring($vo['website_remarks'],12),date('Y-m-d H:i',$vo['website_time']))" name=":mac_default(mac_filter_html($vo['website_name']))" desc=":mac_default(mac_substring(mac_filter_html($vo['website_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['website_logo']))" href=":mac_url_website_detail($vo)" title="show" lazy="open"}
 		</li>
 		{/maccms:website}
 	</ul>
 </div>
-{/maccms:type}
-{else}
+{/maccms:type}{else}
 <div class="mo-cols-lays mo-back-white">
-	{include file="basics/titles"}
+	{include file="basics/titles" module="child" title=":mac_filter_html($obj.type_name)" btns="返回" href=":mac_default($obj.parent?mac_url_type($obj.parent):mac_url(mac_get_mid_code($maccms.mid).'/index'))"}
 	<ul class="mo-cols-rows">
-		{maccms:website num="12" paging="yes" half="3" type="current" order="desc" by="time"}
+		{maccms:website num="48" paging="yes" half="3" type="current" order="desc" by="time"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-		{include file="basics/webpic"}
+		{include file="basics/picture" type="website" style=":mac_default(' mo-lazy-highs mo-byxs-16by9')" tips=":mac_default($vo['website_hits'].'浏览')" remark=":mac_default(mac_substring($vo['website_remarks'],12),date('Y-m-d H:i',$vo['website_time']))" name=":mac_default(mac_filter_html($vo['website_name']))" desc=":mac_default(mac_substring(mac_filter_html($vo['website_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['website_logo']))" href=":mac_url_website_detail($vo)" title="show" lazy="open"}
 		</li>
 		{/maccms:website}
 	</ul>
-	{include file="basics/paging"}
+	{include file="tinier/paging"}
 </div>
-{/if}
-{include file="public/footer"}
+{/if}{include file="public/footer"}

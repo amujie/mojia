@@ -1,0 +1,133 @@
+{if$maccms.aid==15||$maccms.aid==10}{if$obj['vod_pwd_play']&&session('1-4-'.$obj['vod_id'])!=1&&$maccms.aid==15}
+{php}header('Location:'.mac_url('vod/player',['id'=>$obj['vod_id'],'sid'=>$param['sid'],'nid'=>$param['nid']],$obj));{/php}
+{/if}{if in_array($user['group_id'], explode(',',$mojia['advs']['play']['group']))}
+<div class="mo-back-white mo-mtsm-10px mo-mtmd-20px">
+{$mojia['advs']['play']['area']}
+</div>
+{/if}
+<div class="mo-play-info mo-cols-rows mo-back-white mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px">
+	<div class="mo-play-boxs mo-cols-rows mo-back-black mo-byxs-16by9">
+		{if$obj['vod_pwd_down']&&session('1-4-'.$obj['vod_id'])!=1&&$maccms.aid==10}
+		<div class="mo-play-passer mo-cols-rows mo-paxs-5px mo-pamd-10px mo-part-full mo-part-more mo-back-white">
+			<div class="mo-part-core">
+				{include file="tinier/passer" type="4" mold="_play"}
+			</div>
+		</div>
+		{/if}
+		<div class="mo-play-advert mo-play-advs mo-cols-hide">{$mojia['play']['advs']['tips']}&nbsp;<span class="mo-play-time mo-text-white">{$mojia['play']['advs']['time']|mac_default='5'}</span></div>
+		<div class="mo-play-load mo-part-full mo-back-black" data-copy="{$obj.vod_copyright}" data-pass="{$mojia['play']['other']['pass']}" data-code="{$popedom.code}" data-trys="{$obj.vod_trysee|mac_default=$GLOBALS['config']['user']['trysee']}" data-groupid="{$user.group.group_id}" data-points="{$obj.vod_points_play}" data-advs="{$mojia['play']['advs']['state']}" data-group="{:in_array($user['group_id'], explode(',',$mojia['play']['advs']['group']))}" data-link="{$mojia['play']['advs']['link']}" data-time="{$mojia['play']['advs']['time']|mac_default=5}" data-chat="{:in_array($obj['type_id'], explode(',',$mojia['play']['chat']['type']))}" data-word="{:chr(rand(65,90)).chr(rand(65,90)).chr(rand(97,122)).base64_encode($GLOBALS['config']['weixin']['gjcm1'])}" data-auto="{$mojia['play']['other']['auto']}" data-logo="{$mojia['play']['logo']['state']?mac_url_img($mojia['play']['logo']['pics']):''}" data-margin="{$mojia['play']['logo']['margin']}" data-float="{$mojia['play']['logo']['float']}" data-width="{$mojia['play']['logo']['width']}" data-height="{$mojia['play']['logo']['height']}" data-pics="{$mojia['play']['cover']['state']?mac_url_img($mojia['play']['cover']['pics']):''}" data-state="{$mojia['other']['demo']['state']?0:$obj['vod_play_list'][$param['sid']]['player_info']['ps']}" data-live="{$obj['vod_play_list'][$param['sid']]['player_info']['des']=='live'?'true':'false'}" data-parse="{:strpos($obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['url'],'share')===false?mac_default($obj['vod_play_list'][$param['sid']]['server_info']['des'],mac_default($obj['vod_play_list'][$param['sid']]['player_info']['parse'],mac_default($mojia['play']['parse']['link'],$GLOBALS['config']['play']['parse']))):''}" data-play="{if$mojia['play']['other']['pass']}{:chr(rand(65,90)).chr(rand(65,90)).chr(rand(97,122))}{$mojia['other']['demo']['state']?base64_encode($mojia['other']['demo']['link']):base64_encode($obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['url'])}{else}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['url']}{/if}" data-sole="{$obj['vod_id'].'_'.$param['nid']}" data-next="{if$param.nid!=$obj['vod_play_list'][$param['sid']]['url_count']}{$maccms.http_type}{$_SERVER['HTTP_HOST']}{$obj.player_info.link_next}{/if}"><span class="mo-part-core mo-fsxs-18px mo-coxs-center">{$mojia['play']['load']['tips']|mac_default='正在加载'}</span></div>
+		<iframe id="mo-play-iframe" class="mo-play-iframe mo-java-left mo-part-full mo-back-black mo-cols-hide" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+		<div id="mo-play-player" class="mo-play-player mo-java-left mo-part-full mo-back-black mo-cols-hide"></div>
+		<div class="mo-play-trysee mo-cols-rows mo-paxs-5px mo-pamd-10px mo-part-full mo-back-black mo-cols-hide">
+			<div class="mo-part-core">
+				{if$obj.vod_points_play}
+				<h2 class="mo-coxs-center mo-pnxs-10px mo-fsxs-16px mo-fsmd-18px">{if$GLOBALS['config']['user']['trysee']}试看{$obj.vod_trysee|mac_default=$GLOBALS['config']['user']['trysee']}分钟结束，完整观看本影片需要花费{$obj.vod_points_play}积分，请支付后观看。{else}{$popedom.msg}{/if}</h2>
+				<p class="mo-coxs-center mo-pnxs-10px mo-fsxs-14px">一次支付，永久观看，不重复扣费，谢谢支持。</p>
+				<div class="mo-coxs-center">
+					{if$user.group.group_id==1}
+					<a class="mo-part-btns mo-bord-muted mo-bord-round mo-coxs-iblock mo-lhxs-34px mo-pnxs-10px mo-maxs-5px mo-back-white" href="{:mac_url('user/reg')}">用户注册</a>
+					<a class="mo-part-btns mo-bord-muted mo-bord-round mo-coxs-iblock mo-lhxs-34px mo-pnxs-10px mo-maxs-5px mo-back-mojia mo-play-login mo-java-event" href="javascript:;">立即登录</a>
+					{else}
+					<a class="mo-part-btns mo-bord-muted mo-bord-round mo-coxs-iblock mo-lhxs-34px mo-pnxs-10px mo-maxs-5px mo-back-white" href="{:mac_url('user/buy')}" target="_blank">马上充值</a>
+					<a class="mo-part-btns mo-bord-muted mo-bord-round mo-coxs-iblock mo-lhxs-34px mo-pnxs-10px mo-maxs-5px mo-back-mojia mo-java-power" href="javascript:;" data-name="{if$obj.player_info.flag=='play'}播放{else}下载{/if}" data-type="{if$obj.player_info.flag=='play'}4{else}5{/if}">确认购买</a>
+					{/if}
+				</div>
+		    	{else}
+				<h2 class="mo-coxs-center mo-pnxs-10px mo-fsxs-16px mo-fsmd-18px">{if$GLOBALS['config']['user']['trysee']}试看{$obj.vod_trysee|mac_default=$GLOBALS['config']['user']['trysee']}分钟结束，完整观看本影片需要升级会员组，请升级后观看。{else}{$popedom.msg}{/if}</h2>
+				<p class="mo-coxs-center mo-pnxs-10px mo-fsxs-14px">提示：购买VIP会员组，享受超级权限，谢谢支持。</p>
+				<div class="mo-coxs-center">
+					{if$user.group.group_id==1}
+					<a class="mo-part-btns mo-bord-muted mo-bord-round mo-coxs-iblock mo-lhxs-34px mo-pnxs-10px mo-maxs-5px mo-back-white" href="{:mac_url('user/reg')}">用户注册</a>
+					<a class="mo-part-btns mo-bord-muted mo-bord-round mo-coxs-iblock mo-lhxs-34px mo-pnxs-10px mo-maxs-5px mo-back-mojia mo-play-login mo-java-event" href="javascript:;">立即登录</a>
+					{else}
+					<a class="mo-part-btns mo-bord-muted mo-bord-round mo-coxs-iblock mo-lhxs-34px mo-pnxs-10px mo-maxs-5px mo-back-white" href="{:mac_url('user/index')}" target="_blank">会员中心</a>
+					<a class="mo-part-btns mo-bord-muted mo-bord-round mo-coxs-iblock mo-lhxs-34px mo-pnxs-10px mo-maxs-5px mo-back-mojia" href="{:mac_url('user/upgrade')}" target="_blank">马上升级</a>
+					{/if}
+				</div>
+				{/if}
+			</div>
+		</div>
+		<div class="mo-play-copyer mo-cols-rows mo-paxs-5px mo-pamd-10px mo-part-full mo-back-black mo-cols-hide">
+			<div class="mo-part-core">
+				<h2 class="mo-coxs-center mo-fsxs-18px">{$mojia['play']['copy']['tips']}</h2>
+			</div>
+		</div>
+		<div class="mo-play-wechat mo-cols-rows mo-paxs-5px mo-pamd-10px mo-part-full mo-back-black mo-cols-hide">
+			<div class="mo-part-core mo-part-maxw mo-paxs-5px mo-pamd-10px">
+				<h2 class="mo-paxs-5px mo-pamd-10px mo-coxs-center mo-fsxs-16px mo-fsmd-18px">扫描二维码,回复<font color="red">{$GLOBALS['config']['weixin']['gjc1']}</font>,获取口令</h2>
+				<div class="mo-cols-info mo-cols-xs5">
+					<img class="mo-cols-rows mo-paxs-5px mo-pasm-10px" width="100%" src="{$mojia['play']['chat']['pics']|mac_url_img}"/>
+				</div>
+				<div class="mo-cols-info mo-cols-xs7">
+					<li class="mo-cols-rows mo-paxs-5px mo-pasm-10px mo-ptxs-0px mo-ptss-10px mo-ptmd-5px mo-coxs-center">欢迎关注微信公众号</li>
+					<li class="mo-cols-rows mo-paxs-5px mo-pasm-10px mo-ptss-10px"><input class="mo-chat-input mo-form-info mo-bord-round mo-bord-muted mo-back-muted" data-user="{$user.user_id}" type="text" placeholder="请输入口令" maxlength="60" /></li>
+					<li class="mo-cols-rows mo-paxs-5px mo-pasm-10px mo-ptss-10px"><a class="mo-chat-submit mo-form-info mo-bord-round mo-bord-muted mo-back-mojia mo-coxs-center" href="javascript:;">确认</a></li>
+				</div>
+			</div>
+		</div>
+		{if in_array($user['group_id'], explode(',',$mojia['advs']['built']['group']))}
+		<div class="mo-play-buil mo-part-zero mo-back-white">
+			<a class="mo-part-advs mo-java-advs mo-coxs-center mo-fsxs-20px mo-text-white mo-cosm-none" href="javascript:;">×</a>
+			{$mojia['advs']['built']['area']}
+		</div>
+		{/if}
+	</div>
+	<div class="mo-cols-rows">
+		<ul class="mo-line-top mo-bord-muted mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs12 mo-cols-lg6">
+			{if$mojia['play']['other']['danmu']}
+			<form class="mo-danm-info mo-cols-rows mo-paxs-5px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+				<span class="mo-danm-form mo-danm-icon mo-coxs-center mo-fsxs-20px mo-icon-font mo-icon-danmu-yiguanbi"></span>
+				<input class="mo-danm-form mo-danm-text mo-back-muted mo-cols-info mo-cols-xs12 mo-java-fixed{if$GLOBALS['config']['comment']['verify']} mo-danm-padd{/if}" type="text" name="comment_content" placeholder="开始吐槽吧" maxlength="20" />
+				{if$GLOBALS['config']['comment']['verify']}
+				<img class="mo-danm-form mo-danm-pics mo-java-verify" height="44" src="{:mac_url('verify/index')}" title="看不清楚? 换一张！" />
+				<input class="mo-danm-form mo-danm-code mo-coxs-center mo-back-muted mo-cols-info mo-cols-xs12 mo-java-fixed" type="tel" name="verify" placeholder="验证码" maxlength="4" />
+				{/if}
+				<a class="mo-danm-form mo-danm-send mo-part-btns mo-back-mojia mo-cols-show">发送</a>
+			</form>
+			{else}
+			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-rows">
+				<div class="mo-cols-info mo-cols-xs10 mo-wrap-arow"><span class="mo-play-trys"></span><span class="mo-pnxs-10px">{$obj.vod_name}</span><span class="">{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}</span></div>
+				<div class="mo-cols-info mo-cols-xs2 mo-text-muted mo-coxs-right"><a class="mo-play-brief mo-pnxs-10px" href="javascript:;">简介</a></div>
+			</li>
+			{/if}
+		</ul>
+		<ul class="mo-line-top mo-bord-muted mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs12 mo-cols-lg6">
+			{if$mojia['play']['other']['cuts']}
+			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
+				<a class="mo-play-switch" href="javascript:;"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-fuzhi"></i>切换</a>
+			</li>
+			{/if}{if$obj.vod_down_list}
+			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
+				<a class="mo-play-downer" href="{:mac_url_vod_down($obj,['sid'=>$param.sid,'nid'=>$param.nid])}" target="_blank"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shangchuan"></i>下载</a>
+			</li>
+			{else}
+			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center mo-coxs-none mo-coss-table">
+				<a class="mo-play-reno" href="javascript:;" onclick="location.reload();"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shuaxin"></i>刷新</a>
+			</li>
+			{/if}
+			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
+				<a class="mo-play-somake" href="javascript:;"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shoucang{if model('Ulog')->listData(array('ulog_type'=>'2','ulog_rid'=>$obj['vod_id'],'ulog_sid'=>$param['sid'],'ulog_nid'=>$param['nid'],'user_id'=>$user['user_id']))['pagecount']} mo-icon-shoucang1{/if}"></i>收藏</a>
+			</li>
+			{if$mojia['other']['share']['state']}
+			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
+				<a class="mo-goto-share mo-java-event" href="javascript:;" data-icon="{$mojia['other']['icon']['pics']|mac_url_img}"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-fenxiang"></i>分享</a>
+			</li>
+			{/if}
+			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
+				<a class="mo-play-prev{if$param.nid==1} mo-part-bans mo-text-disad{/if}" href="{$obj.player_info.link_pre}"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shangyige"></i>上集</a>
+			</li>
+			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
+				<a class="mo-play-next{if$param.nid==$obj['vod_play_list'][$param['sid']]['url_count']} mo-part-bans mo-text-disad{/if}" href="{$obj.player_info.link_next}">下集<i class="mo-part-bold mo-plxs-2px mo-icon-font mo-icon-xiayige"></i></a>
+			</li>
+		</ul>
+	</div>
+</div>
+{if$mojia['other']['chat']['state']}
+<div class="mo-back-white mo-cols-rows mo-comd-none">
+	<ul class="mo-cols-topo mo-bord-muted mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs12 mo-cols-lg6">
+		<li class="mo-cols-topo mo-paxs-5px">
+			<a class="mo-play-tips mo-lhxs-40px mo-goto-chats mo-part-hund mo-pnxs-15px mo-wrap-arow mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;" data-tips="{$mojia['other']['chat']['tips']}" data-link="{$mojia['other']['chat']['link']}" data-pics="{$mojia['other']['chat']['pics']|mac_url_img}">{$mojia['other']['chat']['tips']}</a>
+		</li>
+	</ul>
+</div>
+{/if}{/if}

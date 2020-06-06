@@ -1,8 +1,8 @@
 {include file="public/header"}
-<div class="mo-cols-lays mo-back-white mo-part-minh">
-	<div class="mo-jump-info mo-part-core mo-part-maxw" data-msg="{$msg}">
+<div class="mo-cols-lays mo-back-white">
+	<div class="mo-jump-info mo-part-maxw mo-part-patb" data-msg="{$msg}">
 		<h3 class="mo-jump-head mo-paxs-10px mo-maxs-10px mo-fsxs-16px mo-fsmd-20px mo-bord-muted"><span class="mo-jump-span mo-fsxs-24px">提示</span>{$msg}</h3>
-		<div class="mo-cols-rows mo-paxs-10px">
+		<div class="mo-cols-rows mo-paxs-10px mo-ptxs-0px">
 			<div class="mo-jump-tips mo-cols-info mo-cols-xs6">
 				<h4 class="mo-fsxs-18px">可能原因：</h4>
 				<p class="mo-lhxs-40px">找不到请求的页面</p>
@@ -10,11 +10,12 @@
 			</div>
 			<div class="mo-jump-tips mo-cols-info mo-cols-xs6">
 				<h4 class="mo-fsxs-18px">可以尝试：</h4>
-				<p class="mo-lhxs-40px"><a href="{:mac_url('index/index')}">打开网站首页</a></p>
+				<p class="mo-lhxs-40px"><a class="mo-text-mojia" href="{:mac_url('index/index')}">打开网站首页</a></p>
 				<?php if(!strpos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST'])){ $url = mac_url('index/index'); } ?>
 				<p class="mo-lhxs-40px"><a class="mo-jump-href" href="{$url}">自动跳转(<span class="mo-jump-nums">3</span>)</a></p>
 			</div>
 		</div>
 	</div>
 </div>
+{include file="index/latest"}
 {include file="public/footer"}

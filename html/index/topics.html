@@ -1,0 +1,13 @@
+{if$mojia['home']['topic']['state']}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles" module="topic" title=":mac_default($mojia['home']['topic']['name'])" btns="更多" href=":mac_url_topic_index()"}
+	<ul class="mo-cols-rows">
+		{assign name="count" value="1"}
+		{maccms:topic num="'.$mojia['home']['topic']['num'].'" level="'.$mojia['home']['topic']['level'].'" order="'.$mojia['home']['topic']['order'].'" by="'.$mojia['home']['topic']['sort'].'"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg4{if$mojia['home']['topic']['num']=='3'&&$count++>2} mo-coxs-none mo-colg-block{/if}">
+			{include file="basics/unique" title=":mac_default('专题')" count=":mac_default('——&nbsp;'.($vo['topic_rel_vod']?count(explode(',',$vo['topic_rel_vod'])).'个视频':($vo['topic_rel_art']?count(explode(',',$vo['topic_rel_art'])).'篇文章':'暂未收录数据')).'&nbsp;——')" name=":mac_default(mac_filter_html($vo['topic_name']))" image=":mac_url_img(trim($vo['topic_pic']))" href=":mac_url_topic_detail($vo)" lazy="open"}
+		</li>
+		{/maccms:topic}
+	</ul>
+</div>
+{/if}

@@ -1,0 +1,144 @@
+{assign name="seo_title" value=""}
+{assign name="seo_type" value="article"}
+{assign name="seo_key" value="$maccms.site_keywords"}
+{assign name="seo_des" value="$maccms.site_description"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url(mac_get_mid_code($maccms['mid']).'/index')"}
+{assign name="seo_image" value=":mac_url_img($mojia['other']['share']['image'])"}
+{switch name="$maccms.aid"}{case value="2"}
+{assign name="seo_title" value="分类导航 - "}
+{/case}{case value="4"}
+{assign name="seo_title" value="留言板 - "}
+{/case}{case value="6"}
+{assign name="seo_title" value="个人中心 - "}
+{/case}{case value="30"}
+{assign name="seo_title" value="专题首页 - "}
+{/case}{case value="71"}
+{assign name="seo_title" value="魔加主题授权 - "}
+{/case}{case value="72"}
+{assign name="seo_title" value="本周热门排行 - "}
+{/case}{case value="73"}
+{assign name="seo_title" value="$mojia['home']['hots']['name'].' - '"}
+{/case}{case value="74"}
+{assign name="seo_title" value="$mojia['home']['taoke']['name'].' - '"}
+{/case}{case value="75"}
+{assign name="details" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-details',array('id'=>$Think.get.id,'goodsId'=>$Think.get.goodsId,'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']"}
+{assign name="privilege" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/tb-service/get-privilege-link',array('pid'=>$mojia['other']['taoke']['pid'],'id'=>$Think.get.id,'goodsId'=>$Think.get.goodsId,'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']"}
+{assign name="seo_title" value="$details['dtitle'].' - '"}
+{assign name="seo_key" value="$details['title']"}
+{assign name="seo_des" value="$details['desc']"}
+{assign name="seo_url" value=":mac_url('label/taoke').'?id='.$Think.get.id.'&goodsId='.Think.get.goodsId"}
+{assign name="seo_image" value="$details['marketingMainPic']"}
+{/case}{case value="10"}
+{assign name="seo_title" value="$maccms.seo.vod.name.' - '"}
+{assign name="seo_key" value="$maccms.seo.vod.key"}
+{assign name="seo_des" value="$maccms.seo.vod.des"}
+{/case}{case value="20"}
+{assign name="seo_title" value="$maccms.seo.art.name.' - '"}
+{assign name="seo_key" value="$maccms.seo.art.key"}
+{assign name="seo_des" value="$maccms.seo.art.des"}
+{/case}{case value="80"}
+{assign name="seo_title" value="$maccms.seo.actor.name.' - '"}
+{assign name="seo_key" value="$maccms.seo.actor.key"}
+{assign name="seo_des" value="$maccms.seo.actor.des"}
+{/case}{case value="90"}
+{assign name="seo_title" value="$maccms.seo.role.name.' - '"}
+{assign name="seo_key" value="$maccms.seo.role.key"}
+{assign name="seo_des" value="$maccms.seo.role.des"}
+{/case}{case value="100"}
+{assign name="seo_title" value="$maccms.seo.plot.name.' - '"}
+{assign name="seo_key" value="$maccms.seo.plot.key"}
+{assign name="seo_des" value="$maccms.seo.plot.des"}
+{/case}{case value="110"}
+{assign name="seo_title" value="$maccms.seo.website.name.' - '"}
+{assign name="seo_key" value="$maccms.seo.website.key"}
+{assign name="seo_des" value="$maccms.seo.website.des"}
+{/case}{case value="12"}
+{assign name="seo_title" value=":mac_filter_html($param['year'].$param['area'].$param['class'].$obj['type_name']).' - '"}
+{assign name="seo_key" value=":mac_default($obj['type_key'],mac_filter_html($obj['type_name']))"}
+{assign name="seo_des" value=":mac_default($obj['type_des'],mac_filter_html($maccms['site_description']))"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url_type($obj,['area'=>$param.area,'lang'=>$param.lang,'year'=>$param.year],'show')"}
+{/case}{case value="13"}
+{assign name="seo_title" value="$param['wd'].$param['actor'].$param['director'].$param['area'].$param['year'].'_搜索结果 - '"}
+{assign name="seo_key" value="$param['wd'].$param['actor'].$param['director'].$param['area'].$param['year']"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url('vod/search',['wd'=>$param.wd])"}
+{/case}{case value="23"}
+{assign name="seo_title" value="$param['wd'].$param['actor'].$param['director'].$param['area'].$param['year'].'_搜索结果 - '"}
+{assign name="seo_key" value="$param['wd'].$param['actor'].$param['director'].$param['area'].$param['year']"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url('vod/search',['wd'=>$param.wd])"}
+{/case}{case value="33"}
+{assign name="seo_title" value="$param['wd'].$param['actor'].$param['director'].$param['area'].$param['year'].'_搜索结果 - '"}
+{assign name="seo_key" value="$param['wd'].$param['actor'].$param['director'].$param['area'].$param['year']"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url('vod/search',['wd'=>$param.wd])"}
+{/case}{case value="83"}
+{assign name="seo_title" value="$param['wd'].$param['actor'].$param['director'].$param['area'].$param['year'].'_搜索结果 - '"}
+{assign name="seo_key" value="$param['wd'].$param['actor'].$param['director'].$param['area'].$param['year']"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url('vod/search',['wd'=>$param.wd])"}
+{/case}{case value="113"}
+{assign name="seo_title" value="$param['wd'].$param['actor'].$param['director'].$param['area'].$param['year'].'_搜索结果 - '"}
+{assign name="seo_key" value="$param['wd'].$param['actor'].$param['director'].$param['area'].$param['year']"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url('vod/search',['wd'=>$param.wd])"}
+{/case}{case value="24"}
+{assign name="seo_title" value=":mac_default(mac_filter_html($obj['art_name']),'404 Not Found').'_'.mac_filter_html($obj['type']['type_name']).' - '"}
+{assign name="seo_key" value=":mac_filter_html(mac_default($obj['art_tag'],$obj['art_name']).','.$obj['type']['type_name'])"}
+{assign name="seo_des" value=":mac_substring(mac_filter_html($obj['art_content']),120)"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url_art_detail($obj)"}
+{assign name="seo_image" value=":mac_url_img(trim($obj['art_pic']))"}
+{/case}{case value="34"}
+{assign name="seo_title" value=":mac_default(mac_filter_html(mac_default($obj['topic_title'],$obj['topic_name'])),'404 Not Found').'_专题 - '"}
+{assign name="seo_key" value=":mac_filter_html(mac_default($obj['topic_key'],$obj['topic_name']))"}
+{assign name="seo_des" value=":mac_substring(mac_filter_html(mac_default($obj['topic_des'],$obj['topic_content'])),120)"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url_topic_detail($obj)"}
+{assign name="seo_image" value=":mac_url_img(trim($obj['topic_pic']))"}
+{/case}{case value="84"}
+{assign name="seo_title" value=":mac_default(mac_filter_html($obj['actor_name']),'404 Not Found').'_'.mac_filter_html($obj['type']['type_name']).' - '"}
+{assign name="seo_key" value=":mac_filter_html($obj['actor_name'].','.$obj['type']['type_name'])"}
+{assign name="seo_des" value=":mac_substring(mac_filter_html($obj['actor_content']),120)"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url_actor_detail($obj)"}
+{assign name="seo_image" value=":mac_url_img(trim($obj['actor_pic']))"}
+{/case}{case value="94"}
+{assign name="seo_title" value=":mac_default(mac_filter_html($obj['role_name']),'404 Not Found').'_'.mac_filter_html($obj['role_actor']).'饰演 - '"}
+{assign name="seo_key" value=":mac_filter_html($obj['role_name'].','.$obj['role_actor'])"}
+{assign name="seo_des" value=":mac_substring(mac_filter_html($obj['role_content']),120)"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url_role_detail($obj)"}
+{assign name="seo_image" value=":mac_url_img(trim($obj['role_pic']))"}
+{/case}{case value="104"}
+{assign name="seo_title" value=":mac_default(mac_filter_html($obj['vod_name']),'404 Not Found').'_'.mac_filter_html($obj['type']['type_name']).' - '"}
+{assign name="seo_key" value=":mac_filter_html($obj['vod_actor'].','.$obj['vod_director'].','.$obj['vod_name'].','.$obj['type']['type_name'])"}
+{assign name="seo_des" value=":mac_substring(mac_filter_html(mac_default($obj['vod_plot_list'][$param['page']]['detail'],$obj['vod_content'])),120)"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url_plot_detail($obj)"}
+{assign name="seo_image" value=":mac_url_img(trim($obj['vod_pic']))"}
+{/case}{case value="114"}
+{assign name="seo_title" value=":mac_default(mac_filter_html($obj['website_name']),'404 Not Found').'_'.mac_filter_html($obj['type']['type_name']).' - '"}
+{assign name="seo_key" value=":mac_filter_html($obj['website_name'].','.$obj['type']['type_name'])"}
+{assign name="seo_des" value=":mac_substring(mac_filter_html($obj['website_content']),120)"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url_website_detail($obj)"}
+{assign name="seo_image" value=":mac_url_img(trim($obj['website_pic']))"}
+{/case}{default}{if$maccms.aid==11||$maccms.aid==21||$maccms.aid==81||$maccms.aid==111}
+{assign name="seo_title" value=":mac_default($obj['type_title'],mac_filter_html($obj['type_name'])).' - '"}
+{assign name="seo_key" value=":mac_default($obj['type_key'],mac_filter_html($obj['type_name']))"}
+{assign name="seo_des" value=":mac_default($obj['type_des'],mac_filter_html($maccms['site_description']))"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url_type($obj)"}
+{elseif$maccms.aid==14||$maccms.aid==15||$maccms.aid==16}
+{assign name="seo_type" value="videolist"}
+{assign name="seo_title" value=":mac_default(mac_filter_html($obj['vod_name'].($maccms.aid==14?'':'_').$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']),'404 Not Found').'_'.mac_filter_html($obj['type']['type_name']).' - '"}
+{assign name="seo_key" value=":mac_filter_html($obj['vod_actor'].','.$obj['vod_director'].','.$obj['vod_name'].','.$obj['type']['type_name'])"}
+{assign name="seo_des" value=":mac_substring(mac_filter_html($obj['vod_content']),120)"}
+{assign name="seo_url" value="$maccms['http_type'].$maccms['site_url'].mac_url_vod_detail($obj)"}
+{assign name="seo_image" value=":mac_url_img(trim($obj['vod_pic']))"}
+{/if}{/switch}
+<title>{$seo_title}{$maccms.site_name}</title>
+<meta name="title" content="{$seo_title}{$maccms.site_name}" />
+<meta name="keywords" content="{$seo_key}" />
+<meta name="description" content="{$seo_des}" />
+<meta itemprop="name" content="{$seo_title}{$maccms.site_name}" />
+<meta itemprop="keywords" content="{$seo_key}" />
+<meta itemprop="description" content="{$seo_des}" />
+<meta itemprop="uploadDate" content="{:date('Y-m-d',time())}" />
+<meta itemprop="image" content="{$seo_image}" />
+<meta itemprop="url" content="{$seo_url}" />
+<meta property="og:type" content="{$seo_type}" />
+<meta property="og:title" content="{$seo_title}{$maccms.site_name}" />
+<meta property="og:description" content="{$seo_des}" />
+<meta property="og:release_date" content="{:date('Y-m-d',time())}" />
+<meta property="og:image" content="{$seo_image}" />
+<meta property="og:url" content="{$seo_url}" />

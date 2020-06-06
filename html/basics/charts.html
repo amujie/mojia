@@ -1,0 +1,23 @@
+<ul class="mo-cols-rows">
+	{maccms:vod num="1" type="'.[type].'" order="desc" by="hits"}
+	<dl class="mo-cols-rows">
+		<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4">
+			{include file="basics/picture" type="vod" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],7),'暂无简介')" name=":mac_default(mac_filter_html($vo['vod_name']))" desc=":mac_default(mac_filter_html($vo['vod_blurb']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="hide" lazy="shut"}
+		</dt>
+		<dd class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs7">
+			<h3 class="mo-wrap-arow mo-fsxs-16px"><a href="{[href]}"{if$vo.vod_color} style="color:#{$vo.vod_color}!important"{/if}>{[name]}</a></h3>
+			<ul class="mo-cols-rows mo-ptxs-5px">
+				<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">主演:&nbsp;</span>{$vo.vod_actor|mac_url_create='actor','vod','search'}</li>
+				<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">导演:&nbsp;</span>{$vo.vod_director|mac_url_create='director','vod','search'}</li>
+				<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">年份:&nbsp;</span>{$vo.vod_year|mac_url_create='year','vod','search'}</li>
+				<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px mo-cosm-none mo-comd-block mo-colg-none mo-coxl-block"><span class="mo-text-muted">更新:&nbsp;</span>{$vo.vod_time|date='Y-m-d',###}</li>
+			</ul>
+		</dd>
+	</dl>
+	{/maccms:vod}{maccms:vod num="8" start="2" type="'.[type].'" order="desc" by="hits"}
+	<li class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<a class="mo-cols-info mo-cols-xs9 mo-wrap-arow" href="{[href]}"><span class="mo-part-seal mo-back-items mo-back-item{$key+1}">{$key+1}</span>{[name]}</a>
+		<span class="mo-cols-info mo-cols-xs3 mo-text-mojia mo-coxs-right">{$vo.vod_hits}</span>
+	</li>
+	{/maccms:vod}
+</ul>

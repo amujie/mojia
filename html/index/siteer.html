@@ -1,0 +1,13 @@
+{if$mojia['home']['site']['state']}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles" module="website" title=":mac_default($mojia['home']['site']['name'])" btns="更多" href=":mac_url_website_index()"}
+	<ul class="mo-cols-rows">
+		{include file="basics/advert" module="site" count="mojia['home']['site']['num']"}
+		{maccms:website num="'.($mojia['home']['site']['num']-$advert).'" type="'.$mojia['home']['site']['type'].'" level="'.$mojia['home']['site']['level'].'" order="'.$mojia['home']['site']['order'].'" by="'.$mojia['home']['site']['sort'].'"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if$mojia['home']['site']['num']%3} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}{if$mojia['home']['site']['num']==6&&$key>(4-$advert)} mo-cosm-none mo-colg-block{/if}">
+		{include file="basics/picture" type="website" style=":mac_default(' mo-lazy-highs mo-byxs-16by9')" tips=":mac_default($vo['website_hits'].'浏览')" remark=":mac_default(mac_substring($vo['website_remarks'],12),date('Y-m-d H:i',$vo['website_time']))" name=":mac_default(mac_filter_html($vo['website_name']))" desc=":mac_default(mac_substring(mac_filter_html($vo['website_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['website_logo']))" href=":mac_url_website_detail($vo)" title="show" lazy="open"}
+		</li>
+		{/maccms:website}
+	</ul>
+</div>
+{/if}

@@ -1,0 +1,17 @@
+<div class="mo-swip-container mo-cols-rows">
+	<ul class="mo-swip-wrapper mo-cols-zero">
+		{maccms:foreach name="[data]"}
+		<li class="mo-swip-slide{[top]}">
+			<a class="mo-situ-pics mo-lazy-color mo-swip-lazy mo-lazy-broad{[style]}" href="{[href]}" data-background="{[image]}">
+				<div class="mo-swip-title mo-cols-rows mo-part-ramp mo-text-white mo-wrap-arow">
+					<span class="mo-wrap-arow mo-fsxs-18px mo-swip-head">{[name]}</span>
+					<span class="mo-wrap-arow mo-fsxs-12px">{[remark]}</span>
+				</div>
+			</a>
+		</li>
+		{/maccms:foreach}
+	</ul>
+	<div class="mo-swip-pagin mo-cols-zero mo-coxs-right"></div>
+	<a class="mo-swip-next mo-text-white mo-coxs-center mo-coxs-none mo-cosm-block mo-icon-font mo-icon-xiayiye" href="javascript:;"></a>
+	<a class="mo-swip-prev mo-text-white mo-coxs-center mo-coxs-none mo-cosm-block mo-icon-font mo-icon-shangyiye" href="javascript:;"></a>
+</div>

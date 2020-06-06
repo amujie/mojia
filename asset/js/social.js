@@ -150,7 +150,7 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 		},
 		'message': {
 			'init': function() {
-				if (magic.mid == 5) mojia.message.show($('.mo-page-text').val());
+				if (magic.mid == 5) mojia.message.show(1);
 				mojia.global.count('.mo-comm-gbform');
 				common.global.submit('.mo-comm-gbooks', '.mo-comm-gbform');
 				if (magic.aid == 13) $('.mo-comm-gbform').find('textarea').val('求片：请管理员添加《' + $('.mo-java-hunt').text() + '》谢谢！');
@@ -169,8 +169,12 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 							success: function(layero) {
 								$(layero).addClass('mo-back-white');
 								$(layero).find('.layui-layer-title').addClass('mo-open-head mo-back-white mo-part-zero');
-								$('.mo-comm-gbform').find('textarea').val('《' + $('.mo-java-play').attr('data-name') + '》' + $('.mo-java-play').attr('data-nums') + '［' + that.attr('data-show') + '］存在问题请检查修复。页面地址：' + location.href);
+								$('.mo-comm-gbform').find('textarea').val('报错《' + $('.mo-java-play').attr('data-name') + '》' + $('.mo-java-play').attr('data-nums') + '［' + that.attr('data-show') + '］请修复：' + location.href + '　' + navigator.userAgent.replace('Mozilla/','').replace(/\sAppleWebKit\/[1-9][0-9]*\.[0-9]*\s\(KHTML,\slike\sGecko\)/i, '').replace(/\sMobile\sSafari\/[1-9][0-9]*\.[0-9]*/i, ''));
 								mojia.global.count('.mo-comm-gbform');
+								$.getScript('https://pv.sohu.com/cityjson?ie=utf-8', function(data, status) {
+									$('.mo-comm-gbform').find('textarea').val($('.mo-comm-gbform').find('textarea').val() + ' ' + 'IPAdress/' + returnCitySN.cip);
+									mojia.global.count('.mo-comm-gbform');
+								});
 							}
 						});
 					});
@@ -201,7 +205,7 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 				$.get(magic.path + 'index.php/gbook/ajax?page=' + page, function(data) {
 					$('.mo-comm-gbajax').html(data);
 				}).error(function() {
-					$('.mo-comm-gbajax').html('<p class="mo-coxs-center mo-paxs-5px mo-pamd-10px">评论加载失败，<a class="mo-comm-record mo-text-mojia" href="javascript:;">重新加载</a></p>');
+					$('.mo-comm-gbajax').html('<p class="mo-coxs-center mo-paxs-5px mo-pamd-10px">留言加载失败，<a class="mo-comm-record mo-text-mojia" href="javascript:;">重新加载</a></p>');
 				});
 			},
 			'firm': function() {

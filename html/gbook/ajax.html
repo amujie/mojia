@@ -1,11 +1,11 @@
-{include file="basics/config"}
+{include file="tinier/config"}
 <ul class="mo-comm-info mo-cols-rows">
 	{maccms:gbook num="'.$GLOBALS['config']['gbook']['pagesize'].'" paging="yes" half="3" order="desc" by="id"}
 	<li class="mo-part-btsd mo-bord-muted mo-ptxs-5px mo-ptmd-10px mo-mtxs-5px mo-mrxs-5px mo-mlxs-5px"></li>
 	<li class="mo-cols-rows mo-maxs-5px mo-mamd-10px">
-		<img class="mo-comm-avat mo-part-peer mo-part-coin" src="{:str_replace('/static/images/touxiang.png',$template.'asset/img/avatar.png',mac_get_user_portrait($vo['user_id']))}" />
+		<img class="mo-comm-avat mo-part-peer mo-part-coin" src="{:str_replace('/static/images/touxiang.png',$cdnpath.'asset/img/avatar.png',mac_get_user_portrait($vo['user_id']))}" />
 		<div class="mo-comm-left">
-			<span class="mo-part-bold">{:mac_default(model('User')->listData(array('user_id'=>$vo['user_id']))['list'][0]['user_nick_name'],$vo['gbook_name'])}</span>
+			<span class="mo-part-bold">{:mac_default(model('User')->listData(array('user_id'=>$vo['user_id']),'user_id desc',1)['list'][0]['user_nick_name'],$vo['gbook_name'])}</span>
 			<span class="mo-part-more mo-fsxs-12px mo-fssm-14px">{$vo.gbook_time|mac_day}</span>
 		</div>
 		<div class="mo-comm-left">
@@ -29,4 +29,4 @@
 	<li class="mo-coxs-center mo-paxs-5px mo-pamd-10px">还没有人留言哎！</li>
 	{/if}
 </ul>
-{include file="basics/paging"}
+{include file="tinier/paging"}

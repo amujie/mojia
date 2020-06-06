@@ -1,0 +1,27 @@
+{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
+<dl class="mo-deta-info mo-cols-rows">
+	<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+		{include file="basics/picture" type="role" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['role_hits'].'浏览')" remark=":mac_default(mac_substring($vo['role_remarks'],7),'暂无简介')" name=":mac_default(mac_filter_html($vo['role_name']))" desc=":mac_default(mac_filter_html($vo['role_blurb']),'暂无简介')" image=":mac_url_img(trim($vo['role_pic']))" href=":mac_url_role_detail($vo)" title="hide" lazy="open"}
+		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
+			{if$maccms.aid==94}
+			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_vod_detail($vo.data)}">视频详情</a>
+			{else}
+			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_role_detail($vo)}">查看详情</a>
+			{/if}
+		</div>
+	</dt>
+	<dd class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs7 mo-cols-sm9{if$maccms.aid==94} mo-cols-lg7{else} mo-cols-lg10{/if}">
+		<h1 class="mo-wrap-arow mo-fsxs-16px mo-fssm-18px"><a class="mo-text-black" href="{:mac_url_role_detail($vo)}"{if$vo.role_color} style="color:#{$vo.role_color}!important"{/if}>{$vo.role_name|mac_filter_html}</a></h1>
+		<ul class="mo-cols-rows">
+			<li class="mo-cols-info mo-cols-xs12 mo-cols-md6 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">演员:&nbsp;</span>{$vo.role_actor|mac_url_create='actor','vod','search'}</li>
+			<li class="mo-cols-info mo-cols-xs12 mo-cols-md6 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">剧名:&nbsp;</span><a href="{:mac_url_vod_detail($vo.data)}" target="_blank">{$vo.data.vod_name}</a></li>
+			<li class="mo-cols-info mo-cols-xs6 mo-cols-md3 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">导演:&nbsp;</span>{$vo.data.vod_director|mac_url_create='vod_director','vod','search'}</li>
+			<li class="mo-cols-info mo-cols-xs6 mo-cols-md3 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">分类:&nbsp;</span><a href="{:mac_url_type($vo.data)}" target="_blank">{maccms:type ids="'.$vo['data']['type_id'].'" id="sub"}{$sub.type_name|mac_filter_html}{/maccms:type}</a></li>
+			<li class="mo-cols-info mo-cols-xs6 mo-cols-md3 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px mo-coxs-none mo-coss-block"><span class="mo-text-muted">年份:&nbsp;</span>{$vo.data.vod_year|mac_url_create='vod_year','vod','search'}</li>
+			<li class="mo-cols-info mo-cols-xs6 mo-cols-md3 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px mo-coxs-none mo-coss-block">{$vo.data.vod_time|date='Y-m-d',###}</li>
+			<li class="mo-cols-info mo-cols-xs12 mo-ptxs-5px mo-fsxs-14px mo-fsxl-16px mo-lhxs-20px mo-lhxl-24px mo-coxs-none mo-comd-block mo-text-muted">简介:&nbsp;{$vo.role_content|mac_filter_html|mac_substring=170|mac_default='暂无简介'}</li>
+		</ul>
+	</dd>
+	{if$maccms.aid==94}{include file="basics/qrcode"}{/if}
+</dl>
+<dl class="mo-deta-info mo-part-bbsd mo-bord-muted mo-maxs-5px mo-mrmd-10px mo-mlmd-10px"></dl>

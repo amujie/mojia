@@ -2,25 +2,16 @@
 <div class="mo-cols-lays mo-back-white">
 	<h1 class="mo-paxs-5px mo-pamd-10px mo-coxs-center mo-fsxs-18px">分类导航</h1>
 </div>
-<div class="mo-cols-case mo-cols-rows">
-	{maccms:type ids="parent" order="asc" by="sort" id="magic"}
-	<div class="mo-cols-lays mo-back-white">
-		<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-			<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$magic.type_name}</h2>
-			<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
-				<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url_type($magic)}">更多</a></li>
-			</ul>
-		</div>
-		<ul class="mo-cols-rows">
-			{maccms:type parent="'.$magic['type_id'].'" order="asc" by="sort"}
-			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-				<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-4by1 mo-cols-rows mo-bord-round" href="{:mac_url_type($vo)}" data-original="{$mojia['other']['chain']['apis']}{$vo.type_pic|mac_url_img}">
-					<span class="mo-situ-rema mo-part-ramp mo-fsxs-12px mo-text-white mo-coxs-center">{$vo.type_name}</span>
-				</a>
-			</li>
-			{/maccms:type}
-		</ul>
-	</div>
-	{/maccms:type}
+{maccms:type ids="parent" order="asc" by="sort" id="magic"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles" module="type" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
+	<ul class="mo-cols-rows">
+		{maccms:type parent="'.$magic['type_id'].'" order="asc" by="sort"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+			{include file="basics/picture" type="type" style=":mac_default(' mo-lazy-broad mo-byxs-2by1')" tips=":model(mac_get_mid_code($vo.type_mid))->where(array('type_id'=>$vo['type_id']))->count()" remark=":mac_default($vo.type_name)" name=":mac_default(mac_filter_html($vo['vod_name']))" desc=":mac_default()" image=":mac_url_img(trim($vo['type_pic']))" href=":mac_url_type($vo)" title="hide" lazy="open"}
+		</li>
+		{/maccms:type}
+	</ul>
 </div>
+{/maccms:type}
 {include file="public/footer"}

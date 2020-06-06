@@ -1,0 +1,5 @@
+{assign name="advert" value="$mojia['home']['[module]']['advs']?'1':'0'"}{if$advert}{maccms:art ids="'.$mojia['home']['[module]']['advs'].'"}
+<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if$[count]%3} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
+{include file="basics/picture" type="advs" style=":mac_default('[module]'=='site'?' mo-lazy-highs mo-byxs-16by9':($[count]%3?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3'))" tips=":mac_default(mac_substring($vo['art_sub'],6),'广告')" remark=":mac_default(mac_substring($vo['art_remarks'],12),'吐血推荐')" name=":mac_default(mac_filter_html($vo['art_name']))" desc=":mac_default(mac_substring(trim(mac_filter_html($vo['art_content'])),50),'广告')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_default($vo['art_jumpurl'],mac_url_art_detail($vo))" title="show" lazy="open"}
+</li>
+{/maccms:art}{/if}

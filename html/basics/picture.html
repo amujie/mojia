@@ -1,0 +1,10 @@
+{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
+<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-bord-round mo-cols-rows{[style]}" href="{[href]}" data-original="{$mojia['other']['chain']['apis']}{[image]}"{if'[lazy]'=='shut'} style="background-image:url({$mojia['other']['chain']['apis']}{[image]})"{/if}>
+	<span class="mo-situ-play{if'[type]'!='vod'} mo-situ-npic{/if}"></span>
+	<span class="mo-situ-tips mo-fsxs-12px mo-bord-round mo-back-mojia">{[tips]}</span>
+	<span class="mo-situ-rema mo-part-ramp mo-fsxs-12px mo-text-white mo-coxs-center">{[remark]}</span>
+</a>
+{if'[title]'=='show'}
+<a class="mo-situ-name mo-fsxs-14px mo-coxs-center mo-comd-left mo-wrap-arow" href="{[href]}"{if$vo['[type]_color']} style="color:#{$vo['[type]_color']}!important" {/if}>{[name]}</a>
+<span class="mo-situ-desc mo-fsxs-12px mo-wrap-arow mo-text-muted mo-coxs-none mo-comd-block">{[desc]}</span>
+{/if}

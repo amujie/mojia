@@ -1,18 +1,20 @@
-{if$mojia['home']['topic']['state']}
-<div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$mojia['home']['topic']['name']}</h2>
-		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
-			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url_topic_index()}">更多</a></li>
+{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
+<dl class="mo-deta-info mo-cols-rows">
+	<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs7 mo-cols-ss6 mo-cols-md5 mo-cols-lg5">
+		{include file="basics/unique" title=":mac_default('专题')" count=":mac_default('——&nbsp;'.($vo['topic_rel_vod']?count(explode(',',$vo['topic_rel_vod'])).'个视频':($vo['topic_rel_art']?count(explode(',',$vo['topic_rel_art'])).'篇文章':'暂未收录数据')).'&nbsp;——')" name=":mac_default(mac_filter_html($vo['topic_name']))" image=":mac_url_img(trim($vo['topic_pic']))" href=":mac_url_topic_detail($vo)" lazy="open"}
+		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
+			{if$maccms.aid!=34}
+			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_topic_detail($vo)}">查看详情</a>
+			{/if}
+		</div>
+	</dt>
+	<dd class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs5 mo-cols-ss6 mo-cols-md7{if$maccms.aid!=33} mo-cols-lg4{else} mo-cols-lg7{/if}">
+		<h1 class="mo-wrap-arow mo-fsxs-16px mo-fssm-18px"><a href="{:mac_url_topic_detail($vo)}"{if$vo.topic_color} style="color:#{$vo.topic_color}!important"{/if}>{$vo.topic_name|mac_filter_html}</a></h1>
+		<ul class="mo-cols-rows">
+			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px{if$maccms.aid!=34} mo-comd-none mo-colg-block{/if}">人气:&nbsp;{$vo.topic_hits}</li>
+			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-ptxs-5px mo-lhxs-20px mo-lhxl-24px mo-coxs-none mo-comd-block mo-text-muted">简介:&nbsp;{$vo.topic_content|mac_filter_html|mac_substring=90|mac_default='暂无简介'}</li>
 		</ul>
-	</div>
-	<ul class="mo-cols-rows">
-		{assign name="count" value="1"}
-		{maccms:topic num="'.$mojia['home']['topic']['num'].'" level="'.$mojia['home']['topic']['level'].'" order="'.$mojia['home']['topic']['order'].'" by="'.$mojia['home']['topic']['sort'].'"}
-		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg4{if$mojia['home']['topic']['num']=='3'&&$count++>2} mo-coxs-none mo-colg-block{/if}">
-			{include file="basics/toppic"}
-		</li>
-		{/maccms:topic}
-	</ul>
-</div>
-{/if}
+	</dd>
+	{if$maccms.aid!=33}{include file="basics/qrcode"}{/if}
+</dl>
+<dl class="mo-deta-info mo-part-bbsd mo-bord-muted mo-maxs-5px mo-mrmd-10px mo-mlmd-10px"></dl>

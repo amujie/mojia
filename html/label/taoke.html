@@ -1,48 +1,10 @@
 {assign name="maccms['aid']" value="75"}
 {include file="public/header"}
 <div class="mo-cols-lays mo-back-white">
-	<dl class="mo-deta-info mo-cols-rows">
-		<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm5 mo-cols-lg4">
-			<div class="mo-swip-container mo-cols-rows">
-				<ul class="mo-swip-wrapper mo-cols-zero">
-					{maccms:foreach name=":explode(',',$details['imgs'])" id="sub"}{if$key lt 7}
-					<li class="mo-swip-slide">
-						<a class="mo-situ-pics mo-lazy-color mo-byxs-2by3 mo-bysm-20by17 mo-bymd-1by1 mo-bylg-20by17 mo-byxl-20by15 mo-swip-lazy mo-lazy-broad mo-cols-rows mo-bord-round" href="{$privilege['shortUrl']}" target="_blank" data-background="{$sub}">
-							<div class="mo-swip-title mo-part-ramp mo-text-white mo-wrap-arow">
-								<span class="mo-wrap-arow mo-fsxs-18px mo-swip-head">{$details.brandName}</span>
-								<span class="mo-wrap-arow mo-fsxs-12px">{$details.shopName}</span>
-							</div>
-						</a>
-					</li>
-					{/if}{/maccms:foreach}
-				</ul>
-				<div class="mo-swip-pagin mo-cols-zero mo-coxs-right"></div>
-				<a class="mo-swip-next mo-text-white mo-coxs-center mo-coxs-none mo-cosm-block mo-icon-font mo-icon-xiayiye" href="javascript:;"></a>
-				<a class="mo-swip-prev mo-text-white mo-coxs-center mo-coxs-none mo-cosm-block mo-icon-font mo-icon-shangyiye" href="javascript:;"></a>
-			</div>
-			<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
-				<a class="mo-deta-play mo-cols-rows mo-pnxs-10px mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{$privilege['shortUrl']}" target="_blank">领取{$details.couponPrice}元券</a>
-			</div>
-		</dt>
-		<dd class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs8 mo-cols-sm7{if$maccms.aid!=13} mo-cols-lg5{else} mo-cols-lg10{/if}">
-			<h1 class="mo-wrap-arow mo-fsxs-16px mo-fssm-18px">{$details.title}</h1>
-			<ul class="mo-cols-rows">
-				<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-fssm-16px mo-wrap-arow mo-ptxs-0px mo-ptsm-5px"><span class="mo-text-muted">券后价:&nbsp;</span><span class="mo-fsxs-24px mo-part-bold mo-text-mojia"><span class="mo-fsxs-18px">￥</span>{$details.actualPrice}</span><s class="mo-paxs-10px mo-fsxs-12px mo-text-muted">￥{$details.originalPrice}</s></li>
-				<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-fssm-16px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">有效期至:&nbsp;</span>{$details.couponEndTime}</li>
-				<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-fssm-16px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">剩余优惠券:&nbsp;</span>{$privilege['couponRemainCount']}</li>
-				<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-fssm-16px mo-wrap-arow mo-ptxs-5px mo-coxs-none mo-coss-block"><span class="mo-text-muted">月销量:&nbsp;</span>{$details.monthSales}</li>
-				<li class="mo-cols-info mo-cols-xs12 mo-ptxs-5px mo-fsxs-14px mo-fsxl-16px mo-lhxs-20px mo-lhxl-24px mo-coxs-none mo-comd-block mo-text-muted">简介:&nbsp;{$details.desc|mac_substring=75|mac_default='暂无简介'}</li>
-			</ul>
-		</dd>
-		{if$maccms.aid!=13}{include file="basics/qrcode"}{/if}
-	</dl>
+	{include file="module/taobao"}
 </div>
 <div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-part-slip mo-cols-xs10">
-			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="javascript:;">商品简介</a>
-		</h2>
-	</div>
+	{include file="basics/titles" module="taoke" title=":mac_default('商品简介')" more="hide"}
 	<div class="mo-cols-show">
 		<div class="mo-pamd-5px">
 			<div class="mo-paxs-5px mo-ptxs-0px">
@@ -51,5 +13,5 @@
 		</div>
 	</div>
 </div>
-{include file="module/relate"}
+{include file="index/latest"}
 {include file="public/footer"}

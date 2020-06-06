@@ -1,28 +1,14 @@
 {include file="public/header"}
-<div class="mo-cols-case mo-cols-rows">
-	{maccms:type ids="parent" order="asc" by="sort" flag="vod" id="magic"}
-	<div class="mo-cols-lays mo-back-white">
-		{include file="basics/titles"}
-		{if stristr($magic['type_name'],'直播')==true}
-		<ul class="mo-cols-rows">
-			{assign name="advs" value="$mojia['home']['class']['advs']"}{include file="basics/vodads" type="broad" scale="16by9" xs="xs6" sm="sm4" lg="lg3"}
-			{maccms:vod num="12" type="'.$magic['type_id'].'" order="desc" by="time" plot="1"}
-			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
-			{include file="basics/vodpic" type="broad" scale="16by9"}
-			</li>
-			{/maccms:vod}
-		</ul>
-		{else}
-		<ul class="mo-cols-rows">
-			{assign name="advs" value="$mojia['home']['class']['advs']"}{include file="basics/vodads" type="highs" scale="2by3" xs="xs4" sm="sm3" lg="lg2"}
-			{maccms:vod num="12" type="'.$magic['type_id'].'" order="desc" by="time" plot="1"}
-			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-			{include file="basics/vodpic" type="highs" scale="2by3"}
-			</li>
-			{/maccms:vod}
-		</ul>
-		{/if}
-	</div>
-	{/maccms:type}
+{maccms:type ids="parent" order="asc" by="sort" mid="1" id="magic"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles" module="type" title=":mac_filter_html($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
+	<ul class="mo-cols-rows">
+		{maccms:vod num="12" type="'.$magic['type_id'].'" order="desc" by="time" plot="1"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
+		{include file="basics/picture" type="vod" style=":mac_default(stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'直播')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_default(mac_filter_html($vo['vod_name']))" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_plot_detail($vo)" title="show" lazy="open"}
+		</li>
+		{/maccms:vod}
+	</ul>
 </div>
+{/maccms:type}
 {include file="public/footer"}

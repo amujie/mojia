@@ -1,27 +1,4 @@
-{if$__PAGING__.page_total>1}
-<div class="mo-page-info mo-cols-zero mo-pzxs-10px mo-coxs-center" data-aid="{$maccms.aid}">
-	<a href="javascript:;" class="mo-page-item mo-part-vert mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-30px mo-lhmd-34px mo-mnxs-0x2 mo-pnxs-5px mo-pnmd-15px mo-fsxs-14px mo-back-hover mo-coxs-iblock mo-back-click mo-cols-hide{if$__PAGING__['page_current']==1} mo-part-bans mo-back-disad{/if}" data-nums="1" data-href="{$__PAGING__.page_url|mac_url_page=1}">首页</a>
-	<a href="javascript:;" class="mo-page-item mo-part-vert mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-30px mo-lhmd-34px mo-mnxs-0x2 mo-pnxs-5px mo-pnmd-15px mo-fsxs-14px mo-back-hover mo-coxs-iblock mo-back-click{if$__PAGING__['page_current']==1} mo-part-bans mo-back-disad{/if}" data-nums="{$__PAGING__.page_prev}" data-href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}">上<span class="mo-coxs-none mo-cosm-inline">一</span>页</a>
-	{if$__PAGING__.page_current>3}
-	<a href="javascript:;" class="mo-page-item mo-part-vert mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-30px mo-lhmd-34px mo-mnxs-0x2 mo-pnxs-5px mo-pnmd-15px mo-fsxs-14px mo-back-hover mo-comd-iblock mo-back-click mo-cols-hide mo-part-bans mo-back-disad">...</a>
-	{/if}
-	{maccms:foreach name="$__PAGING__.page_num" id="num"}
-	<a href="javascript:;" class="mo-page-item mo-part-vert mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-30px mo-lhmd-34px mo-mnxs-0x2 mo-pnxs-5px mo-pnmd-15px mo-fsxs-14px mo-back-hover mo-comd-iblock mo-back-click mo-cols-hide{if$__PAGING__['page_current']==$num} mo-back-mojia{/if}" data-nums="{$num}" data-href="{$__PAGING__.page_url|mac_url_page=$num}">{$num}</a>
-	{/maccms:foreach}
-	{if$__PAGING__.page_current<($__PAGING__.page_total-2)}
-	<a href="javascript:;" class="mo-page-item mo-part-vert mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-30px mo-lhmd-34px mo-mnxs-0x2 mo-pnxs-5px mo-pnmd-15px mo-fsxs-14px mo-back-hover mo-comd-iblock mo-back-click mo-cols-hide mo-part-bans mo-back-disad">...</a>
-	{/if}
-	<a href="javascript:;" class="mo-page-item mo-part-vert mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-30px mo-lhmd-34px mo-mnxs-0x2 mo-pnxs-5px mo-pnmd-15px mo-fsxs-14px mo-back-hover mo-coxs-iblock mo-back-click mo-comd-none mo-part-bans mo-back-disad">{$__PAGING__.page_current}/{$__PAGING__.page_total}</a>
-	<a href="javascript:;" class="mo-page-item mo-part-vert mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-30px mo-lhmd-34px mo-mnxs-0x2 mo-pnxs-5px mo-pnmd-15px mo-fsxs-14px mo-back-hover mo-coxs-iblock mo-back-click{if$__PAGING__['page_current']==$__PAGING__.page_total} mo-part-bans mo-back-disad{/if}" data-nums="{$__PAGING__.page_next}" data-href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}">下<span class="mo-coxs-none mo-cosm-inline">一</span>页</a>
-	<a href="javascript:;" class="mo-page-item mo-part-vert mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-30px mo-lhmd-34px mo-mnxs-0x2 mo-pnxs-5px mo-pnmd-15px mo-fsxs-14px mo-back-hover mo-coxs-iblock mo-back-click mo-cols-hide{if$__PAGING__['page_current']==$__PAGING__.page_total} mo-part-bans mo-back-disad{/if}" data-nums="{$__PAGING__.page_total}" data-href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}">尾页</a>
-	<input class="mo-page-text mo-part-vert mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-30px mo-lhmd-34px mo-mnxs-0x2 mo-pnxs-5px mo-pnmd-15px mo-fsxs-14px mo-coxs-iblock mo-back-click" placeholder="页码" value="{$__PAGING__.page_total}" />
-	<a href="javascript:;" class="mo-page-jump mo-part-vert mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-30px mo-lhmd-34px mo-mnxs-0x2 mo-pnxs-5px mo-pnmd-15px mo-fsxs-14px mo-back-hover mo-coxs-iblock mo-back-click" data-href="{$__PAGING__.page_url}">跳转</a>
-</div>
-{/if}{empty name="$__PAGING__.record_total"}{if$maccms.mid!=4&&$maccms.mid!=5}
-<div class="mo-paxs-5px mo-pamd-10px">{if$maccms.aid==13}暂无相关视频！如需提醒管理员添加该视频请在下方留言，谢谢！{else}暂无相关内容！{/if}</div>
-{/if}{else}
-<script type="text/javascript">
-if(document.getElementById('mo-page-this')) document.getElementById('mo-page-this').innerHTML='{$__PAGING__.page_current}';
-if(document.getElementById('mo-page-sums')) document.getElementById('mo-page-sums').innerHTML='{$__PAGING__.record_total}';
-</script>
-{/empty}
+{assign name="__LIST__" value=":array('total'=>count([data]),'limit'=>[limit],'page'=>$param['page'],'pageurl'=>[page],'half'=>3)"}
+{assign name="__PAGING__" value=":mac_page_param($__LIST__['total'],$__LIST__['limit'],$__LIST__['page'],$__LIST__['pageurl'],$__LIST__['half'])"}
+{assign name="start" value=":(intval($param['page'])-1)?(intval($param['page'])-1)*$__LIST__['limit']:0"}
+{assign name="data_list" value=":array_slice([data],$start,$__LIST__['limit'])"}

@@ -1,0 +1,8 @@
+{if$mojia['home']['week']['state']}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles" module="week" title=":mac_default($mojia['home']['week']['name'])" more="hide"}
+	<ul class="mo-week-boxs mo-cols-rows" data-href="{:mac_url('label/week')}" data-week="{$week[date('w')]}" data-nums="{$mojia['home']['week']['num']}">
+		{include file="basics/advert,basics/lister" module="week" count="mojia['home']['week']['num']"}
+	</ul>
+</div>
+{/if}

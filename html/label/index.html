@@ -1,30 +1,13 @@
 {assign name="maccms['aid']" value="74"}
 {include file="public/header"}
-<div class="mo-swip-container mo-cols-rows">
-	<ul class="mo-swip-wrapper mo-cols-zero">
-		{maccms:foreach name=":moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/nine/op-goods-list',array('pageSize'=>'5','nineCid'=>'6','taoQiangGou'=>$mojia['home']['taoke']['qiang'],'brand'=>$mojia['home']['taoke']['brand'],'sort'=>$mojia['home']['taoke']['sort'],'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']['list']"}
-		<li class="mo-swip-slide mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px">
-			<a class="mo-situ-pics mo-lazy-color mo-byxs-3by2 mo-bymd-5by2 mo-swip-lazy mo-lazy-broad" href="{:mac_url('label/taoke')}?id={$vo.id}&goodsId={$vo.goodsId}" data-background="{$vo.mainPic}">
-				<div class="mo-swip-title mo-part-ramp mo-text-white mo-wrap-arow">
-					<span class="mo-wrap-arow mo-fsxs-18px mo-swip-head">{$vo.dtitle}</span>
-					<span class="mo-wrap-arow mo-fsxs-12px">{$vo.desc}</span>
-				</div>
-			</a>
-		</li>
-		{/maccms:foreach}
-	</ul>
-	<div class="mo-swip-pagin mo-cols-zero mo-coxs-right"></div>
-	<a class="mo-swip-next mo-text-white mo-coxs-center mo-coxs-none mo-cosm-block mo-icon-font mo-icon-xiayiye" href="javascript:;"></a>
-	<a class="mo-swip-prev mo-text-white mo-coxs-center mo-coxs-none mo-cosm-block mo-icon-font mo-icon-shangyiye" href="javascript:;"></a>
-</div>
+{php}$__LIST__ = moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/nine/op-goods-list',array('pageSize'=>'5','nineCid'=>'6','taoQiangGou'=>$mojia['home']['taoke']['qiang'],'brand'=>$mojia['home']['taoke']['brand'],'sort'=>$mojia['home']['taoke']['sort'],'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']['list'];{/php}
+{include file="basics/banner" data=":mac_default($__LIST__)" top=":mac_default(' mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px')" style=":mac_default(' mo-byxs-3by2 mo-bymd-5by2')" name=":mac_default($vo.dtitle)" remark=":mac_default($vo.desc,'查看详情')" image=":mac_url_img(trim($vo.mainPic))" href=":mac_default(mac_url('label/taoke').'?id='.$vo['id'].'&goodsId='.$vo['goodsId'])"}
 <div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$mojia['home']['taoke']['name']}</h2>
-	</div>
+	{include file="basics/titles" module="taoke" title=":mac_default($mojia['home']['taoke']['name'])" more="hide"}
 	<ul class="mo-cols-rows">
 		{maccms:foreach name=":array_slice(moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list',array('pageSize'=>'100','cids'=>$mojia['home']['taoke']['type'],'taoQiangGou'=>$mojia['home']['taoke']['qiang'],'brand'=>$mojia['home']['taoke']['brand'],'sort'=>$mojia['home']['taoke']['sort'],'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']['list'],0,96)"}
-		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{if$mojia['other']['video']['num']=='6'&&$key>(4-$advert)} mo-cosm-none mo-colg-block{/if}">
-		{include file="basics/taopic" type="highs" scale="2by3"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+		{include file="basics/picture" type="tao" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default('券后¥'.$vo['actualPrice'])" remark=":mac_default($vo['brandName'])" name=":mac_default($vo['dtitle'])" desc=":mac_default($vo['desc'],'暂无简介')" image=":mac_url_img(trim($vo['marketingMainPic']))" href=":mac_default(mac_url('label/taoke').'?id='.$vo['id'].'&goodsId='.$vo['goodsId'])" title="show" lazy="open"}
 		</li>
 		{/maccms:foreach}
 	</ul>

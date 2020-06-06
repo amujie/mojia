@@ -1,0 +1,17 @@
+<div class="mo-cols-lays mo-back-white mo-mlmd-20px">
+	{assign name="advert" value="$mojia['home']['blog']['advs']?'1':'0'"}{if$advert}
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		{maccms:art ids="'.$mojia['home']['blog']['advs'].'" order="desc" by="time"}
+		{:mac_url_content_img($vo.art_content)}
+		{/maccms:art}
+	</div>
+	{else}
+	<ul class="mo-cols-rows">
+		{include file="basics/qrcode"}
+	</ul>
+	{/if}
+</div>
+<div class="mo-cols-lays mo-back-white mo-mlmd-20px">
+	{include file="basics/titles" module="rank" title=":mac_default('热门排行')" btns="更多" href=":mac_url('label/rank')"}
+	{include file="basics/charts" type="all" name=":mac_default(mac_filter_html($vo['vod_name']))" href=":mac_url_vod_detail($vo)"}
+</div>

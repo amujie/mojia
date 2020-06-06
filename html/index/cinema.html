@@ -1,0 +1,8 @@
+{if$mojia['home']['hots']['state']}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles" module="hots" title=":mac_default($mojia['home']['hots']['name'])" btns="更多" href=":mac_url('label/front')"}
+	<ul class="mo-cols-rows">
+		{include file="basics/advert,basics/lister" module="hots" count="mojia['home']['hots']['num']"}
+	</ul>
+</div>
+{/if}

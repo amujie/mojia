@@ -1,18 +1,13 @@
 {include file="public/header"}
 <div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">角色列表</h2>
-		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
-			<li class="mo-coxs-iblock mo-fsxs-14px">当前第&nbsp;<span id="mo-page-this" class="mo-text-mojia">1</span>&nbsp;页，共&nbsp;<span class="mo-text-mojia">{:mac_data_count($obj.type_id,'all',mac_get_mid_code($maccms['mid']))}</span>&nbsp;条结果</li>
-		</ul>
-	</div>
+	{include file="basics/titles" module="child" title=":mac_default('角色列表')" more="hide" href=":mac_default($obj.parent?mac_url_type($obj.parent):mac_url(mac_get_mid_code($maccms.mid).'/index'))"}
 	<ul class="mo-cols-rows">
-		{maccms:role num="96" pageurl="role/type" paging="yes" half="3" rid="'.$sub['vod_id'].'" order="desc" by="time"}
+		{maccms:role num="48" pageurl="role/type" paging="yes" half="3" rid="'.$sub['role_id'].'" order="desc" by="time"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-		{include file="basics/rolpic"}
+		{include file="basics/picture" type="role" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['role_hits'].'浏览')" remark=":mac_default(mac_substring($vo['role_remarks'],12),date('Y-m-d H:i',$vo['role_time']))" name=":mac_default(mac_filter_html($vo['role_actor'].'&nbsp;饰&nbsp;'.$vo['role_name']))" desc=":mac_default(mac_substring(mac_filter_html($vo['role_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['role_pic']))" href=":mac_url_role_detail($vo)" title="show" lazy="open"}
 		</li>
 		{/maccms:role}
 	</ul>
-	{include file="basics/paging"}
+	{include file="tinier/paging"}
 </div>
 {include file="public/footer"}

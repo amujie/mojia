@@ -1,18 +1,13 @@
 {include file="public/header"}
 <div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">专题</h2>
-		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
-			<li class="mo-coxs-iblock mo-fsxs-14px">当前第&nbsp;<span id="mo-page-this" class="mo-text-mojia">1</span>&nbsp;页，共&nbsp;<span class="mo-text-mojia">{:mac_data_count($obj.type_id,'all','topic')}</span>&nbsp;个专题</li>
-		</ul>
-	</div>
+	{include file="basics/titles" module="child" title=":mac_default('专题')" more="hide"}
 	<ul class="mo-cols-rows">
 		{maccms:topic num="24" paging="yes" half="3" order="desc" by="time"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg4">
-			{include file="basics/toppic"}
+			{include file="basics/unique" title=":mac_default('专题')" count=":mac_default('——&nbsp;'.($vo['topic_rel_vod']?count(explode(',',$vo['topic_rel_vod'])).'个视频':($vo['topic_rel_art']?count(explode(',',$vo['topic_rel_art'])).'篇文章':'暂未收录数据')).'&nbsp;——')" name=":mac_default(mac_filter_html($vo['topic_name']))" image=":mac_url_img(trim($vo['topic_pic']))" href=":mac_url_topic_detail($vo)" lazy="open"}
 		</li>
 		{/maccms:topic}
 	</ul>
-	{include file="basics/paging"}
+	{include file="tinier/paging"}
 </div>
 {include file="public/footer"}

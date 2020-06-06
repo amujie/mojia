@@ -1,0 +1,8 @@
+{if$mojia['home']['video']['state']}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles" module="video" title=":mac_default($mojia['home']['video']['name'])" btns="更多" href=":mac_url('vod/index')"}
+	<ul class="mo-cols-rows">
+		{include file="basics/advert,basics/lister" module="video" count="mojia['home']['video']['num']"}
+	</ul>
+</div>
+{/if}

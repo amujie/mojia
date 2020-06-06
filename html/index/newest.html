@@ -1,0 +1,13 @@
+{if$mojia['home']['news']['state']}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles" module="news" title=":mac_default($mojia['home']['news']['name'])" btns="更多" href=":mac_url('art/index')"}
+	<ul class="mo-cols-rows">
+		{include file="basics/advert" module="news" count="mojia['home']['news']['num']"}
+		{maccms:art num="'.($mojia['home']['news']['num']-$advert).'" type="'.$mojia['home']['news']['type'].'" level="'.$mojia['home']['news']['level'].'" order="'.$mojia['home']['news']['order'].'" by="'.$mojia['home']['news']['sort'].'"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{if$mojia['home']['news']['num']=='4'&&$key>(3-$advert)} mo-cosm-none mo-colg-block{elseif$mojia['home']['news']['num']=='8'&&$key>(6-$advert)} mo-cosm-none mo-colg-block{/if}">
+		{include file="basics/picture" type="art" style=":mac_default(' mo-lazy-broad mo-byxs-16by9')" tips=":mac_default($vo['art_level']?'推荐':$vo['art_hits'].'阅读')" remark=":mac_default(mac_substring($vo['art_remarks'],12),date('Y-m-d H:i',$vo['art_time']))" name=":mac_default(mac_filter_html($vo['art_name']))" desc=":mac_default(mac_substring(mac_filter_html($vo['art_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_url_art_detail($vo)" title="show" lazy="open"}
+		</li>
+		{/maccms:art}
+	</ul>
+</div>
+{/if}

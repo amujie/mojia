@@ -244,7 +244,7 @@ html,
 body {height: auto !important;}
 body {overflow-y: scroll}
 input,
-textarea {background: transparent;box-sizing: border-box;font-size: 100%;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;outline: 0;-webkit-appearance: none}
+textarea {background: transparent;box-sizing: border-box;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;outline: 0;-webkit-appearance: none}
 textarea {resize: vertical;overflow: hidden}
 input:-webkit-autofill {animation-name: autofill !important;animation-fill-mode: both !important;}
 input:-webkit-autofill,
@@ -299,6 +299,8 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-cols-xs1x {width: 10%}
 .mo-cols-case {width: 100%;position: relative;margin: 0 auto}
 .mo-cols-lays {box-sizing: border-box;padding: .3125rem;margin-top: .625rem}
+.mo-coxs-arow {overflow: hidden;text-overflow: ellipsis;display: block !important;white-space: nowrap}
+.mo-coxs-trow {overflow: hidden;text-overflow: ellipsis;display: -webkit-box !important;-webkit-box-orient: vertical;-webkit-line-clamp: 2}
 .mo-coxs-west {float: left;}
 .mo-coxs-east {float: right;}
 .mo-coxs-none {display: none !important}
@@ -367,7 +369,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-byxs-16by9 {padding-top: 56.25%}
 .mo-bsxs-shadow {box-shadow: 0 .0625rem .25rem rgba(0, 0, 0, 0.1)}
 @media(min-width:360px) {
-	/**/
+	/* 360 */
 	.mo-cols-ss1 {width: 8.33333333%}
 	.mo-cols-ss2 {width: 16.66666667%}
 	.mo-cols-ss3 {width: 25%}
@@ -403,7 +405,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	.mo-ptss-10px {padding-top: 0.625rem;}
 }
 @media(min-width:576px) {
-	/**/
+	/* 576 */
 	.mo-cols-body {padding-bottom: 0}
 	.mo-cols-minh {height: calc(100vh - (9.375rem))}
 	.mo-cols-sm1 {width: 8.33333333%}
@@ -444,7 +446,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	.mo-bysm-20by17 {padding-top: 85%}
 }
 @media(min-width:768px) {
-	/**/
+	/* 768 */
 	.mo-cols-md1 {width: 8.33333333%}
 	.mo-cols-md2 {width: 16.66666667%}
 	.mo-cols-md3 {width: 25%}
@@ -460,6 +462,8 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	.mo-cols-md1x {width: 10%}
 	.mo-cols-case {width: 45rem}
 	.mo-cols-lays {padding: .9375rem;margin-top: 1.25rem}
+	.mo-comd-arow {overflow: hidden;text-overflow: ellipsis;display: block !important;white-space: nowrap}
+	.mo-comd-trow {overflow: hidden;text-overflow: ellipsis;display: -webkit-box !important;-webkit-box-orient: vertical;-webkit-line-clamp: 2}
 	.mo-comd-west {float: left;}
 	.mo-comd-east {float: right;}
 	.mo-comd-none {display: none !important}
@@ -476,7 +480,6 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	.mo-fsmd-18px {font-size: 1.125rem !important}
 	.mo-fsmd-20px {font-size: 1.25rem !important}
 	.mo-fsmd-24px {font-size: 1.5rem !important}
-	.mo-fsmd-16px {font-size: 1rem}
 	.mo-lhmd-24px {line-height: 1.5rem;}
 	.mo-lhmd-34px {line-height: 2.125rem;}
 	.mo-lhmd-36px {line-height: 2.25rem;}
@@ -507,7 +510,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	.mo-bsmd-shadow {box-shadow: 0 .0625rem .25rem rgba(0, 0, 0, 0.1)}
 }
 @media(min-width:992px) {
-	/**/
+	/* 992 */
 	.mo-cols-lg1 {width: 8.33333333%}
 	.mo-cols-lg2 {width: 16.66666667%}
 	.mo-cols-lg3 {width: 25%}
@@ -543,7 +546,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	.mo-bylg-20by17 {padding-top: 85%}
 }
 @media(min-width:1200px) {
-	/**/
+	/* 1200 */
 	.mo-cols-xl1 {width: 8.33333333%}
 	.mo-cols-xl2 {width: 16.66666667%}
 	.mo-cols-xl3 {width: 25%}
@@ -587,6 +590,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-part-hund {border-radius: 6.25rem}
 .mo-part-vert {vertical-align: middle}
 .mo-part-left {left: -100% !important}
+.mo-part-patb {padding: 6.25rem 0;}
 .mo-part-mtop {margin-top: -0.1875rem}
 .mo-part-ptop {margin-top: 0.1875rem}
 .mo-part-bold {font-weight: bold}
@@ -602,10 +606,10 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-part-toos {width: 12.5rem;height: 12.5rem;}
 .mo-part-code {width: 12.5rem;margin: 0 auto;}
 .mo-part-peer {position: absolute;top: 0;left: 0;z-index: 1}
-.mo-part-more {position: absolute;bottom: 1px;right: 0;z-index: 1}
+.mo-part-more {position: absolute;top: 0;right: 0;z-index: 1}
 .mo-part-core {position: absolute;top: 50%;left: 50%;width: 100%;box-sizing: border-box;transform: translate(-50%, -50%)}
 .mo-part-full {position: absolute !important;top: 0;left: 0;width: 100%;height: 100%}
-.mo-part-view {width: 100%;height: 100%;overflow: hidden;}
+.mo-part-view {width: 100%;height: 100% !important;overflow: hidden;}
 .mo-part-move {transition: all .2s;-webkit-transition: all .2s}
 .mo-part-over {overflow: visible !important}
 .mo-part-maxw {max-width: 25rem;margin: 0 auto}
@@ -615,13 +619,12 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-part-slip {white-space: nowrap;overflow-y: hidden;overflow-x: overlay;-webkit-overflow-scrolling: touch}
 .mo-part-seal {position: relative;top: -0.0625rem;font-size: .75rem;padding: .0625rem .3125rem;border-radius: .125rem;margin-right: .3125rem;}
 .mo-part-mask {height: 100%;position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 999}
-.mo-part-btns {text-align: center;user-select: none;cursor: pointer}
+.mo-part-btns {text-align: center;user-select: none;border: 0;cursor: pointer}
 .mo-part-btns:hover {opacity: .8 !important}
 .mo-part-over:after {content: '\20';clear: both;display: block;overflow: hidden;height: 0}
 /* 文字超出显示省略号 */
 .mo-wrap-arow {overflow: hidden;text-overflow: ellipsis;display: block;white-space: nowrap}
 .mo-wrap-trow {overflow: hidden;text-overflow: ellipsis;display: -webkit-box !important;-webkit-box-orient: vertical;-webkit-line-clamp: 2}
-.mo-wrap-srow {overflow: hidden;text-overflow: ellipsis;display: -webkit-box !important;-webkit-box-orient: vertical;-webkit-line-clamp: 3}
 /* 全局图片样式 */
 .mo-situ-pics {position: relative;display: block;width: 100%;height: 0;background-position: 50% 50%;background-size: cover}
 .mo-situ-play {opacity: 0;position: absolute;top: 0;z-index: -1;width: 100%;height: 100%;transition: all ease-out .35s;background: rgba(0, 0, 0, .4) url(data:image/png;base64,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) center no-repeat}
@@ -634,9 +637,10 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-form-info {box-sizing: border-box;border: 0;display: block;padding: 0 .625rem;width: 100%;height: 2.5rem;line-height: 2.5rem}
 .mo-form-area {padding: .625rem;height: auto;line-height: 1.25rem}
 .mo-form-name {padding: .625rem;line-height: 1.5rem;position: absolute;left: 0;top: 0;z-index: 1;}
-.mo-form-text {padding: .625rem .625rem .625rem 3.4375rem;line-height: 1.5rem;border: 0;border-bottom: 0.03125rem solid}
+.mo-form-text {padding: .625rem .625rem .625rem 3.4375rem;line-height: 1.5rem;border: 0;border-bottom: 0.0625rem solid}
 .mo-form-face {position: absolute;top: 0;left: 0}
 .mo-form-comp {position: relative;top: 5px;width: 20px;height: 20px}
+.mo-form-righ {padding-right: 5.3125rem;}
 .mo-form-left {padding-left: 5.3125rem;}
 .mo-form-tips {padding-left: 2.5rem;}
 .mo-form-maxh {height: 2.375rem}
@@ -701,7 +705,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-scre-info {border-top: .0625rem dashed;}
 .mo-scre-info:first-child {border: 0}
 /* 视频详情 */
-.mo-deta-info .mo-deta-btns {width: 200%;position: absolute;left: 100%;bottom: .3125rem;}
+.mo-deta-info .mo-deta-btns {width: 200%;position: absolute;left: 100%;bottom: .3125rem;z-index: 1;}
 .mo-deta-info .mo-deta-play {min-width: 85px}
 .mo-deta-info:last-child {margin: 0;border: 0}
 /* 分集列表 */
@@ -736,7 +740,6 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-have-info {width: 275px;}
 .mo-have-info .mo-have-body {position: relative;width: 100%;height: 100%;}
 .mo-have-info .mo-have-main {top: 0;width: 100%;height: 100%;}
-.mo-have-info .mo-have-left {}
 .mo-have-info .mo-have-right {top: 0;right: 0;}
 .mo-have-info .mo-have-code {right: 0;bottom: 0;}
 .mo-have-info .mo-have-boxs {min-height: 100%;}

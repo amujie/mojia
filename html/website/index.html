@@ -1,13 +1,13 @@
 {include file="public/header"}
-{include file="module/siteer"}
+{include file="index/siteer"}
 <div class="mo-cols-case mo-cols-rows">
 	{maccms:type ids="parent" order="asc" by="sort" mid="11" id="magic"}
 	<div class="mo-cols-lays mo-back-white">
-		{include file="basics/titles"}
+		{include file="basics/titles" module="blog" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
 		<ul class="mo-cols-rows">
 			{maccms:website num="12" type="'.$magic['type_id'].'" order="asc" by="sort"}
 			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-				{include file="basics/webpic"}
+			{include file="basics/picture" type="website" style=":mac_default(' mo-lazy-highs mo-byxs-16by9')" tips=":mac_default($vo['website_hits'].'浏览')" remark=":mac_default(mac_substring($vo['website_remarks'],12),date('Y-m-d H:i',$vo['website_time']))" name=":mac_default(mac_filter_html($vo['website_name']))" desc=":mac_default(mac_substring(mac_filter_html($vo['website_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['website_logo']))" href=":mac_url_website_detail($vo)" title="show" lazy="open"}
 			</li>
 			{/maccms:website}
 		</ul>

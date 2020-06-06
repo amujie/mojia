@@ -1,22 +1,26 @@
 <div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-	{if$magic}
-	<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$magic.type_name}</h2>
-	<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
-		{maccms:type num="8" parent="'.$magic['type_id'].'" order="asc" by="sort"}
-		<li class="mo-coxs-none mo-comd-iblock mo-fsxs-14px"><a class="mo-coxs-iblock" href="{:mac_url_type($vo)}">{$vo.type_name|mac_filter_html}</a><span class="mo-coxs-iblock mo-pnxs-5px">/</span></li>
-		{/maccms:type}
-		<li class="mo-coxs-iblock mo-fsxs-14px"><a href="{:mac_url_type($magic)}">更多</a></li>
-	</ul>
-	{elseif$head}
-	<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$head.type_name|mac_filter_html}</h2>
-	<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
-		<li class="mo-coxs-iblock mo-fsxs-14px"><a href="{:mac_url_type($head)}">更多</a></li>
-	</ul>
-	{else}
-	<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$obj.type_name|mac_filter_html}</h2>
-	<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+	<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{[title]}</h2>
+	<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero{if'[module]'=='opts'} mo-user-oper{/if}"{if'[module]'=='opts'} data-type="[type]" data-url="{[del]}"{/if}>
+		{if'[module]'=='class'||'[module]'=='info'}{maccms:type num="8" parent="'.$magic['type_id'].'" order="asc" by="sort"}
+		<li class="mo-comd-iblock mo-fsxs-14px mo-coxs-none"><a class="mo-coxs-iblock" href="{:mac_url_type($vo)}">{$vo.type_name|mac_filter_html}</a><span class="mo-coxs-iblock mo-pnxs-5px">/</span></li>
+		{/maccms:type}{elseif'[module]'=='opts'}
+		<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-whole mo-plxs-10px" href="javascript:;">全选</a></li>
+		<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-reset mo-plxs-10px" href="javascript:;">删除</a></li>
+		<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-clear mo-plxs-10px" href="javascript:;">清空</a></li>
+		{elseif'[module]'=='hots'}
+		<li class="mo-coxs-iblock mo-fsxs-14px"><a href="{:mac_url('label/rank')}">影视排行榜</a></li>
+		{elseif'[module]'=='week'}{assign name="week" value=":array('日','一','二','三','四','五','六')"}{maccms:foreach name="$week"}
+		<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-coxs-iblock mo-week-btns{if date('w')==$key} mo-text-mojia{/if}" href="javascript:;">{if date('w')==$key}<span class="mo-coxs-iblock mo-week-name">今</span><span class="mo-coxs-none mo-cosm-iblock">日</span>{else}<span class="mo-coxs-none mo-cosm-iblock">周</span><span class="mo-week-name mo-cosm-iblock">{$week[$key]}</span>{/if}</a>{if$key<6}<span class="mo-coxs-iblock mo-pnxs-5px">/</span>{/if}</li>
+		{/maccms:foreach}{elseif'[module]'=='news'}
+		<li class="mo-coxs-iblock mo-fsxs-14px">今日更新&nbsp;<span class="mo-text-mojia">{:mac_data_count($obj.type_id,'today','art')}</span>&nbsp;篇&nbsp;&nbsp;共&nbsp;<span class="mo-text-mojia">{:mac_data_count($obj.type_id,'all','art')}&nbsp;</span>篇</li>
+		{elseif'[module]'=='video'}
+		<li class="mo-coxs-iblock mo-fsxs-14px">今日更新&nbsp;<span class="mo-text-mojia">{:mac_data_count($obj.type_id,'today','vod')}</span>&nbsp;部&nbsp;&nbsp;共&nbsp;<span class="mo-text-mojia">{:mac_data_count($obj.type_id,'all','vod')}&nbsp;</span>部</li>
+		{elseif'[module]'=='child'}
 		<li class="mo-coxs-iblock mo-fsxs-14px">当前第&nbsp;<span id="mo-page-this" class="mo-text-mojia">1</span>&nbsp;页，共&nbsp;<span id="mo-page-sums" class="mo-text-mojia">0</span>&nbsp;条结果</li>
-		<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{if$obj.parent}{:mac_url_type($obj.parent)}{else}{:mac_url(mac_get_mid_code($maccms.mid).'/index')}{/if}">返回</a>
+		{/if}{if$mojia['home']['link']['apply']&&'[module]'=='link'}
+		<li class="mo-coxs-iblock mo-fsxs-14px"><a href="{[href]}">[btns]</a></li>
+		{elseif'[more]'!='hide'}
+		<li class="mo-coxs-iblock mo-fsxs-14px"><a{if'[module]'!='class'&&'[module]'!='info'} class="mo-plxs-10px"{/if} href="{[href]}">[btns]</a></li>
+		{/if}
 	</ul>
-	{/if}
 </div>

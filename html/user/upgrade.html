@@ -1,12 +1,7 @@
 {include file="public/header"} 
 {include file="user/banner"} 
 <div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">升级会员</h2>
-		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px">
-			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/index')}">返回</a>
-		</ul>
-	</div>
+	{include file="basics/titles" module="user" title=":mac_default('升级会员')" btns="返回" href=":mac_url('user/index')"}
 	<form class="mo-user-form" action="{:mac_url('user/upgrade')}" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
 		<ul class="mo-cols-rows mo-paxs-0px mo-pamd-5px">
 			{volist name="group_list" id="vo"}{if$vo.group_id>2}

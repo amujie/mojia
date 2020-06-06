@@ -1,14 +1,6 @@
-{include file="public/header"}
-{include file="module/notice"}
-{assign name="magic_gbook" value="gbook"}
-{include file="gbook/report"}
+{include file="public/header,index/notice,gbook/report" report="gbook"}
 <div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">留言板</h2>
-		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
-			<li class="mo-coxs-iblock">当前第&nbsp;<span id="mo-page-this" class="mo-text-mojia">1</span>&nbsp;页，共&nbsp;<span id="mo-page-sums" class="mo-text-mojia">0</span>&nbsp;条留言</li>
-		</ul>
-	</div>
+	{include file="basics/titles" module="child" title=":mac_default('留言板')" btns="返回" more="hide"}
 	<div class="mo-comm-gbajax">
 		<p class="mo-coxs-center mo-paxs-5px mo-pamd-10px">加载中请稍等</p>
 	</div>

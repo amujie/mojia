@@ -12,9 +12,9 @@ function moJiaPath($path) {
 	} elseif ($path == 'home') {
 		return $maccms['site']['install_dir'];
 	} elseif ($path == 'cdns') {
-		return 'https://cdn.jsdelivr.net/gh/amujie/mojia/';
+		return 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/';
 	} elseif ($path == 'down') {
-		return 'https://cdn.jsdelivr.net/gh/amujie/download/';
+		return 'https://cdn.jsdelivr.net/gh/amujie/download@master/';
 	} elseif ($path == 'path') {
 		return $install;
 	}

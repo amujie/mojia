@@ -175,7 +175,7 @@
       'type' => '',
       'level' => '9',
       'sort' => 'time',
-      'sub' => '9',
+      'sub' => '8',
       'num' => '5',
       'state' => '0',
     ),
@@ -195,7 +195,7 @@
       'qiang' => '',
       'type' => '',
       'brand' => '',
-      'sort' => '2',
+      'sort' => '0',
       'ver' => '1.2.2',
       'num' => '12',
       'state' => '0',
@@ -255,7 +255,7 @@
       'num' => '12',
       'state' => '1',
     ),
-    'inform' => 
+    'info' => 
     array (
       'name' => '文章分类',
       'advs' => '',
@@ -263,7 +263,18 @@
       'level' => '',
       'sort' => 'time',
       'order' => 'desc',
-      'num' => '8',
+      'num' => '4',
+      'state' => '0',
+    ),
+    'blog' => 
+    array (
+      'name' => '博客布局',
+      'advs' => '',
+      'type' => '',
+      'level' => '',
+      'sort' => 'time',
+      'order' => 'desc',
+      'num' => '5',
       'state' => '0',
     ),
     'actor' => 
@@ -274,7 +285,7 @@
       'level' => '',
       'sort' => 'time',
       'order' => 'desc',
-      'num' => '12',
+      'num' => '6',
       'state' => '0',
     ),
     'topic' => 
@@ -294,7 +305,7 @@
       'level' => '',
       'sort' => 'time',
       'order' => 'desc',
-      'num' => '12',
+      'num' => '6',
       'state' => '0',
     ),
     'link' => 
@@ -523,6 +534,18 @@
       'group' => '',
       'area' => '',
     ),
+    'down' => 
+    array (
+      'name' => '下载列表',
+      'group' => '',
+      'area' => '',
+    ),
+    'info' => 
+    array (
+      'name' => '视频简介',
+      'group' => '',
+      'area' => '',
+    ),
     'float' => 
     array (
       'name' => '漂浮广告',
@@ -624,8 +647,6 @@
     array (
       'name' => '圆角尺寸',
       'round' => '3px',
-      'pics' => '缩略图模式',
-      'type' => '0',
     ),
     'chain' => 
     array (

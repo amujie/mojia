@@ -1,0 +1,22 @@
+{if$mojia['home']['link']['state']}
+<div class="mo-cols-lays mo-back-white">
+	{include file="basics/titles" module="link" title=":mac_default($mojia['home']['link']['name'])" btns="申请" href=":mac_url('gbook/index')" more="hide"}
+	<ul class="mo-cols-rows">
+		{if$mojia['home']['link']['advs']&&$mojia['home']['link']['type']!='pic'}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs3 mo-cols-sm2 mo-cols-xl1x">
+			<a class="mo-wrap-arow mo-lhxs-20px" href="http://amujie.com" target="_blank">阿木姐</a>
+		</li>
+		{/if}{maccms:link num="'.$mojia['home']['link']['num'].'" type="'.$mojia['home']['link']['type'].'" order="'.$mojia['home']['link']['order'].'" by="'.$mojia['home']['link']['sort'].'"}
+		{if$mojia['home']['link']['type']=='pic'}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+			<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-4by1 mo-cols-rows mo-bord-round" href="{$vo.link_url}" target="_blank" data-original="{$mojia['other']['chain']['apis']}{:mac_url_img(trim($vo['link_logo']))}"></a>
+		</li>
+		{else}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs3 mo-cols-sm2 mo-cols-xl1x">
+			<a class="mo-wrap-arow mo-lhxs-20px" href="{$vo.link_url}" target="_blank">{$vo.link_name}</a>
+		</li>
+		{/if}
+		{/maccms:link}
+	</ul>
+</div>
+{/if}

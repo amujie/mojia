@@ -1,12 +1,7 @@
 {include file="public/header"} 
 {include file="user/banner"} 
 <div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">充值中心</h2>
-		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px">
-			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/buy')}">返回</a>
-		</ul>
-	</div>
+	{include file="basics/titles" module="user" title=":mac_default('充值中心')" btns="返回" href=":mac_url('user/buy')"}
 	<form class="mo-user-form" action="{:mac_url('user/gopay')}" autocomplete="off" method="post" target="_blank">
 		<ul class="mo-cols-rows mo-paxs-0px mo-pamd-5px">
 			<li class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></li>

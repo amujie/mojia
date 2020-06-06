@@ -1,4 +1,4 @@
-{include file="basics/config"}
+{include file="tinier/config"}
 <div class="mo-navs-info">
 	<div class="mo-navs-left mo-part-slip mo-cols-info mo-cols-xs12 mo-cols-md6 mo-cols-lg8">
 		<ul class="mo-navs-boxs mo-cols-zero">
@@ -15,7 +15,7 @@
 		</form>
 		<ul class="mo-navs-btns">
 			<li class="mo-navs-font"><a class="mo-navs-record mo-cols-show mo-java-event" href="javascript:;"><i class="mo-cols-show mo-fsxs-24px mo-icon-font mo-icon-bofangjilu"></i></a></li>
-			<li class="mo-navs-font"><a class="{if$user.user_id}mo-navs-center {else}mo-navs-logins {/if}mo-cols-show mo-java-event mo-cols-zero" href="javascript:;">{if$user.user_id}<img class="mo-part-coin" width="24" height="24" src="{:str_replace('/static/images/touxiang.png',$template.'asset/img/avatar.png',mac_get_user_portrait($user['user_id']))}" />{else}<i class="mo-cols-show mo-fsxs-24px mo-icon-font mo-icon-shequ"></i>{/if}</a></li>
+			<li class="mo-navs-font"><a class="{if$user.user_id}mo-navs-center {else}mo-navs-logins {/if}mo-cols-show mo-java-event mo-cols-zero" href="javascript:;">{if$user.user_id}<img class="mo-part-coin" width="24" height="24" src="{:str_replace('/static/images/touxiang.png',$cdnpath.'asset/img/avatar.png',mac_get_user_portrait($user['user_id']))}" />{else}<i class="mo-cols-show mo-fsxs-24px mo-icon-font mo-icon-shequ"></i>{/if}</a></li>
 		</ul>
 	</div>
 </div>
@@ -63,7 +63,7 @@
 </div>
 <div class="mo-pops-info mo-pops-logins mo-fsxs-14px mo-back-white mo-bsmd-shadow mo-cols-hide mo-java-ceal mo-anim-upbit">
 	<div class="mo-pnxs-15px mo-ptmd-5px mo-lhxs-40px mo-cols-rows">
-		<span class="mo-cols-info mo-cols-info mo-cols-xs9">用户登录</span>
+		<span class="mo-cols-info mo-cols-xs9">用户登录</span>
 		<a class="mo-coxs-right mo-cols-info mo-cols-xs3" href="javascript:;">关闭</a>
 	</div>
 	{include file="user/ajax_login"}

@@ -1,12 +1,7 @@
 {include file="public/header"}
 {include file="user/banner"}
 <div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">积分提现</h2>
-		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px">
-			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-plxs-5px" href="{:mac_url('user/index')}">返回</a>
-		</ul>
-	</div>
+	{include file="basics/titles" module="user" title=":mac_default('积分提现')" btns="返回" href=":mac_url('user/index')"}
 	<form class="layui-form mo-user-form mo-cols-rows mo-pnxs-5px mo-pnmd-10px mo-lhxs-40px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
 		<div class="mo-pzxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
 		<div class="mo-cols-rows mo-mtxs-5px">
@@ -30,14 +25,7 @@
 	</form>
 </div>
 <div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">提现记录</h2>
-		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px" data-type="0" data-url="{:mac_url('user/cash_del')}">
-			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-whole mo-plxs-5px" href="javascript:;">全选</a></li>
-			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-reset mo-plxs-5px" href="javascript:;">删除</a></li>
-			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-user-clear mo-plxs-5px" href="javascript:;">清空</a></li>
-		</ul>
-	</div>
+	{include file="basics/titles" module="opts" type="0" del=":mac_url('user/cash_del')" title=":mac_default('提现记录')" btns="返回" href=":mac_url('user/index')" more="hide"}
 	<form class="mo-user-form" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
 		<ul class="mo-cols-rows mo-paxs-0px{if count($list)} mo-pamd-5px{/if}">
 			{volist name="list" id="vo"}
@@ -58,7 +46,7 @@
 			</li>
 			{/volist}
 		</ul>
-		{include file="basics/paging"}
+		{include file="tinier/paging"}
 	</form>
 </div>
 {include file="public/footer"}

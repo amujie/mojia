@@ -1,6 +1,6 @@
 {include file="public/header"}
 <div class="mo-cols-lays mo-back-white mo-cols-rows">
-	{include file="basics/topinfo"}
+	{include file="module/topics"}
 </div>
 <div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over mo-java-page">
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
@@ -19,7 +19,7 @@
 		<ul class="mo-cols-rows">
 			{maccms:foreach name=":explode(',',$obj['topic_rel_art'])" id="magic"}{maccms:art ids="'.$magic.'"}
 			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
-				{include file="basics/artpic"}
+				{include file="basics/picture" type="art" style=":mac_default(' mo-lazy-broad mo-byxs-16by9')" tips=":mac_default($vo['art_level']?'推荐':$vo['art_hits'].'阅读')" remark=":mac_default(mac_substring($vo['art_remarks'],7),'广告')" name=":mac_default($vo['art_name'])" desc=":mac_default(mac_filter_html($vo['art_blurb']),'暂无简介')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_url_art_detail($vo)" title="show" lazy="open"}
 			</li>
 			{/maccms:art}{/maccms:foreach}
 		</ul>
@@ -40,23 +40,13 @@
 </div>
 {if$obj.vod_list|count}
 <div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">关联视频</h2>
-	</div>
+	{include file="basics/titles" module="child" title=":mac_default('关联视频')" more="hide"}
 	<div class="mo-cols-rows">
-		{assign name="__LIST__" value=":array('total'=>count(explode(',',$obj['topic_rel_vod'])),'limit'=>10,'page'=>$param['page'],'pageurl'=>str_replace($GLOBALS['config']['app']['pathinfo_depr'].$obj['topic_id'].'.'.$GLOBALS['config']['app']['suffix'],$GLOBALS['config']['app']['pathinfo_depr'].$obj['topic_id'].$GLOBALS['config']['app']['pathinfo_depr'].'page'.$GLOBALS['config']['app']['pathinfo_depr'].'PAGELINK.'.$GLOBALS['config']['app']['suffix'],mac_url_topic_detail($obj)),'half'=>3)"}
-		{assign name="__PAGING__" value=":mac_page_param($__LIST__['total'],$__LIST__['limit'],$__LIST__['page'],$__LIST__['pageurl'],$__LIST__['half'])"}
-		{assign name="start" value=":(intval($param['page'])-1) * $__LIST__['limit']"}
-		{lt name="start" value="0"}{assign name="start" value="0"}{/lt}
-		{assign name="vod_plot_list" value=":array_slice(explode(',',$obj['topic_rel_vod']),$start,$__LIST__['limit'])"}
-		{assign name="magic_detail" value="hide"}
-		{volist name="$vod_plot_list" id="magic"}{maccms:vod ids="'.$magic.'"}
-		{include file="basics/vodinfo"}
-		{/maccms:vod}{/volist}
-		{assign name="magic_detail" value="show"}
+		{include file="basics/paging" limit="10" data="explode(',',$obj['topic_rel_vod'])" page="str_replace($GLOBALS['config']['app']['pathinfo_depr'].$obj['topic_id'].'.'.$GLOBALS['config']['app']['suffix'],$GLOBALS['config']['app']['pathinfo_depr'].$obj['topic_id'].$GLOBALS['config']['app']['pathinfo_depr'].'page'.$GLOBALS['config']['app']['pathinfo_depr'].'PAGELINK.'.$GLOBALS['config']['app']['suffix'],mac_url_topic_detail($obj))"}
+		{volist name="$data_list" id="magic"}{maccms:vod ids="'.$magic.'"}{include file="module/videos"}{/maccms:vod}{/volist}
 	</div>
-	{include file="basics/paging"}
+	{include file="tinier/paging"}
 </div>
 {/if}
-{include file="module/relate"}
+{include file="index/latest"}
 {include file="public/footer"}

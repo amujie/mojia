@@ -1,0 +1,14 @@
+{if$obj.vod_plot_list}
+{include file="basics/paging" limit="10" data="mac_default($obj['vod_plot_list'])" page="mac_url_vod_plot($obj,['page' => 'PAGELINK'])"}
+{volist name="$data_list" id="vo"}
+<div class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
+<div class="mo-cols-rows mo-part-over">
+	<ul class="mo-drop-head mo-paxs-5px mo-cols-rows mo-part-over">
+		<li class="mo-pzmd-5px mo-cols-info mo-cols-xs5 mo-wrap-arow">{$vo['name']}</li>
+	</ul>
+	<div class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
+	<p class="mo-paxs-5px mo-ptxs-0px mo-mtsm-5px">{$vo['detail']}</p>
+</div>
+{/volist}
+{include file="tinier/paging"}
+{/if}

@@ -1,9 +1,0 @@
-<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-lazy-[type] mo-byxs-[scale] mo-cols-rows mo-bord-round" href="{:mac_url('label/taoke')}?id={$vo.id}&goodsId={$vo.goodsId}" data-original="{$vo.marketingMainPic}"{if$Think.get.week} style="background-image:url({$vo.marketingMainPic})"{/if}>
-	<span class="mo-situ-play mo-situ-npic"></span>
-	<span class="mo-situ-tips mo-fsxs-12px mo-bord-round mo-back-mojia">券后价¥{$vo.actualPrice}</span>
-	<span class="mo-situ-rema mo-part-ramp mo-fsxs-12px mo-text-white mo-coxs-center">{$vo.brandName}</span>
-</a>
-{if'[state]'!='hide'}
-<a class="mo-situ-name mo-fsxs-14px mo-coxs-center mo-comd-left mo-wrap-arow" href="{:mac_url('label/taoke')}?id={$vo.id}&goodsId={$vo.goodsId}">{$vo.dtitle}</a>
-<span class="mo-situ-desc mo-fsxs-12px mo-wrap-arow mo-text-muted mo-coxs-none mo-colg-block">{$vo.desc}</span>
-{/if}
