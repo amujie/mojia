@@ -17,7 +17,7 @@
 		</div>
 		<div class="mo-cols-rows mo-mtxs-5px">
 			<span class="mo-form-name">新密码</span>
-			<input class="mo-form-left mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd1" placeholder="新密码" maxlength="20" />
+			<input class="mo-form-left mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd1" placeholder="新密码" maxlength="20" />
 			<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" href="javascript:;">不修改请留空</a>
 		</div>
 		<div class="mo-cols-rows mo-mtxs-5px">
@@ -30,12 +30,12 @@
 		</div>
 		<div class="mo-cols-rows mo-mtxs-5px">
 			<span class="mo-form-name">邮箱</span>
-			<input class="mo-form-left mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="email" name="user_email" value="{$obj.user_email}" placeholder="点击绑定按钮绑定邮箱账号" maxlength="20" />
+			<input class="mo-form-left mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="email" name="user_email" value="{$obj.user_email}" placeholder="点击绑定按钮绑定邮箱账号" maxlength="20" />
 			{if!$obj.user_email}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" href="{:mac_url('user/bind')}?ac=email">绑定</a>{else}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" data-type="email" href="javascript:;" data-url="{:mac_url('user/unbind')}" lay-submit lay-filter="unbind">解绑</a>{/if}</a>
 		</div>
 		<div class="mo-cols-rows mo-mtxs-5px">
 			<span class="mo-form-name">手机号</span>
-			<input class="mo-form-left mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="user_phone" value="{$obj.user_phone}" placeholder="点击绑定按钮绑定手机号码" maxlength="11" />
+			<input class="mo-form-left mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="user_phone" value="{$obj.user_phone}" placeholder="点击绑定按钮绑定手机号码" maxlength="11" />
 			{if!$obj.user_phone}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" href="{:mac_url('user/bind')}?ac=phone">绑定</a>{else}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" data-type="phone" href="javascript:;" data-url="{:mac_url('user/unbind')}" lay-submit lay-filter="unbind">解绑</a>{/if}</a>
 		</div>
 		<div class="mo-cols-rows mo-mtxs-5px">

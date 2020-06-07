@@ -8,7 +8,7 @@
 	<div class="mo-cols-show">
 		<div class="mo-pamd-5px">
 			<div class="mo-paxs-5px mo-ptxs-0px">
-				{$details.desc|mac_default='暂无站点简介'}
+				{$details['data']['desc']|mac_default=$details['msg']}
 			</div>
 		</div>
 	</div>

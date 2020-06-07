@@ -8,6 +8,7 @@ layui.define(['jquery'], function(exports) {
 				mojia.player.init();
 				mojia.global.click();
 				mojia.global.event();
+				mojia.global.output();
 				mojia.global.verify();
 				mojia.global.paging();
 				mojia.global.passer();
@@ -41,18 +42,6 @@ layui.define(['jquery'], function(exports) {
 				if ($('.mo-swip-container').length) {
 					layui.use('swiper', function() {
 						mojia.global.swiper();
-					});
-				}
-				if ($('.mo-code-info').length) {
-					layui.use('qrcode', function() {
-						if ($('.mo-code-info').attr('data-api')) {
-							$.post(magic.tpl + 'asset/exc/create.php?id=url', 'url=' + encodeURIComponent(location.href), function(data) {
-								var url = data.msg && data.msg.indexOf('http') != -1 ? data.msg : location.href;
-								mojia.global.qrcode(148, url, '.mo-code-info', 'mo-code-pics')
-							});
-						} else {
-							mojia.global.qrcode(148, location.href, '.mo-code-info', 'mo-code-pics');
-						}
 					});
 				}
 				if ($('.mo-java-theia').length && !mojia.global.mobile()) {
@@ -207,6 +196,7 @@ layui.define(['jquery'], function(exports) {
 			'qrcode': function(size, text, info, pics) {
 				var image = new Image();
 				image.src = document.getElementById(pics).src;
+				image.crossOrigin = 'anonymous';
 				image.onload = function() {
 					$(info).qrcode({
 						image: document.getElementById(pics),
@@ -220,6 +210,20 @@ layui.define(['jquery'], function(exports) {
 					});
 					$(info).find('img').addClass(pics);
 				};
+			},
+			'output': function() {
+				if ($('.mo-code-info').length) {
+					layui.use('qrcode', function() {
+						if ($('.mo-code-info').attr('data-api')) {
+							$.post(magic.tpl + 'asset/exc/create.php?id=url', 'url=' + encodeURIComponent(location.href), function(data) {
+								var url = data.msg && data.msg.indexOf('//') != -1 ? data.msg : location.href;
+								mojia.global.qrcode(148, url, '.mo-code-info', 'mo-code-pics')
+							});
+						} else {
+							mojia.global.qrcode(148, location.href, '.mo-code-info', 'mo-code-pics');
+						}
+					});
+				}
 			}
 		},
 		'navbar': {
@@ -228,9 +232,6 @@ layui.define(['jquery'], function(exports) {
 				this.login('.mo-pops-login', '.mo-pops-form');
 				this.cutout('mo_record', '.mo-pops-recs .mo-pops-clear');
 				this.cutout('mo_history', '.mo-pops-record .mo-pops-clear');
-				$(document).on('click', '.mo-navs-loop', function() {
-					mojia.navbar.loading($('.mo-head-info').children());
-				});
 			},
 			'loading': function(that) {
 				$.post(that.attr('data-url'), 'mid=' + that.attr('type-mid') + '&aid=' + that.attr('type-aid') + '&tid=' + that.attr('type-tid') + '&pid=' + that.attr('type-pid'), function(data) {
@@ -238,8 +239,12 @@ layui.define(['jquery'], function(exports) {
 					mojia.player.tabs('.mo-pops-hots', '.mo-pops-boxs', 'mo-text-mojia');
 					mojia.navbar.output('mo_history', '.mo-pops-record .mo-pops-list');
 					mojia.navbar.output('mo_record', '.mo-pops-recs');
+					mojia.global.verify();
 				}).error(function() {
 					that.html('<p class="mo-navs-ajax mo-coxs-center">导航栏加载失败，<a class="mo-navs-record mo-text-mojia" href="javascript:;">重新加载</a></p>');
+				});
+				$(document).on('click', '.mo-navs-loop', function() {
+					mojia.navbar.loading($('.mo-head-info').children());
 				});
 			},
 			'login': function(str, form) {
@@ -288,8 +293,8 @@ layui.define(['jquery'], function(exports) {
 			},
 			'notice': function(str) {
 				var notice = Number(mojia.cookie.get('mo_notice'));
-				if (notice && notice >= Number($('body').attr('data-num'))) return false;
-				if ($('body').attr('data-alert')) {
+				if (notice && notice >= Number($('.mo-main-info').attr('data-num'))) return false;
+				if ($('.mo-main-info').attr('data-alert')) {
 					layui.use(['layer'], function() {
 						$(document).on('click', str, function() {
 							var count = notice ? notice : 0;
@@ -339,9 +344,9 @@ layui.define(['jquery'], function(exports) {
 			},
 			'shares': function(str) {
 				$(document).on('click', str, function() {
+					var that = $(this);
 					layui.use(['polyfill', 'layer', 'clipboard', 'qrcode', 'canvas'], function() {
 						var load = layer.load();
-						var that = $(this);
 						$('.mo-java-left').addClass('mo-part-left');
 						$.post(magic.path + 'index.php/label/share.html', function(data) {
 							layer.close(load);
@@ -349,16 +354,16 @@ layui.define(['jquery'], function(exports) {
 							layer.open({
 								type: 1,
 								id: 'have',
-								area: 'auto',
-								maxWidth: '640px',
+								area: '275px',
 								title: false,
 								closeBtn: 0,
+								shadeClose: true,
 								skin: 'mo-bord-round mo-have-open',
 								content: data.replace('{image}', $('meta[itemprop="image"]').attr('content')).replace('{qrcode}', $('meta[itemprop="image"]').attr('content')).replace('{title}', $('meta[itemprop="name"]').attr('content')).replace('{keywords}', $('meta[itemprop="keywords"]').attr('content').substring(0, 28)),
 								success: function(layero, index) {
 									if (that.attr('data-api')) {
 										$.post(magic.tpl + 'asset/exc/create.php?id=url', 'url=' + encodeURIComponent(location.href), function(data) {
-											var url = data.msg && data.msg.indexOf('http') != -1 ? data.msg : location.href;
+											var url = data.msg && data.msg.indexOf('//') != -1 ? data.msg : location.href;
 											mojia.global.qrcode(200, url, '.mo-have-code', 'mo-have-pics')
 											mojia.button.canvas(url, index);
 										});

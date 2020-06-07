@@ -56,12 +56,13 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 					return false;
 				});
 				form.on('submit(lookup)', function(data) {
+					var image = $(this).parents('td').prev().prev().find('input').val();
 					layer.open({
 						type: 1,
 						title: false,
 						shadeClose: true,
 						area: ['300px', '300px'],
-						content: '<img width="100%" src="' + magic.path + $(this).parents('td').prev().prev().find('input').val() + '"/>'
+						content: '<img width="100%" src="' + (image.indexOf('//') != -1 ? image : magic.path + image) + '"/>'
 					});
 				});
 				form.on('submit(colour)', function(data) {

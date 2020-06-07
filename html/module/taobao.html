@@ -1,19 +1,20 @@
+{assign name="privilege" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/tb-service/get-privilege-link',array('pid'=>$mojia['other']['taoke']['pid'],'id'=>$Think.get.id,'goodsId'=>$Think.get.goodsId,'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])"}
 <dl class="mo-deta-info mo-cols-rows">
 	<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm5 mo-cols-lg4">
-		{include file="basics/banner" data=":array_slice(explode(',',$details['imgs']),0,5)" top=":mac_default('')" style=":mac_default(' mo-byxs-2by3 mo-bysm-20by17 mo-bymd-1by1 mo-bylg-20by17 mo-byxl-20by15')" name=":mac_default($details.brandName)" remark=":mac_default($details.shopName,'查看详情')" image=":mac_url_img(trim($vo))" href=":mac_default($privilege['shortUrl'])"}
+		{include file="basics/banner" data=":array_slice(explode(',',$details['data']['imgs']),0,5)" top=":mac_default('')" style=":mac_default(' mo-byxs-2by3 mo-bysm-20by17 mo-bymd-1by1 mo-bylg-20by17 mo-byxl-20by15')" name=":mac_default($details['data']['brandName'])" remark=":mac_default($details['data']['shopName'],'查看详情')" image=":mac_url_img(trim($vo))" href=":mac_default($privilege['data']['shortUrl'])"}
 		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
-			<a class="mo-deta-play mo-cols-rows mo-pnxs-10px mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{$privilege['shortUrl']}" target="_blank">领取{$details.couponPrice}元券</a>
+			<a class="mo-deta-play mo-cols-rows mo-pnxs-10px mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{$privilege['data']['shortUrl']}" target="_blank">领取{$details['data']['couponPrice']}元券</a>
 		</div>
 	</dt>
-	<dd class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs8 mo-cols-sm7{if$maccms.aid!=13} mo-cols-lg5{else} mo-cols-lg10{/if}">
-		<h1 class="mo-wrap-arow mo-fsxs-16px mo-fssm-18px">{$details.title}</h1>
+	<dd class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs8 mo-cols-sm7 mo-cols-lg5">
+		<h1 class="mo-wrap-arow mo-fsxs-16px mo-fssm-18px">{$details['data']['title']}</h1>
 		<ul class="mo-cols-rows">
-			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-0px mo-ptsm-5px"><span class="mo-text-muted">券后价:&nbsp;</span><span class="mo-fsxs-24px mo-part-bold mo-text-mojia"><span class="mo-fsxs-18px">￥</span>{$details.actualPrice}</span><s class="mo-paxs-10px mo-fsxs-12px mo-text-muted">￥{$details.originalPrice}</s></li>
-			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">有效期至:&nbsp;</span>{$details.couponEndTime}</li>
-			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">剩余优惠券:&nbsp;</span>{$privilege['couponRemainCount']}</li>
-			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px mo-coxs-none mo-coss-block"><span class="mo-text-muted">月销量:&nbsp;</span>{$details.monthSales}</li>
-			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-ptxs-5px mo-lhxs-20px mo-lhxl-24px mo-coxs-none mo-comd-block mo-text-muted">简介:&nbsp;{$details.desc|mac_substring=75|mac_default='暂无简介'}</li>
+			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-0px mo-ptsm-5px"><span class="mo-text-muted">券后价:&nbsp;</span><span class="mo-fsxs-24px mo-part-bold mo-text-mojia"><span class="mo-fsxs-18px">￥</span>{$details['data']['actualPrice']}</span><s class="mo-paxs-10px mo-fsxs-12px mo-text-muted">￥{$details['data']['originalPrice']}</s></li>
+			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">有效期至:&nbsp;</span>{$details['data']['couponEndTime']}</li>
+			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">剩余优惠券:&nbsp;</span>{$privilege['data']['couponRemainCount']|mac_default=$privilege['msg']}</li>
+			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px mo-coxs-none mo-coss-block"><span class="mo-text-muted">月销量:&nbsp;</span>{$details['data']['monthSales']}</li>
+			<li class="mo-cols-info mo-cols-xs12 mo-fsxs-14px mo-ptxs-5px mo-lhxs-20px mo-lhxl-24px mo-coxs-none mo-comd-block mo-text-muted">简介:&nbsp;{$details['data']['desc']|mac_substring=75|mac_default='暂无简介'}</li>
 		</ul>
 	</dd>
-	{if$maccms.aid!=13}{include file="basics/qrcode"}{/if}
+	{include file="tinier/qrcode"}
 </dl>

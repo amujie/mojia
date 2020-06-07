@@ -21,13 +21,12 @@
 {/case}{case value="74"}
 {assign name="seo_title" value="$mojia['home']['taoke']['name'].' - '"}
 {/case}{case value="75"}
-{assign name="details" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-details',array('id'=>$Think.get.id,'goodsId'=>$Think.get.goodsId,'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']"}
-{assign name="privilege" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/tb-service/get-privilege-link',array('pid'=>$mojia['other']['taoke']['pid'],'id'=>$Think.get.id,'goodsId'=>$Think.get.goodsId,'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']"}
-{assign name="seo_title" value="$details['dtitle'].' - '"}
-{assign name="seo_key" value="$details['title']"}
-{assign name="seo_des" value="$details['desc']"}
+{assign name="details" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-details',array('id'=>$Think.get.id,'goodsId'=>$Think.get.goodsId,'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])"}
+{assign name="seo_title" value="$details['data']['dtitle'].' - '"}
+{assign name="seo_key" value="$details['data']['title']"}
+{assign name="seo_des" value="$details['data']['desc']"}
 {assign name="seo_url" value=":mac_url('label/taoke').'?id='.$Think.get.id.'&goodsId='.Think.get.goodsId"}
-{assign name="seo_image" value="$details['marketingMainPic']"}
+{assign name="seo_image" value="$details['data']['marketingMainPic']"}
 {/case}{case value="10"}
 {assign name="seo_title" value="$maccms.seo.vod.name.' - '"}
 {assign name="seo_key" value="$maccms.seo.vod.key"}

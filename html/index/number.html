@@ -1,10 +1,10 @@
 {if$mojia['home']['small']['state']}
 <div class="mo-cols-lays mo-back-white mo-cols-rows">
 	<div class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs12 mo-cols-lg5">
-		{php}$__LIST1__ = $mojia['home']['small']['advs']?json_decode(str_replace('art','vod',json_encode(model("Art")->listCacheData('{"ids":"'.$mojia['home']['small']['advs'].'"}')['list'])), ture):array('list'=>array());{/php}
-		{php}$__LIST2__ = json_decode(str_replace('topic','vod',json_encode(model('Topic')->listCacheData('{"num":"'.$mojia['home']['small']['num'].'","order":"'.$mojia['home']['small']['order'].'","by":"'.$mojia['home']['small']['sort'].'","level":"'.$mojia['home']['small']['level'].'"}')['list'])), ture);{/php}
+		{php}$__LIST1__ = $mojia['home']['small']['advs']?model("Art")->listCacheData('{"ids":"'.$mojia['home']['small']['advs'].'"}')['list']:array('list'=>array());{/php}
+		{php}$__LIST2__ = model('Topic')->listCacheData('{"num":"'.$mojia['home']['small']['num'].'","order":"'.$mojia['home']['small']['order'].'","by":"'.$mojia['home']['small']['sort'].'","level":"'.$mojia['home']['small']['level'].'"}')['list'];{/php}
 		{php}$__LIST3__ = model('Vod')->listCacheData('{"num":"'.$mojia['home']['small']['num'].'","type":"'.$mojia['home']['small']['type'].'","order":"'.$mojia['home']['small']['order'].'","by":"'.$mojia['home']['small']['sort'].'","level":"'.$mojia['home']['small']['level'].'"}')['list'];{/php}
-		{include file="basics/banner" data=":mac_default(array_filter(array_merge($__LIST1__,$__LIST2__,$__LIST3__)))" top=":mac_default('')" style=":mac_default(' mo-byxs-3by2 mo-bylg-5by3')" name=":mac_default($vo['vod_name'])" remark=":mac_default($vo['vod_remarks'],'查看详情')" image=":mac_url_img(trim(mac_default($vo['vod_pic_slide'],$vo['vod_pic'])))" href=":mac_url_vod_detail($vo)"}
+		{include file="basics/banner" type="index" data=":mac_default(array_filter(array_merge($__LIST1__,$__LIST2__,$__LIST3__)))" top=":mac_default('')" style=":mac_default(' mo-byxs-3by2 mo-bylg-5by3')"}
 	</div>
 	<div class="mo-cols-info mo-cols-xs12 mo-cols-lg7">
 		<ul class="mo-cols-rows">

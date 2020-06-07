@@ -23,7 +23,7 @@
 			</div>
 			<div class="mo-cols-rows mo-mtxs-5px">
 				<span class="mo-form-name">验证</span>
-				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="code" placeholder="请输入手机验证码" maxlength="8" />
+				<input class="mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="code" placeholder="请输入手机验证码" maxlength="8" />
 				<a class="mo-part-more mo-prxs-10px mo-pnxs-10px mo-lhxs-44px mo-back-white" href="javascript:;" data-url="{:mac_url('user/reg_msg')}" lay-submit lay-filter="bindmsg">获取验证码</a>
 			</div>
 			{elseif$user_config.reg_email_sms}
@@ -34,13 +34,13 @@
 			</div>
 			<div class="mo-cols-rows mo-mtxs-5px">
 				<span class="mo-form-name">验证</span>
-				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="code" placeholder="请输入邮箱验证码" maxlength="8" />
+				<input class="mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="code" placeholder="请输入邮箱验证码" maxlength="8" />
 				<a class="mo-part-more mo-prxs-10px mo-pnxs-10px mo-lhxs-44px mo-back-white" href="javascript:;" data-url="{:mac_url('user/reg_msg')}" lay-submit lay-filter="bindmsg">获取验证码</a>
 			</div>
 			{/if}{if$GLOBALS['config']['user']['reg_verify']}
 			<div class="mo-cols-rows mo-mtxs-5px">
 				<span class="mo-form-name">验证</span>
-				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="verify" placeholder="输入验证码" maxlength="6" />
+				<input class="mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="verify" placeholder="输入验证码" maxlength="6" />
 				<img class="mo-part-more mo-part-curs mo-java-verify" height="44" src="{:mac_url('verify/index')}" title="看不清楚? 换一张！" />
 			</div>
 			{/if}

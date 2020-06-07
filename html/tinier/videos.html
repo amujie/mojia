@@ -106,7 +106,7 @@
 			</li>
 			{/if}
 			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
-				<a class="mo-play-somake" href="javascript:;"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shoucang{if model('Ulog')->listData(array('ulog_type'=>'2','ulog_rid'=>$obj['vod_id'],'ulog_sid'=>$param['sid'],'ulog_nid'=>$param['nid'],'user_id'=>$user['user_id']))['pagecount']} mo-icon-shoucang1{/if}"></i>收藏</a>
+				<a class="mo-play-somake" href="javascript:;"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shoucang{if model('Ulog')->listData(array('ulog_type'=>'2','ulog_rid'=>$obj['vod_id'],'ulog_sid'=>$param['sid'],'ulog_nid'=>$param['nid'],'user_id'=>$user['user_id']),'ulog_time desc')['pagecount']} mo-icon-shoucang1{/if}"></i>收藏</a>
 			</li>
 			{if$mojia['other']['share']['state']}
 			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">

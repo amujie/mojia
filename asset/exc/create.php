@@ -172,13 +172,15 @@ function moJiaCommon() {
 	} else {
 		$mojia = moJiaPath('mojia');
 		$url = $mojia['other']['share']['host'] ? $mojia['other']['share']['host'] . parse_url(@$_POST['url'], PHP_URL_PATH) : @$_POST['url'];
-		die(json_encode(array('msg' => moJiaCurlGet($mojia['other']['share']['apis'] . $url))));
+		die(json_encode(array('msg' => moJiaCurlGet($mojia['other']['share']['apis'] . rawurlencode($url)))));
 	}
 }
 
 // 主题更新
 function moJiaUpdate() {
-	if (isset($_POST['ver'])) {
+	if (!moJiaPower('mojia', moJiaPath('base'))) {
+		die(json_encode(array('msg' => '权限不足')));
+	} elseif (isset($_POST['ver'])) {
 		$path = '../../../';
 		$name = 'mojia-' . $_POST['ver'] . '.zip';
 		$href = moJiaPath('down') . $name . '?v=' . time();

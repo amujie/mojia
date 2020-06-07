@@ -496,6 +496,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	.mo-prmd-15px {padding-right: 0.9375rem}
 	.mo-ptmd-5px {padding-top: 0.3125rem}
 	.mo-ptmd-10px {padding-top: 0.625rem}
+	.mo-pbmd-5px {padding-bottom: 0.3125rem}
 	.mo-pbmd-10px {padding-bottom: 0.625rem}
 	.mo-mtmd-5px {margin-top: 0.3125rem}
 	.mo-mamd-10px {margin: 0.625rem}
@@ -741,7 +742,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-have-info .mo-have-body {position: relative;width: 100%;height: 100%;}
 .mo-have-info .mo-have-main {top: 0;width: 100%;height: 100%;}
 .mo-have-info .mo-have-right {top: 0;right: 0;}
-.mo-have-info .mo-have-code {right: 0;bottom: 0;}
+.mo-have-info .mo-have-code {right: 0;bottom: 0;width: 5.6875rem;height: 5.6875rem;}
 .mo-have-info .mo-have-boxs {min-height: 100%;}
 .mo-have-info .mo-have-pics {width: 100%;}
 /* 用户中心 */
@@ -758,6 +759,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-shut-info .mo-shut-item:last-child {border: none}
 .mo-shut-info .mo-shut-tips {height: 45px;line-height: 45px;background: rgba(255, 255, 255, .06)}
 .mo-shut-info .mo-shut-span {line-height: 70px}
+.mo-shut-info .mo-shut-code {height: 10rem;}
 /* 防红防封 */
 .mo-brow-info {background: white url(../img/browser.png) center top/contain no-repeat;}
 .mo-brow-info .mo-brow-main {position: fixed;bottom: 80px;}

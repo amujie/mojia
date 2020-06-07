@@ -28,6 +28,7 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 				}, 1000);
 			},
 			'browser': function() {
+				common.global.output();
 				var url = window.location.href;
 				if (navigator.userAgent.indexOf('QQ/') > -1) {
 					mojia.global.openurl('ucbrowser://' + url);
@@ -62,9 +63,7 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 				});
 			},
 			'update': function() {
-				layui.use('qrcode', function() {
-					common.global.qrcode(148, location.href, '.mo-code-info', 'mo-code-pics');
-				});
+				common.global.output();
 			},
 			'openurl': function(url) {
 				document.getElementById('browser').href = url;

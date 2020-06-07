@@ -3,7 +3,7 @@
   array (
     'logo' => 
     array (
-      'src' => 'template/mojia/asset/img/logo.png',
+      'src' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/logo.png',
       'link' => '/',
       'type' => 'logo',
       'desktop' => 'on',
@@ -28,10 +28,10 @@
     ),
     'level' => 
     array (
-      'id' => '1',
+      'id' => '',
       'icon' => 'mo-icon-shuju',
       'name' => '',
-      'link' => '/index.php/vod/detail/id/1.html',
+      'link' => '',
       'type' => 'vod',
     ),
     'film' => 
@@ -73,16 +73,16 @@
     ),
     'music' => 
     array (
-      'id' => '35',
+      'id' => '',
       'icon' => 'mo-icon-zhibo',
-      'name' => '直播',
-      'link' => '/index.php/vod/type/id/35.html',
+      'name' => '',
+      'link' => '',
       'type' => 'cat',
     ),
     'live' => 
     array (
       'id' => '',
-      'icon' => 'mo-icon-zhibo',
+      'icon' => 'mo-icon-VIP',
       'name' => '',
       'link' => '',
       'type' => 'cat',
@@ -325,7 +325,7 @@
     'chat' => 
     array (
       'name' => '扫码观看',
-      'pics' => 'template/mojia/asset/img/favicon.png',
+      'pics' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/favicon.png',
       'send' => '关键词1',
       'code' => '长城',
       'type' => '',
@@ -333,7 +333,7 @@
     'logo' => 
     array (
       'name' => '视频标志',
-      'pics' => 'template/mojia/asset/img/logo.png',
+      'pics' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/logo.png',
       'state' => '0',
       'width' => '25%',
       'height' => '60px',
@@ -343,7 +343,7 @@
     'cover' => 
     array (
       'name' => '视频封面',
-      'pics' => 'template/mojia/asset/img/loading.gif',
+      'pics' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/loading.gif',
       'state' => '1',
     ),
     'advs' => 
@@ -560,7 +560,7 @@
     array (
       'name' => '关站设置',
       'tips' => '网站维护中，请稍后访问',
-      'time' => '2020-01-31 00:00:00',
+      'time' => '2021-05-20 00:00:00',
       'state' => '1',
     ),
     'edit' => 
@@ -589,7 +589,7 @@
       'tips' => '关注微信公众号,追剧不迷路',
       'link' => '',
       'state' => '0',
-      'pics' => 'template/mojia/asset/img/favicon.png',
+      'pics' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/favicon.png',
     ),
     'share' => 
     array (
@@ -597,12 +597,12 @@
       'apis' => '',
       'host' => '',
       'state' => '1',
-      'image' => 'template/mojia/asset/img/image.jpg',
+      'image' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/image.jpg',
     ),
     'icon' => 
     array (
       'name' => '网站标志',
-      'pics' => 'template/mojia/asset/img/favicon.png',
+      'pics' => 'http://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/favicon.png',
     ),
     'lazy' => 
     array (
