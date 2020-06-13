@@ -1,4 +1,4 @@
-layui.define(['jquery', 'layer', 'common'], function(exports) {
+layui.define(['polyfill', 'jquery', 'layer', 'common'], function(exports) {
 	var common = layui.common,
 		layer = layui.layer,
 		$ = layui.jquery;

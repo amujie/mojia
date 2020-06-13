@@ -17,9 +17,13 @@
 	{if$obj.art_list|count}
 	<div class="mo-tabs-item mo-cols-show">
 		<ul class="mo-cols-rows">
-			{maccms:foreach name=":explode(',',$obj['topic_rel_art'])" id="magic"}{maccms:art ids="'.$magic.'"}
+			{maccms:foreach name=":explode(',',$obj['topic_rel_art'])" id="magic"}{if!is_numeric($magic)}{maccms:art wd="'.$magic.'"}
 			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
-				{include file="basics/picture" type="art" style=":mac_default(' mo-lazy-broad mo-byxs-16by9')" tips=":mac_default($vo['art_level']?'推荐':$vo['art_hits'].'阅读')" remark=":mac_default(mac_substring($vo['art_remarks'],7),'广告')" name=":mac_default($vo['art_name'])" desc=":mac_default(mac_filter_html($vo['art_blurb']),'暂无简介')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_url_art_detail($vo)" title="show" lazy="open"}
+				{include file="basics/picture" type="art" style=":mac_default(' mo-lazy-broad mo-byxs-16by9')" tips=":mac_default($vo['art_level']?'推荐':$vo['art_hits'].'阅读')" remark=":mac_default(mac_substring($vo['art_remarks'],12),date('Y-m-d H:i',$vo['art_time']))" name=":mac_default($vo['art_name'])" desc=":mac_default(mac_filter_html($vo['art_blurb']),'暂无简介')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_url_art_detail($vo)" title="show" lazy="open"}
+			</li>
+			{/maccms:art}{/if}{maccms:art ids="'.$magic.'"}
+			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
+				{include file="basics/picture" type="art" style=":mac_default(' mo-lazy-broad mo-byxs-16by9')" tips=":mac_default($vo['art_level']?'推荐':$vo['art_hits'].'阅读')" remark=":mac_default(mac_substring($vo['art_remarks'],12),date('Y-m-d H:i',$vo['art_time']))" name=":mac_default($vo['art_name'])" desc=":mac_default(mac_filter_html($vo['art_blurb']),'暂无简介')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_url_art_detail($vo)" title="show" lazy="open"}
 			</li>
 			{/maccms:art}{/maccms:foreach}
 		</ul>
@@ -43,7 +47,8 @@
 	{include file="basics/titles" module="child" title=":mac_default('关联视频')" more="hide"}
 	<div class="mo-cols-rows">
 		{include file="basics/paging" limit="10" data="explode(',',$obj['topic_rel_vod'])" page="str_replace($GLOBALS['config']['app']['pathinfo_depr'].$obj['topic_id'].'.'.$GLOBALS['config']['app']['suffix'],$GLOBALS['config']['app']['pathinfo_depr'].$obj['topic_id'].$GLOBALS['config']['app']['pathinfo_depr'].'page'.$GLOBALS['config']['app']['pathinfo_depr'].'PAGELINK.'.$GLOBALS['config']['app']['suffix'],mac_url_topic_detail($obj))"}
-		{volist name="$data_list" id="magic"}{maccms:vod ids="'.$magic.'"}{include file="module/videos"}{/maccms:vod}{/volist}
+		{volist name="$data_list" id="magic"}{maccms:vod ids="'.$magic.'"}{include file="module/videos"}{/maccms:vod}
+		{if!is_numeric($magic)}{maccms:vod wd="'.$magic.'"}{include file="module/videos"}{/maccms:vod}{/if}{/volist}
 	</div>
 	{include file="tinier/paging"}
 </div>

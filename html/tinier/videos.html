@@ -6,7 +6,7 @@
 </div>
 {/if}
 <div class="mo-play-info mo-cols-rows mo-back-white mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px">
-	<div class="mo-play-boxs mo-cols-rows mo-back-black mo-byxs-16by9">
+	<div class="mo-play-boxs mo-cols-rows mo-back-black mo-byxs-16by9 mo-play-highs">
 		{if$obj['vod_pwd_down']&&session('1-4-'.$obj['vod_id'])!=1&&$maccms.aid==10}
 		<div class="mo-play-passer mo-cols-rows mo-paxs-5px mo-pamd-10px mo-part-full mo-part-more mo-back-white">
 			<div class="mo-part-core">
@@ -104,9 +104,9 @@
 			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center mo-coxs-none mo-coss-table">
 				<a class="mo-play-reno" href="javascript:;" onclick="location.reload();"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shuaxin"></i>刷新</a>
 			</li>
-			{/if}
+			{/if}{assign name="somake" value=":model('Ulog')->listData(array('ulog_type'=>'2','ulog_rid'=>$obj['vod_id'],'ulog_sid'=>$param['sid'],'ulog_nid'=>$param['nid'],'user_id'=>$user['user_id']),'ulog_time desc')"}
 			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
-				<a class="mo-play-somake" href="javascript:;"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shoucang{if model('Ulog')->listData(array('ulog_type'=>'2','ulog_rid'=>$obj['vod_id'],'ulog_sid'=>$param['sid'],'ulog_nid'=>$param['nid'],'user_id'=>$user['user_id']),'ulog_time desc')['pagecount']} mo-icon-shoucang1{/if}"></i>收藏</a>
+				<a class="mo-play-somake" href="javascript:;" data-url="{:mac_url('user/ulog_del')}" data-ids="{$somake['list'][0]['ulog_id']}"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-shoucang{if$somake['pagecount']} mo-icon-shoucang1{/if}"></i>收藏</a>
 			</li>
 			{if$mojia['other']['share']['state']}
 			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
@@ -122,11 +122,11 @@
 		</ul>
 	</div>
 </div>
-{if$mojia['other']['chat']['state']}
+{if$mojia['play']['tips']['title']}
 <div class="mo-back-white mo-cols-rows mo-comd-none">
 	<ul class="mo-cols-topo mo-bord-muted mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs12 mo-cols-lg6">
 		<li class="mo-cols-topo mo-paxs-5px">
-			<a class="mo-play-tips mo-lhxs-40px mo-goto-chats mo-part-hund mo-pnxs-15px mo-wrap-arow mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;" data-tips="{$mojia['other']['chat']['tips']}" data-link="{$mojia['other']['chat']['link']}" data-pics="{$mojia['other']['chat']['pics']|mac_url_img}">{$mojia['other']['chat']['tips']}</a>
+			<a class="mo-play-tips mo-lhxs-40px mo-goto-chats mo-part-hund mo-pnxs-15px mo-wrap-arow mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="{if$mojia['other']['chat']['state']||!$mojia['play']['tips']['href']}javascript:;{else}{$mojia['play']['tips']['href']}{/if}" data-tips="{$mojia['other']['chat']['tips']}" data-link="{$mojia['other']['chat']['link']}" data-pics="{$mojia['other']['chat']['pics']|mac_url_img}" target="_blank">{$mojia['play']['tips']['title']}</a>
 		</li>
 	</ul>
 </div>

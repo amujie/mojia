@@ -18,7 +18,18 @@
 	<a href="javascript:;" class="mo-page-jump mo-part-vert mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-30px mo-lhmd-34px mo-mnxs-0x2 mo-pnxs-5px mo-pnmd-15px mo-fsxs-14px mo-back-hover mo-coxs-iblock mo-back-click" data-href="{$__PAGING__.page_url}">跳转</a>
 </div>
 {/if}{empty name="$__PAGING__.record_total"}{if$maccms.mid!=4&&$maccms.mid!=5}
-<div class="mo-paxs-5px mo-pamd-10px">{if$maccms.aid==13}暂无相关视频！如需提醒管理员添加该视频请在下方留言，谢谢！{else}暂无相关内容！{/if}</div>
+<div class="mo-paxs-5px mo-pamd-10px">
+	{if$maccms.aid==13}
+	{assign name="word" value=":moJiaCurlGet('https://m.baidu.com/s?word='.mac_filter_html($param['wd']).'&sa=tb&ts=0&t_kt=0&ie=utf-8&rsv_t=ea5eKKcL97N6Jn8srUU5sxN0BMS2I%252FRMAlkgYUiXTAUqs7sfF%252FAN&rsv_pq=12077193514015555638')"}
+	{php}preg_match_all('!以下包含(.*?)的结果!i', $word, $match);{/php}
+	{if strip_tags(@$match[1][0])}
+	请检查关键词是否有误！搜索<a class="mo-text-mojia" href="{:mac_url('vod/search')}?wd={:strip_tags(@$match[1][0])}">&nbsp;{:strip_tags(@$match[1][0])}&nbsp;</a>试试？
+	{else}
+	暂无相关视频！如需提醒管理员添加该视频请在下方留言，谢谢！
+	{/if}{else}
+	暂无相关内容！
+	{/if}
+</div>
 {/if}{elseif$maccms.mid!=4}
 <script type="text/javascript">
 if(document.getElementById('mo-page-this')) document.getElementById('mo-page-this').innerHTML='{$__PAGING__.page_current}';

@@ -42,5 +42,9 @@
 	.mo-body-backs {background-image: url("{$mojia['other']['move']['pics']|mac_url_img}")}
 	{/if}{if$mojia['other']['table']['pics']}@media(min-width:768px) {
 	.mo-body-backs {background-image: url("{$mojia['other']['table']['pics']|mac_url_img}")}}
+	{/if}{if$mojia['play']['high']['move']}
+	.mo-play-highs {padding-top:{$mojia['play']['high']['move']}!important}
+	{/if}{if$mojia['play']['high']['desk']}@media(min-width:768px) {
+	.mo-play-highs {padding-top:{$mojia['play']['high']['desk']}!important}}
 	{/if}
 </style>

@@ -354,6 +354,20 @@
       'link' => 'https://mojia.amujie.com',
       'group' => '',
     ),
+	'high' =>
+	array (
+	  'name' => '视频高度',
+	  'desk' => '56.25%',
+	  'phone' => '移动端高度',
+	  'move' => '56.25%',
+	),
+	'tips' =>
+	array (
+	  'name' => '提示按钮',
+	  'title' => '点击下方选择播放',
+	  'link' => '提示按钮链接',
+	  'href' => '',
+	),
     'load' => 
     array (
       'name' => '加载提示',
@@ -583,6 +597,12 @@
       'link' => 'https://player.alicdn.com/video/aliyunmedia.mp4',
       'state' => '0',
     ),
+	'call' =>
+	array (
+	  'name' => '在线客服',
+	  'link' => '',
+	  'state' => '0',
+	),
     'chat' => 
     array (
       'name' => '公众号码',
@@ -637,11 +657,6 @@
       'name' => '触发任务',
       'link' => '/api.php/timming/index',
       'type' => '',
-    ),
-    'call' => 
-    array (
-      'name' => '在线客服',
-      'link' => '',
     ),
     'part' => 
     array (

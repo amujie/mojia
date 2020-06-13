@@ -1,7 +1,7 @@
 <div class="mo-swip-container mo-cols-rows">
 	<ul class="mo-swip-wrapper mo-cols-zero">
 		{maccms:foreach name="[data]"}
-		{assign name="type" value="$vo['type_1']['type_mid']?mac_get_mid_code($vo['type_1']['type_mid']):'topic'"}
+		{assign name="type" value="$vo['type']['type_mid']?mac_get_mid_code($vo['type']['type_mid']):'topic'"}
 		<li class="mo-swip-slide{[top]}">
 			<a class="mo-situ-pics mo-lazy-color mo-swip-lazy mo-lazy-broad{[style]}" href="{if'[type]'=='index'}{:mac_default($vo['art_jumpurl'],mac_url($type.'/detail',[],$vo))}{else}{[href]}{/if}" data-background="{if'[type]'=='index'}{:mac_url_img(trim(mac_default($vo[$type.'_pic_slide'],$vo[$type.'_pic'])))}{else}{[image]}{/if}">
 				<div class="mo-swip-title mo-cols-rows mo-part-ramp mo-text-white mo-wrap-arow">

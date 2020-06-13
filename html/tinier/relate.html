@@ -2,7 +2,12 @@
 <div class="mo-cols-lays mo-back-white">
 	{include file="basics/titles" module="rel" title=":mac_default('相关文章')" btns="更多" more="hide"}
 	<ul class="mo-cols-rows">
-		{volist name=":explode(',',$obj[($maccms.mid==1?'vod':'art').'_rel_art'])" id="magic"}{maccms:art ids="'.$magic.'"}
+		{volist name=":explode(',',$obj[($maccms.mid==1?'vod':'art').'_rel_art'])" id="magic"}
+		{if!is_numeric($magic)}{maccms:art wd="'.$magic.'"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
+		{include file="basics/picture" type="art" style=":mac_default(' mo-lazy-broad mo-byxs-16by9')" tips=":mac_default($vo['art_hits'].'阅读')" remark=":mac_default(mac_substring($vo['art_remarks'],12),date('Y-m-d H:i',$vo['art_time']))" name=":mac_default(mac_filter_html($vo['art_name']))" desc=":mac_default(mac_substring(mac_filter_html($vo['art_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_url_art_detail($vo)" title="show" lazy="open"}
+		</li>
+		{/maccms:art}{/if}{maccms:art ids="'.$magic.'"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
 		{include file="basics/picture" type="art" style=":mac_default(' mo-lazy-broad mo-byxs-16by9')" tips=":mac_default($vo['art_hits'].'阅读')" remark=":mac_default(mac_substring($vo['art_remarks'],12),date('Y-m-d H:i',$vo['art_time']))" name=":mac_default(mac_filter_html($vo['art_name']))" desc=":mac_default(mac_substring(mac_filter_html($vo['art_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_url_art_detail($vo)" title="show" lazy="open"}
 		</li>
@@ -13,7 +18,11 @@
 <div class="mo-cols-lays mo-back-white">
 	{include file="basics/titles" module="rel" title=":mac_default('相关视频')" btns="更多" more="hide"}
 	<ul class="mo-cols-rows">
-		{volist name=":explode(',',$obj[($maccms.mid==1?'vod':'art').'_rel_vod'])" id="magic"}{maccms:vod ids="'.$magic.'"}
+		{volist name=":explode(',',$obj[($maccms.mid==1?'vod':'art').'_rel_vod'])" id="magic"}{if!is_numeric($magic)}{maccms:vod wd="'.$magic.'"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
+		{include file="basics/picture" type="vod" style=":mac_default(stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'直播')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_default(mac_filter_html($vo['vod_name']))" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
+		</li>
+		{/maccms:vod}{/if}{maccms:vod ids="'.$magic.'"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
 		{include file="basics/picture" type="vod" style=":mac_default(stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'直播')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_default(mac_filter_html($vo['vod_name']))" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
 		</li>

@@ -1,6 +1,8 @@
 {include file="public/include"}
 <div class="mo-head-info mo-back-white mo-cols-minw mo-bsmd-shadow">
-	<div class="mo-cols-case" data-url="{:mac_url('label/navbar')}" type-mid="{$maccms.mid}" type-aid="{$maccms.aid}" type-tid="{$GLOBALS['type_id']}" type-pid="{$GLOBALS['type_pid']}"></div>
+	<div class="mo-cols-case" data-url="{:mac_url('label/navbar')}" type-mid="{$maccms.mid}" type-aid="{$maccms.aid}" type-tid="{$GLOBALS['type_id']}" type-pid="{$GLOBALS['type_pid']}">
+		{include file="basics/navbar" mid="mac_filter_html($maccms['mid'])" aid="mac_filter_html($maccms['aid'])" tid="mac_filter_html($GLOBALS['type_id'])" pid="mac_filter_html($GLOBALS['type_pid'])"}
+	</div>
 </div>
 <div class="mo-tabr-info mo-back-white mo-cols-minw mo-line-top mo-bord-muted mo-cosm-none mo-java-fadein">
 	<ul class="mo-cols-rows">

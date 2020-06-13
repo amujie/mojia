@@ -54,10 +54,15 @@
 			<tr>
 				<td>版本号</td>
 				<td><a href="{$config['website']}" target="_blank">{$config['version']}</a></td>
-				<td>8. 不提供免费个性化修改服务</td>
+				<td>8. 使用中出现问题请联系作者QQ</td>
 			</tr>
 			<tr>
-				<td colspan="3">此模板无任何内置数据，对用户在使用过程中的信息内容本程序不负任何责任！请知悉！授权者务必尊重知识产权，严格保证不恶意传播产品源码、不得直接对授权的产品本身进行二次转售或倒卖等。否则我们有权利收回产品授权。</td>
+				<td>到期时间</td>
+				<td><a href="{:mac_url('label/mojia')}" target="_blank"><span class="layui-badge">{if!is_numeric(substr($verify['key'],18))}2099-12-31{else}{:date('Y-m-d',substr($verify['key'],18,10))}{/if}</span></a></td>
+				<td>{if is_numeric(substr($verify['key'],18))&&time()>substr($verify['key'],18,10)}<a href="{:mac_url('label/mojia')}" target="_blank"><font color="red">已过期&nbsp;&nbsp;打开授权页面</font></a>{else}9. 不提供免费个性化修改服务{/if}</td>
+			</tr>
+			<tr>
+				<td colspan="3"><font color="red">此模板无任何内置数据，对用户在使用过程中的信息内容本程序不负任何责任！请知悉！授权者务必尊重知识产权，严格保证不恶意传播产品源码、不得直接对授权的产品本身进行二次转售或倒卖等。否则我们有权利收回产品授权。</font></td>
 			</tr>
 		</tbody>
 	</table>

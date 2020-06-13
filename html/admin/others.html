@@ -63,6 +63,14 @@
 				</td>
 			</tr>
 			<tr>
+				<td><input type="input" name="mojia[other][call][name]" value="{$mojia['other']['call']['name']}" class="layui-input" placeholder="在线客服"></td>
+				<td colspan="3"><input type="input" name="mojia[other][call][link]" value="{$mojia['other']['call']['link']}" class="layui-input" placeholder="请填写跳转链接"></td>
+				<td>
+					<input type="radio" name="mojia[other][call][state]" value="1" title="开启"{if$mojia['other']['call']['state']==1} checked{/if}>
+					<input type="radio" name="mojia[other][call][state]" value="0" title="关闭"{if$mojia['other']['call']['state']==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
 				<td rowspan="2"><input type="input" name="mojia[other][chat][name]" value="{$mojia['other']['chat']['name']}" class="layui-input" placeholder="公众号码"></td>
 				<td><input type="input" name="mojia[other][chat][tips]" value="{$mojia['other']['chat']['tips']}" class="layui-input" placeholder="请填写提示语"></td>
 				<td colspan="2"><input type="input" name="mojia[other][chat][link]" value="{$mojia['other']['chat']['link']}" class="layui-input" placeholder="请填写公众号链接"></td>
@@ -159,11 +167,6 @@
 					</select>
 				</td>
 				<td>选择触发模块</td>
-			</tr>
-			<tr>
-				<td><input type="input" name="mojia[other][call][name]" value="{$mojia['other']['call']['name']}" class="layui-input" placeholder="在线客服"></td>
-				<td colspan="3"><input type="input" name="mojia[other][call][link]" value="{$mojia['other']['call']['link']}" class="layui-input" placeholder="请填写跳转链接"></td>
-				<td>跳转链接</td>
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][part][name]" value="{$mojia['other']['part']['name']}" class="layui-input" placeholder="圆角尺寸"></td>

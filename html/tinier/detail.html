@@ -6,7 +6,7 @@
 {php}$magic_role = model("Role")->listCacheData('{"rid":"'.$obj['vod_id'].'"}');{/php}
 <div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over mo-java-play mo-java-page" data-name="{$obj.vod_name|mac_filter_html}" data-nums="{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}" data-show="{$obj['vod_play_list'][$param['sid']]['player_info']['show']|mac_default='详情'}">
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-part-slip mo-cols-xs9 mo-cols-sm10">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-cols-zero mo-part-slip mo-cols-xs9 mo-cols-sm10">
 			{if$obj.vod_pwd}
 			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="javascript:;">加密数据</a>
 			{/if}{if$maccms.aid==104}{assign name="param['nid']" value="$param['page']"}{/if}
@@ -19,7 +19,7 @@
 			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">相关明星</a>
 			{/if}{assign name="short['sid']" value="$param['sid']"}
 		</h2>
-		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
 			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-comm-report" href="javascript:;" data-href="{:mac_url('gbook/report')}" data-show="视频详情">报错</a></li>
 		</ul>
 	</div>

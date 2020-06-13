@@ -8,14 +8,14 @@
 {/if}{if$maccms.aid!=16}{assign name="param['sid']" value=":key($obj.vod_down_list)"}{else}{assign name="param['sid']" value="$short['sid']"}{/if}
 <div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over mo-java-down">
 	<div class="mo-drop-head mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-part-slip mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-cols-zero mo-part-slip mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
 			{maccms:foreach name="obj.vod_down_list" id="sub"}
 			<a class="mo-mrxs-5px mo-mrmd-10px{if$maccms.aid==16}{if$sub.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-text-mojia{/if}{elseif$key==$param['sid']} mo-text-mojia{/if}" href="{:mac_url_vod_down($obj,['sid'=>$sub.sid,'nid'=>$param.nid])}" target="{$obj['vod_down_list'][$param['sid']]['player_info']['target']}">{$sub.player_info.show}</a>
 			{/maccms:foreach}
 		</h2>
-		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px">
-			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-comm-report" href="javascript:;" data-href="{:mac_url('gbook/report')}" data-show="{$obj['vod_down_list'][$param['sid']]['player_info']['show']|mac_default='详情'}">报错</a></li>
-			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-drop-sort" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-paixu"></i><span class="mo-drop-name">正序</span></a></li>
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
+			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-plmd-10px mo-comm-report" href="javascript:;" data-href="{:mac_url('gbook/report')}" data-show="{$obj['vod_down_list'][$param['sid']]['player_info']['show']|mac_default='详情'}">报错</a></li>
+			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-plmd-10px mo-drop-sort" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-paixu"></i><span class="mo-drop-name">正序</span></a></li>
 		</ul>
 	</div>
 	{if$obj['vod_pwd_down']&&session('1-5-'.$obj['vod_id'])!=1&&$maccms.aid==10}{include file="tinier/passer" type="5" mold="_down"}{else}

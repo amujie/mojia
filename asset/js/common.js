@@ -241,10 +241,7 @@ layui.define(['jquery'], function(exports) {
 					mojia.navbar.output('mo_record', '.mo-pops-recs');
 					mojia.global.verify();
 				}).error(function() {
-					that.html('<p class="mo-navs-ajax mo-coxs-center">导航栏加载失败，<a class="mo-navs-record mo-text-mojia" href="javascript:;">重新加载</a></p>');
-				});
-				$(document).on('click', '.mo-navs-loop', function() {
-					mojia.navbar.loading($('.mo-head-info').children());
+					mojia.navbar.loading(that);
 				});
 			},
 			'login': function(str, form) {
@@ -447,13 +444,13 @@ layui.define(['jquery'], function(exports) {
 					}, 200);
 				});
 				$(document).on('click', '.mo-chat-submit', function() {
-					if (common.base64.decode($(str).attr('data-word').substring(3)) != $('.mo-chat-input').val()) {
+					if (mojia.base64.decode($('.mo-play-load').attr('data-word').substring(3)) != $('.mo-chat-input').val()) {
 						$('.mo-chat-input').val('').attr('placeholder', '口令错误！请重新输入').focus();
 						return false;
 					} else {
-						common.cookie.set('mo_wechat', $(str).attr('data-word'), 1);
+						mojia.cookie.set('mo_wechat', $('.mo-play-load').attr('data-word'), 1);
 						$('.mo-play-wechat').hide();
-						common.player.judge(str);
+						mojia.player.judge('.mo-play-load');
 					}
 				});
 			},
@@ -485,11 +482,11 @@ layui.define(['jquery'], function(exports) {
 				}, 1000);
 			},
 			'trysee': function(str, iframe, time) {
-				$('.mo-play-trys').html('【试看还剩' + time + '秒】');
+				$('.mo-play-trys').html('【试看还剩' + time + '秒】').next().removeClass('mo-pnxs-10px');;
 				if (time == 1) {
 					$('.mo-play-trysee').show().css('z-index', '99');
 					$('.mo-java-left').addClass('mo-part-left');
-					$('.mo-play-trys').html('');
+					$('.mo-play-trys').html('').next().addClass('mo-pnxs-10px');
 					iframe.src = '';
 					var outer = $(iframe).prop('outerHTML');
 					$(iframe).remove();
@@ -530,7 +527,16 @@ layui.define(['jquery'], function(exports) {
 				var iframe = document.getElementById('mo-play-iframe');
 				iframe.src = $(parse).attr('data-parse') + mojia.player.video(str);
 				if ($(str).attr('data-code') != 1) {
-					if ($(str).attr('data-groupid') < 3 && $(str).attr('data-points') == 0 || $(str).attr('data-points') > 0) {
+					if(/iPhone|iPad|iPod|iOS/i.test(navigator.userAgent)){
+						var text = $('.mo-play-trysee').show().css('z-index', '99').find('h2').text();
+						$('.mo-play-trysee').show().css('z-index', '99').find('h2').text(text.replace('试看'+$(str).attr('data-trys')+'分钟结束，完整',''));
+						$('.mo-java-left').addClass('mo-part-left');
+						iframe.src = '';
+						var outer = $(iframe).prop('outerHTML');
+						$(iframe).remove();
+						$(str).after(outer);
+						return false;
+					} else if ($(str).attr('data-groupid') < 3 && $(str).attr('data-points') == 0 || $(str).attr('data-points') > 0) {
 						iframe.onload = function() {
 							$('.mo-play-iframe').show().css('z-index', '99');
 							$(str).hide();
@@ -574,6 +580,12 @@ layui.define(['jquery'], function(exports) {
 				});
 			},
 			'player': function(str, live, sole) {
+				if(/iPhone|iPad|iPod|iOS/i.test(navigator.userAgent)){
+					var text = $('.mo-play-trysee').show().css('z-index', '99').find('h2').text();
+					$('.mo-play-trysee').show().css('z-index', '99').find('h2').text(text.replace('试看'+$(str).attr('data-trys')+'分钟结束，完整',''));
+					$('.mo-java-left').addClass('mo-part-left');
+					return false;
+				}
 				layui.use(['polyfill', 'hlsmin', 'engine', 'player'], function() {
 					var player = new DPlayer({
 						container: document.getElementById('mo-play-player'),
@@ -625,12 +637,12 @@ layui.define(['jquery'], function(exports) {
 						}
 						if ($(str).attr('data-code') != 1) player.seek(0);
 						player.on('timeupdate', function() {
-							if (sole && JSON.parse(live) == false) mojia.cookie.set(sole, player.video.currentTime, 30);
+							if (sole && JSON.parse(live) == false) mojia.cookie.set(sole, player.video.currentTime, 1);
 							if ($(str).attr('data-code') != 1) {
 								if ($(str).attr('data-groupid') < 3 && $(str).attr('data-points') == 0 || $(str).attr('data-points') > 0) {
 									var trysee = Math.floor($(str).attr('data-trys') * 60 - player.video.currentTime);
-									$('.mo-play-trys').html('【试看还剩' + trysee + '秒】');
-									if (trysee < 0) $('.mo-play-trys').html('').removeClass('mo-play-trys');
+									$('.mo-play-trys').html('【试看还剩' + trysee + '秒】').next().removeClass('mo-pnxs-10px');
+									if (trysee < 0) $('.mo-play-trys').html('').removeClass('mo-play-trys').next().addClass('mo-pnxs-10px');
 									if ($(str).attr('data-trys') > 0 && player.video.currentTime > $(str).attr('data-trys') * 60) {
 										$('.mo-play-trysee').show().css('z-index', '99');
 										$('.mo-java-left').addClass('mo-part-left');
@@ -718,11 +730,19 @@ layui.define(['jquery'], function(exports) {
 			},
 			'store': function(str) {
 				$('.mo-play-somake').click(function() {
-					$.post(magic.path + 'index.php/user/ajax_ulog/?ac=set&mid=' + magic.mid + '&id=' + magic.rid + '&sid=' + magic.sid + '&nid=' + magic.nid + '&type=' + str, function(data) {
-						layer.msg(data.msg);
-						if (data.code == 1) $('.mo-play-somake').find('.mo-icon-font').addClass('mo-icon-shoucang1');
-						else $('.mo-navs-logins').click();
-					});
+					var that = $(this);
+					if (that.find('.mo-icon-font').hasClass('mo-icon-shoucang1')) {
+						$.post(that.attr('data-url'), 'type=2&all=0&ids=' + that.attr('data-ids'), function(data) {
+							layer.msg(data.msg);
+							if (data.code == 1) that.find('.mo-icon-font').removeClass('mo-icon-shoucang1');
+						});
+					} else {
+						$.post(magic.path + 'index.php/user/ajax_ulog/?ac=set&mid=' + magic.mid + '&id=' + magic.rid + '&sid=' + magic.sid + '&nid=' + magic.nid + '&type=' + str, function(data) {
+							layer.msg(data.msg);
+							if (data.code == 1) that.find('.mo-icon-font').addClass('mo-icon-shoucang1');
+							else $('.mo-navs-logins').click();
+						});
+					}
 				});
 			}
 		},
