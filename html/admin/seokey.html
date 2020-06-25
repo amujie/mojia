@@ -1,0 +1,34 @@
+<div class="layui-tab-item">
+	<blockquote class="layui-elem-quote layui-quote-nm">
+		函数变量直接填入即可，字符串前后需要加单引号'，否则会报错！<a href="https://cdn.jsdelivr.net/gh/magicblack/maccms10@master/%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/%E6%A0%87%E7%AD%BE%E8%AF%B4%E6%98%8E.txt" target="_blank"><font color="red">苹果CMS标签</font></a>
+	</blockquote>
+	<table class="layui-table" style="margin-top:0">
+		<colgroup>
+			<col width="80">
+			<col width="125">
+			<col width="125">
+			<col>
+		</colgroup>
+		{maccms:for start="1" end="41"}
+		<thead>
+			<tr><th colspan="4">{$mojia['seo']['index'.$i]['info']}</th></tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="text" name="mojia[seo][index{$i}][aid]" value="{$mojia['seo']['index'.$i]['aid']}" class="layui-input" placeholder="AID"></td>
+				<td><input type="text" name="mojia[seo][index{$i}][info]" value="{$mojia['seo']['index'.$i]['info']}" class="layui-input" placeholder="模块"></td>
+				<td><input type="text" name="mojia[seo][index{$i}][type]" value="{$mojia['seo']['index'.$i]['type']}" class="layui-input" placeholder="请输入类型"></td>
+				<td><input type="text" name="mojia[seo][index{$i}][title]" value="{$mojia['seo']['index'.$i]['title']}" class="layui-input" placeholder="请输入标题"></td>
+			</tr>
+			<tr>
+				<td colspan="3"><input type="text" name="mojia[seo][index{$i}][image]" value="{$mojia['seo']['index'.$i]['image']}" class="layui-input" placeholder="请输入封面地址"></td>
+				<td><input type="text" name="mojia[seo][index{$i}][key]" value="{$mojia['seo']['index'.$i]['key']}" class="layui-input" placeholder="请输入关键词"></td>
+			</tr>
+			<tr>
+				<td colspan="3"><input type="text" name="mojia[seo][index{$i}][url]" value="{$mojia['seo']['index'.$i]['url']}" class="layui-input" placeholder="请输入URL地址"></td>
+				<td><input type="text" name="mojia[seo][index{$i}][des]" value="{$mojia['seo']['index'.$i]['des']}" class="layui-input" placeholder="请输入描述"></td>
+			</tr>
+		</tbody>
+		{/maccms:for}
+	</table>
+</div>

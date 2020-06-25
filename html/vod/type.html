@@ -4,8 +4,8 @@
 	{include file="basics/titles" module="type" title=":mac_filter_html($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
 	<ul class="mo-cols-rows">
 		{maccms:vod num="12" type="'.$magic['type_id'].'" order="desc" by="time"}
-		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
-		{include file="basics/picture" type="vod" style=":mac_default(stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'直播')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_default(mac_filter_html($vo['vod_name']))" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
+		{include file="basics/picture" type="vod" style=":mac_default(stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),'暂无备注')" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
 		</li>
 		{/maccms:vod}
 	</ul>
@@ -15,8 +15,8 @@
 	{include file="basics/titles" module="child" title=":mac_filter_html($obj.type_name)" btns="返回" href=":mac_default($obj.parent?mac_url_type($obj.parent):mac_url(mac_get_mid_code($maccms.mid).'/index'))"}
 	<ul class="mo-cols-rows">
 		{maccms:vod num="48" paging="yes" half="3" type="current" order="desc" by="time"}
-		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
-		{include file="basics/picture" type="vod" style=":mac_default(stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'直播')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_default(mac_filter_html($vo['vod_name']))" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
+		{include file="basics/picture" type="vod" style=":mac_default(stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),'暂无备注')" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
 		</li>
 		{/maccms:vod}
 	</ul>

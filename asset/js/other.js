@@ -1,4 +1,4 @@
-layui.define(['polyfill', 'jquery', 'layer', 'common'], function(exports) {
+layui.define(['jquery', 'layer', 'common'], function(exports) {
 	var common = layui.common,
 		layer = layui.layer,
 		$ = layui.jquery;
@@ -61,9 +61,6 @@ layui.define(['polyfill', 'jquery', 'layer', 'common'], function(exports) {
 						data.clearSelection();
 					});
 				});
-			},
-			'update': function() {
-				common.global.output();
 			},
 			'openurl': function(url) {
 				document.getElementById('browser').href = url;

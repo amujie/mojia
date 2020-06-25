@@ -1,5 +1,4 @@
-{include file="public/header"} 
-{include file="user/banner"} 
+{include file="public/header,user/banner"} 
 <div class="mo-cols-lays mo-back-white">
 	{include file="basics/titles" module="user" title=":mac_default('充值中心')" btns="返回" href=":mac_url('user/buy')"}
 	<form class="mo-user-form" action="{:mac_url('user/gopay')}" autocomplete="off" method="post" target="_blank">

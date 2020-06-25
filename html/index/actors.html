@@ -5,7 +5,7 @@
 		{include file="basics/advert" module="actor" count="mojia['home']['actor']['num']"}
 		{maccms:actor num="'.($mojia['home']['actor']['num']-$advert).'" type="'.$mojia['home']['actor']['type'].'" level="'.$mojia['home']['actor']['level'].'" order="'.$mojia['home']['actor']['order'].'" by="'.$mojia['home']['actor']['sort'].'"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if$mojia['home']['actor']['num']%3} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}{if$mojia['home']['actor']['num']==4&&$key>(3-$advert)} mo-cosm-none mo-colg-block{elseif$mojia['home']['actor']['num']==6&&$key>(4-$advert)} mo-cosm-none mo-colg-block{elseif$mojia['home']['actor']['num']==8&&$key>(6-$advert)} mo-cosm-none mo-colg-block{/if}">
-		{include file="basics/picture" type="actor" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['actor_hits'].'浏览')" remark=":mac_default(mac_substring($vo['actor_remarks'],12),date('Y-m-d H:i',$vo['actor_time']))" name=":mac_default(mac_filter_html($vo['actor_name']))" desc=":mac_default(mac_filter_html($vo['actor_works']),'暂无简介')" image=":mac_url_img(trim($vo['actor_pic']))" href=":mac_url_actor_detail($vo)" title="show" lazy="open"}
+		{include file="basics/picture" type="actor" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['actor_hits'].'浏览')" remark=":mac_default($vo['actor_alias'],'暂无别名')" name=":mac_filter_html($vo['actor_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['actor_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['actor_pic']))" href=":mac_url_actor_detail($vo)" title="show" lazy="open"}
 		</li>
 		{/maccms:actor}
 	</ul>

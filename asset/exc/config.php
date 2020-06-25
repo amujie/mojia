@@ -1,6 +1,13 @@
 <?php return array (
   'nav' => 
   array (
+    'base' => 
+    array (
+      'name' => '基本设置',
+      'status' => '1',
+      'loadon' => '1',
+      'search' => '1',
+    ),
     'logo' => 
     array (
       'src' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/logo.png',
@@ -11,7 +18,7 @@
     'home' => 
     array (
       'id' => '0',
-      'icon' => 'mo-icon-shouye',
+      'icon' => 'mo-icon-shouye-line',
       'name' => '首页',
       'link' => '/',
       'type' => 'mid',
@@ -29,7 +36,7 @@
     'level' => 
     array (
       'id' => '',
-      'icon' => 'mo-icon-shuju',
+      'icon' => 'mo-icon-shuju-line',
       'name' => '',
       'link' => '',
       'type' => 'vod',
@@ -37,7 +44,7 @@
     'film' => 
     array (
       'id' => '1',
-      'icon' => 'mo-icon-dianying',
+      'icon' => 'mo-icon-dianying-line',
       'name' => '电影',
       'link' => '/index.php/vod/type/id/1.html',
       'type' => 'cat',
@@ -47,7 +54,7 @@
     'drama' => 
     array (
       'id' => '2',
-      'icon' => 'mo-icon-shipin1',
+      'icon' => 'mo-icon-shipin',
       'name' => '连续剧',
       'link' => '/index.php/vod/type/id/2.html',
       'type' => 'cat',
@@ -74,7 +81,7 @@
     'music' => 
     array (
       'id' => '',
-      'icon' => 'mo-icon-zhibo',
+      'icon' => 'mo-icon-yanchu-line',
       'name' => '',
       'link' => '',
       'type' => 'cat',
@@ -82,7 +89,7 @@
     'live' => 
     array (
       'id' => '',
-      'icon' => 'mo-icon-VIP',
+      'icon' => 'mo-icon-zhibo',
       'name' => '',
       'link' => '',
       'type' => 'cat',
@@ -109,7 +116,7 @@
     'topic' => 
     array (
       'id' => '3',
-      'icon' => 'mo-icon-huati',
+      'icon' => 'mo-icon-huati-line',
       'name' => '专题',
       'link' => '/index.php/topic/index.html',
       'type' => 'mid',
@@ -118,7 +125,7 @@
     'site' => 
     array (
       'id' => '11',
-      'icon' => 'mo-icon-xiaojuchang',
+      'icon' => 'mo-icon-dingwei-line',
       'name' => '导航',
       'link' => '/index.php/website/index.html',
       'type' => 'mid',
@@ -127,7 +134,7 @@
     'gbook' => 
     array (
       'id' => '5',
-      'icon' => 'mo-icon-pinglun',
+      'icon' => 'mo-icon-pinglun-line',
       'name' => '留言',
       'link' => '/index.php/gbook/index.html',
       'type' => 'mid',
@@ -137,7 +144,7 @@
     'user' => 
     array (
       'id' => '6',
-      'icon' => 'mo-icon-shequ',
+      'icon' => 'mo-icon-shequ-line',
       'name' => '我的',
       'link' => '/index.php/user/index.html',
       'type' => 'mid',
@@ -259,7 +266,7 @@
     array (
       'name' => '文章分类',
       'advs' => '',
-      'type' => '',
+      'type' => '5',
       'level' => '',
       'sort' => 'time',
       'order' => 'desc',
@@ -312,7 +319,7 @@
     array (
       'name' => '友情链接',
       'advs' => '1',
-      'type' => 'all',
+      'type' => 'font',
       'apply' => '1',
       'sort' => 'sort',
       'order' => 'desc',
@@ -354,20 +361,20 @@
       'link' => 'https://mojia.amujie.com',
       'group' => '',
     ),
-	'high' =>
-	array (
-	  'name' => '视频高度',
-	  'desk' => '56.25%',
-	  'phone' => '移动端高度',
-	  'move' => '56.25%',
-	),
-	'tips' =>
-	array (
-	  'name' => '提示按钮',
-	  'title' => '点击下方选择播放',
-	  'link' => '提示按钮链接',
-	  'href' => '',
-	),
+    'high' => 
+    array (
+      'name' => '视频高度',
+      'desk' => '56.25%',
+      'phone' => '移动端高度',
+      'move' => '56.25%',
+    ),
+    'tips' => 
+    array (
+      'name' => '提示按钮',
+      'title' => '关注微信公众号,追剧不迷路',
+      'link' => '提示按钮链接',
+      'href' => '',
+    ),
     'load' => 
     array (
       'name' => '加载提示',
@@ -443,7 +450,7 @@
     array (
       'name' => '禁用按钮',
       'back' => '#dfdfdf',
-      'text' => '#c9c9c9',
+      'text' => '#999999',
     ),
     'mojia' => 
     array (
@@ -568,20 +575,467 @@
       'right' => '',
     ),
   ),
+  'seo' => 
+  array (
+    'index1' => 
+    array (
+      'aid' => '1',
+      'info' => '网站首页',
+      'type' => '\'article\'',
+      'title' => '$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$maccms[\'site_keywords\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index2' => 
+    array (
+      'aid' => '2',
+      'info' => '网站地图',
+      'type' => '\'article\'',
+      'title' => '\'网站地图 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$maccms[\'site_keywords\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index3' => 
+    array (
+      'aid' => '4',
+      'info' => '留言板',
+      'type' => '\'article\'',
+      'title' => '\'留言板 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$maccms[\'site_keywords\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index4' => 
+    array (
+      'aid' => '6',
+      'info' => '个人中心',
+      'type' => '\'article\'',
+      'title' => '\'个人中心 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$maccms[\'site_keywords\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index5' => 
+    array (
+      'aid' => '10',
+      'info' => '视频首页',
+      'type' => '\'article\'',
+      'title' => '\'视频首页 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '\'短视频,搞笑视频,视频分享,免费视频,在线视频,预告片\'',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '\'提供最新最快的视频分享数据\'',
+    ),
+    'index6' => 
+    array (
+      'aid' => '11',
+      'info' => '视频分类',
+      'type' => '\'article\'',
+      'title' => 'mac_default($obj[\'type_title\'],mac_filter_html($obj[\'type_name\'])).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(mac_default($obj[\'type_logo\'],$mojia[\'other\'][\'share\'][\'image\']))',
+      'key' => 'mac_default($obj[\'type_key\'],mac_filter_html($obj[\'type_name\']))',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_type($obj)',
+      'des' => 'mac_default($obj[\'type_des\'],mac_filter_html($maccms[\'site_description\']))',
+    ),
+    'index7' => 
+    array (
+      'aid' => '12',
+      'info' => '视频筛选',
+      'type' => '\'article\'',
+      'title' => 'mac_filter_html($param[\'year\'].$param[\'area\'].$param[\'lang\'].$param[\'class\'].$obj[\'type_name\'].($param[\'level\']?\'推荐\':\'\').$param[\'letter\']).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(mac_default($obj[\'type_logo\'],$mojia[\'other\'][\'share\'][\'image\']))',
+      'key' => 'mac_default($obj[\'type_key\'],mac_filter_html($obj[\'type_name\']))',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_type($obj,[\'area\'=>$param.area,\'lang\'=>$param.lang,\'year\'=>$param.year],\'show\')',
+      'des' => 'mac_default($obj[\'type_des\'],mac_filter_html($maccms[\'site_description\']))',
+    ),
+    'index8' => 
+    array (
+      'aid' => '13',
+      'info' => '视频搜索',
+      'type' => '\'article\'',
+      'title' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\'].\'_搜索结果 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'vod/search\',array(\'wd\'=>$param[\'wd\']))',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index9' => 
+    array (
+      'aid' => '14',
+      'info' => '视频详情',
+      'type' => '\'videolist\'',
+      'title' => 'mac_default(mac_filter_html($obj[\'vod_name\']),\'404 Not Found\').\'_\'.mac_filter_html($obj[\'type\'][\'type_name\']).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(trim($obj[\'vod_pic\']))',
+      'key' => 'mac_filter_html($obj[\'vod_actor\'].\',\'.$obj[\'vod_director\'].\',\'.$obj[\'vod_name\'].\',\'.$obj[\'type\'][\'type_name\'])',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_vod_detail($obj)',
+      'des' => 'mac_substring(mac_filter_html($obj[\'vod_content\']),120)',
+    ),
+    'index10' => 
+    array (
+      'aid' => '15',
+      'info' => '视频播放',
+      'type' => '\'video\'',
+      'title' => 'mac_default(mac_filter_html($obj[\'vod_name\'].\'_\'.$obj[\'vod_play_list\'][$param[\'sid\']][\'urls\'][$param[\'nid\']][\'name\']),\'404 Not Found\').\'_\'.mac_filter_html($obj[\'type\'][\'type_name\']).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(trim($obj[\'vod_pic\']))',
+      'key' => 'mac_filter_html($obj[\'vod_actor\'].\',\'.$obj[\'vod_director\'].\',\'.$obj[\'vod_name\'].\',\'.$obj[\'type\'][\'type_name\'])',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => 'mac_substring(mac_filter_html($obj[\'vod_content\']),120)',
+    ),
+    'index11' => 
+    array (
+      'aid' => '16',
+      'info' => '视频下载',
+      'type' => '\'videolist\'',
+      'title' => 'mac_default(mac_filter_html($obj[\'vod_name\'].\'_\'.$obj[\'vod_down_list\'][$param[\'sid\']][\'urls\'][$param[\'nid\']][\'name\']),\'404 Not Found\').\'_\'.mac_filter_html($obj[\'type\'][\'type_name\']).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(trim($obj[\'vod_pic\']))',
+      'key' => 'mac_filter_html($obj[\'vod_actor\'].\',\'.$obj[\'vod_director\'].\',\'.$obj[\'vod_name\'].\',\'.$obj[\'type\'][\'type_name\'])',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => 'mac_substring(mac_filter_html($obj[\'vod_content\']),120)',
+    ),
+    'index12' => 
+    array (
+      'aid' => '17',
+      'info' => '视频角色',
+      'type' => '\'article\'',
+      'title' => '\'网站地图 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(trim($obj[\'vod_pic\']))',
+      'key' => '$maccms[\'site_keywords\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index13' => 
+    array (
+      'aid' => '20',
+      'info' => '文章首页',
+      'type' => '\'article\'',
+      'title' => '\'网站地图 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '\'新闻资讯,娱乐新闻,八卦娱乐,狗仔队,重大事件\'',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '\'提供最新最快的新闻资讯\'',
+    ),
+    'index14' => 
+    array (
+      'aid' => '21',
+      'info' => '文章分类',
+      'type' => '\'article\'',
+      'title' => 'mac_default($obj[\'type_title\'],mac_filter_html($obj[\'type_name\'])).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(mac_default($obj[\'type_logo\'],$mojia[\'other\'][\'share\'][\'image\']))',
+      'key' => 'mac_default($obj[\'type_key\'],mac_filter_html($obj[\'type_name\']))',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_type($obj)',
+      'des' => 'mac_default($obj[\'type_des\'],mac_filter_html($maccms[\'site_description\']))',
+    ),
+    'index15' => 
+    array (
+      'aid' => '22',
+      'info' => '文章筛选',
+      'type' => '\'article\'',
+      'title' => 'mac_filter_html($param[\'class\'].$obj[\'type_name\'].($param[\'level\']?\'推荐\':\'\').$param[\'letter\']).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(mac_default($obj[\'type_logo\'],$mojia[\'other\'][\'share\'][\'image\']))',
+      'key' => 'mac_default($obj[\'type_key\'],mac_filter_html($obj[\'type_name\']))',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_type($obj,[\'area\'=>$param.area,\'lang\'=>$param.lang,\'year\'=>$param.year],\'show\')',
+      'des' => 'mac_default($obj[\'type_des\'],mac_filter_html($maccms[\'site_description\']))',
+    ),
+    'index16' => 
+    array (
+      'aid' => '23',
+      'info' => '文章搜索',
+      'type' => '\'article\'',
+      'title' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\'].\'_搜索结果 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'art/search\',array(\'wd\'=>$param[\'wd\']))',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index17' => 
+    array (
+      'aid' => '24',
+      'info' => '文章详情',
+      'type' => '\'article\'',
+      'title' => 'mac_default(mac_filter_html($obj[\'art_name\']),\'404 Not Found\').\'_\'.mac_filter_html($obj[\'type\'][\'type_name\']).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(trim($obj[\'art_pic\']))',
+      'key' => 'mac_filter_html(mac_default($obj[\'art_tag\'],$obj[\'art_name\']).\',\'.$obj[\'type\'][\'type_name\'])',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_art_detail($obj)',
+      'des' => 'mac_substring(mac_filter_html($obj[\'art_content\']),120)',
+    ),
+    'index18' => 
+    array (
+      'aid' => '30',
+      'info' => '专题首页',
+      'type' => '\'article\'',
+      'title' => '\'专题首页 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '\'电影,电视剧,大片,高清,在线观看,最新电视剧,好看的电视剧,最新电影,好看的电影,在线电影\'',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '\'影视专题,提供最新最热电影、电视剧、纪录片的专题汇总信息、视频高清在线观看\'',
+    ),
+    'index19' => 
+    array (
+      'aid' => '33',
+      'info' => '专题搜索',
+      'type' => '\'article\'',
+      'title' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\'].\'_搜索结果 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'topic/search\',array(\'wd\'=>$param[\'wd\']))',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index20' => 
+    array (
+      'aid' => '34',
+      'info' => '专题详情',
+      'type' => '\'article\'',
+      'title' => 'mac_default(mac_filter_html(mac_default($obj[\'topic_title\'],$obj[\'topic_name\'])),\'404 Not Found\').\'_专题 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(trim($obj[\'topic_pic\']))',
+      'key' => 'mac_filter_html(mac_default($obj[\'topic_key\'],$obj[\'topic_name\']))',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_topic_detail($obj)',
+      'des' => 'mac_substring(mac_filter_html(mac_default($obj[\'topic_des\'],$obj[\'topic_content\'])),120)',
+    ),
+    'index21' => 
+    array (
+      'aid' => '70',
+      'info' => '淘客首页',
+      'type' => '\'article\'',
+      'title' => '$mojia[\'home\'][\'taoke\'][\'name\'].\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '\'秒杀,疯抢,优惠,包邮,特价,优惠券\'',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '\'优惠券折扣直播第一站！每天更新千款，纯人工筛选验货，限时限量特卖，全场1折包邮！\'',
+    ),
+    'index22' => 
+    array (
+      'aid' => '71',
+      'info' => '正在热播',
+      'type' => '\'article\'',
+      'title' => '$mojia[\'home\'][\'hots\'][\'name\'].\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$maccms[\'site_keywords\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'label/front\')',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index23' => 
+    array (
+      'aid' => '72',
+      'info' => '热门排行',
+      'type' => '\'article\'',
+      'title' => '\'热门排行 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$maccms[\'site_keywords\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'label/rank\')',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index24' => 
+    array (
+      'aid' => '73',
+      'info' => '主题授权',
+      'type' => '\'article\'',
+      'title' => '\'主题授权 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$maccms[\'site_keywords\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'label/mojia\')',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index25' => 
+    array (
+      'aid' => '74',
+      'info' => '淘客详情',
+      'type' => '\'article\'',
+      'title' => '$details[\'data\'][\'dtitle\'].\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(trim($details[\'data\'][\'marketingMainPic\']))',
+      'key' => '$details[\'data\'][\'title\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'label/taoke\').\'?id=\'.$Think.get.id.\'&goodsId=\'.Think.get.goodsId',
+      'des' => '$details[\'data\'][\'desc\']',
+    ),
+    'index26' => 
+    array (
+      'aid' => '80',
+      'info' => '演员首页',
+      'type' => '\'article\'',
+      'title' => '\'演员首页 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '\'大陆明星,港台明星,日韩明星,欧美明星,最火明星\'',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '\'明星个人信息介绍\'',
+    ),
+    'index27' => 
+    array (
+      'aid' => '81',
+      'info' => '演员分类',
+      'type' => '\'article\'',
+      'title' => 'mac_default($obj[\'type_title\'],mac_filter_html($obj[\'type_name\'])).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(mac_default($obj[\'type_logo\'],$mojia[\'other\'][\'share\'][\'image\']))',
+      'key' => 'mac_default($obj[\'type_key\'],mac_filter_html($obj[\'type_name\']))',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_type($obj)',
+      'des' => 'mac_default($obj[\'type_des\'],mac_filter_html($maccms[\'site_description\']))',
+    ),
+    'index28' => 
+    array (
+      'aid' => '82',
+      'info' => '演员筛选',
+      'type' => '\'article\'',
+      'title' => 'mac_filter_html($param[\'area\'].$param[\'starsign\'].$obj[\'type_name\'].\'演员\'.($param[\'level\']?\'推荐\':\'\').$param[\'letter\']).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(mac_default($obj[\'type_logo\'],$mojia[\'other\'][\'share\'][\'image\']))',
+      'key' => 'mac_default($obj[\'type_key\'],mac_filter_html($obj[\'type_name\']))',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_type($obj,[\'area\'=>$param.area,\'lang\'=>$param.lang,\'year\'=>$param.year],\'show\')',
+      'des' => 'mac_default($obj[\'type_des\'],mac_filter_html($maccms[\'site_description\']))',
+    ),
+    'index29' => 
+    array (
+      'aid' => '83',
+      'info' => '演员搜索',
+      'type' => '\'article\'',
+      'title' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\'].\'_搜索结果 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'actor/search\',array(\'wd\'=>$param[\'wd\']))',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index30' => 
+    array (
+      'aid' => '84',
+      'info' => '演员详情',
+      'type' => '\'article\'',
+      'title' => 'mac_default(mac_filter_html($obj[\'actor_name\']),\'404 Not Found\').\'_\'.mac_filter_html($obj[\'type\'][\'type_name\']).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(trim($obj[\'actor_pic\']))',
+      'key' => 'mac_filter_html($obj[\'actor_name\'].\',\'.$obj[\'type\'][\'type_name\'])',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_actor_detail($obj)',
+      'des' => 'mac_substring(mac_filter_html($obj[\'actor_content\']),120)',
+    ),
+    'index31' => 
+    array (
+      'aid' => '90',
+      'info' => '角色首页',
+      'type' => '\'article\'',
+      'title' => '\'角色首页 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '\'电影角色,电视剧角色,动漫角色,综艺角色\'',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '\'角色人物介绍\'',
+    ),
+    'index32' => 
+    array (
+      'aid' => '93',
+      'info' => '角色搜索',
+      'type' => '\'article\'',
+      'title' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\'].\'_搜索结果 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'role/search\',array(\'wd\'=>$param[\'wd\']))',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index33' => 
+    array (
+      'aid' => '94',
+      'info' => '角色详情',
+      'type' => '\'article\'',
+      'title' => 'mac_default(mac_filter_html($obj[\'role_name\']),\'404 Not Found\').\'_\'.mac_filter_html($obj[\'role_actor\']).\'饰演 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(trim($obj[\'role_pic\']))',
+      'key' => 'mac_filter_html($obj[\'role_name\'].\',\'.$obj[\'role_actor\'])',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_role_detail($obj)',
+      'des' => 'mac_substring(mac_filter_html($obj[\'role_content\']),120)',
+    ),
+    'index34' => 
+    array (
+      'aid' => '100',
+      'info' => '剧情首页',
+      'type' => '\'article\'',
+      'title' => '\'剧情首页 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '\'剧情连载,剧情更新,剧情前瞻,剧情完结\'',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '\'提供最新的剧情信息\'',
+    ),
+    'index35' => 
+    array (
+      'aid' => '103',
+      'info' => '剧情搜索',
+      'type' => '\'article\'',
+      'title' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\'].\'_搜索结果 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'plot/search\',array(\'wd\'=>$param[\'wd\']))',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index36' => 
+    array (
+      'aid' => '104',
+      'info' => '剧情详情',
+      'type' => '\'article\'',
+      'title' => 'mac_default(mac_filter_html($obj[\'vod_name\']),\'404 Not Found\').\'_\'.mac_filter_html($obj[\'type\'][\'type_name\']).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(trim($obj[\'vod_pic\']))',
+      'key' => 'mac_filter_html($obj[\'vod_actor\'].\',\'.$obj[\'vod_director\'].\',\'.$obj[\'vod_name\'].\',\'.$obj[\'type\'][\'type_name\'])',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_plot_detail($obj)',
+      'des' => 'mac_substring(mac_filter_html(mac_default($obj[\'vod_plot_list\'][$param[\'page\']][\'detail\'],$obj[\'vod_content\'])),120)',
+    ),
+    'index37' => 
+    array (
+      'aid' => '110',
+      'info' => '网址首页',
+      'type' => '\'article\'',
+      'title' => '\'网址首页 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '\'上网导航,网址大全,网址导航\'',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'des' => '\'全网优质网址及资源的中文上网导航。及时收录影视、音乐、小说、游戏等分类的网址和内容，让您的网络生活更简单精彩。\'',
+    ),
+    'index38' => 
+    array (
+      'aid' => '111',
+      'info' => '网址分类',
+      'type' => '\'article\'',
+      'title' => 'mac_default($obj[\'type_title\'],mac_filter_html($obj[\'type_name\'])).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(mac_default($obj[\'type_logo\'],$mojia[\'other\'][\'share\'][\'image\']))',
+      'key' => 'mac_default($obj[\'type_key\'],mac_filter_html($obj[\'type_name\']))',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_type($obj)',
+      'des' => 'mac_default($obj[\'type_des\'],mac_filter_html($maccms[\'site_description\']))',
+    ),
+    'index39' => 
+    array (
+      'aid' => '112',
+      'info' => '网址筛选',
+      'type' => '\'article\'',
+      'title' => 'mac_filter_html($param[\'area\'].$param[\'lang\'].$obj[\'type_name\'].($param[\'level\']?\'推荐\':\'\').$param[\'letter\']).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(mac_default($obj[\'type_logo\'],$mojia[\'other\'][\'share\'][\'image\']))',
+      'key' => 'mac_default($obj[\'type_key\'],mac_filter_html($obj[\'type_name\']))',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_type($obj,[\'area\'=>$param.area,\'lang\'=>$param.lang,\'year\'=>$param.year],\'show\')',
+      'des' => 'mac_default($obj[\'type_des\'],mac_filter_html($maccms[\'site_description\']))',
+    ),
+    'index40' => 
+    array (
+      'aid' => '113',
+      'info' => '网址搜索',
+      'type' => '\'article\'',
+      'title' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\'].\'_搜索结果 - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img($mojia[\'other\'][\'share\'][\'image\'])',
+      'key' => '$param[\'wd\'].$param[\'actor\'].$param[\'director\'].$param[\'area\'].$param[\'year\']',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'website/search\',array(\'wd\'=>$param[\'wd\']))',
+      'des' => '$maccms[\'site_description\']',
+    ),
+    'index41' => 
+    array (
+      'aid' => '114',
+      'info' => '网址详情',
+      'type' => '\'article\'',
+      'title' => 'mac_default(mac_filter_html($obj[\'website_name\']),\'404 Not Found\').\'_\'.mac_filter_html($obj[\'type\'][\'type_name\']).\' - \'.$maccms[\'site_name\']',
+      'image' => 'mac_url_img(trim($obj[\'website_logo\']))',
+      'key' => 'mac_filter_html($obj[\'website_name\'].\',\'.$obj[\'type\'][\'type_name\'])',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_website_detail($obj)',
+      'des' => 'mac_substring(mac_filter_html($obj[\'website_content\']),120)',
+    ),
+  ),
   'other' => 
   array (
     'close' => 
     array (
-      'name' => '关站设置',
+      'name' => '站点状态',
       'tips' => '网站维护中，请稍后访问',
-      'time' => '2021-05-20 00:00:00',
-      'state' => '1',
-    ),
-    'edit' => 
-    array (
-      'name' => '编辑按钮',
-      'link' => 'admin.php',
-      'search' => '1',
+      'time' => '2021-05-20 13:14:20',
       'state' => '1',
     ),
     'cdns' => 
@@ -591,18 +1045,24 @@
       'debug' => '1',
       'state' => '1',
     ),
+    'edit' => 
+    array (
+      'name' => '编辑按钮',
+      'link' => 'admin.php',
+      'state' => '1',
+    ),
     'demo' => 
     array (
       'name' => '站点演示',
       'link' => 'https://player.alicdn.com/video/aliyunmedia.mp4',
       'state' => '0',
     ),
-	'call' =>
-	array (
-	  'name' => '在线客服',
-	  'link' => '',
-	  'state' => '0',
-	),
+    'call' => 
+    array (
+      'name' => '在线客服',
+      'link' => 'https://wpa.qq.com/msgrd?v=3&uin=1234567890&site=qq&menu=yes',
+      'state' => '0',
+    ),
     'chat' => 
     array (
       'name' => '公众号码',
@@ -616,13 +1076,14 @@
       'name' => '分享设置',
       'apis' => '',
       'host' => '',
+      'agent' => '0',
       'state' => '1',
       'image' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/image.jpg',
     ),
     'icon' => 
     array (
       'name' => '网站标志',
-      'pics' => 'http://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/favicon.png',
+      'pics' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/favicon.png',
     ),
     'lazy' => 
     array (
@@ -658,15 +1119,22 @@
       'link' => '/api.php/timming/index',
       'type' => '',
     ),
-    'part' => 
+    'browse' => 
     array (
-      'name' => '圆角尺寸',
-      'round' => '3px',
+      'name' => '浏览控制',
+      'rule' => '/MSIE\\s[0-9]/i',
+      'type' => '0',
     ),
     'chain' => 
     array (
       'name' => '图片盗链',
-      'apis' => '',
+      'apis' => 'asset/exc/create.php?id=url&time=5&pic=',
+      'state' => '0',
+    ),
+    'part' => 
+    array (
+      'name' => '圆角尺寸',
+      'round' => '3px',
     ),
     'copy' => 
     array (

@@ -27,10 +27,9 @@
 	{/if}{if$obj.website_pic}
 	<div class="mo-tabs-item mo-pamd-5px mo-cols-hide">
 		<div class="mo-paxs-5px mo-pamd-10px">
-			<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-16by9 mo-cols-rows mo-bord-round" href="{$obj.website_pic|mac_url_img}" data-original="{$mojia['other']['chain']['apis']}{:mac_url_img(trim($obj.website_pic))}" target="_blank"></a>
+			<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-16by9 mo-cols-rows mo-bord-round" href="{$obj.website_pic|mac_url_img}" data-original="{if$mojia['other']['chain']['state']}{:stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''}{$mojia['other']['chain']['apis']}{/if}{:mac_url_img(trim($obj.website_pic))}" target="_blank"></a>
 		</div>
 	</div>
 	{/if}
 </div>
-{include file="index/latest"}
-{include file="public/footer"}
+{include file="index/latest,public/footer"}

@@ -1,5 +1,5 @@
 <div class="mo-user-info mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px">
-	<div class="mo-situ-pics mo-lazy-color mo-byxs-3by2 mo-bymd-5by2" style="background-image:url({$mojia['other']['chain']['apis']}{$maccms.path_tpl}asset/img/user.jpg)">
+	<div class="mo-situ-pics mo-lazy-color mo-byxs-3by2 mo-bymd-5by2" style="background-image:url({if$mojia['other']['chain']['state']}{:stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''}{$mojia['other']['chain']['apis']}{/if}{$maccms.path_tpl}asset/img/user.jpg)">
 		<div class="mo-part-core mo-coxs-center">
 			<div class="mo-user-avat mo-user-hove">
 				<a class="mo-user-avat mo-part-coin mo-user-load mo-cols-show mo-text-white mo-fsxs-24px mo-icon-font mo-icon-chuangzuo" href="javascript:;" data-role="{:mac_url('user/portrait')}"></a>

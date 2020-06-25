@@ -13,5 +13,5 @@
 </div>
 <div class="mo-cols-lays mo-back-white mo-mlmd-20px">
 	{include file="basics/titles" module="rank" title=":mac_default('热门排行')" btns="更多" href=":mac_url('label/rank')"}
-	{include file="basics/charts" type="all" name=":mac_default(mac_filter_html($vo['vod_name']))" href=":mac_url_vod_detail($vo)"}
+	{include file="basics/charts" type="all" name=":mac_filter_html($vo['vod_name'])" href=":mac_url_vod_detail($vo)"}
 </div>

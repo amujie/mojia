@@ -1,0 +1,14 @@
+{include file="public/header"}
+{include file="tinier/filter"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="tinier/shower"}
+	<ul class="mo-cols-rows">
+		{maccms:actor num="48" pageurl="actor/show" paging="yes" half="3" type="current" order="desc" by="time"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
+		{include file="basics/picture" type="actor" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['actor_hits'].'浏览')" remark=":mac_default($vo['actor_alias'],'暂无别名')" name=":mac_filter_html($vo['actor_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['actor_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['actor_pic']))" href=":mac_url_actor_detail($vo)" title="show" lazy="open"}
+		</li>
+		{/maccms:actor}
+	</ul>
+	{include file="tinier/paging"}
+</div>
+{include file="public/footer"}

@@ -1,0 +1,14 @@
+{include file="public/header"}
+{include file="tinier/filter"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="tinier/shower"}
+	<ul class="mo-cols-rows">
+		{maccms:art num="48" pageurl="art/show" paging="yes" half="3" type="current" order="desc" by="time"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-lg3">
+		{include file="basics/picture" type="art" style=":mac_default(' mo-lazy-broad mo-byxs-16by9')" tips=":mac_default($vo['art_level']?'推荐':$vo['art_hits'].'阅读')" remark=":mac_default(mac_substring($vo['art_remarks'],12),'暂无备注')" name=":mac_filter_html($vo['art_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['art_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_url_art_detail($vo)" title="show" lazy="open"}
+		</li>
+		{/maccms:art}
+	</ul>
+	{include file="tinier/paging"}
+</div>
+{include file="public/footer"}

@@ -1,5 +1,4 @@
-{include file="public/header"}
-{include file="user/banner"}
+{include file="public/header,user/banner"}
 <div class="mo-cols-lays mo-back-white">
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px"><a class="mo-mrxs-5px mo-mrmd-10px{if$param.level==''} mo-text-mojia{/if}" href="{:url('user/reward')}">一级下线</a><a class="mo-mrxs-5px mo-mrmd-10px{if$param.level==2} mo-text-mojia{/if}" href="{:url('user/reward')}?level=2">二级下线</a><a class="mo-mrxs-5px mo-mrmd-10px{if$param.level==3} mo-text-mojia{/if}" href="{:url('user/reward')}?level=3">三级下线</a></h2>

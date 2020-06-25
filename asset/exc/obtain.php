@@ -11,8 +11,6 @@ function moJiaPath($path) {
 		return @require ($install . 'application/database.php');
 	} elseif ($path == 'home') {
 		return $maccms['site']['install_dir'];
-	} elseif ($path == 'cdns') {
-		return 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/';
 	} elseif ($path == 'down') {
 		return 'https://cdn.jsdelivr.net/gh/amujie/download@master/';
 	} elseif ($path == 'path') {
@@ -83,7 +81,8 @@ function moJiaDaTaoKe($api, $param, $appSecret) {
 // 表情转换
 function moJiaFace($data) {
 	$version = parse_ini_file(substr(moJiaPath('temp'), strlen(moJiaPath('home'))) . 'info.ini');
-	$mojia = file_exists('application/extra/mojiaopt.php') ? @require ('application/extra/mojiaopt.php') : @require ('config.php'); ;
+	$mojia = file_exists('application/extra/mojiaopt.php') ? @require ('application/extra/mojiaopt.php') : @require ('config.php');
+	;
 	$cdnpath = $mojia['other']['cdns']['state'] ? $mojia['other']['cdns']['link'] . (strpos($mojia['other']['cdns']['link'], 'cdn.jsdelivr.net/gh/amujie') !== false ? '@' . $version['version'] : '') . '/' : moJiaPath('temp');
 	preg_match_all('/(?:\[)[^(?:\])]+]/i', $data, $match);
 	foreach ($match[0] as $key => $value) {
@@ -111,8 +110,8 @@ function moJiaCurlGet($url) {
 	curl_setopt($curl, CURLOPT_REFERER, $url);
 	curl_setopt($curl, CURLOPT_AUTOREFERER, 1);
 	curl_setopt($curl, CURLOPT_HEADER, 0);
-	curl_setopt($curl, CURLOPT_TIMEOUT, 10);
-	curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 20);
+	curl_setopt($curl, CURLOPT_TIMEOUT, 20);
+	curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
@@ -128,6 +127,8 @@ function moJiaDownload($href, $path, $name) {
 	$curl = curl_init($href);
 	$down = fopen($path . $name, 'w+');
 	curl_setopt($curl, CURLOPT_HEADER, 0);
+	curl_setopt($curl, CURLOPT_TIMEOUT, 60);
+	curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
@@ -148,7 +149,7 @@ function moJiaIsExists($href) {
 	curl_setopt($curl, CURLOPT_AUTOREFERER, 1);
 	curl_setopt($curl, CURLOPT_HEADER, 1);
 	curl_setopt($curl, CURLOPT_TIMEOUT, 10);
-	curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 20);
+	curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);

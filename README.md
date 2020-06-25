@@ -9,8 +9,8 @@
 #### 主题作者
 - 主题名称：魔加 1.0（苹果CMS v10版）
 - 主题作者：大橙子
-- 联系作者：[QQ:15704757334](http://wpa.qq.com/msgrd?v=3&uin=1570457334&site=qq&menu=yes)
 - 作者寄语：用心做模板,让你体验不一样的苹果CMS
+- 联系作者：[QQ:15704757334](http://wpa.qq.com/msgrd?v=3&uin=1570457334&site=qq&menu=yes)
 - 作者首页：[https://amujie.com](https://amujie.com)
 - 加群链接：[https://jq.qq.com/?_wv=1027&k=5Cpumac](https://jq.qq.com/?_wv=1027&k=5Cpumac)
 - 扣群号码：137183109

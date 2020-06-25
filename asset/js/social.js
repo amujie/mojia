@@ -29,15 +29,15 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 				$(document).on('click', '.mo-java-face', function() {
 					var text = $(this).parents('.mo-comm-form').find('.mo-form-area');
 					text.val(text.val() + $(this).attr('data-code'));
-					$('.mo-form-face').removeClass('mo-icon-cuowu');
+					$('.mo-form-face').removeClass('mo-icon-shibai-line');
 					$('.mo-face-info').hide();
 				});
 				$(document).on('click', '.mo-form-face', function() {
 					if ($('.mo-face-info').is(':visible')) {
-						$(this).removeClass('mo-icon-cuowu');
+						$(this).removeClass('mo-icon-shibai-line');
 						$('.mo-face-info').hide();
 					} else {
-						$(this).addClass('mo-icon-cuowu');
+						$(this).addClass('mo-icon-shibai-line');
 						var html = '<div class="mo-face-boxs mo-paxs-5px">';
 						$.each(mojia.symbol, function(list, name) {
 							html += '<div class="mo-face-item mo-part-btsd mo-part-blsd mo-bord-muted mo-cols-zero' + (list == 'qq' ? ' mo-cols-show' : ' mo-cols-hide') + '">';
@@ -79,20 +79,14 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 				});
 				$(document).on('click', '.mo-page-jump', function() {
 					if ($('.mo-page-info').attr('data-aid') == 5) {
-						var count = document.documentElement.clientWidth > 767 ? 100 : 90;
 						mojia.comment.show($('.mo-page-text').val());
-						$('html,body').animate({
-							scrollTop: $('.mo-java-page').offset().top - count
-						}, 200);
+						mojia.global.gotopr('.mo-java-page');
 					}
 				});
 				$(document).on('click', '.mo-page-item', function() {
 					if ($('.mo-page-info').attr('data-aid') == 5) {
-						var count = document.documentElement.clientWidth > 767 ? 100 : 90;
 						mojia.comment.show($(this).attr('data-nums'));
-						$('html,body').animate({
-							scrollTop: $('.mo-java-page').offset().top - count
-						}, 200);
+						mojia.global.gotopr('.mo-java-page');
 					}
 				});
 			},
@@ -167,9 +161,10 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 							content: data,
 							shadeClose: true,
 							success: function(layero) {
+								common.global.verify();
 								$(layero).addClass('mo-back-white');
 								$(layero).find('.layui-layer-title').addClass('mo-open-head mo-back-white mo-part-zero');
-								$('.mo-comm-gbform').find('textarea').val('报错《' + $('.mo-java-play').attr('data-name') + '》' + $('.mo-java-play').attr('data-nums') + '［' + that.attr('data-show') + '］请修复：' + location.href + '　' + navigator.userAgent.replace('Mozilla/','').replace(/\sAppleWebKit\/[1-9][0-9]*\.[0-9]*\s\(KHTML,\slike\sGecko\)/i, '').replace(/\sMobile\sSafari\/[1-9][0-9]*\.[0-9]*/i, ''));
+								$('.mo-comm-gbform').find('textarea').val('报错《' + $('.mo-java-play').attr('data-name') + '》' + $('.mo-java-play').attr('data-nums') + '［' + that.attr('data-show') + '］请修复：' + location.href + '　' + navigator.userAgent.replace('Mozilla/', '').replace(/\sAppleWebKit\/[1-9][0-9]*\.[0-9]*\s\(KHTML,\slike\sGecko\)/i, '').replace(/\sMobile\sSafari\/[1-9][0-9]*\.[0-9]*/i, ''));
 								mojia.global.count('.mo-comm-gbform');
 								$.getScript('https://pv.sohu.com/cityjson?ie=utf-8', function(data, status) {
 									$('.mo-comm-gbform').find('textarea').val($('.mo-comm-gbform').find('textarea').val() + ' ' + 'IPAdress/' + returnCitySN.cip);
@@ -184,20 +179,14 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 				});
 				$(document).on('click', '.mo-page-jump', function() {
 					if ($('.mo-page-info').attr('data-aid') == 4) {
-						var count = document.documentElement.clientWidth > 767 ? 100 : 90;
 						mojia.message.show($('.mo-page-text').val());
-						$('html,body').animate({
-							scrollTop: $('.mo-java-page').offset().top - count
-						}, 200);
+						mojia.global.gotopr('.mo-java-page');
 					}
 				});
 				$(document).on('click', '.mo-page-item', function() {
 					if ($('.mo-page-info').attr('data-aid') == 4) {
-						var count = document.documentElement.clientWidth > 767 ? 100 : 90;
 						mojia.message.show($(this).attr('data-nums'));
-						$('html,body').animate({
-							scrollTop: $('.mo-java-page').offset().top - count
-						}, 200);
+						mojia.global.gotopr('.mo-java-page');
 					}
 				});
 			},

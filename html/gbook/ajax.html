@@ -9,7 +9,7 @@
 			<span class="mo-part-more mo-fsxs-12px mo-fssm-14px">{$vo.gbook_time|mac_day}</span>
 		</div>
 		<div class="mo-comm-left">
-			<p class="mo-pzxs-5px">{:moJiaFace($vo['gbook_content'])}</p>
+			<p class="mo-pzxs-5px">{:mac_default(moJiaFace($vo['gbook_content']),'咦？发现一条空白留言')}</p>
 			{if$vo.gbook_reply}
 			<div class="mo-part-bbsd mo-bord-muted mo-ptxs-5px mo-ptmd-10px"></div>
 			<div class="mo-cols-rows mo-mtxs-10px mo-mtmd-20px">

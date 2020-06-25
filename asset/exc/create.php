@@ -59,7 +59,9 @@ function moJiaOptions() {
 		if (!moJiaPower('mojia', moJiaPath('base'))) {
 			die(json_encode(array('msg' => '权限不足')));
 		} elseif (file_put_contents(moJiaPath('path') . 'application/extra/maccms.php', '<?php return ' . var_export($option, true) . ';?>')) {
-			die(json_encode(array('msg' => '修改成功')));
+			@unlink('../../../' . $_POST['tpl'] . '.zip');
+			$option = @require (moJiaPath('path') . 'application/extra/maccms.php');
+			die(json_encode(array('msg' => $option['site']['template_dir'])));
 		} else {
 			die(json_encode(array('msg' => '执行失败')));
 		}
@@ -67,6 +69,16 @@ function moJiaOptions() {
 		if (!moJiaPower('mojia', moJiaPath('base'))) {
 			die(json_encode(array('msg' => '权限不足')));
 		} elseif (file_put_contents(moJiaPath('path') . 'application/extra/mojiaopt.php', '<?php return ' . var_export($_POST['mojia'], true) . ';?>')) {
+			$html = file_get_contents('../../html/basics/seokey.html');
+			$seokey = $_POST['mojia']['seo'];
+			foreach ($seokey as $value => $key) {
+				foreach ($seokey[$value] as $item => $sub) {
+					$html = str_replace('{' . $item . $seokey[$value]['aid'] . '}', $sub, $html);
+				}
+			}
+			if (!file_put_contents('../../html/tinier/seokey.html', $html)) {
+				die(json_encode(array('msg' => 'SEO设置保存失败,请检查文件权限')));
+			}
 			die(json_encode(array('msg' => '保存成功')));
 		} else {
 			die(json_encode(array('msg' => '保存失败')));
@@ -140,18 +152,18 @@ function moJiaCollect() {
 
 // 短链生成
 function moJiaCommon() {
-	if (isset($_GET['ver'])) {
-		$version = parse_ini_file('../../info.ini');
-		$versnew = moJiaCurlGet(moJiaPath('cdns') . 'info.ini?v=' . time());
-		preg_match_all('/version=([\w\W]*?)adsdir/i', preg_replace('/\s+/', '', $versnew), $match);
-		if (@$_GET['ver'] == 'now') {
+	if (isset($_POST['ver'])) {
+		if (@$_POST['ver'] == 'now') {
+			$version = parse_ini_file('../../info.ini');
 			echo json_encode(array('ver' => $version['version']));
-		} elseif (@$_GET['ver'] == 'new') {
+		} elseif (@$_POST['ver'] == 'new') {
+			$versnew = moJiaCurlGet($_POST['cdn']);
+			preg_match_all('/version=([\w\W]*?)adsdir/i', preg_replace('/\s+/', '', $versnew), $match);
 			echo json_encode(array('ver' => $match[1][0], 'key' => md5('mojia_' . $match[1][0])));
-		} elseif (@$_GET['ver'] == 'log') {
-			echo moJiaCurlGet(moJiaPath('cdns') . 'about/changelog.json?v=' . time());
+		} elseif (@$_POST['ver'] == 'log') {
+			echo moJiaCurlGet($_POST['new']);
 		}
-	} elseif (isset($_GET['tao'])) {
+	} elseif (isset($_POST['tao'])) {
 		$mojia = moJiaPath('mojia');
 		$taoke = moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list', array('pageSize' => '50', 'cids' => $mojia['home']['taoke']['type'], 'juHuaSuan' => $mojia['home']['taoke']['qiang'] == 1 ? 1 : '', 'taoQiangGou' => $mojia['home']['taoke']['qiang'] == 2 ? 1 : '', 'tmall' => $mojia['home']['taoke']['qiang'] == 3 ? 1 : '', 'tchaoshi' => $mojia['home']['taoke']['qiang'] == 4 ? 1 : '', 'goldSeller' => $mojia['home']['taoke']['qiang'] == 5 ? 1 : '', 'haitao' => $mojia['home']['taoke']['qiang'] == 6 ? 1 : '', 'specialId' => $mojia['home']['taoke']['brand'], 'sort' => $mojia['home']['taoke']['sort'], 'version' => $mojia['home']['taoke']['ver'], 'appKey' => $mojia['other']['taoke']['key']), $mojia['other']['taoke']['secret']);
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiatao.php', '<?php return ' . var_export(array_slice($taoke['data']['list'], 0, $mojia['home']['taoke']['num']), true) . ';?>')) {
@@ -169,10 +181,24 @@ function moJiaCommon() {
 		$output = moJiaCurlGet(@$_POST['key']);
 		parse_str(parse_url(@$_POST['key'], PHP_URL_QUERY));
 		die($output ? $output : json_encode(dns_get_record($name, DNS_TXT)));
-	} else {
+	} elseif (isset($_POST['url'])) {
 		$mojia = moJiaPath('mojia');
 		$url = $mojia['other']['share']['host'] ? $mojia['other']['share']['host'] . parse_url(@$_POST['url'], PHP_URL_PATH) : @$_POST['url'];
 		die(json_encode(array('msg' => moJiaCurlGet($mojia['other']['share']['apis'] . rawurlencode($url)))));
+	} elseif (isset($_GET['pic'])) {
+		header('Content-Type: image/jpeg; charset=utf-8');
+		$time = isset($_GET['time']) ? $_GET['time'] : 5;
+		$curl = curl_init($_GET['pic']);
+		curl_setopt($curl, CURLOPT_HEADER, 0);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, $time);
+		curl_setopt($curl, CURLOPT_TIMEOUT, $time);
+		$output = curl_exec($curl);
+		curl_close($curl);
+		echo $output;
+		exit ;
 	}
 }
 
@@ -193,7 +219,7 @@ function moJiaUpdate() {
 		if (moJiaUnzip($path, $name, @$_POST['key'])) {
 			die(json_encode(array('code' => '1', 'msg' => '主题升级成功')));
 		} else {
-			die(json_encode(array('code' => '0', 'msg' => '主题升级失败')));
+			die(json_encode(array('code' => '0', 'msg' => '主题解压失败')));
 		}
 	}
 }

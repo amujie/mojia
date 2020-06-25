@@ -17,10 +17,10 @@ layui.define(['jquery'], function(exports) {
 				$('.mo-unit-table').before(html);
 			},
 			'info': [{
-				'name': '苹果CMS魔加影视模板',
-				'link': 'https://jq.qq.com/?_wv=1027&k=51Zakp5',
-				'pics': 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/advert.jpg',
-				'tips': '苹果CMS魔加影视模板'
+				'name': '米上云香港GIA VPS20元起，购买魔加主题的新用户，赠送米上云香港VPS一个月使用时间！',
+				'link': 'https://www.mishangyun.com/aff.php?aff=35',
+				'pics': 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/advert.gif',
+				'tips': '米上云香港GIA VPS20元起'
 			}]
 		},
 		'unions': {

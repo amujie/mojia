@@ -9,16 +9,17 @@ layui.define(['jquery'], function(exports) {
 				mojia.global.click();
 				mojia.global.event();
 				mojia.global.output();
-				mojia.global.verify();
 				mojia.global.paging();
 				mojia.global.passer();
 				mojia.global.jumper(3);
 				mojia.picing.init('.mo-situ-lazy');
-				this.scroll('.mo-java-show', '.mo-scre-show');
-				this.scroll('.mo-java-type', '.mo-scre-type');
-				this.scroll('.mo-java-area', '.mo-scre-area');
-				this.scroll('.mo-java-year', '.mo-scre-year');
-				this.scroll('.mo-java-navs', '.mo-navs-left');
+				mojia.global.tabser('.mo-tabs-btns', '.mo-tabs-item', 'mo-text-mojia');
+				mojia.global.tabser('.mo-face-btns', '.mo-face-item', 'mo-text-mojia');
+				mojia.global.tabser('.mo-pops-hots', '.mo-pops-boxs', 'mo-text-mojia');
+				var screen = ['navs', 'show', 'sort', 'class', 'starsign', 'area', 'lang', 'level', 'year', 'letter'];
+				for (var i = 0; i < screen.length; i++) {
+					mojia.global.scroll('.mo-java-' + screen[i], '.mo-scre-' + screen[i]);
+				}
 				if (magic.mob != 0 && magic.wap != location.host && mojia.global.mobile()) location.href = location.href.replace(location.host, magic.wap);
 				if (magic.aid == 15) {
 					$.post(magic.path + 'index.php/user/ajax_ulog/?ac=set&mid=' + magic.mid + '&id=' + magic.rid + '&sid=' + magic.sid + '&nid=' + magic.nid + '&type=4');
@@ -34,7 +35,7 @@ layui.define(['jquery'], function(exports) {
 					});
 				}
 				if ($('.mo-java-taoke').attr('data-taoke')) {
-					$.post(magic.tpl + 'asset/exc/create.php?id=url&tao=tao');
+					$.post(magic.tpl + 'asset/exc/create.php?id=url', 'tao=tao');
 				}
 				if ($('.mo-java-union').attr('data-union')) {
 					$.post($('.mo-java-union').attr('data-url'));
@@ -56,23 +57,6 @@ layui.define(['jquery'], function(exports) {
 					layui.use('center', function() {
 						mojia.global.submit('.mo-user-btns', '.mo-user-form');
 						layui.center.global.init();
-					});
-				}
-				if ($('.mo-chat-info').attr('data-chat') == 1) {
-					$('.mo-chat-info').show();
-					if (mojia.cookie.get('mo_wechat')) {
-						$('.mo-chat-info').hide();
-						$('.mo-down-info').show();
-					}
-					$(document).on('click', '.mo-chat-submit', function() {
-						if (mojia.base64.decode($('.mo-chat-info').attr('data-word').substring(3)) != $('.mo-chat-input').val()) {
-							$('.mo-chat-input').val('').attr('placeholder', '口令错误！请重新输入').focus();
-							return false;
-						} else {
-							mojia.cookie.set('mo_wechat', $('.mo-chat-info').attr('data-word'), 1);
-							$('.mo-chat-info').hide();
-							$('.mo-down-info').show();
-						}
 					});
 				}
 			},
@@ -100,10 +84,16 @@ layui.define(['jquery'], function(exports) {
 			},
 			'scroll': function(item, boxs) {
 				if ($(item).offset()) {
-					var offset = $(item).offset().left + $(boxs).scrollLeft();
+					var offset = $(item).offset().left + $(boxs).scrollLeft() - $(boxs).offset().left;
 					var center = ($(boxs).width() - $(item).width()) / 2;
 					$(boxs).scrollLeft(offset - center);
 				}
+			},
+			'gotopr': function(item) {
+				var count = document.documentElement.clientWidth > 767 ? 100 : 90;
+				$('html,body').animate({
+					scrollTop: $(item).offset().top - count
+				}, 200);
 			},
 			'passer': function() {
 				$(document).on('click', '.mo-pass-btns', function() {
@@ -121,6 +111,14 @@ layui.define(['jquery'], function(exports) {
 			},
 			'filter': function(keyword) {
 				return keyword.replace(/</g, '').replace(/>/g, '').trim();
+			},
+			'tabser': function(btns, item, tabs) {
+				$(document).on('click', btns, function() {
+					$(item).hide();
+					$(btns).removeClass(tabs);
+					$(this).addClass(tabs);
+					$(item).eq($(this).index()).show();
+				});
 			},
 			'submit': function(str, form) {
 				$(document).on('keyup', form, function(event) {
@@ -168,7 +166,7 @@ layui.define(['jquery'], function(exports) {
 					event.stopPropagation();
 				});
 				$(document).click(function() {
-					$('.mo-form-face').removeClass('mo-icon-cuowu');
+					$('.mo-form-face').removeClass('mo-icon-shibai-line');
 					$('.mo-java-left').removeClass('mo-part-left');
 					$('.mo-java-dels').remove();
 					$('.mo-java-ceal').hide();
@@ -199,7 +197,7 @@ layui.define(['jquery'], function(exports) {
 				image.crossOrigin = 'anonymous';
 				image.onload = function() {
 					$(info).qrcode({
-						image: document.getElementById(pics),
+						image: (mojia.global.trident() ? '' : document.getElementById(pics)),
 						render: 'image',
 						ecLevel: 'Q',
 						text: text,
@@ -230,16 +228,24 @@ layui.define(['jquery'], function(exports) {
 			'init': function() {
 				this.loading($('.mo-head-info').children());
 				this.login('.mo-pops-login', '.mo-pops-form');
+				this.cutsli('.mo-pops-opts', '.mo-navs-name');
+				this.toggle('.mo-navs-logins', '.mo-pops-logins');
+				this.toggle('.mo-navs-record', '.mo-pops-record');
+				this.toggle('.mo-navs-switch', '.mo-pops-switch');
+				this.toggle('.mo-navs-center', '.mo-pops-center');
 				this.cutout('mo_record', '.mo-pops-recs .mo-pops-clear');
 				this.cutout('mo_history', '.mo-pops-record .mo-pops-clear');
 			},
 			'loading': function(that) {
+				mojia.navbar.output('mo_record', '.mo-pops-recs');
+				mojia.navbar.output('mo_history', '.mo-pops-record .mo-pops-list');
+				if (that.attr('data-load') == 1) return false;
 				$.post(that.attr('data-url'), 'mid=' + that.attr('type-mid') + '&aid=' + that.attr('type-aid') + '&tid=' + that.attr('type-tid') + '&pid=' + that.attr('type-pid'), function(data) {
 					that.html(data);
-					mojia.player.tabs('.mo-pops-hots', '.mo-pops-boxs', 'mo-text-mojia');
+					mojia.global.tabser('.mo-pops-hots', '.mo-pops-boxs', 'mo-text-mojia');
+					mojia.global.scroll('.mo-java-navs', '.mo-scre-navs');
 					mojia.navbar.output('mo_history', '.mo-pops-record .mo-pops-list');
 					mojia.navbar.output('mo_record', '.mo-pops-recs');
-					mojia.global.verify();
 				}).error(function() {
 					mojia.navbar.loading(that);
 				});
@@ -258,6 +264,30 @@ layui.define(['jquery'], function(exports) {
 				$(str).remove();
 				$('body').append('<div class="mo-part-mask mo-back-muted mo-comd-none mo-java-dels"></div>');
 				$('.mo-java-left').addClass('mo-part-left');
+			},
+			'cutsli': function(str, name) {
+				$(document).on('click', str, function(event) {
+					$(name).attr('data-type', $(this).attr('data-type')).attr('data-href', $(this).attr('data-href')).text($(this).text());
+					$(str).removeClass('mo-text-mojia');
+					$(this).addClass('mo-text-mojia');
+					$('.mo-navs-input').val('').focus();
+				});
+			},
+			'toggle': function(btn, str) {
+				$(document).on('click', btn, function(event) {
+					if ($(str).is(':hidden')) {
+						mojia.global.edge();
+						mojia.navbar.adding('.mo-part-mask');
+						$(this).find('.mo-edge-info').removeClass('mo-edge-bottom mo-bord-upper').addClass('mo-edge-top mo-bord-lower');
+						$('.mo-java-ceal').hide();
+						$(str).show();
+					} else {
+						mojia.global.edge();
+						$('.mo-java-left').removeClass('mo-part-left');
+						$('.mo-java-dels').remove();
+						$(str).hide();
+					}
+				});
 			},
 			'output': function(type, str) {
 				var jsondata = [];
@@ -287,6 +317,49 @@ layui.define(['jquery'], function(exports) {
 				this.wechat('.mo-goto-chats');
 				this.shares('.mo-goto-share');
 				this.gotopr('.mo-goto-toper');
+				if ($('.mo-keys-info').length) {
+					mojia.button.treaty('.mo-keys-agree');
+					$(document).on('click', '.mo-keys-user', function() {
+						mojia.button.treaty('.mo-keys-agree');
+					});
+				}
+			},
+			'treaty': function(str) {
+				layui.use(['layer'], function() {
+					$.post(magic.path + 'index.php/label/treaty.html', function(data) {
+						layer.open({
+							btn: false,
+							title: false,
+							closeBtn: 0,
+							area: 'auto',
+							maxWidth: '640px',
+							skin: 'mo-bord-round',
+							content: data,
+							success: function(layero, index) {
+								var time = $('.mo-keys-nums').text() - 1;
+								var interval = setInterval(function() {
+									if (time == 0) {
+										$('.mo-keys-trea').removeClass('mo-part-bans mo-back-disad').addClass('mo-back-mojia');
+										$('.mo-keys-time').remove();
+										clearInterval(interval);
+									}
+									$('.mo-keys-nums').text(time--);
+								}, 1000);
+								$(document).on('click', '.mo-keys-trea', function() {
+									$(str).removeClass('mo-icon-weixuanzhong').addClass('mo-icon-chenggong-fill');
+									layer.closeAll();
+								});
+								$(document).on('click', str, function() {
+									if ($(str).hasClass('mo-icon-weixuanzhong')) {
+										$(str).removeClass('mo-icon-weixuanzhong').addClass('mo-icon-chenggong-fill');
+									} else {
+										$(str).removeClass('mo-icon-chenggong-fill').addClass('mo-icon-weixuanzhong');
+									}
+								});
+							}
+						});
+					});
+				});
 			},
 			'notice': function(str) {
 				var notice = Number(mojia.cookie.get('mo_notice'));
@@ -325,7 +398,7 @@ layui.define(['jquery'], function(exports) {
 							btn: that.attr('data-link') ? '我要关注' : '关闭',
 							skin: 'mo-open-info mo-bord-round',
 							title: that.attr('data-tips'),
-							content: '<div class="mo-goto-code mo-part-toos mo-part-maxw mo-coxs-center mo-paxs-5px mo-pamd-10px"><img width="100%" src="' + that.attr('data-pics') + '"/></div>',
+							content: '<div class="mo-goto-code mo-part-code mo-part-maxw mo-coxs-center mo-paxs-5px mo-pamd-10px"><img width="100%" src="' + that.attr('data-pics') + '"/></div>',
 							success: function(layero, index) {
 								$(layero).addClass('mo-back-white');
 								$(layero).find('.layui-layer-title').addClass('mo-open-head mo-back-white mo-part-zero');
@@ -343,7 +416,7 @@ layui.define(['jquery'], function(exports) {
 				$(document).on('click', str, function() {
 					var that = $(this);
 					layui.use(['polyfill', 'layer', 'clipboard', 'qrcode', 'canvas'], function() {
-						var load = layer.load();
+						var load = layer.load(2);
 						$('.mo-java-left').addClass('mo-part-left');
 						$.post(magic.path + 'index.php/label/share.html', function(data) {
 							layer.close(load);
@@ -383,12 +456,14 @@ layui.define(['jquery'], function(exports) {
 					that.text('生成中...').removeClass('mo-have-btns');
 					html2canvas(document.querySelector('.mo-have-main'), {
 						allowTaint: true,
-						useCORS: true
+						useCORS: true,
+						timeout: 1000
 					}).then(function(canvas) {
 						var image = canvas.toDataURL();
 						$('.mo-have-main').html('<img src="' + image + '" width="100%" height="100%">');
-						if (image) that.text('生成成功,长按图片或右键保存即可').attr('href', image).attr('download', $(document).attr('title') + '.png');
-						else that.text('生成失败,请刷新重试');
+						that.text('生成成功,长按图片或右键保存即可').attr('href', image).attr('download', $(document).attr('title') + '.png');
+					}).catch(function(error) {
+						that.text('生成失败,请刷新重试');
 					});
 				});
 				var copy = new ClipboardJS('.mo-have-copy', {
@@ -430,27 +505,30 @@ layui.define(['jquery'], function(exports) {
 				this.power('.mo-java-power');
 				this.drop('.mo-drop-btns', '.mo-drop-foot');
 				this.sort('.mo-drop-sort', '.mo-drop-head');
-				this.tabs('.mo-tabs-btns', '.mo-tabs-item', 'mo-text-mojia');
-				this.tabs('.mo-face-btns', '.mo-face-item', 'mo-text-mojia');
+				if (magic.aid == 16 && $('.mo-chat-info').attr('data-chat') == 1) {
+					$('.mo-chat-info').show();
+					if (mojia.cookie.get('mo_wechat')) {
+						$('.mo-chat-info').hide();
+						$('.mo-down-info').show();
+					}
+				}
 			},
 			'click': function() {
 				$('.mo-play-login').click(function() {
 					$('.mo-navs-logins').click();
 				});
 				$(document).on('click', '.mo-play-brief', function() {
-					var count = document.documentElement.clientWidth > 767 ? 100 : 90;
-					$('html,body').animate({
-						scrollTop: $('.mo-java-page').offset().top - count
-					}, 200);
+					mojia.global.gotopr('.mo-java-page');
 				});
 				$(document).on('click', '.mo-chat-submit', function() {
-					if (mojia.base64.decode($('.mo-play-load').attr('data-word').substring(3)) != $('.mo-chat-input').val()) {
+					if (mojia.base64.decode($('.mo-chat-info').attr('data-word').substring(3)) != $('.mo-chat-input').val()) {
 						$('.mo-chat-input').val('').attr('placeholder', '口令错误！请重新输入').focus();
 						return false;
 					} else {
-						mojia.cookie.set('mo_wechat', $('.mo-play-load').attr('data-word'), 1);
-						$('.mo-play-wechat').hide();
-						mojia.player.judge('.mo-play-load');
+						mojia.cookie.set('mo_wechat', $('.mo-chat-info').attr('data-word'), 1);
+						$('.mo-chat-info').hide();
+						if (magic.aid == 16) $('.mo-down-info').show();
+						else mojia.player.judge('.mo-play-load');
 					}
 				});
 			},
@@ -497,8 +575,8 @@ layui.define(['jquery'], function(exports) {
 					mojia.player.trysee(str, iframe, time - 1);
 				}, 1000);
 			},
-			'logo': function(str) {
-				if ($(str).attr('data-logo')) $('.mo-play-boxs').prepend('<div class="mo-play-logo"><img src="' + $(str).attr('data-logo') + '" /></div>');
+			'logo': function(type, str) {
+				if (type == 'iframe' && $(str).attr('data-logo')) $('.mo-play-boxs').prepend('<div class="mo-play-logo"><img src="' + $(str).attr('data-logo') + '" /></div>');
 				$('.mo-play-logo,.dplayer-logo').css('left', 'auto').css($(str).attr('data-float'), $(str).attr('data-margin')).css({
 					'top': $(str).attr('data-margin'),
 					'width': $(str).attr('data-width'),
@@ -523,13 +601,13 @@ layui.define(['jquery'], function(exports) {
 				return $(str).attr('data-pass') == 1 ? mojia.base64.decode($(str).attr('data-play').substring(3)) : $(str).attr('data-play');
 			},
 			'iframe': function(str, parse) {
-				mojia.player.logo(str);
+				mojia.player.logo('iframe', str);
 				var iframe = document.getElementById('mo-play-iframe');
 				iframe.src = $(parse).attr('data-parse') + mojia.player.video(str);
 				if ($(str).attr('data-code') != 1) {
-					if(/iPhone|iPad|iPod|iOS/i.test(navigator.userAgent)){
+					if (/iPhone|iPad|iPod|iOS/i.test(navigator.userAgent)) {
 						var text = $('.mo-play-trysee').show().css('z-index', '99').find('h2').text();
-						$('.mo-play-trysee').show().css('z-index', '99').find('h2').text(text.replace('试看'+$(str).attr('data-trys')+'分钟结束，完整',''));
+						$('.mo-play-trysee').show().css('z-index', '99').find('h2').text(text.replace('试看' + $(str).attr('data-trys') + '分钟结束，完整', ''));
 						$('.mo-java-left').addClass('mo-part-left');
 						iframe.src = '';
 						var outer = $(iframe).prop('outerHTML');
@@ -580,9 +658,9 @@ layui.define(['jquery'], function(exports) {
 				});
 			},
 			'player': function(str, live, sole) {
-				if(/iPhone|iPad|iPod|iOS/i.test(navigator.userAgent)){
+				if ($(str).attr('data-code') != 1 && /iPhone|iPad|iPod|iOS/i.test(navigator.userAgent)) {
 					var text = $('.mo-play-trysee').show().css('z-index', '99').find('h2').text();
-					$('.mo-play-trysee').show().css('z-index', '99').find('h2').text(text.replace('试看'+$(str).attr('data-trys')+'分钟结束，完整',''));
+					$('.mo-play-trysee').show().css('z-index', '99').find('h2').text(text.replace('试看' + $(str).attr('data-trys') + '分钟结束，完整', ''));
 					$('.mo-java-left').addClass('mo-part-left');
 					return false;
 				}
@@ -627,7 +705,7 @@ layui.define(['jquery'], function(exports) {
 						$('.dplayer-info-panel').css('line-height', '20px');
 						$('.dplayer-icon.dplayer-full-in-icon').remove();
 						$('.mo-play-load').hide();
-						mojia.player.logo(str);
+						mojia.player.logo('player', str);
 					});
 					player.on('loadeddata', function() {
 						if (!player.video.paused) $('.mo-play-btns').hide();
@@ -695,14 +773,6 @@ layui.define(['jquery'], function(exports) {
 							}
 						});
 					});
-				});
-			},
-			'tabs': function(btns, item, tabs) {
-				$(document).on('click', btns, function() {
-					$(item).hide();
-					$(btns).removeClass(tabs);
-					$(this).addClass(tabs);
-					$(item).eq($(this).index()).show();
 				});
 			},
 			'drop': function(btns, foot) {
@@ -1009,27 +1079,29 @@ layui.define(['jquery'], function(exports) {
 						}), this.each(function() {
 							var b = this,
 								c = a(b);
-							b.loaded = !1, (c.attr("src") === d || c.attr("src") === !1) && c.is("img") && c.attr("src", j.placeholder), c.one("appear", function() {
-								if (!this.loaded) {
-									if (j.appear) {
-										var d = i.length;
-										j.appear.call(b, d, j)
-									}
-									a("<img />").bind("load", function() {
-										var d = c.attr("data-" + j.data_attribute);
-										c.hide(), c.is("img") ? c.attr("src", d) : c.css("background-image", "url('" + d + "')"), c[j.effect](j.effect_speed), b.loaded = !0;
-										var e = a.grep(i, function(a) {
-											return !a.loaded
-										});
-										if (i = a(e), j.load) {
-											var f = i.length;
-											j.load.call(b, f, j)
+							b.loaded = !1, (c.attr("src") === d || c.attr("src") === !1) && c.is("img") && c.attr("src", j.placeholder),
+								c.one("appear", function() {
+									if (!this.loaded) {
+										if (j.appear) {
+											var d = i.length;
+											j.appear.call(b, d, j)
 										}
-									}).attr("src", c.attr("data-" + j.data_attribute))
-								}
-							}), 0 !== j.event.indexOf("scroll") && c.bind(j.event, function() {
-								b.loaded || c.trigger("appear")
-							})
+										a("<img />").bind("load", function() {
+											var d = c.attr("data-" + j.data_attribute);
+											c.hide(), c.is("img") ? c.attr("src", d) : c.css("background-image", "url('" + d + "')"), c[j.effect]
+												(j.effect_speed), b.loaded = !0;
+											var e = a.grep(i, function(a) {
+												return !a.loaded
+											});
+											if (i = a(e), j.load) {
+												var f = i.length;
+												j.load.call(b, f, j)
+											}
+										}).attr("src", c.attr("data-" + j.data_attribute))
+									}
+								}), 0 !== j.event.indexOf("scroll") && c.bind(j.event, function() {
+									b.loaded || c.trigger("appear")
+								})
 						}), e.bind("resize", function() {
 							g()
 						}), /(?:iphone|ipod|ipad).*os 5/gi.test(navigator.appVersion) && e.bind("pageshow", function(b) {

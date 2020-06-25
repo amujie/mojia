@@ -1,7 +1,7 @@
 {assign name="privilege" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/tb-service/get-privilege-link',array('pid'=>$mojia['other']['taoke']['pid'],'id'=>$Think.get.id,'goodsId'=>$Think.get.goodsId,'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])"}
 <dl class="mo-deta-info mo-cols-rows">
 	<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm5 mo-cols-lg4">
-		{include file="basics/banner" data=":array_slice(explode(',',$details['data']['imgs']),0,5)" top=":mac_default('')" style=":mac_default(' mo-byxs-2by3 mo-bysm-20by17 mo-bymd-1by1 mo-bylg-20by17 mo-byxl-20by15')" name=":mac_default($details['data']['brandName'])" remark=":mac_default($details['data']['shopName'],'查看详情')" image=":mac_url_img(trim($vo))" href=":mac_default($privilege['data']['shortUrl'])"}
+		{include file="basics/banner" data=":mac_default($details['data']['imgs']?array_slice(explode(',',$details['data']['imgs']),0,5):array($details['data']['marketingMainPic']))" top=":mac_default('')" style=":mac_default(' mo-byxs-2by3 mo-bysm-20by17 mo-bymd-1by1 mo-bylg-20by17 mo-byxl-20by15')" name=":mac_default($details['data']['brandName'])" remark=":mac_default($details['data']['shopName'],'查看详情')" image=":mac_url_img(trim($vo))" href=":mac_default($privilege['data']['shortUrl'])"}
 		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
 			<a class="mo-deta-play mo-cols-rows mo-pnxs-10px mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{$privilege['data']['shortUrl']}" target="_blank">领取{$details['data']['couponPrice']}元券</a>
 		</div>

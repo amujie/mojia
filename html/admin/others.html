@@ -18,26 +18,12 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><input type="input" name="mojia[other][close][name]" value="{$mojia['other']['close']['name']}" class="layui-input" placeholder="关站设置"></td>
+				<td><input type="input" name="mojia[other][close][name]" value="{$mojia['other']['close']['name']}" class="layui-input" placeholder="站点状态"></td>
 				<td><input type="input" name="mojia[other][close][tips]" value="{$mojia['other']['close']['tips']}" class="layui-input" placeholder="请填写站点关闭提示"></td>
 				<td colspan="2"><input type="input" name="mojia[other][close][time]" value="{$mojia['other']['close']['time']}" class="layui-input mo-date-time" placeholder="请填写下次开启站点时间"></td>
 				<td>
 					<input type="radio" name="mojia[other][close][state]" value="1" title="开启"{if$GLOBALS['config']['site']['site_status']==1} checked{/if}>
 					<input type="radio" name="mojia[other][close][state]" value="0" title="关闭"{if$GLOBALS['config']['site']['site_status']==0} checked{/if}>
-				</td>
-			</tr>
-			<tr>
-				<td><input type="input" name="mojia[other][edit][name]" value="{$mojia['other']['edit']['name']}" class="layui-input" placeholder="编辑按钮"></td>
-				<td><input type="input" name="mojia[other][edit][link]" value="{$mojia['other']['edit']['link']}" class="layui-input" placeholder="请填写后台入口文件,如admin.php"></td>
-				<td colspan="2">
-					<select name="mojia[other][edit][search]" lay-verify="">
-						<option value="1"{if$mojia['other']['edit']['search']==1} selected{/if}>开启联想搜索功能</option>
-						<option value="0"{if$mojia['other']['edit']['search']==0} selected{/if}>关闭联想搜索功能</option>
-					</select>
-				</td>
-				<td>
-					<input type="radio" name="mojia[other][edit][state]" value="1" title="开启"{if$mojia['other']['edit']['state']==1} checked{/if}>
-					<input type="radio" name="mojia[other][edit][state]" value="0" title="关闭"{if$mojia['other']['edit']['state']==0} checked{/if}>
 				</td>
 			</tr>
 			<tr>
@@ -52,6 +38,14 @@
 				<td>
 					<input type="radio" name="mojia[other][cdns][state]" value="1" title="开启"{if$mojia['other']['cdns']['state']==1} checked{/if}>
 					<input type="radio" name="mojia[other][cdns][state]" value="0" title="关闭"{if$mojia['other']['cdns']['state']==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][edit][name]" value="{$mojia['other']['edit']['name']}" class="layui-input" placeholder="编辑按钮"></td>
+				<td colspan="3"><input type="input" name="mojia[other][edit][link]" value="{$mojia['other']['edit']['link']}" class="layui-input" placeholder="请填写后台入口文件,如admin.php"></td>
+				<td>
+					<input type="radio" name="mojia[other][edit][state]" value="1" title="开启"{if$mojia['other']['edit']['state']==1} checked{/if}>
+					<input type="radio" name="mojia[other][edit][state]" value="0" title="关闭"{if$mojia['other']['edit']['state']==0} checked{/if}>
 				</td>
 			</tr>
 			<tr>
@@ -87,8 +81,14 @@
 			</tr>
 			<tr>
 				<td rowspan="2"><input type="input" name="mojia[other][share][name]" value="{$mojia['other']['share']['name']}" class="layui-input" placeholder="分享设置"></td>
-				<td><input type="input" name="mojia[other][share][apis]" value="{$mojia['other']['share']['apis']}" class="layui-input" placeholder="请填写接口地址"></td>
-				<td colspan="2"><input type="input" name="mojia[other][share][host]" value="{$mojia['other']['share']['host']}" class="layui-input" placeholder="请填写分享域名"></td>
+				<td><input type="input" name="mojia[other][share][apis]" value="{$mojia['other']['share']['apis']}" class="layui-input" placeholder="请填写短连接API地址(仅支持TXT)"></td>
+				<td><input type="input" name="mojia[other][share][host]" value="{$mojia['other']['share']['host']}" class="layui-input" placeholder="自定义域名"></td>
+				<td>
+					<select name="mojia[other][share][agent]" lay-verify="">
+						<option value="1"{if$mojia['other']['share']['agent']==1} selected{/if}>代理</option>
+						<option value="0"{if$mojia['other']['share']['agent']==0} selected{/if}>默认</option>
+					</select>
+				</td>
 				<td>
 					<input type="radio" name="mojia[other][share][state]" value="1" title="开启"{if$mojia['other']['share']['state']==1} checked{/if}>
 					<input type="radio" name="mojia[other][share][state]" value="0" title="关闭"{if$mojia['other']['share']['state']==0} checked{/if}>
@@ -98,7 +98,7 @@
 				<td><input type="input" name="mojia[other][share][image]" value="{$mojia['other']['share']['image']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
 				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
 				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
-				<td>分享默认图片</td>
+				<td>分享默认图片,自定义域名需加https://前缀</td>
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][icon][name]" value="{$mojia['other']['icon']['name']}" class="layui-input" placeholder="网站标志"></td>
@@ -144,7 +144,7 @@
 			<tr>
 				<td colspan="2"><input type="input" name="mojia[other][taoke][pid]" value="{$mojia['other']['taoke']['pid']}" class="layui-input" placeholder="PID"></td>
 				<td>
-					<input type="hidden" name="mojia[other][taoke][type]" value="{$mojia['home']['taoke']['type']}" />
+					<input type="hidden" name="mojia[other][taoke][type]" value="{$mojia['other']['taoke']['type']}" />
 					<select multiple="multiple" lay-filter="home">
 						<option value="">请选择</option>
 						{maccms:foreach name=":explode(',','0,1,2,3,5,6,7,8,11')"}
@@ -158,7 +158,7 @@
 				<td><input type="input" name="mojia[other][union][name]" value="{$mojia['other']['union']['name']}" class="layui-input" placeholder="触发任务"></td>
 				<td colspan="2"><input type="input" name="mojia[other][union][link]" value="{$mojia['other']['union']['link']}" class="layui-input" placeholder="请填写触发链接"></td>
 				<td>
-					<input type="hidden" name="mojia[other][union][type]" value="{$mojia['home']['union']['type']}" />
+					<input type="hidden" name="mojia[other][union][type]" value="{$mojia['other']['union']['type']}" />
 					<select multiple="multiple" lay-filter="home">
 						<option value="">请选择</option>
 						{maccms:foreach name=":explode(',','0,1,2,3,5,6,7,8,11')"}
@@ -169,14 +169,31 @@
 				<td>选择触发模块</td>
 			</tr>
 			<tr>
-				<td><input type="input" name="mojia[other][part][name]" value="{$mojia['other']['part']['name']}" class="layui-input" placeholder="圆角尺寸"></td>
-				<td colspan="3"><input type="input" name="mojia[other][part][round]" value="{$mojia['other']['part']['round']}" class="layui-input" placeholder="请填写圆角尺寸"></td>
-				<td>缩略图设置</td>
+				<td><input type="input" name="mojia[other][browse][name]" value="{$mojia['other']['browse']['name']}" class="layui-input" placeholder="浏览控制"></td>
+				<td colspan="2"><input type="input" name="mojia[other][browse][rule]" value="{$mojia['other']['browse']['rule']}" class="layui-input" placeholder="请填写正则表达式"></td>
+				<td>
+					<select name="mojia[other][browse][type]" lay-verify="">
+						<option value="1"{if$mojia['other']['browse']['type']==1} selected{/if}>允许</option>
+						<option value="0"{if$mojia['other']['browse']['type']==0} selected{/if}>禁止</option>
+					</select>
+				</td>
+				<td>某些浏览器打开网站并跳转到提示页面</td>
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][chain][name]" value="{$mojia['other']['chain']['name']}" class="layui-input" placeholder="图片盗链"></td>
-				<td colspan="3"><input type="input" name="mojia[other][chain][apis]" value="{$mojia['other']['chain']['apis']}" class="layui-input" placeholder="请填写接口地址"></td>
+				<td colspan="2"><input type="input" name="mojia[other][chain][apis]" value="{$mojia['other']['chain']['apis']}" class="layui-input" placeholder="请填写接口地址"></td>
+				<td>
+					<select name="mojia[other][chain][state]" lay-verify="">
+						<option value="1"{if$mojia['other']['chain']['state']==1} selected{/if}>开启</option>
+						<option value="0"{if$mojia['other']['chain']['state']==0} selected{/if}>关闭</option>
+					</select>
+				</td>
 				<td>解决图片403问题</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][part][name]" value="{$mojia['other']['part']['name']}" class="layui-input" placeholder="圆角尺寸"></td>
+				<td colspan="3"><input type="input" name="mojia[other][part][round]" value="{$mojia['other']['part']['round']}" class="layui-input" placeholder="请填写圆角尺寸"></td>
+				<td>缩略图设置</td>
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][copy][name]" value="{$mojia['other']['copy']['name']}" class="layui-input" placeholder="版权设置"></td>

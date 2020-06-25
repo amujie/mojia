@@ -1,20 +1,10 @@
-{include file="public/header"}
-{include file="tinier/filter"}
+{include file="public/header,tinier/filter"}
 <div class="mo-cols-lays mo-back-white">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-cols-zero">
-			<a class="mo-mrxs-5px mo-mrmd-10px{if$param.by==''||$param.by=='time'} mo-text-mojia{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'time' ],'show')}">按时间</a>
-        	<a class="mo-mrxs-5px mo-mrmd-10px{if$param.by=='hits'} mo-text-mojia{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'hits' ],'show')}">按人气</a>
-        	<a class="mo-mrxs-5px mo-mrmd-10px{if$param.by=='score'} mo-text-mojia{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'score' ],'show')}">按评分</a>
-		</h2>
-		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
-			<li class="mo-coxs-iblock mo-fsxs-14px">当前第&nbsp;<span id="mo-page-this" class="mo-text-mojia">1</span>&nbsp;页，共&nbsp;<span class="mo-text-mojia">{:mac_data_count($obj.type_id,'all','vod')}</span>&nbsp;条视频</li>
-		</ul>
-	</div>
+	{include file="tinier/shower"}
 	<ul class="mo-cols-rows">
 		{maccms:vod num="48" pageurl="vod/show" paging="yes" half="3" type="current" order="desc" by="time"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
-		{include file="basics/picture" type="vod" style=":mac_default(stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_default(mac_filter_html($vo['vod_name']))" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
+		{include file="basics/picture" type="vod" style=":mac_default(stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),'暂无备注')" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
 		</li>
 		{/maccms:vod}
 	</ul>

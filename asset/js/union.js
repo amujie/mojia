@@ -1,14 +1,12 @@
 layui.define(['jquery', 'form', 'layer', 'income'], function(exports) {
-	var income = layui.income,
-		layer = layui.layer,
-		form = layui.form,
-		$ = layui.jquery;
+	var $ = layui.jquery;
 	var mojia = {
 		'global': {
 			'urls': magic.admin[0] + 'php/admin/collect/api?ac={ac}&h={h}&cjflag={cjflag}&cjurl={cjurl}&mid={mid}&type={type}&opt={opt}&filter={filter}&filter_from={filter_from}&param={param}',
 			'init': function() {
 				mojia.lister.each();
 				mojia.clicks.init();
+				layui.util.fixbar();
 			}
 		},
 		'lister': {
@@ -32,7 +30,7 @@ layui.define(['jquery', 'form', 'layer', 'income'], function(exports) {
 					});
 					html += '</tbody></table>';
 					$('.mo-unit-table').html(html);
-					income.global.init();
+					layui.income.global.init();
 				}).error(function(data) {
 					layer.msg('请求失败：' + data.status);
 				}, 'json');
@@ -47,7 +45,7 @@ layui.define(['jquery', 'form', 'layer', 'income'], function(exports) {
 						for (var i = 0; i < data.length; i++) {
 							html += '<tr>';
 							html += '<td width="30" align="center">' + collec[hander].collect_id + '</td>';
-							html += '<td width="90" align="center"><span class="layui-badge layui-bg-green">' + collec[hander].collect_name + '</span></td>';
+							html += '<td width="90" align="center"><span class="layui-badge layui-bg-green">' + collec[hander].collect_name.substring(0, collec[hander].collect_name.indexOf('【')) + '</span></td>';
 							html += '<td><a href="javascript:;" class="mo-unit-dataer" data-urls="' + href + '&wd=' + $('.mo-unit-input').val() + '" data-head="' + collec[hander].collect_name + '">' + data[i][collec[hander].collect_code + '_name'] + '【' + data[i][collec[hander].collect_code + '_remarks'] + '】</a></td>';
 							html += '<td width="60" align="center"><a href="javascript:;" class="mo-unit-' + collec[hander].collect_mold + 'er" data-sole="' + data[i][collec[hander].collect_code + '_play_from'] + '" data-reso="' + collec[hander].collect_reso + '" data-mold="' + collec[hander].collect_mold + '" data-show="' + collec[hander].collect_name + '" data-apis="' + collec[hander].collect_url + '" data-host="' + collec[hander].collect_host + '">' + (collec[hander].collect_mold == 'down' ? '下载' : collec[hander].collect_text) + '配置</a></td>';
 							html += '<td width="60" align="center"><a href="javascript:;">' + data[i]['type_name'] + '</a></td>';
@@ -65,10 +63,10 @@ layui.define(['jquery', 'form', 'layer', 'income'], function(exports) {
 						return false;
 					}
 					if (data.statusText == 'timeout') {
-						$('.mo-unit-table tfoot tr td').html('【' + collec[hander].collect_name + '】请求超时&nbsp;&nbsp;&nbsp;正在搜索【' + collec[hander + 1].collect_name + '】请稍等...');
+						$('.mo-unit-table tfoot tr td').html('【' + collec[hander].collect_name.substring(0, collec[hander].collect_name.indexOf('【')) + '】请求超时&nbsp;&nbsp;&nbsp;正在搜索【' + collec[hander + 1].collect_name.substring(0, collec[hander + 1].collect_name.indexOf('【')) + '】请稍等...');
 						xhr.abort();
 					} else {
-						$('.mo-unit-table tfoot tr td').html('【' + collec[hander].collect_name + '】搜索到' + current.length + '条相关资源&nbsp;&nbsp;&nbsp正在搜索【' + collec[hander + 1].collect_name + '】请稍等...');
+						$('.mo-unit-table tfoot tr td').html('【' + collec[hander].collect_name.substring(0, collec[hander].collect_name.indexOf('【')) + '】搜索到' + current.length + '条相关资源&nbsp;&nbsp;&nbsp正在搜索【' + collec[hander + 1].collect_name.substring(0, collec[hander + 1].collect_name.indexOf('【')) + '】请稍等...');
 					}
 					mojia.lister.post(urls, collec, hander + 1, parseInt(count + current.length));
 				}, 'json');
@@ -132,13 +130,10 @@ layui.define(['jquery', 'form', 'layer', 'income'], function(exports) {
 					});
 				});
 				$(document).on('click', '.mo-unit-player', function() {
-					layer.msg('加载中请稍等', {
-						time: 12000,
-						icon: 16
-					});
 					if ($(this).attr('data-sole')) {
 						mojia.clicks.boxs($(this), $(this).attr('data-sole').split(','));
 					} else {
+						layer.load(2);
 						var that = $(this);
 						$.ajaxSettings.timeout = 10000;
 						var xhr = $.post(magic.tpl + 'asset/exc/create.php?id=col', 'code=code' + '&type=' + that.attr('data-type') + '&apis=' + that.attr('data-apis'), function(data) {

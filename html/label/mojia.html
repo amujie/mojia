@@ -1,4 +1,4 @@
-{assign name="maccms['aid']" value="71"}
+{assign name="maccms['aid']" value="73"}
 {include file="public/header"}
 <div class="mo-cols-lays mo-back-white">
 	<div class="mo-keys-info mo-part-maxw mo-part-patb">
@@ -8,13 +8,16 @@
 		<form class="mo-pnxs-15px mo-lhxs-40px mo-pops-form mo-cols-rows mo-java-event" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
 			<div class="mo-cols-rows mo-mtxs-5px">
 				<span class="mo-form-name">KEY</span>
-				<input class="mo-keys-text mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="text" name="mojia_key" placeholder="请输入KEY" maxlength="32">
+				<input class="mo-keys-text mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="text" name="mojia_key" value="{:model('Admin')->checkLogin()['code']==1?$verify['key']:''}" placeholder="请输入KEY" maxlength="32">
 				<a class="mo-part-more mo-prxs-10px mo-pnxs-10px mo-lhxs-40px mo-back-white" href="https://wpa.qq.com/msgrd?v=3&uin=1570457334&site=qq&menu=yes" target="_blank">获取KEY</a>
 			</div>
 			<span class="mo-keys-tips mo-lhxs-20px mo-text-gules mo-paxs-5px mo-cols-show">&emsp;</span>
 			<a class="mo-keys-btns mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-show">立即授权</a>
+			<ul class="mo-lhxs-44px mo-coxs-center">
+				<li class="mo-coxs-iblock mo-part-vert"><a class="mo-keys-agree mo-text-green mo-fsxs-24px mo-icon-font mo-icon-weixuanzhong" href="javascript:;"></a></li>
+				<li class="mo-coxs-iblock">请查看并同意<a class="mo-keys-user mo-text-mojia" href="javascript:;">《用户许可协议》</a></li>
+			</ul>
 		</form>
 	</div>
 </div>
-{include file="index/latest"}
-{include file="public/footer"}
+{include file="index/latest,public/footer"}

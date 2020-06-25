@@ -1,5 +1,1 @@
-{include file="public/header"}
-{include file="basics/search" type="vod" module="videos"}
-{empty name="$__PAGING__.record_total"}
-{include file="index/notice,gbook/report" report="gbook"}
-{/empty}{include file="index/latest,public/footer"}
+{include file="public/header,basics/search,index/latest,public/footer" type="vod" module="videos"}

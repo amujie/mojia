@@ -25,7 +25,7 @@
 		<p class="mo-paxs-5px mo-ptxs-0px">{$mojia['play']['copy']['tips']}</p>
 	</div>
 	{else}
-	<div class="mo-chat-info mo-cols-rows mo-cols-hide" data-chat="{:in_array($obj['type_id'], explode(',',$mojia['play']['chat']['type']))}" data-word="{:chr(rand(65,90)).chr(rand(65,90)).chr(rand(97,122)).base64_encode($GLOBALS['config']['weixin']['gjcm1'])}">
+	<div class="mo-chat-info mo-cols-rows{if$_COOKIE['mo_wechat']} mo-cols-hide{else} mo-cols-show{/if}" data-chat="{:in_array($obj['type_id'], explode(',',$mojia['play']['chat']['type']))}" data-word="{:chr(rand(65,90)).chr(rand(65,90)).chr(rand(97,122)).base64_encode($GLOBALS['config']['weixin']['gjcm1'])}">
 		<div class="mo-cols-rows mo-part-maxw mo-part-patb">
 			<div class="mo-pbmd-10px">
 				<h2 class="mo-coxs-center mo-pbmd-10px mo-fsxs-16px mo-fsmd-18px">扫描二维码,回复<font color="red">{$GLOBALS['config']['weixin']['gjc1']}</font>,获取口令</h2>
@@ -40,14 +40,15 @@
 			</div>
 		</div>
 	</div>
-	<ul class="mo-down-info mo-drop-boxs mo-cols-rows mo-pamd-5px{if in_array($obj['type_id'], explode(',',$mojia['play']['chat']['type']))} mo-cols-hide{/if}">
+	<ul class="mo-down-info mo-drop-boxs mo-cols-rows mo-pamd-5px{if in_array($obj['type_id'],explode(',',$mojia['play']['chat']['type']))} mo-cols-hide{/if}{if$_COOKIE['mo_wechat']} mo-cols-show{else} mo-cols-hide{/if}">
 		{maccms:foreach name="obj['vod_down_list'][$param['sid']]['urls']" id="sub"}
 		<li class="mo-cols-rows mo-cols-info mo-cols-xs12">
-			<div class="mo-paxs-5px mo-cols-info mo-cols-xs8 mo-cols-sm9 mo-cols-lg10">
+			<div class="mo-paxs-5px mo-cols-info mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
 				<input class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}" />
 			</div>
-			<div class="mo-paxs-5px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-				<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click{if$key==$param.nid} mo-back-mojia{/if}" href="{if stristr('xunlei|http',$obj['vod_down_list'][$param['sid']]['player_info']['from'])==true}thunder://{if$mojia['other']['demo']['state']}{:base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ')}{else}{:base64_encode('AA'.$sub.url.'ZZ')}{/if}{else}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}{/if}" target="_blank">下载{$sub.name}</a>
+			<div class="mo-paxs-5px mo-cols-info mo-cols-xs5 mo-cols-sm4 mo-cols-lg2">
+				{assign name="download" value=":str_replace(array('thunder','magnet','ed2k','pan.baidu.com','share.weiyun.com'),'',$sub.url,$count)"}
+				<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click{if$key==$param.nid} mo-back-mojia{/if}" href="{if$count}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}{else}thunder://{$mojia['other']['demo']['state']?base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ'):base64_encode('AA'.$sub.url.'ZZ')}{/if}" target="_blank">{$sub.name}</a>
 			</div>
 		</li>
 		{/maccms:foreach}
@@ -56,11 +57,12 @@
 	<ul class="mo-cols-rows mo-pamd-5px">
 		<li class="mo-cols-rows">
 			{if$popedom.code==1||$popedom.code==''}
-			<div class="mo-paxs-5px mo-cols-info mo-cols-xs8 mo-cols-sm9 mo-cols-lg10">
+			<div class="mo-paxs-5px mo-cols-info mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
 				<input class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url']}" />
 			</div>
-			<div class="mo-paxs-5px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-				<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click" href="{if stristr('xunlei|http',$obj['vod_down_list'][$param['sid']]['player_info']['from'])==true}thunder://{if$mojia['other']['demo']['state']}{:base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ')}{else}{:base64_encode('AA'.$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url'].'ZZ')}{/if}{else}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}{/if}" target="_blank">下载{$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['name']}</a>
+			<div class="mo-paxs-5px mo-cols-info mo-cols-xs5 mo-cols-sm4 mo-cols-lg2">
+				{assign name="download" value=":str_replace(array('thunder','magnet','ed2k','pan.baidu.com','share.weiyun.com'),'',$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url'],$count)"}
+				<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click" href="{if$count}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url']}{else}thunder://{$mojia['other']['demo']['state']?base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ'):base64_encode('AA'.$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url'].'ZZ')}{/if}" target="_blank">{$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['name']}</a>
 			</div>
 			{else}
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg8">

@@ -1,51 +1,72 @@
 <!DOCTYPE html>
-<html class="mo-shut-info mo-part-view">
+<html class="mo-part-view">
 	<head>
 		{include file="tinier/config,tinier/metaer"}
-		<title>浏览器升级提示 - {$GLOBALS['config']['site']['site_name']}</title>
+		<title>{$GLOBALS['config']['site']['site_name']}</title>
 		<meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="{$cdnpath}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
 		{include file="tinier/colour"}
 	</head>
-	<body class="mo-shut-info mo-part-view mo-cols-minw">
-		<div class="mo-shut-main mo-part-core mo-cols-minw mo-coxs-center">
-			<h2 class="mo-shut-head mo-text-white">扫描二维码打开</h2>
-			<div class="mo-part-maxw mo-coxs-center">
-				<div class="mo-shut-code mo-code-info mo-coxs-center mo-paxs-5px mo-pamd-10px" data-api="{$mojia['other']['share']['apis']}">
+	<body class="mo-brow-info mo-part-view">
+		<div id="mo-java-ienow" class="mo-cols-hide" style="padding:200px 20px 20px 20px;font-size:54px;">
+			<div class="mo-coxs-center mo-text-black" style="padding:20px;">本站已禁止当前浏览器访问</div>
+			<div class="mo-coxs-center mo-text-black" style="padding:20px;">以下四款官方正版浏览器任君挑选</div>
+			<ul class="mo-coxs-center" style="padding:20px;">
+				<a class="mo-text-black mo-text-hover" href="https://www.google.cn/intl/zh-CN/chrome" target="_blank">谷歌</a>
+				<a class="mo-text-black mo-text-hover" href="https://www.mozilla.org/zh-CN/firefox/new" target="_blank">火狐</a>
+				<a class="mo-text-black mo-text-hover" href="https://www.microsoftedgeinsider.com" target="_blank">微软</a>
+				<a class="mo-text-black mo-text-hover" href="https://www.opera.com/zh-cn" target="_blank">欧朋</a>
+			</ul>
+		</div>
+		<div id="mo-java-ienew" class="mo-part-view mo-cols-minw">
+			<a class="mo-cols-hide" href="javascript:;" id="browser" rel="noreferrer"></a>
+			<div class="mo-brow-tips mo-cols-rows mo-comd-none mo-text-white mo-paxs-20px">
+				<p>点击右上角选择浏览器打开</p>
+				<p>可以继续浏览本站哦~</p>
+			</div>
+			<div class="mo-brow-main mo-part-core mo-part-maxw mo-coxs-center mo-paxs-20px">
+				<div class="mo-brow-code mo-code-info mo-coxs-center mo-paxs-5px mo-pamd-10px" data-api="{$mojia['other']['share']['apis']}">
 					<img src="{$mojia['other']['icon']['pics']|mac_url_img}" id="mo-code-pics" class="mo-cols-hide" crossorigin="anonymous" />
 				</div>
-				<p class="mo-text-white mo-paxs-10px">升级浏览器或者将浏览器切换为极速模式</p>
-				<p class="mo-text-white mo-paxs-10px">为了保障你的账号安全和最佳预览体验，当前业务已不支持IE10及以下浏览器和部分古老浏览器的访问，邀请您使用以下现代高级浏览器。</p>
-				<div class="mo-text-white mo-paxs-10px">以下四款官方正版浏览器任君挑选</div>
-				<ul class="mo-cols-rows mo-paxs-10px  mo-maxs-10px">
+				<div class="mo-text-black mo-pamd-10px">本站已禁止当前浏览器访问</div>
+				<a class="mo-brow-link mo-mtxs-10px mo-mbxs-10px mo-pnxs-10px mo-lhxs-40px mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;" data-clipboard-text="{$maccms.http_url}">点此复制本站网址</a>
+				<div class="mo-text-black mo-pamd-10px">以下四款官方正版浏览器任君挑选</div>
+				<ul class="mo-cols-rows mo-paxs-10px mo-maxs-10px">
 					<li class="mo-cols-cell">
-						<a class="mo-text-white" href="https://www.google.cn/intl/zh-CN/chrome" target="_blank">
+						<a class="mo-text-black" href="https://www.google.cn/intl/zh-CN/chrome" target="_blank">
 							<i class="mo-fsxs-24px mo-icon-font mo-icon-chrome-fill"></i>
 							<span class="mo-fsxs-14px"><br>Chrome<br>谷歌</span>
 						</a>
 					</li>
 					<li class="mo-cols-cell">
-						<a class="mo-text-white" href="https://www.mozilla.org/zh-CN/firefox/new" target="_blank">
+						<a class="mo-text-black" href="https://www.mozilla.org/zh-CN/firefox/new" target="_blank">
 							<i class="mo-fsxs-24px mo-icon-font mo-icon-firefox-fill"></i>
 							<span class="mo-fsxs-14px"><br>Firefox<br>火狐</span>
 						</a>
 					</li>
 					<li class="mo-cols-cell">
-						<a class="mo-text-white" href="https://www.microsoftedgeinsider.com" target="_blank">
+						<a class="mo-text-black" href="https://www.microsoftedgeinsider.com" target="_blank">
 							<i class="mo-fsxs-24px mo-icon-font mo-icon-edge-fill"></i>
 							<span class="mo-fsxs-14px"><br>Edge<br>微软</span>
 						</a>
 					</li>
 					<li class="mo-cols-cell">
-						<a class="mo-text-white" href="https://www.opera.com/zh-cn" target="_blank">
+						<a class="mo-text-black" href="https://www.opera.com/zh-cn" target="_blank">
 							<i class="mo-fsxs-24px mo-icon-font mo-icon-opera-fill"></i>
 							<span class="mo-fsxs-14px"><br>Opera<br>欧朋</span>
 						</a>
 					</li>
 				</ul>
 			</div>
+			<div class="mo-brow-foot mo-cols-rows mo-text-black mo-coxs-center mo-cols-xs12 mo-cols-minw">Copyright&nbsp;{:date('Y', time())}&nbsp;{$_SERVER['HTTP_HOST']}&nbsp;Inc.</div>
 		</div>
-		<div class="mo-shut-foot mo-cols-rows mo-text-white mo-coxs-center mo-cols-xs12 mo-cols-minw">Copyright&nbsp;{:date('Y', time())}&nbsp;{$_SERVER['HTTP_HOST']}&nbsp;Inc.</div>
+		<script type="text/javascript">
+			if(/MSIE\s[0-8]\./i.test(navigator.userAgent)){
+				document.body.style.background='white';
+				document.getElementById('mo-java-ienow').style.display='block'; 
+				document.getElementById('mo-java-ienew').style.display='none'; 
+			}
+		</script>
 		<script src="{$cdnpath}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var magic = {
@@ -59,7 +80,7 @@
 				base: magic.cdn + 'asset/js/'
 			}).use(['other'], function() {
 				var other = layui.other;
-				other.global.update();
+				other.global.browser();
 			});
 		</script>
 	</body>

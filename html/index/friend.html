@@ -6,10 +6,13 @@
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs3 mo-cols-sm2 mo-cols-xl1x">
 			<a class="mo-wrap-arow mo-lhxs-20px mo-fsxs-14px" href="http://amujie.com" target="_blank">阿木姐</a>
 		</li>
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs3 mo-cols-sm2 mo-cols-xl1x">
+			<a class="mo-wrap-arow mo-lhxs-20px mo-fsxs-14px" href="http://www.mishangyun.com" target="_blank">香港GIA20元</a>
+		</li>
 		{/if}{maccms:link num="'.$mojia['home']['link']['num'].'" type="'.$mojia['home']['link']['type'].'" order="'.$mojia['home']['link']['order'].'" by="'.$mojia['home']['link']['sort'].'"}
 		{if$mojia['home']['link']['type']=='pic'}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-			<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-4by1 mo-cols-rows mo-bord-round" href="{$vo.link_url}" target="_blank" data-original="{$mojia['other']['chain']['apis']}{:mac_url_img(trim($vo['link_logo']))}"></a>
+			<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-4by1 mo-cols-rows mo-bord-round" href="{$vo.link_url}" target="_blank" data-original="{if$mojia['other']['chain']['state']}{:stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''}{$mojia['other']['chain']['apis']}{/if}{:mac_url_img(trim($vo['link_logo']))}"></a>
 		</li>
 		{else}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs3 mo-cols-sm2 mo-cols-xl1x">

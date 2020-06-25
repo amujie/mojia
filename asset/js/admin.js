@@ -1,34 +1,28 @@
-layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'multiple', 'colorpicker'], function(exports) {
-	var colorpicker = layui.colorpicker,
-		iconfonts = layui.iconfonts,
-		multiple = layui.multiple,
-		laydate = layui.laydate,
-		element = layui.element,
-		upload = layui.upload,
-		form = layui.form,
-		$ = layui.jquery;
+layui.define(['iconfonts', 'multiple'], function(exports) {
+	var $ = layui.jquery;
 	var mojia = {
 		'global': {
 			'init': function() {
-				mojia.global.update();
-				multiple.init('select[multiple]');
-				iconfonts.init('.layui-font-info');
-				laydate.render({
+				layui.util.fixbar();
+				mojia.global.update(0);
+				layui.multiple.init('select[multiple]');
+				layui.iconfonts.init('.layui-font-info');
+				layui.laydate.render({
 					elem: '.mo-date-time',
 					type: 'datetime'
 				});
-				form.on('select(navbar)', function(data) {
+				layui.form.on('select(navbar)', function(data) {
 					$(this).parents('td').prev().prev().find('input').val(data.elem[data.elem.selectedIndex].dataset.type);
 					$(this).parents('td').next().find('input').val(data.elem[data.elem.selectedIndex].dataset.link);
 				});
-				form.on('select(homeid)', function(data) {
+				layui.form.on('select(homeid)', function(data) {
 					$(this).parents('td').next().next().find('input').val(data.elem[data.elem.selectedIndex].dataset.name);
 					$(this).parents('td').next().next().next().find('input').val(data.elem[data.elem.selectedIndex].dataset.link);
 				});
-				form.on('submit(submit)', function(data) {
+				layui.form.on('submit(submit)', function(data) {
 					$.post($('.layui-form-pane').attr('action'), data.field, function(data) {
 						$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'chat=chat&send=' + $('input[name="mojia[play][chat][send]"]').val() + '&code=' + $('input[name="mojia[play][chat][code]"]').val() + '&close=' + $('input[name="mojia[other][close][state]"]:checked').val());
-						$.post(magic.tpl + 'asset/exc/create.php?id=url&tao=tao');
+						$.post(magic.tpl + 'asset/exc/create.php?id=url', 'tao=tao');
 						layer.msg(data.msg, {
 							time: 1000
 						}, function() {
@@ -39,7 +33,7 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 					}, 'json');
 					return false;
 				});
-				form.on('submit(reset)', function(data) {
+				layui.form.on('submit(reset)', function(data) {
 					layer.confirm('确定恢复默认设置吗', {
 						title: '提示'
 					}, function() {
@@ -55,7 +49,7 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 					});
 					return false;
 				});
-				form.on('submit(lookup)', function(data) {
+				layui.form.on('submit(lookup)', function(data) {
 					var image = $(this).parents('td').prev().prev().find('input').val();
 					layer.open({
 						type: 1,
@@ -65,7 +59,7 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 						content: '<img width="100%" src="' + (image.indexOf('//') != -1 ? image : magic.path + image) + '"/>'
 					});
 				});
-				form.on('submit(colour)', function(data) {
+				layui.form.on('submit(colour)', function(data) {
 					$(data.elem).css({
 						'color': '#ffffff',
 						'background-color': data.elem.dataset.back
@@ -76,7 +70,7 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 						$('.mo-look-btns' + [i]).parent().prev().find('input').val(color[i]);
 					}
 				});
-				upload.render({
+				layui.upload.render({
 					elem: '.layui-upload',
 					url: magic.admin[0] + 'php/admin/upload/upload.html?flag=site',
 					before: function(input) {
@@ -98,7 +92,7 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 					}
 				});
 				$('.mo-look-btns').each(function(nums, info) {
-					colorpicker.render({
+					layui.colorpicker.render({
 						elem: '.mo-look-btns' + nums,
 						color: $('.mo-look-btns' + nums).parent().prev().find('input').val(),
 						predefine: true,
@@ -111,6 +105,10 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 					});
 				});
 			},
+			'latest': function(index) {
+				var href = ['@master', '', '@latest'];
+				return 'https://cdn.jsdelivr.net/gh/amujie/mojia' + href[index] + '/info.ini';
+			},
 			'contra': function(index, nows, news) {
 				var news = news.split('.');
 				var nows = nows.split('.');
@@ -121,32 +119,35 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 				}
 				return version != 0 ? version : (news.length - nows.length);
 			},
-			'update': function() {
-				$.post(magic.tpl + '/asset/exc/create.php?id=url&ver=new', function(data) {
-					var newmojia = data.ver;
-					var password = data.key;
-					if (mojia.global.contra(0, $('.mo-opts-vers').text(), newmojia) > 0) {
-						$('.mo-opts-news').html('最新版：' + newmojia + '<a href="javascript:;" class="mo-opts-btns mo-pnxs-10px" style="color:red">立即更新</a>').css('color', 'red');
-						$.post(magic.tpl + '/asset/exc/create.php?id=url&ver=log', function(data) {
-							var output = '<table class="layui-table mo-logs-form"><tbody>';
-							for (var i = 0; i < data[newmojia].length; i++) output += '<tr><td width="20" align="center" class="mo-logs-nums">' + (i + 1) + '</td><td class="mo-logs-item">' + data[newmojia][i] + '</td></tr>';
-							output += '</tbody></table>';
-							$(document).on('click', '.mo-opts-btns', function() {
-								layer.confirm(output, {
-									area: 'auto',
-									maxWidth: '50%',
-									maxHeight: '400',
-									title: '最新版更新日志',
-									btn: ['立即更新', '取消更新'],
-									skin: 'mo-logs-info',
-									success: function() {
-										$('.layui-layer-content').addClass('mo-logs-boxs');
-									}
-								}, function(index, layero) {
-									mojia.global.change(newmojia, password);
-								});
-							});
+			'record': function(newmojia, password) {
+				$.post(magic.tpl + 'asset/exc/create.php?id=url', 'ver=log&new=' + encodeURIComponent('https://cdn.jsdelivr.net/gh/amujie/mojia@' + newmojia + '/about/changelog.json'), function(data) {
+					var output = '<table class="layui-table mo-logs-form"><tbody>';
+					for (var i = 0; i < data[newmojia].length; i++) output += '<tr><td width="20" align="center" class="mo-logs-nums">' + (i + 1) + '</td><td class="mo-logs-item">' + data[newmojia][i] + '</td></tr>';
+					output += '</tbody></table>';
+					$(document).on('click', '.mo-opts-btns', function() {
+						layer.confirm(output, {
+							area: 'auto',
+							maxWidth: '50%',
+							maxHeight: '400',
+							title: '最新版更新日志',
+							btn: ['立即更新', '取消更新'],
+							skin: 'mo-logs-info',
+							success: function() {
+								$('.layui-layer-content').addClass('mo-logs-boxs');
+							}
+						}, function(index, layero) {
+							mojia.global.change(newmojia, password);
 						});
+					});
+				});
+			},
+			'update': function(count) {
+				$.post(magic.tpl + 'asset/exc/create.php?id=url', 'ver=new&cdn=' + encodeURIComponent(mojia.global.latest(count)), function(data) {
+					if (mojia.global.contra(0, $('.mo-opts-vers').text(), data.ver) > 0) {
+						$('.mo-opts-news').html('最新版：' + data.ver + '<a href="javascript:;" class="mo-opts-btns mo-pnxs-10px" style="color:red">立即更新</a>').css('color', 'red');
+						mojia.global.record(data.ver, data.key);
+					} else if (count < 2) {
+						mojia.global.update(count + 1);
 					}
 				});
 			},
@@ -154,32 +155,30 @@ layui.define(['jquery', 'element', 'form', 'upload', 'laydate', 'iconfonts', 'mu
 				var index = layer.load(2);
 				$.post(magic.tpl + 'asset/exc/create.php?id=upd', 'ver=' + news + '&key=' + pass, function(data) {
 					layer.close(index);
-					if (data.code == 1) {
-						$.post(magic.path + 'template/mojia-' + news + '/asset/exc/create.php?id=url&ver=now', function(data) {
-							if (data.ver == news) {
-								mojia.global.withfl(news);
-							} else {
-								layer.open({
-									title: '升级失败',
-									content: '<center>当前版本:' + data.ver + '<br/>最新版本:' + news + '<br/>请检查文件读写权限<br/>或选择手动升级主题</center>'
-								});
-							}
-						});
-					} else layer.msg(data.msg);
+					if (data.code == 1) mojia.global.withfl(news);
+					else layer.msg(data.msg);
 				}).error(function(data) {
 					layer.msg('请求失败：' + data.status);
 				}, 'json');
 			},
 			'withfl': function(news) {
-				layer.alert('升级成功', function(index) {
-					$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'tpl=mojia-' + news);
-					$.post($('.j-ajax', parent.document).attr('href'), function(data) {
-						layer.msg(data.msg, {
-							time: 1000
-						}, function() {
-							location.reload();
+				$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'tpl=mojia-' + news, function(data) {
+					if (data.msg == 'mojia-' + news) {
+						layer.alert('升级成功', function(index) {
+							$.post($('.j-ajax', parent.document).attr('href'), function(data) {
+								layer.msg((data.msg ? data.msg : '请手动清除缓存'), {
+									time: 1000
+								}, function() {
+									location.reload();
+								});
+							});
 						});
-					});
+					} else {
+						layer.open({
+							title: '升级失败',
+							content: '<center>主题下载成功<br/>但未自动更换为最新主题<br/>请前往系统设置切换主题为<br/>mojia-' + news + '</center>'
+						});
+					}
 				});
 			}
 		}

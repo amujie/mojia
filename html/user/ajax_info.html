@@ -1,5 +1,4 @@
-{include file="public/header"} 
-{include file="user/banner"} 
+{include file="public/header,user/banner"} 
 <div class="mo-cols-lays mo-back-white">
 	{include file="basics/titles" module="user" title=":mac_default('我的资料')" btns="修改" href=":mac_url('user/info')"}
 	<form class="mo-user-form" action="{:mac_url('user/ulog_del')}" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">

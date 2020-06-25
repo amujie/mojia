@@ -34,7 +34,7 @@
 				<td>
 					<input type="hidden" name="mojia[play][chat][type]" value="{$mojia['play']['chat']['type']}" />
 					<select multiple="multiple" lay-filter="home">
-						<option value="">全部</option>
+						<option value="">请选择</option>
 						{maccms:type order="asc" by="sort" id="vo" flag="vod"}
 						<option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$mojia['play']['chat']['type']))} selected{/if}>{$vo.type_name}</option>
 						{/maccms:type}
@@ -62,7 +62,7 @@
 						<option value="right"{if$mojia['play']['logo']['float']=='right'} selected{/if}>右侧</option>
 					</select>
 				</td>
-				<td>视频播放器logo</td>
+				<td>视频播放器LOGO</td>
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[play][cover][name]" value="{$mojia['play']['cover']['name']}" class="layui-input" placeholder="视频封面"></td>
@@ -102,7 +102,7 @@
 				<td colspan="2"><input type="input" name="mojia[play][tips][title]" value="{$mojia['play']['tips']['title']}" class="layui-input" placeholder="点击下方选择播放"></td>
 				<td><input type="input" name="mojia[play][tips][link]" value="{$mojia['play']['tips']['link']}" class="layui-input" placeholder="提示按钮链接"></td>
 				<td colspan="2"><input type="input" name="mojia[play][tips][href]" value="{$mojia['play']['tips']['href']}" class="layui-input" placeholder="请填写跳转链接"></td>
-				<td>播放器高度设置</td>
+				<td>播放页提示按钮</td>
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[play][load][name]" value="{$mojia['play']['load']['name']}" class="layui-input" placeholder="加载提示"></td>

@@ -18,7 +18,7 @@
 <div class="mo-goto-info mo-java-fadein">
 	<ul class="mo-coxs-block">
 		{if$obj[mac_get_mid_code($maccms['mid']).'_id']&&$mojia['other']['edit']['state']&&model("Admin")->checkLogin()['code']==1}
-		<li class="mo-bsxs-shadow"><a class="mo-goto-calls mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-chuangzuo mo-java-event" href="{$install}{$mojia['other']['edit']['link']}/admin/{:mac_get_mid_code($maccms['mid'])}/info/id/{$obj[mac_get_mid_code($maccms['mid']).'_id']}.html" target="_blank"></a></li>
+		<li class="mo-bsxs-shadow"><a class="mo-goto-calls mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-chuangzuo-line mo-java-event" href="{$install}{$mojia['other']['edit']['link']}/admin/{:mac_get_mid_code($maccms['mid'])}/info/id/{$obj[mac_get_mid_code($maccms['mid']).'_id']}.html" target="_blank"></a></li>
 		{/if}{if$mojia['other']['call']['state']}
 		<li class="mo-bsxs-shadow"><a class="mo-goto-calls mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-zixun mo-java-event" href="{$mojia['other']['call']['link']}" target="_blank"></a></li>
 		{/if}{if$mojia['other']['chat']['state']}
@@ -32,9 +32,11 @@
 {if in_array($user['group_id'], explode(',',$mojia['advs']['float']['group']))}
 <div class="mo-coup-info">
 	<div class="mo-coup-item mo-coup-left">
+		<a class="mo-part-advs mo-java-advs mo-coxs-center mo-fsxs-20px mo-text-white" href="javascript:;">×</a>
 		{$mojia['advs']['float']['left']}
 	</div>
 	<div class="mo-coup-item mo-coup-right">
+		<a class="mo-part-advs mo-java-advs mo-coxs-center mo-fsxs-20px mo-text-white" href="javascript:;">×</a>
 		{$mojia['advs']['float']['right']}
 	</div>
 </div>

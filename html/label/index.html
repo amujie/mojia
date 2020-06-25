@@ -1,11 +1,46 @@
-{assign name="maccms['aid']" value="74"}
-{include file="public/header"}
-{php}$__LIST__ = moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/nine/op-goods-list',array('pageSize'=>'5','nineCid'=>'6','taoQiangGou'=>$mojia['home']['taoke']['qiang'],'brand'=>$mojia['home']['taoke']['brand'],'sort'=>$mojia['home']['taoke']['sort'],'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']['list'];{/php}
-{include file="basics/banner" data=":mac_default($__LIST__)" top=":mac_default(' mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px')" style=":mac_default(' mo-byxs-3by2 mo-bymd-5by2')" name=":mac_default($vo.dtitle)" remark=":mac_default($vo.desc,'查看详情')" image=":mac_url_img(trim($vo.mainPic))" href=":mac_default(mac_url('label/taoke').'?id='.$vo['id'].'&goodsId='.$vo['goodsId'])"}
+{assign name="maccms['aid']" value="70"}
+{include file="public/header,basics/banner" data=":moJiaDaTaoKe('https://openapi.dataoke.com/api/category/ddq-goods-list',array('version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']['goodsList']" top=":mac_default(' mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px')" style=":mac_default(' mo-byxs-3by2 mo-bymd-5by2')" name=":mac_default($vo.dtitle)" remark=":mac_default($vo.desc,'查看详情')" image=":mac_url_img(trim($vo.mainPic))" href=":mac_default(mac_url('label/taoke').'?id='.$vo['id'].'&goodsId='.$vo['goodsId'])"}
+{assign name="goodlist" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list',array('sort'=>($_GET['sort']?$_GET['sort']:1),'cids'=>(!$_GET['subcid']?($_GET['cid']?$_GET['cid']:''):''),'subcid'=>($_GET['subcid']?$_GET['subcid']:''),'specialId'=>($_GET['specialId']?$_GET['specialId']:''),'pageSize'=>'100','version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])"}
+{assign name="category" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/category/get-super-category',array('version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])"}
+<div class="mo-paxs-10px mo-cols-lays mo-back-white mo-cols-rows">
+	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-sort">
+		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">分类</dt>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['cid']==''} mo-part-bans mo-text-mojia mo-java-sort{/if}" href="{:mac_url('label/index').'?cid=&subcid=&sort='.$_GET['sort'].'&specialId='.$_GET['specialId']}">全部</a></dd>
+		{maccms:foreach name="$category['data']"}
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$vo['cid']==$_GET['cid']} mo-part-bans mo-text-mojia mo-java-sort{/if}" href="{:mac_url('label/index').'?cid='.$vo['cid'].'&subcid=&sort='.$_GET['sort'].'&specialId='.$_GET['specialId']}">{$vo['cname']}</a></dd>
+		{/maccms:foreach}
+	</dl>
+	{:var_dump()}
+	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-class">
+		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">类型</dt>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['subcid']==''} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url('label/index').'?cid='.($_GET['cid']?$_GET['cid']:1).'&subcid=&sort='.$_GET['sort'].'&specialId='.$_GET['specialId']}">全部</a></dd>
+		{maccms:foreach name="$category['data'][($_GET['cid']?$_GET['cid']:1)]['subcategories']"}
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$vo['subcid']==$_GET['subcid']} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url('label/index').'?cid='.($_GET['cid']?$_GET['cid']:1).'&subcid='.$vo['subcid'].'&sort='.$_GET['sort'].'&specialId='.$_GET['specialId']}">{$vo['subcname']}</a></dd>
+		{/maccms:foreach}
+	</dl>
+	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-level">
+		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">卖点</dt>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['specialId']==''} mo-part-bans mo-text-mojia mo-java-level{/if}" href="{:mac_url('label/index').'?cid='.$_GET['cid'].'&subcid='.$_GET['subcid'].'&sort='.$_GET['sort'].'&specialId='}">全部</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['specialId']==1} mo-part-bans mo-text-mojia mo-java-level{/if}" href="{:mac_url('label/index').'?cid='.$_GET['cid'].'&subcid='.$_GET['subcid'].'&sort='.$_GET['sort'].'&specialId=1'}">拍多件活动</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['specialId']==2} mo-part-bans mo-text-mojia mo-java-level{/if}" href="{:mac_url('label/index').'?cid='.$_GET['cid'].'&subcid='.$_GET['subcid'].'&sort='.$_GET['sort'].'&specialId=2'}">多买多送</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['specialId']==3} mo-part-bans mo-text-mojia mo-java-level{/if}" href="{:mac_url('label/index').'?cid='.$_GET['cid'].'&subcid='.$_GET['subcid'].'&sort='.$_GET['sort'].'&specialId=3'}">限量抢购</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['specialId']==4} mo-part-bans mo-text-mojia mo-java-level{/if}" href="{:mac_url('label/index').'?cid='.$_GET['cid'].'&subcid='.$_GET['subcid'].'&sort='.$_GET['sort'].'&specialId=4'}">额外满减</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['specialId']==6} mo-part-bans mo-text-mojia mo-java-level{/if}" href="{:mac_url('label/index').'?cid='.$_GET['cid'].'&subcid='.$_GET['subcid'].'&sort='.$_GET['sort'].'&specialId=6'}">买商品礼赠</a></dd>
+	</dl>
+</div>
 <div class="mo-cols-lays mo-back-white">
-	{include file="basics/titles" module="taoke" title=":mac_default($mojia['home']['taoke']['name'])" more="hide"}
+	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-cols-zero">
+			<a class="mo-mrxs-5px mo-mrmd-10px{if$_GET['sort']==''||$_GET['sort']==1} mo-text-mojia{/if}" href="{:mac_url('label/index').'?cid='.$_GET['cid'].'&subcid='.$_GET['subcid'].'&sort=1&specialId='.$_GET['specialId']}">按时间</a>
+			<a class="mo-mrxs-5px mo-mrmd-10px{if$_GET['sort']==2} mo-text-mojia{/if}" href="{:mac_url('label/index').'?cid='.$_GET['cid'].'&subcid='.$_GET['subcid'].'&sort=2&specialId='.$_GET['specialId']}">按销量</a>
+			<a class="mo-mrxs-5px mo-mrmd-10px{if$_GET['sort']==5} mo-text-mojia{/if}" href="{:mac_url('label/index').'?cid='.$_GET['cid'].'&subcid='.$_GET['subcid'].'&sort=5&specialId='.$_GET['specialId']}">按价格</a>
+		</h2>
+		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
+			<li class="mo-coxs-iblock mo-fsxs-14px">共&nbsp;<span id="mo-page-sums" class="mo-text-mojia">{:count(array_slice($goodlist['data']['list'],0,96))}</span>&nbsp;个结果</li>
+		</ul>
+	</div>
 	<ul class="mo-cols-rows">
-		{maccms:foreach name=":array_slice(moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list',array('pageSize'=>'100','cids'=>$mojia['home']['taoke']['type'],'taoQiangGou'=>$mojia['home']['taoke']['qiang'],'brand'=>$mojia['home']['taoke']['brand'],'sort'=>$mojia['home']['taoke']['sort'],'version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']['list'],0,96)"}
+		{maccms:foreach name=":array_slice($goodlist['data']['list'],0,96)"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
 		{include file="basics/picture" type="tao" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default('券后¥'.$vo['actualPrice'])" remark=":mac_default($vo['brandName'])" name=":mac_default($vo['dtitle'])" desc=":mac_default($vo['desc'],'暂无简介')" image=":mac_url_img(trim($vo['marketingMainPic']))" href=":mac_default(mac_url('label/taoke').'?id='.$vo['id'].'&goodsId='.$vo['goodsId'])" title="show" lazy="open"}
 		</li>

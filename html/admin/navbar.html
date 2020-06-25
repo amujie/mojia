@@ -18,6 +18,28 @@
 		</thead>
 		<tbody>
 			<tr>
+				<td><input type="text" name="mojia[nav][base][name]" value="{$mojia['nav']['base']['name']}" class="layui-input" placeholder="基本设置"></td>
+				<td>
+					<select name="mojia[nav][base][status]" lay-verify="">
+						<option value="1"{if$mojia['nav']['base']['status']==1} selected{/if}>固定位置</option>
+						<option value="0"{if$mojia['nav']['base']['status']==0} selected{/if}>跟随滚动</option>
+					</select>
+				</td>
+				<td>
+					<select name="mojia[nav][base][loadon]" lay-verify="">
+						<option value="1"{if$mojia['nav']['base']['loadon']==1} selected{/if}>默认加载</option>
+						<option value="0"{if$mojia['nav']['base']['loadon']==0} selected{/if}>动态加载</option>
+					</select>
+				</td>
+				<td>
+					<select name="mojia[nav][base][search]" lay-verify="">
+						<option value="1"{if$mojia['nav']['base']['search']==1} selected{/if}>开启联想搜索功能</option>
+						<option value="0"{if$mojia['nav']['base']['search']==0} selected{/if}>关闭联想搜索功能</option>
+					</select>
+				</td>
+				<td><input type="checkbox" name="mojia[nav][base][desktop]" title="导航栏基本设置选择项" lay-skin="primary" disabled></td>
+			</tr>
+			<tr>
 				<td><input type="text" name="mojia[nav][logo][src]" value="{$mojia['nav']['logo']['src']}" class="layui-input layui-upfile" placeholder="src"></td>
 				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
 				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>

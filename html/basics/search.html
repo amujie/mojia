@@ -12,3 +12,6 @@
 	</div>
 	{include file="tinier/paging"}
 </div>
+{if!$__PAGING__.record_total&&$maccms.mid==1}
+{include file="index/notice,gbook/report" report="gbook"}
+{/if}

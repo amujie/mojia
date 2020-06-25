@@ -7,7 +7,7 @@
 	{maccms:type num="24" order="asc" by="sort" flag="vod" id="magic"}
 	<div class="mo-cols-lays mo-back-white mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg4">
 		{include file="basics/titles" module="rank" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
-		{include file="basics/charts" type="mac_default($magic['type_id'])" name=":mac_default(mac_filter_html($vo['vod_name']))" href=":mac_url_vod_detail($vo)"}
+		{include file="basics/charts" type="mac_default($magic['type_id'])" name=":mac_filter_html($vo['vod_name'])" href=":mac_url_vod_detail($vo)"}
 	</div>
 	{/maccms:type}
 </div>

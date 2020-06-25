@@ -1,0 +1,13 @@
+{include file="public/header,tinier/filter"}
+<div class="mo-cols-lays mo-back-white">
+	{include file="tinier/shower"}
+	<ul class="mo-cols-rows">
+		{maccms:website num="48" pageurl="website/show" paging="yes" half="3" type="current" order="desc" by="time"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
+		{include file="basics/picture" type="website" style=":mac_default(' mo-lazy-highs mo-byxs-16by9')" tips=":mac_default($vo['website_hits'].'浏览')" remark=":mac_default($vo['website_remarks'],'暂无备注')" name=":mac_filter_html($vo['website_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['website_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['website_logo']))" href=":mac_url_website_detail($vo)" title="show" lazy="open"}
+		</li>
+		{/maccms:website}
+	</ul>
+	{include file="tinier/paging"}
+</div>
+{include file="public/footer"}

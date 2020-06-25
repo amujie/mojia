@@ -11,7 +11,7 @@
 			<span class="mo-part-more mo-fsxs-12px mo-fssm-14px">{$vo.comment_time|date='Y-m-d H:i:s',###}</span>
 		</div>
 		<div class="mo-comm-left">
-			<p class="mo-pzxs-5px">{:moJiaFace($vo['comment_content'])}</p>
+			<p class="mo-pzxs-5px">{:mac_default(moJiaFace($vo['comment_content']),'咦？发现一条空白评论')}</p>
 			<div class="mo-coxs-right mo-mbxs-5px mo-fsxs-12px">
 				<a class="mo-comm-repo mo-mlxs-5px" data-id="{$vo.comment_id}" href="javascript:;">举报</a>
 				<a class="mo-comm-digg mo-mlxs-5px mo-text-green" data-id="{$vo.comment_id}" data-mid="4" data-type="up" href="javascript:;">支持({$vo.comment_up})</a>
@@ -28,7 +28,7 @@
 				<span class="mo-part-more mo-fsxs-12px mo-fssm-14px">{$child.comment_time|mac_day}</span>
 			</div>
 			<div class="mo-comm-left">
-				<p class="mo-pzxs-5px">{:moJiaFace($child['comment_content'])}</p>
+				<p class="mo-pzxs-5px">{:mac_default(moJiaFace($child['comment_content']),'咦？发现一条空白评论')}</p>
 				<div class="mo-coxs-right mo-mbxs-5px mo-fsxs-12px">
 					<a class="mo-comm-repo mo-mlxs-5px" data-id="{$child.comment_id}" href="javascript:;">举报</a>
 					<a class="mo-comm-digg mo-mlxs-5px mo-text-green" data-id="{$child.comment_id}" data-mid="4" data-type="up" href="javascript:;">支持(<span>{$child.comment_up}</span>)</a>

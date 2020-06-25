@@ -2,7 +2,7 @@
 <div class="mo-have-info mo-cols-rows mo-back-white">
 	<div class="mo-have-main mo-cols-rows">
 		<div class="mo-have-left mo-cols-rows mo-cols-xs12 mo-byxs-2by3">
-			<img class="mo-have-boxs mo-part-full" width="100%" height="auto" src="{image}" />
+			<img class="mo-have-boxs mo-part-full" width="100%" height="auto" src="{if$mojia['other']['share']['agent']}{:stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''}{:mac_default($mojia['other']['chain']['apis'],'asset/exc/create.php?id=url&pic=')}{/if}{image}" />
 		</div>
 		<div class="mo-have-right">
 			<div class="mo-have-code mo-code-info mo-paxs-10px mo-cols-info mo-cols-xs4" data-api="{$mojia['other']['share']['apis']}">
@@ -17,7 +17,7 @@
 	<div class="mo-part-dott mo-bord-muted mo-cols-show"></div>
 	<div class="mo-cols-rows mo-paxs-5px">
 		<li class="mo-cols-info mo-cols-xs12 mo-paxs-5px mo-fsxs-12px">
-			<a class="mo-have-btns mo-lhxs-34px mo-back-click mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;" data-clipboard-text="{$maccms.http_url}">生成海报分享给好友</a>
+			<a class="mo-have-btns mo-lhxs-34px mo-back-click mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;">生成海报分享给好友</a>
 		</li>
 		<li class="mo-cols-info mo-cols-xs3 mo-paxs-5px mo-fsxs-12px">
 			<a class="mo-have-shut mo-lhxs-34px mo-back-click mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-bord-muted" href="javascript:;">关闭</a>

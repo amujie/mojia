@@ -1,43 +1,55 @@
 {include file="public/header"}
-{php}$actor = array_filter(array_merge(model("Vod")->listCacheData('{"actor":"'.$obj['actor_name'].'","order":"desc","by":"time"}')['list'],model("Vod")->listCacheData('{"director":"'.$obj['actor_name'].'","order":"desc","by":"time"}')['list']));{/php}
+{php}$magic_actor = array_filter(array_merge(model("Vod")->listCacheData('{"actor":"'.$obj['actor_name'].'","order":"desc","by":"time"}')['list'],model("Vod")->listCacheData('{"director":"'.$obj['actor_name'].'","order":"desc","by":"time"}')['list']));{/php}
+{php}$magic_role = model("Role")->listCacheData('{"actor":"'.$obj['actor_name'].'"}')['list'];{/php}
 <div class="mo-cols-lays mo-back-white mo-cols-rows">
 	{include file="module/actors"}
 </div>
 <div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over mo-java-page">
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-part-slip mo-cols-xs10">
-			{if$actor}
-			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="javascript:;">{$obj.type.type_name}作品</a>
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="javascript:;">明星简介</a>
+			{if$magic_actor}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">{$obj.type.type_name}作品</a>
+			{/if}{if$magic_role}
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">饰演角色</a>
 			{/if}
-			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if!$actor} mo-text-mojia{/if}" href="javascript:;">明星简介</a>
 			{if$GLOBALS['config']['comment']['status']}
 			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">发表评论</a>
 			{/if}
 		</h2>
 	</div>
-	{if$actor}
 	<div class="mo-tabs-item mo-cols-show">
-		<ul class="mo-cols-rows">
-			{maccms:foreach name=":array_unique($actor, SORT_REGULAR)"}
-			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'主持')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
-			{include file="basics/picture" type="vod" style=":mac_default(stristr($vo['type']['type_name'].$vo['type_1']['type_name'],'主持')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_default(mac_filter_html($vo['vod_name']))" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
-			</li>
-			{/maccms:foreach}
-		</ul>
-	</div>
-	{/if}
-	<div class="mo-tabs-item{if!$actor} mo-cols-show{else} mo-cols-hide{/if}">
 		<div class="mo-pamd-5px">
 			<div class="mo-paxs-5px mo-ptxs-0px">
 				{$obj.actor_content|mac_default='暂无明星简介'}
 			</div>
 		</div>
 	</div>
+	{if$magic_actor}
+	<div class="mo-tabs-item mo-cols-hide">
+		<ul class="mo-cols-rows">
+			{maccms:foreach name=":array_unique($magic_actor, SORT_REGULAR)"}
+			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($obj['type']['type_name'].$obj['type_1']['type_name'],'主持')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
+			{include file="basics/picture" type="vod" style=":mac_default(stristr($obj['type']['type_name'].$obj['type_1']['type_name'],'主持')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),'暂无备注')" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="shut"}
+			</li>
+			{/maccms:foreach}
+		</ul>
+	</div>
+	{/if}{if$magic_role}
+	<div class="mo-tabs-item mo-cols-hide">
+		<ul class="mo-cols-rows">
+			{maccms:role num="10" actor="'.$obj['actor_name'].'" order="asc" by="sort"}
+			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
+			{include file="basics/picture" type="role" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['role_hits'].'浏览')" remark=":mac_default($vo['role_actor'],'暂无演员姓名')" name=":mac_filter_html($vo['role_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['role_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['role_pic']))" href=":mac_url_role_detail($vo)" title="show" lazy="shut"}
+			</li>
+			{/maccms:role}
+		</ul>
+	</div>
+	{/if}
 	{if$GLOBALS['config']['comment']['status']}
 	<div class="mo-tabs-item mo-cols-hide">
 		<div class="mo-comm-critic"></div>
 	</div>
 	{/if}
 </div>
-{include file="index/latest"}
-{include file="public/footer"}
+{include file="index/latest,public/footer"}

@@ -1,11 +1,11 @@
-{assign name="maccms['aid']" value="73"}
+{assign name="maccms['aid']" value="71"}
 {include file="public/header"}
 <div class="mo-cols-lays mo-back-white">
 	{include file="basics/titles" module="hots" title=":mac_default($mojia['home']['hots']['name'])" btns="筛选" href=":mac_url_type(['type_mid'=>1],['id'=>1],'show')"}
 	<ul class="mo-cols-rows">
 		{maccms:vod num="96" order="desc" by="time" level="'.$_GET['level'].'"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-		{include file="basics/picture" type="vod" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_default(mac_filter_html($vo['vod_name']))" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
+		{include file="basics/picture" type="vod" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),'暂无备注')" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
 		</li>
 		{/maccms:vod}
 	</ul>
