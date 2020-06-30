@@ -6,9 +6,9 @@
 {/if}{if$maccms.aid!=15}{assign name="param['sid']" value=":key($obj.vod_play_list)"}{/if}
 <div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over">
 	<div class="mo-drop-head mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-cols-zero mo-part-slip mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-cols-zero mo-part-slip mo-cols-xs8 mo-cols-sm9 mo-cols-lg10">
 			{maccms:foreach name="obj.vod_play_list" id="sub"}
-			<a class="mo-mrxs-5px mo-mrmd-10px{if$maccms.aid==15}{if$sub.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']} mo-text-mojia{/if}{elseif$key==$param['sid']} mo-text-mojia{/if}" href="{:mac_url_vod_play($obj,['sid'=>$sub.sid,'nid'=>$param.nid])}" target="{$obj['vod_play_list'][$param['sid']]['player_info']['target']}">{$sub.player_info.show}</a>
+			<a class="mo-mrxs-5px mo-mrmd-10px{if$maccms.aid==15}{if$sub.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']} mo-text-mojia{/if}{elseif$key==$param['sid']} mo-text-mojia{/if}" href="{:mac_url_vod_play($obj,['sid'=>$sub.sid,'nid'=>$param.nid])}" target="{$obj['vod_play_list'][$param['sid']]['player_info']['target']}"><i class="mo-prxs-2px mo-fsxs-16px mo-fsmd-18px mo-icon-font mo-icon-play mo-icon-{$sub.player_info.from}"></i>{$sub.player_info.show}</a>
 			{/maccms:foreach}
 		</h2>
 		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">

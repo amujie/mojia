@@ -38,7 +38,7 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 					mojia.global.openurl('mibrowser:' + url);
 					mojia.global.openurl('taobao://' + url.split('://')[1]);
 					mojia.global.openurl('alipays://platformapi/startapp?appId=20000067&url=' + url);
-					$('html').on('click', function() {
+					$(document).click(function() {
 						mojia.global.openurl('ucbrowser://' + url);
 						mojia.global.openurl('mttbrowser://url=' + url);
 						mojia.global.openurl('baiduboxapp://browse?url=' + url);
@@ -46,6 +46,9 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 						mojia.global.openurl('mibrowser:' + url);
 						mojia.global.openurl('taobao://' + url.split('://')[1]);
 						mojia.global.openurl('alipays://platformapi/startapp?appId=20000067&url=' + url);
+					});
+					$(document).on('click', '.mo-java-event', function(event) {
+						event.stopPropagation();
 					});
 				} else if (navigator.userAgent.indexOf('MicroMessenger') > -1) {
 					if (navigator.userAgent.indexOf('Android') > -1) {

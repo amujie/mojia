@@ -1,10 +1,11 @@
-layui.define(['iconfonts', 'multiple'], function(exports) {
+layui.define(['mojia', 'iconfonts', 'multiple'], function(exports) {
 	var $ = layui.jquery;
 	var mojia = {
 		'global': {
 			'init': function() {
 				layui.util.fixbar();
 				mojia.global.update(0);
+				layui.mojia.moload.mojia();
 				layui.multiple.init('select[multiple]');
 				layui.iconfonts.init('.layui-font-info');
 				layui.laydate.render({
@@ -18,6 +19,15 @@ layui.define(['iconfonts', 'multiple'], function(exports) {
 				layui.form.on('select(homeid)', function(data) {
 					$(this).parents('td').next().next().find('input').val(data.elem[data.elem.selectedIndex].dataset.name);
 					$(this).parents('td').next().next().next().find('input').val(data.elem[data.elem.selectedIndex].dataset.link);
+				});
+				layui.form.on('select(iconer)', function(data) {
+					if (data.value == 'artist') {
+						$(this).parents('td').next().find('.layui-form-select').addClass('mo-cols-show').removeClass('mo-cols-hide');
+						$(this).parents('td').next().find('.layui-font-select').addClass('mo-cols-hide').removeClass('mo-cols-show');
+					} else {
+						$(this).parents('td').next().find('.layui-form-select').addClass('mo-cols-hide').removeClass('mo-cols-show');
+						$(this).parents('td').next().find('.layui-font-select').addClass('mo-cols-show').removeClass('mo-cols-hide');
+					}
 				});
 				layui.form.on('submit(submit)', function(data) {
 					$.post($('.layui-form-pane').attr('action'), data.field, function(data) {
@@ -100,9 +110,12 @@ layui.define(['iconfonts', 'multiple'], function(exports) {
 						alpha: true,
 						done: function(color) {
 							$('.mo-look-btns' + nums).parent().prev().find('input').val(color);
-							console.log($('.mo-look-btns' + nums));
 						}
 					});
+				});
+				$(document).ready(function() {
+					$('select[name="mojia[nav][icon][artid]"]').next().addClass($('select[name="mojia[nav][icon][artid]"]').attr('class'));
+					$('select[name="mojia[nav][font][artid]"]').next().addClass($('select[name="mojia[nav][font][artid]"]').attr('class'));
 				});
 			},
 			'latest': function(index) {
@@ -142,6 +155,7 @@ layui.define(['iconfonts', 'multiple'], function(exports) {
 				});
 			},
 			'update': function(count) {
+				$('.layui-body', parent.document).css('overflow-y', 'hidden');
 				$.post(magic.tpl + 'asset/exc/create.php?id=url', 'ver=new&cdn=' + encodeURIComponent(mojia.global.latest(count)), function(data) {
 					if (mojia.global.contra(0, $('.mo-opts-vers').text(), data.ver) > 0) {
 						$('.mo-opts-news').html('最新版：' + data.ver + '<a href="javascript:;" class="mo-opts-btns mo-pnxs-10px" style="color:red">立即更新</a>').css('color', 'red');

@@ -13,12 +13,9 @@
 			<a class="mo-navs-submit mo-cols-show mo-pnxs-10px mo-fsxs-20px mo-lhxs-30px mo-lhmd-36px mo-icon-font mo-icon-sousuo"></a>
 		</form>
 		<ul class="mo-navs-btns">
-			<li class="mo-navs-font"><a class="mo-navs-record mo-cols-show mo-java-event" href="javascript:;"><i class="mo-cols-show mo-fsxs-24px mo-icon-font mo-icon-shijian-line"></i></a></li>
-			{if$GLOBALS['config']['user']['status']}
-			<li class="mo-navs-font"><a class="{if$user.user_id}mo-navs-center {else}mo-navs-logins {/if}mo-cols-show mo-java-event mo-cols-zero" href="javascript:;">{if$user.user_id}<img class="mo-part-coin" width="24" height="24" src="{:str_replace('/static/images/touxiang.png',$cdnpath.'asset/img/avatar.png',mac_get_user_portrait($user['user_id']))}" />{else}<i class="mo-cols-show mo-fsxs-24px mo-icon-font mo-icon-shequ-line"></i>{/if}</a></li>
-			{else}
-			<li class="mo-navs-font"><a href="javascript:location.reload();"><i class="mo-cols-show mo-fsxs-24px mo-icon-font mo-icon-shuaxin"></i></a></li>
-			{/if}
+			{maccms:foreach name="$mojia['nav']" id="sub"}{if$sub['type']=='icon'}
+			<li class="mo-navs-font"><a class="mo-navs-{$sub['btns']=='center'&&!$Think.cookie.user_id?'logins':$sub['btns']} mo-cols-show mo-java-event mo-cols-zero" href="{$sub['link']|mac_default='javascript:;'}" target="_blank">{if$sub['btns']=='center'&&$Think.cookie.user_id}<img class="mo-part-coin" width="24" height="24" src="{:str_replace('/static/images/touxiang.png',$cdnpath.'asset/img/avatar.png',mac_get_user_portrait($user['user_id']))}" />{else}<i class="mo-cols-show mo-fsxs-24px mo-icon-font {$sub['icon']}"></i>{/if}</a></li>
+			{/if}{/maccms:foreach}
 		</ul>
 	</div>
 </div>
@@ -73,4 +70,13 @@
 </div>
 <div class="mo-pops-info mo-pops-center mo-fsxs-14px mo-back-white mo-bsmd-shadow mo-cols-hide mo-java-ceal mo-anim-upbit">
 	{include file="user/navbar"}
+</div>
+<div class="mo-pops-info mo-pops-artist mo-fsxs-14px mo-back-white mo-bsmd-shadow mo-cols-hide mo-java-ceal mo-anim-upbit">
+	{maccms:foreach name="$mojia['nav']" id="sub"}{if$sub['btns']=='artist'}
+	{maccms:art ids="'.$sub['artid'].'" order="desc" by="time"}
+	<div class="mo-paxs-5px mo-pamd-10px">
+	{:mac_url_content_img($vo.art_content)}
+	</div>
+	{/maccms:art}{/if}
+	{/maccms:foreach}
 </div>

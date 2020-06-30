@@ -44,49 +44,33 @@
 				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
 				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit="">查看图片</button></td>
 			    <td><input type="input" name="mojia[nav][logo][link]" value="{$mojia['nav']['logo']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
-			    <td>
+				<td>
 					<input type="hidden" name="mojia[nav][logo][type]" value="logo" />
 					<input type="checkbox" name="mojia[nav][logo][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['logo']['desktop']} checked{/if}>
 					<input type="checkbox" name="mojia[nav][logo][mobile]" title="移动端" lay-skin="primary" disabled>
 				</td>
 			</tr>
+			{maccms:foreach name=":explode(',','home,custom')" id="magic"}
 			<tr>
 				<td>
-					<select name="mojia[nav][home][id]" lay-filter="homeid">
+					<select name="mojia[nav][{$magic}][id]" lay-filter="homeid">
 						<option value="">请选择</option>
 						<option data-name="首页" data-link="{$maccms.path}" value="0"{if$mojia['nav']['home']['id']==0} selected{/if}>首页</option>
-						{maccms:foreach name=":explode(',','1,2,3,5,6,7,8,11')"}
-						<option data-name="{$vo|mac_get_mid_text}" data-link="{:mac_url(mac_get_mid_code($vo).'/index')}" value="{$vo}"{if$mojia['nav']['home']['id']==$vo} selected{/if}>{$vo|mac_get_mid_text}</option>
+						{maccms:foreach name=":explode(',','1,2,3,5,6,7,8,9,10,11')"}
+						<option data-name="{$vo|mac_get_mid_text}" data-link="{:mac_url(mac_get_mid_code($vo).'/index')}" value="{$vo}"{if$mojia['nav'][$magic]['id']==$vo} selected{/if}>{$vo|mac_get_mid_text}</option>
 						{/maccms:foreach}
 					</select>
 				</td>
-				<td><input type="text" name="mojia[nav][home][icon]" value="{$mojia['nav']['home']['icon']}" class="layui-input layui-font-info"></td>
-				<td><input type="input" name="mojia[nav][home][name]" value="{$mojia['nav']['home']['name']}" class="layui-input" placeholder="名称"></td>
-				<td><input type="input" name="mojia[nav][home][link]" value="{$mojia['nav']['home']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
+				<td><input type="text" name="mojia[nav][{$magic}][icon]" value="{$mojia['nav'][$magic]['icon']}" class="layui-input layui-font-info"></td>
+				<td><input type="input" name="mojia[nav][{$magic}][name]" value="{$mojia['nav'][$magic]['name']}" class="layui-input" placeholder="名称"></td>
+				<td><input type="input" name="mojia[nav][{$magic}][link]" value="{$mojia['nav'][$magic]['link']}" class="layui-input" placeholder="请填写链接地址"></td>
 				<td>
-					<input type="hidden" name="mojia[nav][home][type]" value="mid" />
-					<input type="checkbox" name="mojia[nav][home][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['home']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][home][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['home']['mobile']} checked{/if}>
+					<input type="hidden" name="mojia[nav][{$magic}][type]" value="mid" />
+					<input type="checkbox" name="mojia[nav][{$magic}][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav'][$magic]['desktop']} checked{/if}>
+					<input type="checkbox" name="mojia[nav][{$magic}][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav'][$magic]['mobile']} checked{/if}>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<select name="mojia[nav][custom][id]" lay-filter="homeid">
-						<option value="">请选择</option>
-						{maccms:foreach name=":explode(',','1,2,3,5,6,7,8,11')"}
-						<option data-name="{$vo|mac_get_mid_text}" data-link="{:mac_url(mac_get_mid_code($vo).'/index')}" value="{$vo}"{if$mojia['nav']['custom']['id']==$vo} selected{/if}>{$vo|mac_get_mid_text}</option>
-						{/maccms:foreach}
-					</select>
-				</td>
-				<td><input type="text" name="mojia[nav][custom][icon]" value="{$mojia['nav']['custom']['icon']}" class="layui-input layui-font-info"></td>
-				<td><input type="input" name="mojia[nav][custom][name]" value="{$mojia['nav']['custom']['name']}" class="layui-input" placeholder="名称"></td>
-				<td><input type="input" name="mojia[nav][custom][link]" value="{$mojia['nav']['custom']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
-				<td>
-					<input type="hidden" name="mojia[nav][custom][type]" value="mid" />
-					<input type="checkbox" name="mojia[nav][custom][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['custom']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][custom][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['custom']['mobile']} checked{/if}>
-				</td>
-			</tr>
+			{/maccms:foreach}
 			<tr>
 				<td><input type="input" name="mojia[nav][level][id]" value="{$mojia['nav']['level']['id']}" class="layui-input" placeholder="ID"></td>
 				<td><input type="text" name="mojia[nav][level][icon]" value="{$mojia['nav']['level']['icon']}" class="layui-input layui-font-info"></td>
@@ -105,221 +89,93 @@
 					<input type="checkbox" name="mojia[nav][level][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['level']['mobile']} checked{/if}>
 				</td>
 			</tr>
+			{maccms:foreach name=":explode(',','film,drama,variety,comic,music,live')" id="magic"}
 			<tr>
-				<td><input type="input" name="mojia[nav][film][id]" value="{$mojia['nav']['film']['id']}" class="layui-input" placeholder="ID"></td>
-				<td><input type="text" name="mojia[nav][film][icon]" value="{$mojia['nav']['film']['icon']}" class="layui-input layui-font-info"></td>
+				<td><input type="input" name="mojia[nav][{$magic}][id]" value="{$mojia['nav'][$magic]['id']}" class="layui-input" placeholder="ID"></td>
+				<td><input type="text" name="mojia[nav][{$magic}][icon]" value="{$mojia['nav'][$magic]['icon']}" class="layui-input layui-font-info"></td>
 				<td>
-					<select name="mojia[nav][film][name]" lay-filter="navbar">
+					<select name="mojia[nav][{$magic}][name]" lay-filter="navbar">
 						<option value="">请选择</option>
 						{maccms:type order="asc" by="sort" id="vo" ids="parent"}
-						<option data-type="{$vo.type_id}" data-link="{:mac_url_type($vo)}" value="{$vo.type_name}"{if$mojia['nav']['film']['name']==$vo.type_name} selected{/if}>{$vo.type_name}</option>
+						<option data-type="{$vo.type_id}" data-link="{:mac_url_type($vo)}" value="{$vo.type_name}"{if$mojia['nav'][$magic]['name']==$vo.type_name} selected{/if}>{$vo.type_name}</option>
 						{/maccms:type}
 					</select>
 				</td>
-				<td><input type="input" name="mojia[nav][film][link]" value="{$mojia['nav']['film']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
+				<td><input type="input" name="mojia[nav][{$magic}][link]" value="{$mojia['nav'][$magic]['link']}" class="layui-input" placeholder="请填写链接地址"></td>
 				<td>
-					<input type="hidden" name="mojia[nav][film][type]" value="cat" />
-					<input type="checkbox" name="mojia[nav][film][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['film']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][film][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['film']['mobile']} checked{/if}>
+					<input type="hidden" name="mojia[nav][{$magic}][type]" value="cat" />
+					<input type="checkbox" name="mojia[nav][{$magic}][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav'][$magic]['desktop']} checked{/if}>
+					<input type="checkbox" name="mojia[nav][{$magic}][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav'][$magic]['mobile']} checked{/if}>
 				</td>
 			</tr>
-			<tr>
-				<td><input type="input" name="mojia[nav][drama][id]" value="{$mojia['nav']['drama']['id']}" class="layui-input" placeholder="ID"></td>
-				<td><input type="text" name="mojia[nav][drama][icon]" value="{$mojia['nav']['drama']['icon']}" class="layui-input layui-font-info"></td>
-				<td>
-					<select name="mojia[nav][drama][name]" lay-filter="navbar">
-						<option value="">请选择</option>
-						{maccms:type order="asc" by="sort" id="vo" ids="parent"}
-						<option data-type="{$vo.type_id}" data-link="{:mac_url_type($vo)}" value="{$vo.type_name}"{if$mojia['nav']['drama']['name']==$vo.type_name} selected{/if}>{$vo.type_name}</option>
-						{/maccms:type}
-					</select>
-				</td>
-				<td><input type="input" name="mojia[nav][drama][link]" value="{$mojia['nav']['drama']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
-				<td>
-					<input type="hidden" name="mojia[nav][drama][type]" value="cat" />
-					<input type="checkbox" name="mojia[nav][drama][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['drama']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][drama][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['drama']['mobile']} checked{/if}>
-				</td>
-			</tr>
-			<tr>
-				<td><input type="input" name="mojia[nav][variety][id]" value="{$mojia['nav']['variety']['id']}" class="layui-input" placeholder="ID"></td>
-				<td><input type="text" name="mojia[nav][variety][icon]" value="{$mojia['nav']['variety']['icon']}" class="layui-input layui-font-info"></td>
-				<td>
-					<select name="mojia[nav][variety][name]" lay-filter="navbar">
-						<option value="">请选择</option>
-						{maccms:type order="asc" by="sort" id="vo" ids="parent"}
-						<option data-type="{$vo.type_id}" data-link="{:mac_url_type($vo)}" value="{$vo.type_name}"{if$mojia['nav']['variety']['name']==$vo.type_name} selected{/if}>{$vo.type_name}</option>
-						{/maccms:type}
-					</select>
-				</td>
-				<td><input type="input" name="mojia[nav][variety][link]" value="{$mojia['nav']['variety']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
-				<td>
-					<input type="hidden" name="mojia[nav][variety][type]" value="cat" />
-					<input type="checkbox" name="mojia[nav][variety][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['variety']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][variety][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['variety']['mobile']} checked{/if}>
-				</td>
-			</tr>
-			<tr>
-				<td><input type="input" name="mojia[nav][comic][id]" value="{$mojia['nav']['comic']['id']}" class="layui-input" placeholder="ID"></td>
-				<td><input type="text" name="mojia[nav][comic][icon]" value="{$mojia['nav']['comic']['icon']}" class="layui-input layui-font-info"></td>
-				<td>
-					<select name="mojia[nav][comic][name]" lay-filter="navbar">
-						<option value="">请选择</option>
-						{maccms:type order="asc" by="sort" id="vo" ids="parent"}
-						<option data-type="{$vo.type_id}" data-link="{:mac_url_type($vo)}" value="{$vo.type_name}"{if$mojia['nav']['comic']['name']==$vo.type_name} selected{/if}>{$vo.type_name}</option>
-						{/maccms:type}
-					</select>
-				</td>
-				<td><input type="input" name="mojia[nav][comic][link]" value="{$mojia['nav']['comic']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
-				<td>
-					<input type="hidden" name="mojia[nav][comic][type]" value="cat" />
-					<input type="checkbox" name="mojia[nav][comic][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['comic']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][comic][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['comic']['mobile']} checked{/if}>
-				</td>
-			</tr>
-			<tr>
-				<td><input type="input" name="mojia[nav][music][id]" value="{$mojia['nav']['music']['id']}" class="layui-input" placeholder="ID"></td>
-				<td><input type="text" name="mojia[nav][music][icon]" value="{$mojia['nav']['music']['icon']}" class="layui-input layui-font-info"></td>
-				<td>
-					<select name="mojia[nav][music][name]" lay-filter="navbar">
-						<option value="">请选择</option>
-						{maccms:type order="asc" by="sort" id="vo" ids="parent"}
-						<option data-type="{$vo.type_id}" data-link="{:mac_url_type($vo)}" value="{$vo.type_name}"{if$mojia['nav']['music']['name']==$vo.type_name} selected{/if}>{$vo.type_name}</option>
-						{/maccms:type}
-					</select>
-				</td>
-				<td><input type="input" name="mojia[nav][music][link]" value="{$mojia['nav']['music']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
-				<td>
-					<input type="hidden" name="mojia[nav][music][type]" value="cat" />
-					<input type="checkbox" name="mojia[nav][music][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['music']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][music][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['music']['mobile']} checked{/if}>
-				</td>
-			</tr>
-			<tr>
-				<td><input type="input" name="mojia[nav][live][id]" value="{$mojia['nav']['live']['id']}" class="layui-input" placeholder="ID"></td>
-				<td><input type="text" name="mojia[nav][live][icon]" value="{$mojia['nav']['live']['icon']}" class="layui-input layui-font-info"></td>
-				<td>
-					<select name="mojia[nav][live][name]" lay-filter="navbar">
-						<option value="">请选择</option>
-						{maccms:type order="asc" by="sort" id="vo" ids="parent"}
-						<option data-type="{$vo.type_id}" data-link="{:mac_url_type($vo)}" value="{$vo.type_name}"{if$mojia['nav']['live']['name']==$vo.type_name} selected{/if}>{$vo.type_name}</option>
-						{/maccms:type}
-					</select>
-				</td>
-				<td><input type="input" name="mojia[nav][live][link]" value="{$mojia['nav']['live']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
-				<td>
-					<input type="hidden" name="mojia[nav][live][type]" value="cat" />
-					<input type="checkbox" name="mojia[nav][live][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['live']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][live][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['live']['mobile']} checked{/if}>
-				</td>
-			</tr>
+			{/maccms:foreach}{maccms:foreach name=":explode(',','art,actor,topic,site,gbook,user')" id="magic"}
 			<tr>
 				<td>
-					<select name="mojia[nav][art][id]" lay-filter="homeid">
+					<select name="mojia[nav][{$magic}][id]" lay-filter="homeid">
 						<option value="">请选择</option>
-						{maccms:foreach name=":explode(',','1,2,3,5,6,7,8,11')"}
-						<option data-name="{$vo|mac_get_mid_text}" data-link="{:mac_url(mac_get_mid_code($vo).'/index')}" value="{$vo}"{if$mojia['nav']['art']['id']==$vo} selected{/if}>{$vo|mac_get_mid_text}</option>
+						<option data-name="首页" data-link="{$maccms.path}" value="0"{if$mojia['nav']['home']['id']==0} selected{/if}>首页</option>
+						{maccms:foreach name=":explode(',','1,2,3,5,6,7,8,9,10,11')"}
+						<option data-name="{$vo|mac_get_mid_text}" data-link="{:mac_url(mac_get_mid_code($vo).'/index')}" value="{$vo}"{if$mojia['nav'][$magic]['id']==$vo} selected{/if}>{$vo|mac_get_mid_text}</option>
 						{/maccms:foreach}
 					</select>
 				</td>
-				<td><input type="text" name="mojia[nav][art][icon]" value="{$mojia['nav']['art']['icon']}" class="layui-input layui-font-info"></td>
-				<td><input type="input" name="mojia[nav][art][name]" value="{$mojia['nav']['art']['name']}" class="layui-input" placeholder="名称"></td>
-				<td><input type="input" name="mojia[nav][art][link]" value="{$mojia['nav']['art']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
+				<td><input type="text" name="mojia[nav][{$magic}][icon]" value="{$mojia['nav'][$magic]['icon']}" class="layui-input layui-font-info"></td>
+				<td><input type="input" name="mojia[nav][{$magic}][name]" value="{$mojia['nav'][$magic]['name']}" class="layui-input" placeholder="名称"></td>
+				<td><input type="input" name="mojia[nav][{$magic}][link]" value="{$mojia['nav'][$magic]['link']}" class="layui-input" placeholder="请填写链接地址"></td>
 				<td>
-					<input type="hidden" name="mojia[nav][art][type]" value="mid" />
-					<input type="checkbox" name="mojia[nav][art][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['art']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][art][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['art']['mobile']} checked{/if}>
+					<input type="hidden" name="mojia[nav][{$magic}][type]" value="mid" />
+					<input type="checkbox" name="mojia[nav][{$magic}][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav'][$magic]['desktop']} checked{/if}>
+					<input type="checkbox" name="mojia[nav][{$magic}][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav'][$magic]['mobile']} checked{/if}>
 				</td>
 			</tr>
+			{/maccms:foreach}
 			<tr>
+				<td><input type="text" name="mojia[nav][icon][name]" value="{$mojia['nav']['icon']['name']}" class="layui-input" placeholder="图标设置"></td>
+				<td><input type="text" name="mojia[nav][icon][icon]" value="{$mojia['nav']['icon']['icon']}" class="layui-input layui-font-info"></td>
 				<td>
-					<select name="mojia[nav][actor][id]" lay-filter="homeid">
-						<option value="">请选择</option>
-						{maccms:foreach name=":explode(',','1,2,3,5,6,7,8,11')"}
-						<option data-name="{$vo|mac_get_mid_text}" data-link="{:mac_url(mac_get_mid_code($vo).'/index')}" value="{$vo}"{if$mojia['nav']['actor']['id']==$vo} selected{/if}>{$vo|mac_get_mid_text}</option>
-						{/maccms:foreach}
+					<input type="hidden" name="mojia[nav][icon][type]" value="icon" />
+					<select name="mojia[nav][icon][btns]" lay-filter="iconer">
+						<option value="record"{if$mojia['nav']['icon']['btns']=='record'} selected{/if}>播放记录</option>
+						<option value="center"{if$mojia['nav']['icon']['btns']=='center'} selected{/if}>个人中心</option>
+						<option value="shares"{if$mojia['nav']['icon']['btns']=='shares'} selected{/if}>点击分享</option>
+						<option value="artist"{if$mojia['nav']['icon']['btns']=='artist'} selected{/if}>推荐文章</option>
+						<option value="linker"{if$mojia['nav']['icon']['btns']=='linker'} selected{/if}>直接跳转</option>
 					</select>
 				</td>
-				<td><input type="text" name="mojia[nav][actor][icon]" value="{$mojia['nav']['actor']['icon']}" class="layui-input layui-font-info"></td>
-				<td><input type="input" name="mojia[nav][actor][name]" value="{$mojia['nav']['actor']['name']}" class="layui-input" placeholder="名称"></td>
-				<td><input type="input" name="mojia[nav][actor][link]" value="{$mojia['nav']['actor']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
 				<td>
-					<input type="hidden" name="mojia[nav][actor][type]" value="mid" />
-					<input type="checkbox" name="mojia[nav][actor][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['actor']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][actor][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['actor']['mobile']} checked{/if}>
+					<input type="text" name="mojia[nav][icon][link]" value="{$mojia['nav']['icon']['link']}" class="layui-input layui-font-select mo-cols-{$mojia['nav']['icon']['btns']=='artist'?'hide':'show'}" placeholder="请填写链接地址">
+					<select name="mojia[nav][icon][artid]" lay-filter="" class="mo-cols-{$mojia['nav']['icon']['btns']=='artist'?'show':'hide'}">
+						<option value="">请选择</option>
+						{maccms:art num="10" order="desc" by="time" level="all"}
+						<option value="{$vo.art_id}"{if$mojia['nav']['icon']['artid']==$vo.art_id} selected{/if}>{$vo.art_name}</option>
+						{/maccms:art}
+					</select>
 				</td>
+				<td><input type="checkbox" name="mojia[nav][icon][desktop]" title="右上角第一个图标设置" lay-skin="primary" disabled></td>
 			</tr>
 			<tr>
+				<td><input type="text" name="mojia[nav][font][name]" value="{$mojia['nav']['font']['name']}" class="layui-input" placeholder="图标设置"></td>
+				<td><input type="text" name="mojia[nav][font][icon]" value="{$mojia['nav']['font']['icon']}" class="layui-input layui-font-info"></td>
 				<td>
-					<select name="mojia[nav][topic][id]" lay-filter="homeid">
-						<option value="">请选择</option>
-						{maccms:foreach name=":explode(',','1,2,3,5,6,7,8,11')"}
-						<option data-name="{$vo|mac_get_mid_text}" data-link="{:mac_url(mac_get_mid_code($vo).'/index')}" value="{$vo}"{if$mojia['nav']['topic']['id']==$vo} selected{/if}>{$vo|mac_get_mid_text}</option>
-						{/maccms:foreach}
+					<input type="hidden" name="mojia[nav][font][type]" value="icon" />
+					<select name="mojia[nav][font][btns]" lay-filter="iconer">
+						<option value="record"{if$mojia['nav']['font']['btns']=='record'} selected{/if}>播放记录</option>
+						<option value="center"{if$mojia['nav']['font']['btns']=='center'} selected{/if}>个人中心</option>
+						<option value="shares"{if$mojia['nav']['font']['btns']=='shares'} selected{/if}>点击分享</option>
+						<option value="artist"{if$mojia['nav']['font']['btns']=='artist'} selected{/if}>推荐文章</option>
+						<option value="linker"{if$mojia['nav']['font']['btns']=='linker'} selected{/if}>直接跳转</option>
 					</select>
 				</td>
-				<td><input type="text" name="mojia[nav][topic][icon]" value="{$mojia['nav']['topic']['icon']}" class="layui-input layui-font-info"></td>
-				<td><input type="input" name="mojia[nav][topic][name]" value="{$mojia['nav']['topic']['name']}" class="layui-input" placeholder="名称"></td>
-				<td><input type="input" name="mojia[nav][topic][link]" value="{$mojia['nav']['topic']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
 				<td>
-					<input type="hidden" name="mojia[nav][topic][type]" value="mid" />
-					<input type="checkbox" name="mojia[nav][topic][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['topic']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][topic][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['topic']['mobile']} checked{/if}>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<select name="mojia[nav][site][id]" lay-filter="homeid">
+					<input type="text" name="mojia[nav][font][link]" value="{$mojia['nav']['font']['link']}" class="layui-input layui-font-select mo-cols-{$mojia['nav']['font']['btns']=='artist'?'hide':'show'}" placeholder="请填写链接地址">
+					<select name="mojia[nav][font][artid]" lay-filter="" class="mo-cols-{$mojia['nav']['font']['btns']=='artist'?'show':'hide'}">
 						<option value="">请选择</option>
-						{maccms:foreach name=":explode(',','1,2,3,5,6,7,8,11')"}
-						<option data-name="{$vo|mac_get_mid_text}" data-link="{:mac_url(mac_get_mid_code($vo).'/index')}" value="{$vo}"{if$mojia['nav']['site']['id']==$vo} selected{/if}>{$vo|mac_get_mid_text}</option>
-						{/maccms:foreach}
+						{maccms:art num="10" order="desc" by="time" level="all"}
+						<option value="{$vo.art_id}"{if$mojia['nav']['font']['artid']==$vo.art_id} selected{/if}>{$vo.art_name}</option>
+						{/maccms:art}
 					</select>
 				</td>
-				<td><input type="text" name="mojia[nav][site][icon]" value="{$mojia['nav']['site']['icon']}" class="layui-input layui-font-info"></td>
-				<td><input type="input" name="mojia[nav][site][name]" value="{$mojia['nav']['site']['name']}" class="layui-input" placeholder="名称"></td>
-				<td><input type="input" name="mojia[nav][site][link]" value="{$mojia['nav']['site']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
-				<td>
-					<input type="hidden" name="mojia[nav][site][type]" value="mid" />
-					<input type="checkbox" name="mojia[nav][site][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['site']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][site][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['site']['mobile']} checked{/if}>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<select name="mojia[nav][gbook][id]" lay-filter="homeid">
-						<option value="">请选择</option>
-						{maccms:foreach name=":explode(',','1,2,3,5,6,7,8,11')"}
-						<option data-name="{$vo|mac_get_mid_text}" data-link="{:mac_url(mac_get_mid_code($vo).'/index')}" value="{$vo}"{if$mojia['nav']['gbook']['id']==$vo} selected{/if}>{$vo|mac_get_mid_text}</option>
-						{/maccms:foreach}
-					</select>
-				</td>
-				<td><input type="text" name="mojia[nav][gbook][icon]" value="{$mojia['nav']['gbook']['icon']}" class="layui-input layui-font-info"></td>
-				<td><input type="input" name="mojia[nav][gbook][name]" value="{$mojia['nav']['gbook']['name']}" class="layui-input" placeholder="名称"></td>
-				<td><input type="input" name="mojia[nav][gbook][link]" value="{$mojia['nav']['gbook']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
-				<td>
-					<input type="hidden" name="mojia[nav][gbook][type]" value="mid" />
-					<input type="checkbox" name="mojia[nav][gbook][desktop]" title="桌面端" lay-skin="primary"{if$mojia['nav']['gbook']['desktop']} checked{/if}>
-					<input type="checkbox" name="mojia[nav][gbook][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['gbook']['mobile']} checked{/if}>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<select name="mojia[nav][user][id]" lay-filter="homeid">
-						<option value="">请选择</option>
-						{maccms:foreach name=":explode(',','1,2,3,5,6,7,8,11')"}
-						<option data-name="{$vo|mac_get_mid_text}" data-link="{:mac_url(mac_get_mid_code($vo).'/index')}" value="{$vo}"{if$mojia['nav']['user']['id']==$vo} selected{/if}>{$vo|mac_get_mid_text}</option>
-						{/maccms:foreach}
-					</select>
-				</td>
-				<td><input type="text" name="mojia[nav][user][icon]" value="{$mojia['nav']['user']['icon']}" class="layui-input layui-font-info"></td>
-				<td><input type="input" name="mojia[nav][user][name]" value="{$mojia['nav']['user']['name']}" class="layui-input" placeholder="名称"></td>
-				<td><input type="input" name="mojia[nav][user][link]" value="{$mojia['nav']['user']['link']}" class="layui-input" placeholder="请填写链接地址"></td>
-				<td>
-					<input type="hidden" name="mojia[nav][user][type]" value="mid" />
-					<input type="checkbox" name="mojia[nav][user][desktop]" title="桌面端" lay-skin="primary" disabled>
-					<input type="checkbox" name="mojia[nav][user][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav']['user']['mobile']} checked{/if}>
-				</td>
+				<td><input type="checkbox" name="mojia[nav][font][desktop]" title="右上角第二个图标设置" lay-skin="primary" disabled></td>
 			</tr>
 		</tbody>
 	</table>

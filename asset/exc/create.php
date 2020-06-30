@@ -34,6 +34,16 @@ function moJiaOptions() {
 			die(json_encode(array('msg' => '权限不足')));
 		} elseif (file_exists(moJiaPath('path') . 'application/extra/mojiaopt.php')) {
 			if (@unlink(moJiaPath('path') . 'application/extra/mojiaopt.php')) {
+				$html = file_get_contents('../../html/basics/seokey.html');
+				$seokey = @require ('config.php');
+				foreach ($seokey['seo'] as $value => $key) {
+					foreach ($seokey['seo'][$value] as $item => $sub) {
+						$html = str_replace('{' . $item . $seokey['seo'][$value]['aid'] . '}', $sub, $html);
+					}
+				}
+				if (!file_put_contents('../../html/tinier/seokey.html', $html)) {
+					die(json_encode(array('msg' => 'SEO设置恢复失败,请检查文件权限')));
+				}
 				die(json_encode(array('msg' => '恢复成功')));
 			} else {
 				die(json_encode(array('msg' => '恢复失败')));
@@ -92,19 +102,18 @@ function moJiaOptions() {
 function moJiaCollect() {
 	if (isset($_POST['info'])) {
 		require (moJiaPath('path') . 'application/common.php');
-		$arrays = moJiaMysql(1, moJiaPath('base'), "select * from {pre}collect");
-		foreach ($arrays as $v => $k) {
-			$arrays[$v]['collect_flag'] = md5($arrays[$v]['collect_url']);
-			$arrays[$v]['collect_host'] = parse_url($arrays[$v]['collect_url'], PHP_URL_HOST);
-			$arrays[$v]['collect_mold'] = $arrays[$v]['collect_param'] == '&ct=1' ? 'down' : ($arrays[$v]['collect_mid'] == 1 ? 'play' : mac_get_mid_code($arrays[$v]['collect_mid']));
-			$arrays[$v]['collect_reso'] = $arrays[$v]['collect_param'] == '&ct=1' ? '下载' : mac_get_mid_text($arrays[$v]['collect_mid']);
-			$arrays[$v]['collect_code'] = mac_get_mid_code($arrays[$v]['collect_mid']);
-			$arrays[$v]['collect_text'] = mac_get_mid_text($arrays[$v]['collect_mid']);
-			$arrays[$v]['collect_param'] = base64_encode($arrays[$v]['collect_param']);
+		$where = isset($_POST['id']) ? ' where collect_id = ' . $_POST['id'] : '';
+		$array = moJiaMysql(1, moJiaPath('base'), "select * from {pre}collect" . $where);
+		foreach ($array as $value => $key) {
+			$array[$value]['collect_flag'] = md5($array[$value]['collect_url']);
+			$array[$value]['collect_mold'] = $array[$value]['collect_param'] == '&ct=1' ? 'down' : ($array[$value]['collect_mid'] == 1 ? 'play' : mac_get_mid_code($array[$value]['collect_mid']));
+			$array[$value]['collect_text'] = $array[$value]['collect_param'] == '&ct=1' ? '下载' : mac_get_mid_text($array[$value]['collect_mid']);
+			$array[$value]['collect_code'] = mac_get_mid_code($array[$value]['collect_mid']);
+			$array[$value]['collect_param'] = base64_encode($array[$value]['collect_param']);
 		}
-		die(json_encode($arrays));
+		die(json_encode($array));
 	} elseif (isset($_POST['code'])) {
-		$data = moJiaCurlGet($_POST['apis']);
+		$data = moJiaCurlGet($_POST['url']);
 		if (@$_POST['type'] == 1) {
 			$result = moJiaSimple($data);
 			$recordcount = @$result['list']['@attributes']['recordcount'];
@@ -122,7 +131,7 @@ function moJiaCollect() {
 			die(json_encode(@explode(',', @$result['list'][0]['vod_play_from'])));
 		}
 	} elseif (isset($_POST['seek'])) {
-		$data = moJiaCurlGet($_POST['apis'] . '?wd=' . urlencode($_POST['name']));
+		$data = moJiaCurlGet($_POST['url'] . '?wd=' . urlencode($_POST['name']));
 		if (@$_POST['type'] == 1) {
 			$result = moJiaSimple($data);
 			$recordcount = @$result['list']['@attributes']['recordcount'];
@@ -131,21 +140,57 @@ function moJiaCollect() {
 			} elseif (!@$result['list']['video']) {
 				die(json_encode(array()));
 			} elseif ($recordcount == 1) {
-				$arrays = array($result['list']['video']);
+				$array = array($result['list']['video']);
 			} else {
-				$arrays = $result['list']['video'];
+				$array = $result['list']['video'];
 			}
-			foreach ($arrays as $v => $k) {
-				$arrays[$v]['vod_name'] = $arrays[$v]['name'];
-				$arrays[$v]['type_name'] = $arrays[$v]['type'];
-				$arrays[$v]['vod_time'] = $arrays[$v]['last'];
-				$arrays[$v]['vod_remarks'] = $arrays[$v]['note'];
-				$arrays[$v]['vod_play_from'] = $arrays[$v]['dt'];
+			foreach ($array as $value => $key) {
+				$array[$value]['vod_name'] = $array[$value]['name'];
+				$array[$value]['type_name'] = $array[$value]['type'];
+				$array[$value]['vod_time'] = $array[$value]['last'];
+				$array[$value]['vod_remarks'] = $array[$value]['note'];
+				$array[$value]['vod_play_from'] = $array[$value]['dt'];
 			}
-			die(json_encode($arrays));
+			die(json_encode($array));
 		} else {
 			$result = json_decode($data, true);
 			die(json_encode(@$result['list']));
+		}
+	} elseif (isset($_POST['favs'])) {
+		if ($_POST['favs'] == 'add') {
+			if (file_exists(moJiaPath('path') . 'application/extra/mojiafav.php')) {
+				$html = @require (moJiaPath('path') . 'application/extra/mojiafav.php');
+				if (is_array($html)) {
+					$html[$_POST['collect_id']] = $_POST;
+				} else {
+					$html = array($_POST['collect_id'] => $_POST);
+				}
+				if (file_put_contents(moJiaPath('path') . 'application/extra/mojiafav.php', '<?php return ' . var_export($html, true) . ';?>')) {
+					die(json_encode(array('msg' => '收藏成功')));
+				} else {
+					die(json_encode(array('msg' => '收藏失败')));
+				}
+			} else {
+				if (file_put_contents(moJiaPath('path') . 'application/extra/mojiafav.php', '<?php return ' . var_export(array($_POST['collect_id'] => $_POST), true) . ';?>')) {
+					die(json_encode(array('msg' => '收藏成功')));
+				} else {
+					die(json_encode(array('msg' => '收藏失败')));
+				}
+			}
+		} elseif ($_POST['favs'] == 'del') {
+			$html = @require (moJiaPath('path') . 'application/extra/mojiafav.php');
+			unset($html[$_POST['id']]);
+			if (file_put_contents(moJiaPath('path') . 'application/extra/mojiafav.php', '<?php return ' . var_export($html, true) . ';?>')) {
+				die(json_encode(array('msg' => '取消收藏成功')));
+			} else {
+				die(json_encode(array('msg' => '取消收藏失败')));
+			}
+		} elseif ($_POST['favs'] == 'list') {
+			if (file_exists(moJiaPath('path') . 'application/extra/mojiafav.php')) {
+				die(json_encode(@require (moJiaPath('path') . 'application/extra/mojiafav.php')));
+			} else {
+				die(json_encode(array()));
+			}
 		}
 	}
 }
@@ -159,7 +204,7 @@ function moJiaCommon() {
 		} elseif (@$_POST['ver'] == 'new') {
 			$versnew = moJiaCurlGet($_POST['cdn']);
 			preg_match_all('/version=([\w\W]*?)adsdir/i', preg_replace('/\s+/', '', $versnew), $match);
-			echo json_encode(array('ver' => $match[1][0], 'key' => md5('mojia_' . $match[1][0])));
+			echo json_encode(array('ver' => $match[1][0], 'key' => md5('mojia-' . $match[1][0])));
 		} elseif (@$_POST['ver'] == 'log') {
 			echo moJiaCurlGet($_POST['new']);
 		}

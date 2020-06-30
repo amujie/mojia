@@ -10,7 +10,7 @@
 		<ul class="mo-cols-rows">
 			{maccms:vod num="6" type="'.$mojia['home']['small']['type'].'" level="'.$mojia['home']['small']['sub'].'" order="desc" by="'.$mojia['home']['small']['sort'].'"}
 			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4">
-			{include file="basics/picture" type="vod" style=":mac_default(' mo-lazy-broad mo-byxs-5by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),'暂无备注')" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="hide" lazy="open"}
+			{include file="basics/picture" type="vod" style=":mac_default(' mo-lazy-broad mo-byxs-5by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="hide" lazy="open"}
 			</li>
 			{/maccms:vod}
 		</ul>

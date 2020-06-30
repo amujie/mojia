@@ -10,7 +10,7 @@
 	<div class="mo-drop-head mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-cols-zero mo-part-slip mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
 			{maccms:foreach name="obj.vod_down_list" id="sub"}
-			<a class="mo-mrxs-5px mo-mrmd-10px{if$maccms.aid==16}{if$sub.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-text-mojia{/if}{elseif$key==$param['sid']} mo-text-mojia{/if}" href="{:mac_url_vod_down($obj,['sid'=>$sub.sid,'nid'=>$param.nid])}" target="{$obj['vod_down_list'][$param['sid']]['player_info']['target']}">{$sub.player_info.show}</a>
+			<a class="mo-mrxs-5px mo-mrmd-10px{if$maccms.aid==16}{if$sub.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-text-mojia{/if}{elseif$key==$param['sid']} mo-text-mojia{/if}" href="{:mac_url_vod_down($obj,['sid'=>$sub.sid,'nid'=>$param.nid])}" target="{$obj['vod_down_list'][$param['sid']]['player_info']['target']}"><i class="mo-prxs-2px mo-fsxs-16px mo-fsmd-18px mo-icon-font mo-icon-down mo-icon-{$sub.player_info.from}"></i>{$sub.player_info.show}</a>
 			{/maccms:foreach}
 		</h2>
 		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
@@ -25,7 +25,7 @@
 		<p class="mo-paxs-5px mo-ptxs-0px">{$mojia['play']['copy']['tips']}</p>
 	</div>
 	{else}
-	<div class="mo-chat-info mo-cols-rows{if$_COOKIE['mo_wechat']} mo-cols-hide{else} mo-cols-show{/if}" data-chat="{:in_array($obj['type_id'], explode(',',$mojia['play']['chat']['type']))}" data-word="{:chr(rand(65,90)).chr(rand(65,90)).chr(rand(97,122)).base64_encode($GLOBALS['config']['weixin']['gjcm1'])}">
+	<div class="mo-chat-info mo-cols-rows{if in_array($obj['type_id'],explode(',',$mojia['play']['chat']['type']))}{if$_COOKIE['mo_wechat']} mo-cols-hide{else} mo-cols-show{/if}{else} mo-cols-hide{/if}" data-chat="{:in_array($obj['type_id'], explode(',',$mojia['play']['chat']['type']))}" data-word="{:chr(rand(65,90)).chr(rand(65,90)).chr(rand(97,122)).base64_encode($GLOBALS['config']['weixin']['gjcm1'])}">
 		<div class="mo-cols-rows mo-part-maxw mo-part-patb">
 			<div class="mo-pbmd-10px">
 				<h2 class="mo-coxs-center mo-pbmd-10px mo-fsxs-16px mo-fsmd-18px">扫描二维码,回复<font color="red">{$GLOBALS['config']['weixin']['gjc1']}</font>,获取口令</h2>
@@ -40,7 +40,7 @@
 			</div>
 		</div>
 	</div>
-	<ul class="mo-down-info mo-drop-boxs mo-cols-rows mo-pamd-5px{if in_array($obj['type_id'],explode(',',$mojia['play']['chat']['type']))} mo-cols-hide{/if}{if$_COOKIE['mo_wechat']} mo-cols-show{else} mo-cols-hide{/if}">
+	<ul class="mo-down-info mo-drop-boxs mo-cols-rows mo-pamd-5px{if in_array($obj['type_id'],explode(',',$mojia['play']['chat']['type']))}{if$_COOKIE['mo_wechat']} mo-cols-hide{else} mo-cols-show{/if}{else} mo-cols-show{/if}">
 		{maccms:foreach name="obj['vod_down_list'][$param['sid']]['urls']" id="sub"}
 		<li class="mo-cols-rows mo-cols-info mo-cols-xs12">
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">

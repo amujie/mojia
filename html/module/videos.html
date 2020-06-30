@@ -1,7 +1,7 @@
 {if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
 <dl class="mo-deta-info mo-cols-rows">
 	<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-		{include file="basics/picture" type="vod" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),'暂无备注')" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_blurb']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="hide" lazy="open"}
+		{include file="basics/picture" type="vod" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_blurb']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="hide" lazy="open"}
 		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
 			{if$maccms.aid==10||$maccms.aid==13||$maccms.aid==15||$maccms.aid==16||$maccms.aid==34}
 			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_vod_detail($vo)}">查看详情</a>
@@ -21,7 +21,7 @@
 			<li class="mo-cols-info mo-cols-xs6 mo-cols-md3 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px"><span class="mo-text-muted">地区:&nbsp;</span>{$vo.vod_area|mac_url_create='area','vod','search'}</li>
 			<li class="mo-cols-info mo-cols-xs6 mo-cols-md3 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px mo-coxs-none mo-coss-block"><span class="mo-text-muted">年份:&nbsp;</span>{$vo.vod_year|mac_url_create='year','vod','search'}</li>
 			<li class="mo-cols-info mo-cols-xs6 mo-cols-md3 mo-fsxs-14px mo-wrap-arow mo-ptxs-5px mo-coxs-none mo-coss-block">{$vo.vod_time|date='Y-m-d',###}</li>
-			<li class="mo-cols-info mo-cols-xs12 mo-ptxs-5px mo-fsxs-14px mo-lhxs-20px mo-lhxl-24px mo-coxs-none mo-comd-block mo-text-muted">简介:&nbsp;{$vo.vod_content|mac_filter_html|mac_substring=140|mac_default='暂无简介'}</li>
+			<li class="mo-cols-info mo-cols-xs12 mo-ptxs-5px mo-fsxs-14px mo-lhxs-20px mo-lhxl-24px mo-coxs-none mo-comd-block mo-text-muted">短评:&nbsp;{:mac_default(mac_substring(mac_filter_html(mac_default($vo.vod_blurb,$vo.vod_content)),140),'暂无简介')}</li>
 		</ul>
 	</dd>
 	{if$maccms.aid!=13&&$maccms.aid!=34}{include file="tinier/qrcode"}{/if}

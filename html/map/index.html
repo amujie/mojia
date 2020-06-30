@@ -8,7 +8,7 @@
 	<ul class="mo-cols-rows">
 		{maccms:type parent="'.$magic['type_id'].'" order="asc" by="sort"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-			{include file="basics/picture" type="type" style=":mac_default(' mo-lazy-broad mo-byxs-2by1')" tips=":model(mac_get_mid_code($vo.type_mid))->where(array('type_id'=>$vo['type_id']))->count()" remark=":mac_default($vo.type_name)" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default()" image=":mac_url_img(trim($vo['type_pic']))" href=":mac_url_type($vo)" title="hide" lazy="open"}
+			{include file="basics/picture" type="type" style=":mac_default(' mo-lazy-broad mo-byxs-2by1')" tips=":model(mac_get_mid_code($vo.type_mid))->where(array('type_id'=>$vo['type_id']))->count()" remark=":mac_filter_html($vo['type_name'])" name=":mac_filter_html($vo['type_name'])" desc=":mac_default()" image=":mac_url_img(trim($vo['type_pic']))" href=":mac_url_type($vo)" title="hide" lazy="open"}
 		</li>
 		{/maccms:type}
 	</ul>

@@ -301,7 +301,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-paxs-0px {padding: 0}
 .mo-paxs-5px {padding: 0.3125rem}
 .mo-paxs-10px {padding: 0.625rem}
-.mo-paxs-20px {padding: 1.25rem}
+.mo-paxs-20px {padding: 20px;padding: 1.25rem}
 .mo-pnxs-5px {padding: 0 .3125rem}
 .mo-pnxs-10px {padding: 0 .625rem}
 .mo-pnxs-15px {padding: 0 .9375rem}
@@ -751,6 +751,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-brow-info {background: white url(https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/browser.png) center top/contain no-repeat;}
 .mo-brow-info .mo-brow-main {top: 60%;}
 .mo-brow-info .mo-brow-code {height: 10rem;}
+.mo-brow-info .mo-brow-inow {padding: 200px 20px 20px 20px;font-size: 54px;}
 .mo-brow-info .mo-brow-foot {position: fixed;bottom: 20px;}
 /* 对联广告 */
 .mo-coup-info .mo-coup-item {position: fixed;top: 150px;width: 100px;}

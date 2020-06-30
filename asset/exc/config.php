@@ -150,6 +150,24 @@
       'type' => 'mid',
       'mobile' => 'on',
     ),
+	'icon' =>
+	array (
+	  'name' => '图标设置',
+	  'icon' => 'mo-icon-shijian-line',
+	  'type' => 'icon',
+	  'btns' => 'record',
+	  'link' => 'javascript:;',
+	  'artid' => '',
+	),
+	'font' => 
+	array (
+	  'name' => '图标设置',
+	  'icon' => 'mo-icon-shequ-line',
+	  'type' => 'icon',
+	  'btns' => 'center',
+	  'link' => 'javascript:;',
+	  'artid' => '24',
+	),
   ),
   'home' => 
   array (
@@ -231,7 +249,7 @@
     ),
     'week' => 
     array (
-      'name' => '周更系列',
+      'name' => '周更剧场',
       'advs' => '',
       'type' => '',
       'level' => '',

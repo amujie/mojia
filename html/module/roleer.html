@@ -1,7 +1,7 @@
 {if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
 <dl class="mo-deta-info mo-cols-rows">
 	<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-		{include file="basics/picture" type="role" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['role_hits'].'浏览')" remark=":mac_default($vo['role_actor'],'暂无演员姓名')" name=":mac_filter_html($vo['role_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['role_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['role_pic']))" href=":mac_url_role_detail($vo)" title="hide" lazy="open"}
+		{include file="basics/picture" type="role" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['role_hits'].'浏览')" remark=":mac_default($vo['role_actor'],date('Y-m-d H:i',$vo['role_time']))" name=":mac_filter_html($vo['role_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['role_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['role_pic']))" href=":mac_url_role_detail($vo)" title="hide" lazy="open"}
 		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
 			{if$maccms.aid==94}
 			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_vod_detail($vo.data)}">视频详情</a>

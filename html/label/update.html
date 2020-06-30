@@ -8,10 +8,10 @@
 		{include file="tinier/colour"}
 	</head>
 	<body class="mo-brow-info mo-part-view">
-		<div id="mo-java-ienow" class="mo-cols-hide" style="padding:200px 20px 20px 20px;font-size:54px;">
-			<div class="mo-coxs-center mo-text-black" style="padding:20px;">本站已禁止当前浏览器访问</div>
-			<div class="mo-coxs-center mo-text-black" style="padding:20px;">以下四款官方正版浏览器任君挑选</div>
-			<ul class="mo-coxs-center" style="padding:20px;">
+		<div id="mo-java-ienow" class="mo-brow-inow mo-cols-hide">
+			<div class="mo-coxs-center mo-text-black mo-paxs-20px">本站已禁止当前浏览器访问</div>
+			<div class="mo-coxs-center mo-text-black mo-paxs-20px">以下四款官方正版浏览器任君挑选</div>
+			<ul class="mo-coxs-center mo-paxs-20px">
 				<a class="mo-text-black mo-text-hover" href="https://www.google.cn/intl/zh-CN/chrome" target="_blank">谷歌</a>
 				<a class="mo-text-black mo-text-hover" href="https://www.mozilla.org/zh-CN/firefox/new" target="_blank">火狐</a>
 				<a class="mo-text-black mo-text-hover" href="https://www.microsoftedgeinsider.com" target="_blank">微软</a>
@@ -31,7 +31,7 @@
 				<div class="mo-text-black mo-pamd-10px">本站已禁止当前浏览器访问</div>
 				<a class="mo-brow-link mo-mtxs-10px mo-mbxs-10px mo-pnxs-10px mo-lhxs-40px mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;" data-clipboard-text="{$maccms.http_url}">点此复制本站网址</a>
 				<div class="mo-text-black mo-pamd-10px">以下四款官方正版浏览器任君挑选</div>
-				<ul class="mo-cols-rows mo-paxs-10px mo-maxs-10px">
+				<ul class="mo-cols-rows mo-paxs-10px mo-maxs-10px mo-java-event">
 					<li class="mo-cols-cell">
 						<a class="mo-text-black" href="https://www.google.cn/intl/zh-CN/chrome" target="_blank">
 							<i class="mo-fsxs-24px mo-icon-font mo-icon-chrome-fill"></i>
@@ -79,8 +79,7 @@
 				version: magic.ver,
 				base: magic.cdn + 'asset/js/'
 			}).use(['other'], function() {
-				var other = layui.other;
-				other.global.browser();
+				layui.other.global.browser();
 			});
 		</script>
 	</body>

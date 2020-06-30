@@ -1,4 +1,4 @@
-{include file="admin/header"}
+{include file="admin/header"}{assign name="GLOBALS['config']['app']['popedom_filter']" value="0"}
 <form class="mo-main-info layui-form layui-form-pane" action="{$maccms.path_tpl}asset/exc/create.php?id=opt" autocomplete="off">
 	<div class="layui-tab">
 		<ul class="layui-tab-title">
@@ -27,8 +27,7 @@
 		version: magic.ver,
 		base: magic.cdn + 'asset/js/'
 	}).use(['admin'], function() {
-		var admin = layui.admin;
-		admin.global.init();
+		layui.admin.global.init();
 	});
 </script>
 {include file="admin/footer"}

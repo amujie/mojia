@@ -30,7 +30,7 @@
 		<ul class="mo-cols-rows">
 			{maccms:foreach name=":array_unique($magic_actor, SORT_REGULAR)"}
 			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($obj['type']['type_name'].$obj['type_1']['type_name'],'主持')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
-			{include file="basics/picture" type="vod" style=":mac_default(stristr($obj['type']['type_name'].$obj['type_1']['type_name'],'主持')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),'暂无备注')" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="shut"}
+			{include file="basics/picture" type="vod" style=":mac_default(stristr($obj['type']['type_name'].$obj['type_1']['type_name'],'主持')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="shut"}
 			</li>
 			{/maccms:foreach}
 		</ul>
@@ -40,7 +40,7 @@
 		<ul class="mo-cols-rows">
 			{maccms:role num="10" actor="'.$obj['actor_name'].'" order="asc" by="sort"}
 			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-			{include file="basics/picture" type="role" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['role_hits'].'浏览')" remark=":mac_default($vo['role_actor'],'暂无演员姓名')" name=":mac_filter_html($vo['role_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['role_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['role_pic']))" href=":mac_url_role_detail($vo)" title="show" lazy="shut"}
+			{include file="basics/picture" type="role" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['role_hits'].'浏览')" remark=":mac_default($vo['role_actor'],date('Y-m-d H:i',$vo['role_time']))" name=":mac_filter_html($vo['role_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['role_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['role_pic']))" href=":mac_url_role_detail($vo)" title="show" lazy="shut"}
 			</li>
 			{/maccms:role}
 		</ul>
@@ -52,4 +52,4 @@
 	</div>
 	{/if}
 </div>
-{include file="index/latest,public/footer"}
+{include file="tinier/relate,public/footer"}

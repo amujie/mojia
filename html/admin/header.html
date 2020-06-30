@@ -10,9 +10,22 @@
 			var magic = {
 				'admin': parent.document.URL.split('php'),
 				'path': '{$install}',
+				'temp': '{:file_exists("runtime/temp/".md5("mojia").".php") ? require("runtime/temp/".md5("mojia").".php"):""}',
+				'depr': '{$GLOBALS["config"]["app"]["pathinfo_depr"]}',
+				'ver': '{$version}',
 				'tpl': '{$template}',
 				'cdn': '{$cdnpath}',
-				'ver': '{$version}'
+				'url': '{$verify["url"]}',
+				'key': '{$verify["key"]}',
+				'tga': '{$verify["tga"]}',
+				'tid': '{$verify["tid"]}',
+				'mid': '{$maccms["mid"]}',
+				'aid': '{$maccms["aid"]}',
+				'rid': '{$obj[mac_get_mid_code($maccms["mid"])."_id"]}',
+				'sid': '{$param["sid"]}',
+				'nid': '{$param["nid"]}',
+				'wap': '{$GLOBALS["config"]["site"]["site_wapurl"]}',
+				'mob': '{$GLOBALS["config"]["site"]["mob_status"]}'
 			};
 		</script>
 	</head>

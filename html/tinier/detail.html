@@ -46,7 +46,7 @@
 		<ul class="mo-cols-rows">
 			{maccms:role rid="'.$obj['vod_id'].'" order="desc" by="time"}
 			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-			{include file="basics/picture" type="role" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['role_hits'].'浏览')" remark=":mac_default($vo['role_actor'],'暂无演员姓名')" name=":mac_filter_html($vo['role_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['role_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['role_pic']))" href=":mac_url_role_detail($vo)" title="show" lazy="shut"}
+			{include file="basics/picture" type="role" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['role_hits'].'浏览')" remark=":mac_default($vo['role_actor'],date('Y-m-d H:i',$vo['role_time']))" name=":mac_filter_html($vo['role_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['role_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['role_pic']))" href=":mac_url_role_detail($vo)" title="show" lazy="shut"}
 			</li>
 			{/maccms:role}
 		</ul>
@@ -56,7 +56,7 @@
 		<ul class="mo-cols-rows">
 			{maccms:actor name="'.$obj['vod_actor'].','.$obj['vod_director'].'" order="desc" by="time"}
 			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">
-			{include file="basics/picture" type="actor" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['actor_hits'].'浏览')" remark=":mac_default($vo['actor_alias'],'暂无别名')" name=":mac_filter_html($vo['actor_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['actor_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['actor_pic']))" href=":mac_url_actor_detail($vo)" title="show" lazy="shut"}
+			{include file="basics/picture" type="actor" style=":mac_default(' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default($vo['actor_hits'].'浏览')" remark=":mac_default($vo['actor_alias'],date('Y-m-d H:i',$vo['actor_time']))" name=":mac_filter_html($vo['actor_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['actor_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['actor_pic']))" href=":mac_url_actor_detail($vo)" title="show" lazy="shut"}
 			</li>
 			{/maccms:actor}
 		</ul>

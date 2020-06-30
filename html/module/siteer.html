@@ -1,7 +1,7 @@
 {if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
 <dl class="mo-deta-info mo-cols-rows">
 	<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm5 mo-cols-lg5">
-		{include file="basics/picture" type="website" style=":mac_default(' mo-lazy-highs mo-byxs-16by9')" tips=":mac_default($vo['website_hits'].'浏览')" remark=":mac_default($vo['website_remarks'],'暂无备注')" name=":mac_filter_html($vo['website_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['website_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['website_logo']))" href=":mac_url_website_detail($vo)" title="hide" lazy="open"}
+		{include file="basics/picture" type="website" style=":mac_default(' mo-lazy-highs mo-byxs-16by9')" tips=":mac_default($vo['website_hits'].'浏览')" remark=":mac_default($vo['website_remarks'],date('Y-m-d H:i',$vo['website_time']))" name=":mac_filter_html($vo['website_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['website_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['website_logo']))" href=":mac_url_website_detail($vo)" title="hide" lazy="open"}
 		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
 			{if$maccms.aid==114}
 			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{$vo.website_jumpurl}" target="_blank">立即前往</a>
