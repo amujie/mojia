@@ -25,7 +25,7 @@ function moJiaOptions() {
 			preg_match_all('/<option\s+value="amujie\/mojia@(.*)">/i', $versnew, $match);
 			echo json_encode(array('ver' => $match[1][0], 'key' => md5('mojia-' . $match[1][0])));
 		} elseif (@$_POST['ver'] == 'log') {
-			echo moJiaCurlGet(str_replace('latest',$_POST['new'],moJiaPath('vers')).'about/changelog.json');
+			echo moJiaCurlGet(str_replace('latest', $_POST['new'], moJiaPath('vers')) . 'about/changelog.json');
 		}
 	} elseif (isset($_POST['key'])) {
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiakey.php', '<?php return ' . var_export($_POST, true) . ';?>')) {
@@ -129,7 +129,7 @@ function moJiaCollect() {
 			$array[$value]['collect_code'] = mac_get_mid_code($array[$value]['collect_mid']);
 			$array[$value]['collect_param'] = base64_encode($array[$value]['collect_param']);
 		}
-		die(json_encode($array));
+		die(json_encode($array ? $array : array()));
 	} elseif (isset($_POST['code'])) {
 		$data = moJiaCurlGet($_POST['url']);
 		if (@$_POST['type'] == 1) {
