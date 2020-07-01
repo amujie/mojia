@@ -10,13 +10,24 @@ if (@$_GET['id'] != 'url' && !moJiaPower('login', moJiaPath('base'))) {
 	moJiaCollect();
 } elseif (@$_GET['id'] == 'url') {
 	moJiaCommon();
-} elseif (@$_GET['id'] == 'upd') {
-	moJiaUpdate();
 }
 
 // 主题设置
 function moJiaOptions() {
-	if (isset($_POST['key'])) {
+	if (!moJiaPower('mojia', moJiaPath('base'))) {
+		die(json_encode(array('msg' => '权限不足')));
+	} elseif (isset($_POST['ver'])) {
+		if (@$_POST['ver'] == 'now') {
+			$version = parse_ini_file('../../info.ini');
+			echo json_encode(array('ver' => $version['version']));
+		} elseif (@$_POST['ver'] == 'new') {
+			$versnew = moJiaCurlGet(moJiaPath('vers'));
+			preg_match_all('/<option\s+value="amujie\/mojia@(.*)">/i', $versnew, $match);
+			echo json_encode(array('ver' => $match[1][0], 'key' => md5('mojia-' . $match[1][0])));
+		} elseif (@$_POST['ver'] == 'log') {
+			echo moJiaCurlGet(str_replace('latest',$_POST['new'],moJiaPath('vers')).'about/changelog.json');
+		}
+	} elseif (isset($_POST['key'])) {
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiakey.php', '<?php return ' . var_export($_POST, true) . ';?>')) {
 			file_put_contents(moJiaPath('path') . 'runtime/temp/' . md5('mojia') . '.php', '<?php return ' . var_export(time(), true) . ';?>');
 			$path = moJiaPath('path') . 'application/data/config/quickmenu.txt';
@@ -29,10 +40,8 @@ function moJiaOptions() {
 		} else {
 			die(json_encode(array('msg' => '授权失败,请联系QQ1278242793')));
 		}
-	} elseif (isset($_POST['type'])) {
-		if (!moJiaPower('mojia', moJiaPath('base'))) {
-			die(json_encode(array('msg' => '权限不足')));
-		} elseif (file_exists(moJiaPath('path') . 'application/extra/mojiaopt.php')) {
+	} elseif (isset($_POST['def'])) {
+		if (file_exists(moJiaPath('path') . 'application/extra/mojiaopt.php')) {
 			if (@unlink(moJiaPath('path') . 'application/extra/mojiaopt.php')) {
 				$html = file_get_contents('../../html/basics/seokey.html');
 				$seokey = @require ('config.php');
@@ -56,9 +65,7 @@ function moJiaOptions() {
 		$option['weixin']['gjc1'] = @$_POST['send'];
 		$option['weixin']['gjcm1'] = @$_POST['code'];
 		$option['site']['site_status'] = @$_POST['close'];
-		if (!moJiaPower('mojia', moJiaPath('base'))) {
-			die(json_encode(array('msg' => '权限不足')));
-		} elseif (file_put_contents(moJiaPath('path') . 'application/extra/maccms.php', '<?php return ' . var_export($option, true) . ';?>')) {
+		if (file_put_contents(moJiaPath('path') . 'application/extra/maccms.php', '<?php return ' . var_export($option, true) . ';?>')) {
 			die(json_encode(array('msg' => '修改成功')));
 		} else {
 			die(json_encode(array('msg' => '执行失败')));
@@ -66,9 +73,7 @@ function moJiaOptions() {
 	} elseif (isset($_POST['tpl'])) {
 		$option = @require (moJiaPath('path') . 'application/extra/maccms.php');
 		$option['site']['template_dir'] = @$_POST['tpl'];
-		if (!moJiaPower('mojia', moJiaPath('base'))) {
-			die(json_encode(array('msg' => '权限不足')));
-		} elseif (file_put_contents(moJiaPath('path') . 'application/extra/maccms.php', '<?php return ' . var_export($option, true) . ';?>')) {
+		if (file_put_contents(moJiaPath('path') . 'application/extra/maccms.php', '<?php return ' . var_export($option, true) . ';?>')) {
 			@unlink('../../../' . $_POST['tpl'] . '.zip');
 			$option = @require (moJiaPath('path') . 'application/extra/maccms.php');
 			die(json_encode(array('msg' => $option['site']['template_dir'])));
@@ -76,9 +81,7 @@ function moJiaOptions() {
 			die(json_encode(array('msg' => '执行失败')));
 		}
 	} elseif (isset($_POST['mojia'])) {
-		if (!moJiaPower('mojia', moJiaPath('base'))) {
-			die(json_encode(array('msg' => '权限不足')));
-		} elseif (file_put_contents(moJiaPath('path') . 'application/extra/mojiaopt.php', '<?php return ' . var_export($_POST['mojia'], true) . ';?>')) {
+		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiaopt.php', '<?php return ' . var_export($_POST['mojia'], true) . ';?>')) {
 			$html = file_get_contents('../../html/basics/seokey.html');
 			$seokey = $_POST['mojia']['seo'];
 			foreach ($seokey as $value => $key) {
@@ -92,6 +95,21 @@ function moJiaOptions() {
 			die(json_encode(array('msg' => '保存成功')));
 		} else {
 			die(json_encode(array('msg' => '保存失败')));
+		}
+	} elseif (isset($_POST['news'])) {
+		$path = '../../../';
+		$name = 'mojia-' . $_POST['news'] . '.zip';
+		$href = moJiaPath('down') . $name . '?v=' . time();
+		if (!moJiaIsExists($href)) {
+			die(json_encode(array('code' => '0', 'msg' => '未找到到最新版主题文件')));
+		}
+		if (!moJiaDownload($href, $path, $name)) {
+			die(json_encode(array('code' => '0', 'msg' => '主题下载失败')));
+		}
+		if (moJiaUnzip($path, $name, @$_POST['pass'])) {
+			die(json_encode(array('code' => '1', 'msg' => '主题升级成功')));
+		} else {
+			die(json_encode(array('code' => '0', 'msg' => '主题解压失败')));
 		}
 	} else {
 		die(json_encode(array('msg' => '执行失败')));
@@ -197,18 +215,7 @@ function moJiaCollect() {
 
 // 短链生成
 function moJiaCommon() {
-	if (isset($_POST['ver'])) {
-		if (@$_POST['ver'] == 'now') {
-			$version = parse_ini_file('../../info.ini');
-			echo json_encode(array('ver' => $version['version']));
-		} elseif (@$_POST['ver'] == 'new') {
-			$versnew = moJiaCurlGet($_POST['cdn']);
-			preg_match_all('/version=([\w\W]*?)adsdir/i', preg_replace('/\s+/', '', $versnew), $match);
-			echo json_encode(array('ver' => $match[1][0], 'key' => md5('mojia-' . $match[1][0])));
-		} elseif (@$_POST['ver'] == 'log') {
-			echo moJiaCurlGet($_POST['new']);
-		}
-	} elseif (isset($_POST['tao'])) {
+	if (isset($_POST['tao'])) {
 		$mojia = moJiaPath('mojia');
 		$taoke = moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list', array('pageSize' => '50', 'cids' => $mojia['home']['taoke']['type'], 'juHuaSuan' => $mojia['home']['taoke']['qiang'] == 1 ? 1 : '', 'taoQiangGou' => $mojia['home']['taoke']['qiang'] == 2 ? 1 : '', 'tmall' => $mojia['home']['taoke']['qiang'] == 3 ? 1 : '', 'tchaoshi' => $mojia['home']['taoke']['qiang'] == 4 ? 1 : '', 'goldSeller' => $mojia['home']['taoke']['qiang'] == 5 ? 1 : '', 'haitao' => $mojia['home']['taoke']['qiang'] == 6 ? 1 : '', 'specialId' => $mojia['home']['taoke']['brand'], 'sort' => $mojia['home']['taoke']['sort'], 'version' => $mojia['home']['taoke']['ver'], 'appKey' => $mojia['other']['taoke']['key']), $mojia['other']['taoke']['secret']);
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiatao.php', '<?php return ' . var_export(array_slice($taoke['data']['list'], 0, $mojia['home']['taoke']['num']), true) . ';?>')) {
@@ -244,27 +251,5 @@ function moJiaCommon() {
 		curl_close($curl);
 		echo $output;
 		exit ;
-	}
-}
-
-// 主题更新
-function moJiaUpdate() {
-	if (!moJiaPower('mojia', moJiaPath('base'))) {
-		die(json_encode(array('msg' => '权限不足')));
-	} elseif (isset($_POST['ver'])) {
-		$path = '../../../';
-		$name = 'mojia-' . $_POST['ver'] . '.zip';
-		$href = moJiaPath('down') . $name . '?v=' . time();
-		if (!moJiaIsExists($href)) {
-			die(json_encode(array('code' => '0', 'msg' => '未找到到最新版主题文件')));
-		}
-		if (!moJiaDownload($href, $path, $name)) {
-			die(json_encode(array('code' => '0', 'msg' => '主题下载失败')));
-		}
-		if (moJiaUnzip($path, $name, @$_POST['key'])) {
-			die(json_encode(array('code' => '1', 'msg' => '主题升级成功')));
-		} else {
-			die(json_encode(array('code' => '0', 'msg' => '主题解压失败')));
-		}
 	}
 }

@@ -47,7 +47,7 @@ layui.define(['mojia', 'iconfonts', 'multiple'], function(exports) {
 					layer.confirm('确定恢复默认设置吗', {
 						title: '提示'
 					}, function() {
-						$.post($('.layui-form-pane').attr('action'), 'type=renews', function(data) {
+						$.post($('.layui-form-pane').attr('action'), 'def=renews', function(data) {
 							layer.msg(data.msg, {
 								time: 500
 							}, function() {
@@ -118,10 +118,6 @@ layui.define(['mojia', 'iconfonts', 'multiple'], function(exports) {
 					$('select[name="mojia[nav][font][artid]"]').next().addClass($('select[name="mojia[nav][font][artid]"]').attr('class'));
 				});
 			},
-			'latest': function(index) {
-				var href = ['@master', '', '@latest'];
-				return 'https://cdn.jsdelivr.net/gh/amujie/mojia' + href[index] + '/info.ini';
-			},
 			'contra': function(index, nows, news) {
 				var news = news.split('.');
 				var nows = nows.split('.');
@@ -133,7 +129,7 @@ layui.define(['mojia', 'iconfonts', 'multiple'], function(exports) {
 				return version != 0 ? version : (news.length - nows.length);
 			},
 			'record': function(newmojia, password) {
-				$.post(magic.tpl + 'asset/exc/create.php?id=url', 'ver=log&new=' + encodeURIComponent('https://cdn.jsdelivr.net/gh/amujie/mojia@' + newmojia + '/about/changelog.json'), function(data) {
+				$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'ver=log&new=' + newmojia, function(data) {
 					var output = '<table class="layui-table mo-logs-form"><tbody>';
 					for (var i = 0; i < data[newmojia].length; i++) output += '<tr><td width="20" align="center" class="mo-logs-nums">' + (i + 1) + '</td><td class="mo-logs-item">' + data[newmojia][i] + '</td></tr>';
 					output += '</tbody></table>';
@@ -156,18 +152,16 @@ layui.define(['mojia', 'iconfonts', 'multiple'], function(exports) {
 			},
 			'update': function(count) {
 				$('.layui-body', parent.document).css('overflow-y', 'hidden');
-				$.post(magic.tpl + 'asset/exc/create.php?id=url', 'ver=new&cdn=' + encodeURIComponent(mojia.global.latest(count)), function(data) {
+				$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'ver=new', function(data) {
 					if (mojia.global.contra(0, $('.mo-opts-vers').text(), data.ver) > 0) {
 						$('.mo-opts-news').html('最新版：' + data.ver + '<a href="javascript:;" class="mo-opts-btns mo-pnxs-10px" style="color:red">立即更新</a>').css('color', 'red');
 						mojia.global.record(data.ver, data.key);
-					} else if (count < 2) {
-						mojia.global.update(count + 1);
 					}
 				});
 			},
 			'change': function(news, pass) {
 				var index = layer.load(2);
-				$.post(magic.tpl + 'asset/exc/create.php?id=upd', 'ver=' + news + '&key=' + pass, function(data) {
+				$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'news=' + news + '&pass=' + pass, function(data) {
 					layer.close(index);
 					if (data.code == 1) mojia.global.withfl(news);
 					else layer.msg(data.msg);
