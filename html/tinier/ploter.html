@@ -1,5 +1,5 @@
 {if$obj.vod_plot_list}
-{include file="basics/paging" limit="2" data="mac_default($obj['vod_plot_list'])" page="mac_url_plot_detail($obj,['page' => 'PAGELINK'])"}
+{include file="basics/paging" limit="10" data="mac_default($obj['vod_plot_list'])" page="mac_url_plot_detail($obj,['page' => 'PAGELINK'])"}
 {volist name="$data_list" id="vo"}
 <div class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
 <div class="mo-cols-rows mo-part-over">
