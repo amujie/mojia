@@ -17,7 +17,7 @@
 		</ul>
 	</div>
 	{maccms:foreach name="obj.vod_play_list" id="par"}
-	<ul class="mo-movs-item mo-sort-boxs mo-cols-rows mo-pamd-5px{if$key==1} mo-cols-show{else} mo-cols-hide{/if}">
+	<ul class="mo-movs-item mo-sort-boxs mo-cols-rows mo-pamd-5px{if$maccms.aid==15}{if$sub.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']} mo-cols-show{/if}{elseif$key==$param['sid']} mo-cols-show{else} mo-cols-hide{/if}">
 		{maccms:foreach name="obj['vod_play_list'][$par['sid']]['urls']" id="sub"}
 		<li class="mo-paxs-5px{if strpos($sub.name,'第')!==false&&strpos($sub.name,'集')!==false} mo-cols-info mo-cols-xs2 mo-cols-lg1{else} mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-md3 mo-cols-lg2{/if}">
 			<a class="mo-part-btns mo-fsxs-14px mo-bord-muted mo-bord-round mo-cols-show mo-wrap-arow mo-lhxs-40px mo-back-click mo-back-write{if$key==$param.nid} mo-back-mojia{/if}" href="{:mac_url_vod_play($obj,['sid'=>$par['sid'],'nid'=>$sub.nid])}"{if$maccms.aid==14} target="{$obj['vod_play_list'][$param['sid']]['player_info']['target']}"{/if}>{:str_replace(array('第','集'),'',$sub.name)}</a>

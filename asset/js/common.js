@@ -814,8 +814,11 @@ layui.define(['jquery'], function(exports) {
 					if ($(this).find('.mo-sort-name').text() == '正序') $(this).find('.mo-sort-name').text('倒序');
 					else $(this).find('.mo-sort-name').text('正序');
 					var html = '';
-					for (var i = $(this).parents(boxs).nextAll('.mo-sort-boxs').find('li').length - 1; i >= 0; i--) html += $(this).parents(boxs).nextAll('.mo-sort-boxs').find('li').eq(i).prop('outerHTML');
-					$(this).parents(boxs).nextAll('.mo-sort-boxs').html(html);
+					var sort = $(this).parents(boxs).find('.mo-text-mojia').index();
+					for (var i = $(this).parents(boxs).nextAll('.mo-sort-boxs').eq(sort).find('li').length - 1; i >= 0; i--) {
+						html += $(this).parents(boxs).nextAll('.mo-sort-boxs').eq(sort).find('li').eq(i).prop('outerHTML');
+					}
+					$(this).parents(boxs).nextAll('.mo-sort-boxs').eq(sort).html(html);
 				});
 			},
 			'store': function(str) {
