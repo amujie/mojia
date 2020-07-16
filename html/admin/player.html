@@ -127,7 +127,13 @@
 						<option value="0"{if$mojia['play']['other']['pass']==0} selected{/if}>关闭加密</option>
 					</select>
 				</td>
-				<td colspan="2">
+				<td>
+					<select name="mojia[play][other][sees]" lay-verify="">
+						<option value="0"{if$mojia['play']['other']['sees']==0} selected{/if}>开启试看时间</option>
+						<option value="1"{if$mojia['play']['other']['sees']==1} selected{/if}>关闭试看时间</option>
+					</select>
+				</td>
+				<td>
 					<select name="mojia[play][other][auto]" lay-verify="">
 						<option value="1"{if$mojia['play']['other']['auto']==1} selected{/if}>开启自动播放</option>
 						<option value="0"{if$mojia['play']['other']['auto']==0} selected{/if}>关闭自动播放</option>

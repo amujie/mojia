@@ -14,7 +14,7 @@
 		</h2>
 	</div>
 	<div class="mo-tabs-item mo-cols-show">
-		<div class="mo-pamd-5px">
+		<div class="mo-word-info mo-pamd-5px">
 			<div class="mo-paxs-5px mo-ptxs-0px">
 				{$obj.website_content|mac_default='暂无站点简介'}
 			</div>
@@ -27,7 +27,7 @@
 	{/if}{if$obj.website_pic}
 	<div class="mo-tabs-item mo-pamd-5px mo-cols-hide">
 		<div class="mo-paxs-5px mo-pamd-10px">
-			<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-16by9 mo-cols-rows mo-bord-round" href="{$obj.website_pic|mac_url_img}" data-original="{if$mojia['other']['chain']['state']}{:stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''}{$mojia['other']['chain']['apis']}{/if}{:mac_url_img(trim($obj.website_pic))}" target="_blank"></a>
+			<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-16by9 mo-cols-rows mo-bord-round" href="{$obj.website_pic|mac_url_img}" data-original="{$mojia['other']['chain']['state']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''.stristr($obj['website_pic'],'//')==true?$mojia['other']['chain']['apis']:''):''}{:mac_url_img(trim($obj.website_pic))}" target="_blank"></a>
 		</div>
 	</div>
 	{/if}

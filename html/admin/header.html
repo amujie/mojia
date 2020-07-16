@@ -5,27 +5,14 @@
 		{include file="tinier/config,admin/config,tinier/metaer"}
 		<link href="{$cdnpath}asset/inc/css/layui.css?v={$version}" rel="stylesheet" type="text/css" />
 		<link href="{$cdnpath}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
+		{include file="tinier/colour"}
 		<script src="{$cdnpath}asset/inc/layui.all.js?v={$version}" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var magic = {
-				'admin': parent.document.URL.split('php'),
+				'admin': '{$mojia["other"]["edit"]["link"]}',
 				'path': '{$install}',
-				'temp': '{:file_exists("runtime/temp/".md5("mojia").".php") ? require("runtime/temp/".md5("mojia").".php"):""}',
-				'depr': '{$GLOBALS["config"]["app"]["pathinfo_depr"]}',
-				'ver': '{$version}',
 				'tpl': '{$template}',
-				'cdn': '{$cdnpath}',
-				'url': '{$verify["url"]}',
-				'key': '{$verify["key"]}',
-				'tga': '{$verify["tga"]}',
-				'tid': '{$verify["tid"]}',
-				'mid': '{$maccms["mid"]}',
-				'aid': '{$maccms["aid"]}',
-				'rid': '{$obj[mac_get_mid_code($maccms["mid"])."_id"]}',
-				'sid': '{$param["sid"]}',
-				'nid': '{$param["nid"]}',
-				'wap': '{$GLOBALS["config"]["site"]["site_wapurl"]}',
-				'mob': '{$GLOBALS["config"]["site"]["mob_status"]}'
+				'cdn': '{$cdnpath}'
 			};
 		</script>
 	</head>

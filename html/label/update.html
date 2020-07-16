@@ -72,11 +72,10 @@
 			var magic = {
 				'path': '{$install}',
 				'tpl': '{$template}',
-				'cdn': '{$cdnpath}',
-				'ver': '{$version}'
+				'cdn': '{$cdnpath}'
 			};
 			layui.config({
-				version: magic.ver,
+				version: '{$version}',
 				base: magic.cdn + 'asset/js/'
 			}).use(['other'], function() {
 				layui.other.global.browser();

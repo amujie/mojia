@@ -83,8 +83,7 @@ function moJiaDaTaoKe($api, $param, $appSecret) {
 // 表情转换
 function moJiaFace($data) {
 	$version = parse_ini_file(substr(moJiaPath('temp'), strlen(moJiaPath('home'))) . 'info.ini');
-	$mojia = file_exists('application/extra/mojiaopt.php') ? @require ('application/extra/mojiaopt.php') : @require ('config.php');
-	;
+	$mojia = file_exists('application/extra/mojiaopt.php') ? @require ('application/extra/mojiaopt.php') : @require ('config.php'); ;
 	$cdnpath = $mojia['other']['cdns']['state'] ? $mojia['other']['cdns']['link'] . (strpos($mojia['other']['cdns']['link'], 'cdn.jsdelivr.net/gh/amujie') !== false ? '@' . $version['version'] : '') . '/' : moJiaPath('temp');
 	preg_match_all('/(?:\[)[^(?:\])]+]/i', $data, $match);
 	foreach ($match[0] as $key => $value) {

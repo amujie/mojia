@@ -1,5 +1,5 @@
 <style type="text/css">
-	.mo-bord-muted,
+	.mo-bord-muted,hr,
 	.mo-bord-muted:after,
 	.mo-bord-muted:before {border-color: {$mojia['color']['lines']['back']|mac_default='#dedede'}!important}
 	.mo-bord-focus:focus {border-color: {$mojia['color']['mojia']['back']|mac_default='#ff5f00'} !important}
@@ -43,3 +43,36 @@
 	.mo-play-highs {padding-top:{$mojia['play']['high']['desk']}!important}}
 	{/if}
 </style>
+{if$mojia['color']['type']['name']!=2}
+<style id="mo-java-dark" type="text/{$_COOKIE['mo_dark']?'css':'dark'}">
+	.mo-bord-muted,hr,
+	.mo-bord-muted:after,
+	.mo-bord-muted:before {border-color: #2a2a2a!important}
+	.mo-bord-focus:focus {border-color: #d3b270 !important}
+	.mo-bord-lower {border-bottom-color: #666666!important}
+	.mo-bord-upper {border-top-color: #666666 !important}
+	.mo-back-items {background: #7f7f8c !important;color: #ffffff !important}
+	.mo-back-item1 {background: #ff0d29 !important;color: #ffffff !important}
+	.mo-back-item2 {background: #ff920b !important;color: #ffffff !important}
+	.mo-back-item3 {background: #ffc600 !important;color: #ffffff !important}
+	.mo-back-white {background: #333333 !important;color: #999999 !important}
+	.mo-back-black {background: #000000 !important;color: #999999 !important}
+	.mo-back-fixed {background: #555555 !important;color: #999999 !important}
+	.mo-back-click {background: #444444;color: #999999}
+	.mo-back-muted {background-color: #2b2a2a !important;color: #999999 !important}
+	.mo-back-write:visited {background: #555555;color: #999999;border-color: #555555}
+	.mo-back-mojia {background: #d3b270 !important;color: #ffffff !important;border-color: #d3b270 !important;opacity: 1 !important}
+	.mo-back-hover:hover {background: #d3b270 !important;color: #ffffff !important;border-color: #d3b270 !important}
+	.mo-back-disad {background: #888888 !important;color: #aaaaaa !important;border-color: #888888 !important;opacity: 1 !important}
+	.mo-text-white {color: #ffffff!important}
+	.mo-text-black {color: #333333!important}
+	.mo-text-muted {color: #666666!important}
+	.mo-text-gules {color: #ff0d29!important}
+	.mo-text-green {color: #28bd98!important}
+	.mo-text-blush {color: #ff6f6f!important}
+	.mo-text-disad {color: #aaaaaa!important}
+	.mo-text-mojia {color: #d3b270!important}
+	.mo-text-hover:hover {color: #d3b270 !important}
+	.mo-lazy-color {background-color: #666666 !important;color: #999999 !important}
+</style>
+{/if}

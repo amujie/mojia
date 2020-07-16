@@ -219,6 +219,7 @@ a {color: inherit;text-decoration: none}
 p {line-height: 1.875rem;word-wrap: break-word}
 i {font-style: normal;display: inline-block}
 li {list-style: none}
+hr {border-width: 0;border-bottom-width: 1px;}
 img {display: inline-block;border: 0;vertical-align: middle;max-width: 100%;}
 table {border-collapse: collapse;border-spacing: 0}
 html,
@@ -588,7 +589,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-part-bbsd {border-bottom: 0.0625rem solid;}
 .mo-part-dott {border-bottom: 0.0625rem dashed;}
 .mo-part-bans {pointer-events: none !important}
-.mo-part-tops {top: auto !important;bottom: 38px;}
+.mo-part-tops {top: auto !important;bottom: 40px;}
 .mo-part-code {width: 11.25rem;height: 11.25rem;margin: 0 auto;}
 .mo-part-potn {background-position: 0px 5rem;}
 .mo-part-fixs {position: fixed !important;}
@@ -695,8 +696,6 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-deta-info .mo-deta-btns {width: 200%;position: absolute;left: 100%;bottom: .3125rem;z-index: 1;}
 .mo-deta-info .mo-deta-play {min-width: 85px}
 .mo-deta-info:last-child {margin: 0;border: 0}
-/* 分集列表 */
-.mo-drop-info .mo-drop-foot {position: absolute;top: 38px;right: 0;z-index: 997;box-shadow: rgba(0, 0, 0, 0.3) 0px 0.0625rem 0.25rem;}
 /* 播放器 */
 .mo-play-info .mo-play-tips {height: 28px;line-height: 28px;}
 .mo-play-info .mo-play-advs {position: absolute;z-index: 100;top: 10px;right: 10px;background-color: rgba(0, 0, 0, .4);line-height: 24px;padding: 0 10px;border-radius: 20px;}
@@ -716,7 +715,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-comm-info .mo-comm-left {padding-left: 3.125rem}
 .mo-comm-info .mo-comm-sons {margin: 0 -0.3125rem}
 /* 表情框 */
-.mo-face-info {position: absolute;width: 298px;left: -1px;top: 38px;z-index: 2;}
+.mo-face-info {position: absolute;width: 298px;left: 0;top: 40px;z-index: 2;}
 .mo-face-info .mo-face-item {max-height: 205px;overflow: overlay;}
 .mo-face-info .mo-face-pics {width: 40px;height: 40px;line-height: 40px;}
 /* 弹窗公告 */
@@ -727,8 +726,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-have-info {width: 275px;}
 .mo-have-info .mo-have-body {position: relative;width: 100%;height: 100%;}
 .mo-have-info .mo-have-main {top: 0;width: 100%;height: 100%;}
-.mo-have-info .mo-have-left {background: url(../inc/css/modules/layer/default/loading-2.gif) no-repeat center;}
-.mo-have-info .mo-have-right {top: 0;right: 0;}
+.mo-have-info .mo-have-head {background: url(../inc/css/modules/layer/default/loading-2.gif) no-repeat center;}
 .mo-have-info .mo-have-code {right: 0;bottom: 0;width: 5.6875rem;height: 5.6875rem;}
 .mo-have-info .mo-have-boxs {min-height: 100%;}
 .mo-have-info .mo-have-pics {width: 100%;}
@@ -777,8 +775,29 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-font-info .mo-font-icon {box-sizing: border-box;display: block;width: 80%;height: 100%;float: left;text-align: center;transition: all .3s;}
 .mo-font-info .mo-font-item {display: inline-block;width: 20%;line-height: 36px;text-align: center;cursor: pointer;vertical-align: top;height: 36px;margin: 4px;border: 1px solid #ddd;border-radius: 2px;transition: 300ms;}
 .mo-font-info .mo-icon-font {line-height: 38px;font-size: 18px;}
+/* 详情排版优化 */
+.mo-word-info strong,
+.mo-word-info b {font-weight: bold;}
+.mo-word-info ol,
+.mo-word-info ul {margin: 1em 0;padding: 0}
+.mo-word-info ul {display: table;}
+.mo-word-info ul>li {display: table-row;list-style: none;}
+.mo-word-info ul>li:before {display: table-cell;content: "\2022   ";white-space: pre;}
+.mo-word-info ol {display: table;counter-reset: ol;}
+.mo-word-info ol>li {display: table-row;list-style: none;}
+.mo-word-info ol>li:before {display: table-cell;text-align: right;counter-increment: ol;content: counter(ol) ". ";white-space: pre;}
+.mo-word-info pre {overflow-y: auto;}
+.mo-word-info pre ol,
+.mo-word-info pre ul {margin: 0;width: 100%;}
+.mo-word-info pre li {display: list-item;list-style: unset;}
+.mo-word-info pre li:before {content: unset}
+.mo-word-info pre li:first-child {padding-top: 5px;}
+.mo-word-info pre li:last-child {padding-bottom: 5px;}
+.mo-word-info code {font-family: Courier New;}
+.mo-word-info iframe {max-width: 100%;}
 @media(min-width:768px) {
 	/* 组件 */
+	.mo-part-slip {overflow-x: hidden}
 	.mo-part-left {left: 0 !important}
 	.mo-situ-pics:hover .mo-situ-play {opacity: 1;z-index: 1}
 	/* 导航栏 */

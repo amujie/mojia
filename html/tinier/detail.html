@@ -1,4 +1,4 @@
-{if in_array($user['group_id'], explode(',',$mojia['advs']['info']['group']))}
+{if in_array(mac_default($user['group_id'],1), explode(',',$mojia['advs']['info']['group']))}
 <div class="mo-back-white mo-mtxs-10px mo-mtmd-20px">
 {$mojia['advs']['info']['area']}
 </div>
@@ -8,9 +8,9 @@
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-cols-zero mo-part-slip mo-cols-xs9 mo-cols-sm10">
 			{if$obj.vod_pwd}
-			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="javascript:;">加密数据</a>
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia mo-part-bans" href="javascript:;">加密数据</a>
 			{/if}{if$maccms.aid==104}{assign name="param['nid']" value="$param['page']"}{/if}
-			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if!$obj.vod_pwd} mo-text-mojia{/if}" href="javascript:;">剧情简介</a>
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if!$obj.vod_pwd} mo-text-mojia mo-part-bans{/if}" href="javascript:;">剧情简介</a>
 			{if$GLOBALS['config']['comment']['status']&&$maccms.mid!=10}
 			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">发表评论</a>
 			{/if}{if$magic_role['list']}
@@ -30,7 +30,7 @@
 	{/if}
 	<div class="mo-tabs-item{if$obj.vod_pwd} mo-cols-hide{else} mo-cols-show{/if}">
 		{if$maccms.aid==15}{include file="module/videos"}{/if}
-		<div class="mo-pamd-5px">
+		<div class="mo-word-info mo-pamd-5px">
 			<div class="mo-paxs-5px mo-ptxs-0px">
 				{$obj.vod_content|mac_filter_html|mac_default='暂无剧情简介'}
 			</div>

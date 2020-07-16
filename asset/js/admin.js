@@ -1,11 +1,11 @@
-layui.define(['mojia', 'iconfonts', 'multiple'], function(exports) {
+layui.define(['mojia', 'common', 'iconfonts', 'multiple', 'sortable'], function(exports) {
 	var $ = layui.jquery;
 	var mojia = {
 		'global': {
 			'init': function() {
 				layui.util.fixbar();
+				mojia.global.seokey();
 				mojia.global.update(0);
-				layui.mojia.moload.mojia();
 				layui.multiple.init('select[multiple]');
 				layui.iconfonts.init('.layui-font-info');
 				layui.laydate.render({
@@ -59,6 +59,22 @@ layui.define(['mojia', 'iconfonts', 'multiple'], function(exports) {
 					});
 					return false;
 				});
+				layui.form.on('submit(seokey)', function(data) {
+					layer.confirm('确定恢复SEO默认设置吗', {
+						title: '提示'
+					}, function() {
+						$.post($('.layui-form-pane').attr('action'), 'seo=renews', function(data) {
+							layer.msg(data.msg, {
+								time: 500
+							}, function() {
+								location.reload();
+							});
+						}).error(function(data) {
+							layer.msg('请求失败：' + data.status);
+						}, 'json');
+					});
+					return false;
+				});
 				layui.form.on('submit(lookup)', function(data) {
 					var image = $(this).parents('td').prev().prev().find('input').val();
 					layer.open({
@@ -82,7 +98,7 @@ layui.define(['mojia', 'iconfonts', 'multiple'], function(exports) {
 				});
 				layui.upload.render({
 					elem: '.layui-upload',
-					url: magic.admin[0] + 'php/admin/upload/upload.html?flag=site',
+					url: magic.path + magic.admin + '/admin/upload/upload.html?flag=site',
 					before: function(input) {
 						layer.msg('文件上传中...', {
 							time: 3000000
@@ -101,6 +117,12 @@ layui.define(['mojia', 'iconfonts', 'multiple'], function(exports) {
 						}
 					}
 				});
+				layui.element.on('tab(table)', function() {
+					layui.common.cookie.set('mo_table', this.getAttribute('lay-id'), 1);
+				});
+				if (layui.common.cookie.get('mo_table') != null) {
+					layui.element.tabChange('table', layui.common.cookie.get('mo_table'));
+				}
 				$('.mo-look-btns').each(function(nums, info) {
 					layui.colorpicker.render({
 						elem: '.mo-look-btns' + nums,
@@ -118,6 +140,14 @@ layui.define(['mojia', 'iconfonts', 'multiple'], function(exports) {
 					$('select[name="mojia[nav][font][artid]"]').next().addClass($('select[name="mojia[nav][font][artid]"]').attr('class'));
 				});
 			},
+			'search': function(search, array) {
+				for (var i in array) {
+					if (array[i] == search) {
+						return true;
+					}
+				}
+				return false;
+			},
 			'contra': function(index, nows, news) {
 				var news = news.split('.');
 				var nows = nows.split('.');
@@ -127,6 +157,101 @@ layui.define(['mojia', 'iconfonts', 'multiple'], function(exports) {
 					index++;
 				}
 				return version != 0 ? version : (news.length - nows.length);
+			},
+			'bracke': function(string) {
+				var array = [];
+				for (var i = 0; i < string.length; i++) {
+					var item = string[i];
+					if (item === "(") {
+						array.push("(");
+					} else if (item === ")") {
+						if (array.length === 0) {
+							return false;
+						} else {
+							array.pop();
+						}
+					} else {
+						continue;
+					}
+				};
+				return array.length === 0;
+			},
+			'seokey': function() {
+				$(document).on('click', '.mo-java-seos', function(data) {
+					var that = $(this);
+					if (that.css('background-color') != 'rgb(176, 224, 230)') {
+						that.css('background-color', 'lemonchiffon');
+					}
+					var aids = $(this).parents('tbody').find('tr').eq(0).find('td').eq(0).find('input').val();
+					var array = $(this).val().split('.');
+					layer.open({
+						type: 1,
+						btn: '确认修改',
+						title: '提示:长按拖动,<font color="red">文本内容前后加单引号,变量无需加引号</font>',
+						area: ['640px', '500px'],
+						content: '<ul class="mo-seos-nows mo-pzxs-5px mo-coxs-center mo-part-bord mo-bord-muted"></ul><ul class="mo-seos-news mo-pzxs-5px mo-mtxs-10px mo-coxs-center mo-part-bord mo-bord-muted"></ul>',
+						success: function(layero, index) {
+							$('.layui-layer-content').addClass('mo-cols-rows mo-paxs-20px');
+							$('.mo-seos-nows').after('<table class="layui-table"><tbody><tr><td width="70">自定义内容</td><td><input type="text" value="\'自定义内容\'" class="layui-input mo-seos-custom" placeholder="模块"></td><td width="90"><a class="layui-btn layui-btn-primary mo-seos-cust">添加内容</a></td></tr><tbody></table>');
+							layui.use('income', function() {
+								var html = '';
+								for (var i = 0; i < array.length; i++) {
+									html += '<li class="mo-java-seoe mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span class="mo-coxs-arow" style="vertical-align:text-bottom;max-width:500px;display:inline-block!important;cursor:move">' + array[i] + '</span><i class="mo-seos-dels mo-icon-font mo-icon-shibai-line mo-plxs-10px" style="vertical-align:top"></i></a></li>';
+								}
+								$('.mo-seos-nows').html(html);
+								$('.mo-java-seoe').arrangeable();
+								var item = '';
+								var income = layui.income.seokey;
+								$.each(income, function(nums, info) {
+									if (nums == 'common' || mojia.global.search(aids, nums.split(','))) {
+										for (var i = 0; i < info.length; i++) {
+											item += '<li class="mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span style="vertical-align:text-bottom" data-code="' + income[nums][i].code + '">' + income[nums][i].name + '</span><i class="mo-seos-adds mo-icon-font mo-icon-zengjia-line mo-plxs-10px" style="vertical-align:top"></i></a></li>';
+										};
+									}
+								});
+								$('.mo-seos-news').html(item);
+							});
+						},
+						yes: function(index, layero) {
+							var array = [];
+							that.css('background-color', 'powderblue');
+							$('.mo-seos-nows').find('li').each(function() {
+								array.push($(this).find('span').text());
+							});
+							that.val(array.join('.'));
+							layer.close(index);
+						},
+						cancel: function(index, layero) {
+							if (that.css('background-color') == 'rgb(255, 250, 205)') {
+								that.css('background-color', '');
+							}
+						}
+					});
+				});
+				$(document).on('click', '.mo-seos-cust', function(data) {
+					if (($(this).parent().prev().find('input').val().split("'").length - 1) % 2 != 0) {
+						layer.msg('单引号不匹配,请检查单引号是否对应');
+						return false;
+					}
+					if (($(this).parent().prev().find('input').val().split('"').length - 1) % 2 != 0) {
+						layer.msg('双引号不匹配,请检查双引号是否对应');
+						return false;
+					}
+					if (!mojia.global.bracke($(this).parent().prev().find('input').val())) {
+						layer.msg('括号不匹配,请检查括号是否对应');
+						return false;
+					}
+					$('.mo-seos-nows').append('<li class="mo-java-seoe mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span class="mo-coxs-arow" style="vertical-align:text-bottom;max-width:500px;display:inline-block!important;cursor:move">' + $(this).parent().prev().find('input').val() + '</span><i class="mo-seos-dels mo-icon-font mo-icon-shibai-line mo-plxs-10px" style="vertical-align:top"></i></a></li>');
+					$('.mo-java-seoe').arrangeable();
+				});
+				$(document).on('click', '.mo-seos-dels', function(data) {
+					$(this).parent().parent().remove();
+					$('.mo-java-seoe').arrangeable();
+				});
+				$(document).on('click', '.mo-seos-adds', function(data) {
+					$('.mo-seos-nows').append('<li class="mo-java-seoe mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span class="mo-coxs-arow" style="vertical-align:text-bottom;max-width:500px;display:inline-block!important;cursor:move">' + $(this).prev().attr('data-code') + '</span><i class="mo-seos-dels mo-icon-font mo-icon-shibai-line mo-plxs-10px" style="vertical-align:top"></i></a></li>');
+					$('.mo-java-seoe').arrangeable();
+				});
 			},
 			'record': function(newmojia, password) {
 				$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'ver=log&new=' + newmojia, function(data) {

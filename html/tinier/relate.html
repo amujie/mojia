@@ -33,7 +33,7 @@
 <div class="mo-cols-lays mo-back-white">
 	{include file="basics/titles" module="rel" title=":mac_default('猜你喜欢')" btns="更多" href=":mac_default($obj&&$maccms.mid==1?mac_url_type($obj):mac_url(mac_get_mid_code(1).'/index'))"}
 	<ul class="mo-cols-rows">
-		{maccms:vod num="12" type="'.($maccms.mid==1?'current':'').'" order="desc" by="time"}
+		{maccms:vod num="12" not="'.$obj['vod_id'].'" type="'.($maccms['mid']==1?'current':'').'" order="desc" by="time"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
 		{include file="basics/picture" type="vod" style=":mac_default(stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="show" lazy="open"}
 		</li>

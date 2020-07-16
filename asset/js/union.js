@@ -2,10 +2,10 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 	var $ = layui.jquery;
 	var mojia = {
 		'global': {
-			'urls': magic.admin[0] + 'php/admin/collect/api?ac={ac}&h={h}&cjflag={cjflag}&cjurl={cjurl}&mid={mid}&type={type}&opt={opt}&filter={filter}&filter_from={filter_from}&param={param}',
+			'urls': magic.path + magic.admin + '/admin/collect/api?ac={ac}&h={h}&cjflag={cjflag}&cjurl={cjurl}&mid={mid}&type={type}&opt={opt}&filter={filter}&filter_from={filter_from}&param={param}',
 			'init': function() {
-				mojia.lister.list('取消', 'cancel', 'favs=list', 'prepend');
-				mojia.lister.list('收藏', 'stores', 'info=info', 'append');
+				mojia.lister.list('我的收藏', '取消', 'cancel', 'favs=list', 'prepend');
+				mojia.lister.list('资源列表', '收藏', 'stores', 'info=info', 'append');
 				mojia.clicks.init();
 				layui.util.fixbar();
 			}
@@ -14,14 +14,14 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 			'name': function(name, str) {
 				return name.substring(0, name.indexOf(str));
 			},
-			'list': function(name, favs, data, type) {
+			'list': function(title, name, favs, data, type) {
 				$.post(magic.tpl + 'asset/exc/create.php?id=col', data, function(data) {
 					if (data.length == 0) return false;
 					var html = '';
-					html += '<table class="layui-table"><thead><tr><td colspan="11"><span style="float:left">我的收藏</span><span style="float:right"></span></td></tr></thead><tbody>';
+					html += '<table class="layui-table"><thead><tr><td colspan="11"><span style="float:left">' + title + '</span><span style="float:right">' + (favs == 'cancel' ? '已收藏资源库列表' : '主题不附带资源接口') + '</span></td></tr></thead><tbody>';
 					$.each(data, function(nums, info) {
 						var href = mojia.global.urls.replace('{cjflag}', info.collect_flag).replace('{cjurl}', encodeURIComponent(info.collect_url)).replace('{mid}', info.collect_mid).replace('{type}', info.collect_type).replace('{opt}', info.collect_opt).replace('{filter}', info.collect_filter).replace('{filter_from}', info.collect_filter_from).replace('{param}', info.collect_param);
-						html += '<tr data-id="' + info.collect_id + '" data-url="' + info.collect_url + '" data-name="' + info.collect_name + '" data-flag="' + info.collect_flag + '" data-type="' + info.collect_type + '" data-text="' + info.collect_text + '" data-mold="' + info.collect_mold + '" data-param="' + href.replace('{ac}', 'cj').replace('{h}', '24').replace(magic.admin[0] + 'php/admin/collect/api?', '') + '">';
+						html += '<tr data-id="' + info.collect_id + '" data-url="' + info.collect_url + '" data-name="' + info.collect_name + '" data-flag="' + info.collect_flag + '" data-type="' + info.collect_type + '" data-text="' + info.collect_text + '" data-mold="' + info.collect_mold + '" data-param="' + href.replace('{ac}', 'cj').replace('{h}', '24').replace(magic.path + magic.admin + '/admin/collect/api?', '') + '">';
 						html += '<td width="20" align="center">' + info.collect_id + '</td>';
 						html += '<td width="40" align="center"><span class="layui-badge layui-bg-green">' + info.collect_text + '</span></td>';
 						html += '<td><a href="javascript:;" class="mo-unit-addtab" data-id="100006" data-url="' + href.replace('{ac}', 'list').replace('{h}', '') + '" data-name="' + mojia.lister.name(info.collect_name, '【') + '">【绑定】' + info.collect_name + '</a></td>';
@@ -49,7 +49,7 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 						var html = '';
 						var href = urls.replace('{cjflag}', info[key].collect_flag).replace('{cjurl}', encodeURIComponent(info[key].collect_url)).replace('{mid}', info[key].collect_mid).replace('{type}', info[key].collect_type).replace('{opt}', info[key].collect_opt).replace('{filter}', info[key].collect_filter).replace('{filter_from}', info[key].collect_filter_from).replace('{param}', info[key].collect_param).replace('{ac}', 'list').replace('{h}', '');
 						for (var i = 0; i < data.length; i++) {
-							html += '<tr data-name="' + info[key].collect_name + '" data-url="' + href + '&wd=' + $('.mo-unit-input').val() + '" data-sole="' + data[i][info[key].collect_code + '_play_from'] + '" data-text="' + info[key].collect_text + '" data-mold="' + info[key].collect_mold + '">';
+							html += '<tr data-name="' + info[key].collect_name + '" data-url="' + info[key].collect_url + '" data-word="' + href + '&wd=' + $('.mo-unit-input').val() + '" data-sole="' + data[i][info[key].collect_code + '_play_from'] + '" data-text="' + info[key].collect_text + '" data-mold="' + info[key].collect_mold + '">';
 							html += '<td width="30" align="center">' + info[key].collect_id + '</td>';
 							html += '<td width="90" align="center"><span class="layui-badge layui-bg-green">' + mojia.lister.name(info[key].collect_name, '【') + '</span></td>';
 							html += '<td><a href="javascript:;" class="mo-unit-dataer">' + data[i][info[key].collect_code + '_name'] + '【' + data[i][info[key].collect_code + '_remarks'] + '】</a></td>';
@@ -80,7 +80,6 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 		},
 		'clicks': {
 			'init': function() {
-				layui.mojia.moload.mojia();
 				layui.income.global.init();
 				$('.layui-body', parent.document).css('overflow-y', 'hidden');
 				$(document).on('click', '.mo-unit-stores', function() {
@@ -133,21 +132,28 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 						}
 					});
 				});
-				$(document).on('click', '.mo-unit-addtab', function() {
+				$(document).on('click', '.mo-unit-addtab', function(event) {
 					var that = $(this);
 					if (!that.attr('data-url')) return false;
-					parent.layui.element.tabAdd('macTab', {
-						content: '<iframe width="100%" height="100%" lay-id="' + that.attr('data-id') + '" frameborder="0" src="' + that.attr('data-url') + '" scrolling="yes" class="x-iframe"></iframe>',
-						title: (that.attr('data-name') ? that.attr('data-name') : that.text()),
-						id: that.attr('data-id')
-					});
-					parent.layui.element.tabChange('macTab', that.attr('data-id'));
+					if (window.top != window.self) {
+						if ($(window.parent.document).find('iframe[lay-id="' + that.attr('data-id') + '"]')[0]) {
+							parent.layui.element.tabChange('macTab', that.attr('data-id'));
+							event.stopPropagation();
+							return false;
+						}
+						parent.layui.element.tabAdd('macTab', {
+							content: '<iframe width="100%" height="100%" lay-id="' + that.attr('data-id') + '" frameborder="0" src="' + that.attr('data-url') + '" scrolling="yes" class="x-iframe"></iframe>',
+							title: (that.attr('data-name') ? that.attr('data-name') : that.text()),
+							id: that.attr('data-id')
+						});
+						parent.layui.element.tabChange('macTab', that.attr('data-id'));
+					} else window.open(that.attr('data-url'), '_blank');
 				});
 				$(document).on('click', '.mo-unit-addtor', function() {
 					layer.open({
 						area: ['85%', '80%'],
 						title: '添加自定义资源',
-						content: magic.admin[0] + 'php/admin/collect/info.html',
+						content: magic.path + magic.admin + '/admin/collect/info.html',
 						maxmin: true,
 						type: 2
 					});
@@ -156,7 +162,7 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 					layer.open({
 						area: ['85%', '80%'],
 						title: '添加服务器组',
-						content: magic.admin[0] + 'php/admin/vodserver/info.html',
+						content: magic.path + magic.admin + '/admin/vodserver/info.html',
 						maxmin: true,
 						type: 2
 					});
@@ -165,7 +171,7 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 					layer.open({
 						area: ['85%', '80%'],
 						title: $(this).parents('tr').attr('data-name'),
-						content: magic.admin[0] + 'php/admin/collect/info/id/' + $(this).parents('tr').attr('data-id') + '.html',
+						content: magic.path + magic.admin + '/admin/collect/info/id/' + $(this).parents('tr').attr('data-id') + '.html',
 						maxmin: true,
 						type: 2
 					});
@@ -173,7 +179,7 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 				$(document).on('click', '.mo-unit-delete', function() {
 					var that = $(this).parents('tr');
 					layer.confirm('删除之后无法恢复，您确定要删除吗', function(index) {
-						$.post(magic.admin[0] + 'php/admin/collect/del/ids/' + that.attr('data-id') + '.html', function(data) {
+						$.post(magic.path + magic.admin + '/admin/collect/del/ids/' + that.attr('data-id') + '.html', function(data) {
 							layer.msg(data.msg, {
 								time: 500,
 								anim: 0
@@ -194,7 +200,7 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 					layer.open({
 						area: ['85%', '80%'],
 						title: $(this).parents('tr').attr('data-name'),
-						content: $(this).parents('tr').attr('data-url'),
+						content: $(this).parents('tr').attr('data-word'),
 						maxmin: true,
 						type: 2,
 					});
@@ -235,7 +241,7 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 					layer.open({
 						area: ['85%', '80%'],
 						title: that.attr('data-name'),
-						content: magic.admin[0] + 'php/admin/timming/info.html?id=' + that.attr('data-flag'),
+						content: magic.path + magic.admin + '/admin/timming/info.html?id=' + that.attr('data-flag'),
 						maxmin: true,
 						type: 2,
 						success: function(layero, index) {
@@ -245,6 +251,7 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 							if (!body.find('#des').val()) body.find('#des').val('每日定时采集：' + mojia.lister.name(that.attr('data-name'), '【'));
 							if (body.find('#rad-1').is(':checked')) body.find('#rad-1').attr('checked', false).next('.layui-form-radio').removeClass('layui-form-radioed').find('i').removeClass('layui-anim-scaleSpring').html('&#xe63f;');
 							if (!body.find('#rad-2').is(':checked')) body.find('#rad-2').attr('checked', true).next('.layui-form-radio').addClass('layui-form-radioed').find('i').addClass('layui-anim-scaleSpring').html('&#xe643;');
+							body.find('button[type="submit"]').attr('data-child', 'no');
 							setTimeout(function() {
 								if (!body.find('input[type=checkbox]').is(':checked')) {
 									$(body.find('input[type=checkbox]')).each(function() {
@@ -280,7 +287,7 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 				layer.open({
 					area: ['85%', '80%'],
 					title: that.attr('data-name'),
-					content: magic.admin[0] + 'php/admin/vod' + that.attr('data-mold') + 'er/info/id/' + data + '.html',
+					content: magic.path + magic.admin + '/admin/vod' + that.attr('data-mold') + 'er/info/id/' + data + '.html',
 					maxmin: true,
 					type: 2,
 					success: function(layero, index) {
@@ -296,6 +303,7 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 						if (!body.find('#rad-2').is(':checked')) body.find('#rad-2').attr('checked', true).next('.layui-form-radio').addClass('layui-form-radioed').find('i').addClass('layui-anim-scaleSpring').html('&#xe643;');
 						if (body.find('input[name="ps"]').eq(0).is(':checked')) body.find('input[name="ps"]').eq(0).attr('checked', false).next('.layui-form-radio').removeClass('layui-form-radioed').find('i').removeClass('layui-anim-scaleSpring').html('&#xe63f;');
 						if (!body.find('input[name="ps"]').eq(1).is(':checked')) body.find('input[name="ps"]').eq(1).attr('checked', true).next('.layui-form-radio').addClass('layui-form-radioed').find('i').addClass('layui-anim-scaleSpring').html('&#xe643;');
+						body.find('button[type="submit"]').attr('data-child', 'no');
 					}
 				});
 			}

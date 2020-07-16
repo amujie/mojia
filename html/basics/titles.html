@@ -10,9 +10,9 @@
 		{elseif'[module]'=='hots'}
 		<li class="mo-coxs-iblock mo-fsxs-14px"><a href="{:mac_url('label/rank')}">影视排行榜</a></li>
 		{elseif'[module]'=='news'}
-		<li class="mo-coxs-iblock mo-fsxs-14px">今日更新&nbsp;<span class="mo-text-mojia">{:mac_data_count($obj.type_id,'today','art')}</span>&nbsp;篇&nbsp;&nbsp;共&nbsp;<span class="mo-text-mojia">{:mac_data_count('all','art')}&nbsp;</span>篇</li>
+		<li class="mo-coxs-iblock mo-fsxs-14px">今日更新&nbsp;<span class="mo-text-mojia">{:mac_data_count(0,'today','art')}</span>&nbsp;篇&nbsp;&nbsp;共&nbsp;<span class="mo-text-mojia">{:mac_data_count(0,'all','art')}&nbsp;</span>篇</li>
 		{elseif'[module]'=='video'}
-		<li class="mo-coxs-iblock mo-fsxs-14px">今日更新&nbsp;<span class="mo-text-mojia">{:mac_data_count($obj.type_id,'today','vod')}</span>&nbsp;部&nbsp;&nbsp;共&nbsp;<span class="mo-text-mojia">{:mac_data_count('all','vod')}&nbsp;</span>部</li>
+		<li class="mo-coxs-iblock mo-fsxs-14px">今日更新&nbsp;<span class="mo-text-mojia">{:mac_data_count(0,'today','vod')}</span>&nbsp;部&nbsp;&nbsp;共&nbsp;<span class="mo-text-mojia">{:mac_data_count(0,'all','vod')}&nbsp;</span>部</li>
 		{elseif'[module]'=='child'}
 		<li class="mo-coxs-iblock mo-fsxs-14px">当前第&nbsp;<span id="mo-page-this" class="mo-text-mojia">1</span>&nbsp;页，共&nbsp;<span id="mo-page-sums" class="mo-text-mojia">0</span>&nbsp;个结果</li>
 		{/if}{if$mojia['home']['link']['apply']&&'[module]'=='link'}

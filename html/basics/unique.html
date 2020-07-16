@@ -1,5 +1,9 @@
-{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
-<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-lazy-broad mo-byxs-2by1 mo-cols-rows mo-bord-round" href="{[href]}" data-original="{if$mojia['other']['chain']['state']}{:stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''}{$mojia['other']['chain']['apis']}{/if}{[image]}"{if'[lazy]'=='shut'} style="background-image:url({if$mojia['other']['chain']['state']}{:stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''}{$mojia['other']['chain']['apis']}{/if}{[image]})"{/if}>
+{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}{assign name="image" value="[image]"}
+{assign name="chain" value="$mojia['other']['chain']['state']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''.stristr($image,'//')==true?$mojia['other']['chain']['apis']:''):''"}
+<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-lazy-broad mo-byxs-2by1 mo-cols-rows mo-bord-round" href="{[href]}" data-original="{$chain}{[image]}"{if'[lazy]'=='shut'} style="background-image:url({$chain}{[image]})"{/if}>
+	{if stristr($maccms.aid,'4')==true}
+	<img class="mo-part-full" src="{$chain}{[image]}" alt="{[name]}" >
+	{/if}
 	<ul class="mo-situ-rema mo-part-ramp mo-pzxs-10px mo-pzlg-20px">
 		<li class="mo-cols-show mo-lhxs-24px mo-fsxs-16px mo-text-white mo-coxs-center">{[title]}</li>
 		<li class="mo-cols-show mo-lhxs-24px mo-fsxs-14px mo-text-white mo-coxs-center">{[count]}</li>

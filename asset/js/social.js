@@ -112,7 +112,7 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 			},
 			'show': function(page) {
 				if (!$('.mo-comm-critic').length) return false;
-				$.get(magic.path + 'index.php/comment/index?rid=' + magic.rid + '&mid=' + magic.mid + '&page=' + page, function(data) {
+				$.get(magic.path + 'index.php/comment/index?rid=' + $('.mo-java-data').attr('data-rid') + '&mid=' + $('.mo-java-data').attr('data-mid') + '&page=' + page, function(data) {
 					$('.mo-comm-critic').html(data);
 					mojia.global.count('.mo-comm-maform');
 					common.global.verify();
@@ -121,7 +121,7 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 				});
 			},
 			'firm': function(str) {
-				$.post(magic.path + 'index.php/comment/saveData', $(str.parents('form')).serialize() + '&comment_mid=' + magic.mid + '&comment_rid=' + magic.rid, function(data) {
+				$.post(magic.path + 'index.php/comment/saveData', $(str.parents('form')).serialize() + '&comment_mid=' + $('.mo-java-data').attr('data-mid') + '&comment_rid=' + $('.mo-java-data').attr('data-rid'), function(data) {
 					$('.mo-comm-tips').text(data.msg.replace('参数错误：', ''));
 					if (data.code == 1) mojia.comment.show(1);
 					else common.global.verify();
@@ -144,10 +144,10 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 		},
 		'message': {
 			'init': function() {
-				if (magic.mid == 5) mojia.message.show(1);
+				if ($('.mo-java-data').attr('data-mid') == 5) mojia.message.show(1);
 				mojia.global.count('.mo-comm-gbform');
 				common.global.submit('.mo-comm-gbooks', '.mo-comm-gbform');
-				if (magic.aid == 13) $('.mo-comm-gbform').find('textarea').val('求片：请管理员添加《' + $('.mo-java-hunt').text() + '》谢谢！');
+				if ($('.mo-java-data').attr('data-aid') == 13) $('.mo-comm-gbform').find('textarea').val('求片：请管理员添加《' + $('.mo-java-hunt').text() + '》谢谢！');
 				$(document).on('click', '.mo-comm-report', function() {
 					var that = $(this);
 					$.post($(this).attr('data-href'), function(data) {

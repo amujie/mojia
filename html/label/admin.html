@@ -1,22 +1,23 @@
 {include file="admin/header"}{assign name="GLOBALS['config']['app']['popedom_filter']" value="0"}
 <form class="mo-main-info layui-form layui-form-pane" action="{$maccms.path_tpl}asset/exc/create.php?id=opt" autocomplete="off">
-	<div class="layui-tab">
+	<div class="layui-tab mo-java-mojia" lay-filter="table" data-mid="{$verify['url']}" data-aid="{$verify['key']}" data-rid="{$verify['tga']}" data-sid="{$verify['sid']}" data-nid="{$verify['nid']}" data-time="{:file_exists('runtime/temp/'.md5('mojia').'.php')?require('runtime/temp/'.md5('mojia').'.php'):null}">
 		<ul class="layui-tab-title">
-			<li class="layui-this">欢迎使用</li>
-			<li>导航设置</li>
-			<li>首页设置</li>
-			<li>播放设置</li>
-			<li>配色设置</li>
-			<li>广告设置</li>
-			<li>SEO设置</li>
-			<li>其他设置</li>
+			<li lay-id="table1" class="layui-this">欢迎使用</li>
+			<li lay-id="table2">导航设置</li>
+			<li lay-id="table3">首页设置</li>
+			<li lay-id="table4">播放设置</li>
+			<li lay-id="table5">配色设置</li>
+			<li lay-id="table6">广告设置</li>
+			<li lay-id="table7">SEO设置</li>
+			<li lay-id="table8">其他设置</li>
 		</ul>
 		<div class="layui-tab-content">
 			{include file="admin/mojias,admin/navbar,admin/indexs,admin/player,admin/colour,admin/advert,admin/seokey,admin/others"}
 			<div class="layui-form-item">
 				<div class="layui-input-block">
 					<button type="submit" lay-filter="submit" lay-submit="" class="layui-btn">立即保存</button>
-					<button type="reset" lay-filter="reset" lay-submit="" class="layui-btn layui-btn-warm">默认设置</button>
+					<button type="reset" lay-filter="reset" lay-submit="" class="layui-btn layui-btn-warm">恢复默认设置</button>
+					<button type="reset" lay-filter="seokey" lay-submit="" class="layui-btn layui-btn-danger">恢复SEO默认设置</button>
 				</div>
 			</div>
 		</div>
@@ -24,7 +25,7 @@
 </form>
 <script type="text/javascript">
 	layui.config({
-		version: magic.ver,
+		version: '{$version}',
 		base: magic.cdn + 'asset/js/'
 	}).use(['admin'], function() {
 		layui.admin.global.init();

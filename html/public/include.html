@@ -2,14 +2,19 @@
 <html>
 <head>
 	{include file="tinier/config,tinier/metaer,tinier/seokey"}
-	<?php if(preg_match(mac_default($mojia['other']['browse']['rule'],'/MSIE\s[0-9]/i'),$_SERVER['HTTP_USER_AGENT']) != mac_default($mojia['other']['browse']['type'],0) && strpos($_SERVER['PHP_SELF'],mac_url("label/update")) === false){header('Location:'.mac_url("label/update"));}?>
-	<script type="text/javascript">
-		if({:mac_default($mojia['other']['browse']['rule'],'/MSIE\s[0-9]/i')}.test(navigator.userAgent) != {:mac_default($mojia['other']['browse']['type'],0)} && location.href.indexOf('label/update') == -1) {
-			location.href = '{:mac_url("label/update")}';
-		}
-	</script>
 	<meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	<link href="{$cdnpath}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
 	{include file="tinier/colour"}{$mojia['other']['head']['code']}
+	<?php if(preg_match(mac_default($mojia['other']['browse']['rule'],'/MSIE\s[0-9]/i'),$_SERVER['HTTP_USER_AGENT']) != mac_default($mojia['other']['browse']['type'],0) && strpos($_SERVER['PHP_SELF'],mac_url("label/update")) === false){header('Location:'.mac_url("label/update"));}?>
+	<script type="text/javascript">
+		{if$mojia['color']['type']['name']!=2}
+		if (document.cookie.match(new RegExp('(^| )mo_dark=([^;]*)(;|$)')) != null) {
+			document.getElementById('mo-java-dark').type = 'text/css';
+		} else document.getElementById('mo-java-dark').type = 'text/dark';
+		{/if}
+		if ({:mac_default($mojia['other']['browse']['rule'],'/MSIE\s[0-9]/i')}.test(navigator.userAgent) != {:mac_default($mojia['other']['browse']['type'],0)} && location.href.indexOf('label/update') == -1) {
+			location.href = '{:mac_url("label/update")}';
+		}
+	</script>
 </head>
 <body class="mo-cols-body mo-cols-minw mo-back-muted mo-body-backs{if$mojia['nav']['base']['status']} mo-ptxs-80px mo-part-potn{/if}{if$mobile} mo-pbxs-50px mo-pbsm-0px{/if}">

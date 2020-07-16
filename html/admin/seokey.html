@@ -9,26 +9,26 @@
 			<col width="125">
 			<col>
 		</colgroup>
-		{maccms:for start="1" end="41"}
+		{maccms:foreach name=":explode(',','1,2,4,6,10,20,30,70,80,90,100,110,11,21,71,81,111,12,22,72,82,112,13,23,33,73,83,93,103,113,14,15,16,24,34,74,84,94,104,114')"}
 		<thead>
-			<tr><th colspan="4">{$mojia['seo']['index'.$i]['info']}</th></tr>
+			<tr><th colspan="4">{$mojia['seo']['index'.$vo]['info']}</th></tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td><input type="text" name="mojia[seo][index{$i}][aid]" value="{$mojia['seo']['index'.$i]['aid']}" class="layui-input" placeholder="AID"></td>
-				<td><input type="text" name="mojia[seo][index{$i}][info]" value="{$mojia['seo']['index'.$i]['info']}" class="layui-input" placeholder="模块"></td>
-				<td><input type="text" name="mojia[seo][index{$i}][type]" value="{$mojia['seo']['index'.$i]['type']}" class="layui-input" placeholder="请输入类型"></td>
-				<td><input type="text" name="mojia[seo][index{$i}][title]" value="{$mojia['seo']['index'.$i]['title']}" class="layui-input" placeholder="请输入标题"></td>
+				<td><input type="text" name="mojia[seo][index{$vo}][aid]" value="{$mojia['seo']['index'.$vo]['aid']}" class="layui-input" placeholder="AID"></td>
+				<td><input type="text" name="mojia[seo][index{$vo}][info]" value="{$mojia['seo']['index'.$vo]['info']}" class="layui-input" placeholder="模块"></td>
+				<td><input type="text" name="mojia[seo][index{$vo}][type]" value="{$mojia['seo']['index'.$vo]['type']}" class="layui-input" placeholder="请输入类型"></td>
+				<td><input type="text" name="mojia[seo][index{$vo}][title]" value="{$mojia['seo']['index'.$vo]['title']}" class="layui-input mo-java-seos" placeholder="请输入标题"></td>
 			</tr>
 			<tr>
-				<td colspan="3"><input type="text" name="mojia[seo][index{$i}][image]" value="{$mojia['seo']['index'.$i]['image']}" class="layui-input" placeholder="请输入封面地址"></td>
-				<td><input type="text" name="mojia[seo][index{$i}][key]" value="{$mojia['seo']['index'.$i]['key']}" class="layui-input" placeholder="请输入关键词"></td>
+				<td colspan="3"><input type="text" name="mojia[seo][index{$vo}][image]" value="{$mojia['seo']['index'.$vo]['image']}" class="layui-input" placeholder="请输入封面地址"></td>
+				<td><input type="text" name="mojia[seo][index{$vo}][key]" value="{$mojia['seo']['index'.$vo]['key']}" class="layui-input mo-java-seos" placeholder="请输入关键词"></td>
 			</tr>
 			<tr>
-				<td colspan="3"><input type="text" name="mojia[seo][index{$i}][url]" value="{$mojia['seo']['index'.$i]['url']}" class="layui-input" placeholder="请输入URL地址"></td>
-				<td><input type="text" name="mojia[seo][index{$i}][des]" value="{$mojia['seo']['index'.$i]['des']}" class="layui-input" placeholder="请输入描述"></td>
+				<td colspan="3"><input type="text" name="mojia[seo][index{$vo}][url]" value="{$mojia['seo']['index'.$vo]['url']}" class="layui-input" placeholder="请输入URL地址"></td>
+				<td><input type="text" name="mojia[seo][index{$vo}][des]" value="{$mojia['seo']['index'.$vo]['des']}" class="layui-input mo-java-seos" placeholder="请输入描述"></td>
 			</tr>
 		</tbody>
-		{/maccms:for}
+		{/maccms:foreach}
 	</table>
 </div>

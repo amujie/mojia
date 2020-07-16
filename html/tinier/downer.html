@@ -1,21 +1,21 @@
 {if$obj.vod_down_list&&$maccms.aid!=15&&$maccms.aid!=17}{assign name="short['sid']" value="$param['sid']"}
 {if$obj['vod_pwd_down']&&session('1-5-'.$obj['vod_id'])!=1&&$maccms.aid==16}
 {php}header('Location:'.mac_url('vod/downer',['id'=>$obj['vod_id'],'sid'=>$param['sid'],'nid'=>$param['nid']],$obj));{/php}
-{/if}{if in_array($user['group_id'], explode(',',$mojia['advs']['down']['group']))}
+{/if}{if in_array(mac_default($user['group_id'],1), explode(',',$mojia['advs']['down']['group']))}
 <div class="mo-back-white mo-mtxs-10px mo-mtmd-20px">
 {$mojia['advs']['down']['area']}
 </div>
 {/if}{if$maccms.aid!=16}{assign name="param['sid']" value=":key($obj.vod_down_list)"}{else}{assign name="param['sid']" value="$short['sid']"}{/if}
 <div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over mo-java-down">
-	<div class="mo-drop-head mo-cols-rows mo-paxs-5px mo-pamd-10px">
+	<div class="mo-sort-head mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-cols-zero mo-part-slip mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
 			{maccms:foreach name="obj.vod_down_list" id="sub"}
-			<a class="mo-mrxs-5px mo-mrmd-10px{if$maccms.aid==16}{if$sub.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-text-mojia{/if}{elseif$key==$param['sid']} mo-text-mojia{/if}" href="{:mac_url_vod_down($obj,['sid'=>$sub.sid,'nid'=>$param.nid])}" target="{$obj['vod_down_list'][$param['sid']]['player_info']['target']}"><i class="mo-prxs-2px mo-fsxs-16px mo-fsmd-18px mo-icon-font mo-icon-down mo-icon-{$sub.player_info.from}"></i>{$sub.player_info.show}</a>
+			<a class="mo-down-btns mo-mrxs-5px mo-mrmd-10px{if$maccms.aid==16}{if$sub.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-text-mojia mo-part-bans{/if}{elseif$key==$param['sid']} mo-text-mojia mo-part-bans{/if}" href="javascript:;"><i class="mo-prxs-2px mo-fsxs-16px mo-fsmd-18px mo-icon-font mo-icon-down mo-icon-{$sub.player_info.from}"></i>{$sub.player_info.show}</a>
 			{/maccms:foreach}
 		</h2>
 		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
 			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-plmd-10px mo-comm-report" href="javascript:;" data-href="{:mac_url('gbook/report')}" data-show="{$obj['vod_down_list'][$param['sid']]['player_info']['show']|mac_default='详情'}">报错</a></li>
-			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-plmd-10px mo-drop-sort" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-paixu"></i><span class="mo-drop-name">正序</span></a></li>
+			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-plmd-10px mo-sort-btns" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-paixu"></i><span class="mo-sort-name">正序</span></a></li>
 		</ul>
 	</div>
 	{if$obj['vod_pwd_down']&&session('1-5-'.$obj['vod_id'])!=1&&$maccms.aid==10}{include file="tinier/passer" type="5" mold="_down"}{else}
@@ -40,8 +40,9 @@
 			</div>
 		</div>
 	</div>
-	<ul class="mo-down-info mo-drop-boxs mo-cols-rows mo-pamd-5px{if in_array($obj['type_id'],explode(',',$mojia['play']['chat']['type']))}{if$_COOKIE['mo_wechat']} mo-cols-hide{else} mo-cols-show{/if}{else} mo-cols-show{/if}">
-		{maccms:foreach name="obj['vod_down_list'][$param['sid']]['urls']" id="sub"}
+	{maccms:foreach name="obj.vod_down_list" id="par"}
+	<ul class="mo-down-item mo-down-info mo-sort-boxs mo-cols-rows mo-pamd-5px{if in_array($obj['type_id'],explode(',',$mojia['play']['chat']['type']))}{if$_COOKIE['mo_wechat']} mo-cols-hide{else} mo-cols-show{/if}{else}{if$key==1} mo-cols-show{else} mo-cols-hide{/if}{/if}">
+		{maccms:foreach name="obj['vod_down_list'][$par['sid']]['urls']" id="sub"}
 		<li class="mo-cols-rows mo-cols-info mo-cols-xs12">
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
 				<input class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}" />
@@ -53,7 +54,7 @@
 		</li>
 		{/maccms:foreach}
 	</ul>
-	{/if}{else}{if$param.nid}
+	{/maccms:foreach}{/if}{else}{if$param.nid}
 	<ul class="mo-cols-rows mo-pamd-5px">
 		<li class="mo-cols-rows">
 			{if$popedom.code==1||$popedom.code==''}
@@ -77,14 +78,14 @@
 			{/if}
 		</li>
 	</ul>
-	{/if}
-	<ul class="mo-drop-boxs mo-cols-rows mo-pamd-5px">
-		{maccms:foreach name="obj['vod_down_list'][$param['sid']]['urls']" id="sub"}
+	{/if}{maccms:foreach name="obj.vod_down_list" id="par"}
+	<ul class="mo-down-item mo-sort-boxs mo-cols-rows mo-pamd-5px{if$key==1} mo-cols-show{else} mo-cols-hide{/if}">
+		{maccms:foreach name="obj['vod_down_list'][$par['sid']]['urls']" id="sub"}
 		<li class="mo-paxs-5px{if strpos($sub.name,'第')!==false&&strpos($sub.name,'集')!==false} mo-cols-info mo-cols-xs2 mo-cols-lg1{else} mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-md3 mo-cols-lg2{/if}">
-			<a class="mo-part-btns mo-fsxs-14px mo-bord-muted mo-bord-round mo-cols-show mo-wrap-arow mo-lhxs-40px mo-back-click mo-back-write{if$key==$param.nid} mo-back-mojia{/if}" href="{:mac_url_vod_down($obj,['sid'=>$param['sid'],'nid'=>$sub.nid])}"{if$maccms.aid==14} target="{$obj['vod_down_list'][$param['sid']]['player_info']['target']}"{/if}>{:str_replace(array('第','集'),'',$sub.name)}</a>
+			<a class="mo-part-btns mo-fsxs-14px mo-bord-muted mo-bord-round mo-cols-show mo-wrap-arow mo-lhxs-40px mo-back-click mo-back-write{if$key==$param.nid} mo-back-mojia{/if}" href="{:mac_url_vod_down($obj,['sid'=>$par['sid'],'nid'=>$sub.nid])}"{if$maccms.aid==14} target="{$obj['vod_down_list'][$param['sid']]['player_info']['target']}"{/if}>{:str_replace(array('第','集'),'',$sub.name)}</a>
 		</li>
 		{/maccms:foreach}
 	</ul>
-	{/if}{/if}
+	{/maccms:foreach}{/if}{/if}
 </div>
 {/if}

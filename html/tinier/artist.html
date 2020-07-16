@@ -10,22 +10,22 @@
 				</div>
 			</div>
 			<div class="mo-pnxs-5px mo-pamd-10px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
-			<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
+			<div class="mo-word-info mo-cols-rows mo-paxs-5px mo-pamd-10px">
 				{if$obj['art_pwd']&&session('2-1-'.$obj['art_id'])!=1}{include file="tinier/passer" type="1" mold=""}
 				{else}{$obj.art_page_list[$param['page']]['content']|mac_url_content_img}{/if}
 			</div>
 			{include file="tinier/paging"}
 		</div>
+		{if$GLOBALS['config']['comment']['status']&&$maccms.mid!=20}
+		<div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over">
+			{include file="basics/titles" module="type" title=":mac_filter_html('发表评论')" more="hide" href=":mac_url_type($magic)"}
+			<div class="mo-cols-rows mo-part-over">
+				<div class="mo-comm-critic"></div>
+			</div>
+		</div>
+		{/if}
 	</div>
 	<div class="mo-cols-info mo-cols-xs12 mo-cols-lg4 mo-java-side mo-coxs-none mo-colg-block">
 		{include file="module/widget"}
 	</div>
 </div>
-{if$GLOBALS['config']['comment']['status']&&$maccms.mid!=20}
-<div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over">
-	{include file="basics/titles" module="type" title=":mac_filter_html('发表评论')" more="hide" href=":mac_url_type($magic)"}
-	<div class="mo-cols-rows mo-part-over">
-		<div class="mo-comm-critic"></div>
-	</div>
-</div>
-{/if}

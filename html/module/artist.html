@@ -1,7 +1,7 @@
 <dl class="mo-deta-info mo-part-bbsd mo-bord-muted mo-maxs-5px mo-mrmd-10px mo-mlmd-10px"></dl>
 <dl class="mo-deta-info mo-cols-rows">
 	<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs5 mo-cols-sm3 mo-cols-lg4 mo-cols-xl3">
-		{include file="basics/picture" type="art" style=":mac_default(' mo-lazy-broad mo-byxs-16by9')" tips=":mac_default($vo['art_level']?'推荐':$vo['art_up'].'赞')" remark=":mac_default(mac_substring($vo['art_remarks'],12),date('Y-m-d H:i',$vo['art_time']))" name=":mac_filter_html($vo['art_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['art_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_url_art_detail($vo)" title="hide" lazy="open"}
+		{include file="basics/picture" type="art" style=":mac_default(' mo-lazy-broad mo-byxs-16by9')" tips=":mac_default($vo['art_level']?'推荐':$vo['art_hits'].'阅读')" remark=":mac_default(mac_substring($vo['art_remarks'],12),date('Y-m-d H:i',$vo['art_time']))" name=":mac_filter_html($vo['art_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['art_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_url_art_detail($vo)" title="hide" lazy="open"}
 		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
 			<span class="mo-fsxs-12px mo-text-muted">{$vo.art_time|mac_friend_date}&emsp;{$vo.art_hits}阅读</span>
 		</div>

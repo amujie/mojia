@@ -1,7 +1,7 @@
 {include file="tinier/config"}{maccms:art ids="'.$mojia['home']['note']['alert'].'"}
 <div class="mo-note-info mo-cols-rows">
 	<div class="mo-cols-info mo-cols-xs12 mo-cols-md5 mo-coxs-none mo-comd-block">
-		<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-2by3 mo-cols-rows" href="{:mac_url_art_detail($vo)}" style="background-image:url({if$mojia['other']['chain']['state']}{:stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''}{$mojia['other']['chain']['apis']}{/if}{$vo.art_pic|mac_url_img})"></a>
+		<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-byxs-2by3 mo-cols-rows" href="{:mac_url_art_detail($vo)}" style="background-image:url({$mojia['other']['chain']['state']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''.stristr($vo['art_pic'],'//')==true?$mojia['other']['chain']['apis']:''):''}{$vo.art_pic|mac_url_img})"></a>
 	</div>
 	<div class="mo-cols-info mo-cols-xs12 mo-cols-md7 mo-cols-high">
 		<a class="mo-note-clear mo-note-dels mo-coxs-right mo-text-muted mo-cols-show mo-java-event" href="javascript:;">×</a>
