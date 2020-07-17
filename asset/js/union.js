@@ -24,7 +24,7 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 						html += '<tr data-id="' + info.collect_id + '" data-url="' + info.collect_url + '" data-name="' + info.collect_name + '" data-flag="' + info.collect_flag + '" data-type="' + info.collect_type + '" data-text="' + info.collect_text + '" data-mold="' + info.collect_mold + '" data-param="' + href.replace('{ac}', 'cj').replace('{h}', '24').replace(magic.path + magic.admin + '/admin/collect/api?', '') + '">';
 						html += '<td width="20" align="center">' + info.collect_id + '</td>';
 						html += '<td width="40" align="center"><span class="layui-badge layui-bg-green">' + info.collect_text + '</span></td>';
-						html += '<td><a href="javascript:;" class="mo-unit-addtab" data-id="100006" data-url="' + href.replace('{ac}', 'list').replace('{h}', '') + '" data-name="' + mojia.lister.name(info.collect_name, '【') + '">【绑定】' + info.collect_name + '</a></td>';
+						html += '<td><a href="javascript:;" class="mo-unit-addtab" data-id="100000' + info.collect_id + '" data-url="' + href.replace('{ac}', 'list').replace('{h}', '') + '" data-name="' + mojia.lister.name(info.collect_name, '【') + '">【绑定】' + info.collect_name + '</a></td>';
 						html += '<td width="30" align="center"><a href="javascript:;" class="mo-unit-' + info.collect_mold + 'er' + (info.collect_mid != 1 ? ' layui-disabled' : '') + '">配置</a></td>';
 						html += '<td width="30" align="center"><a href="javascript:;" class="mo-unit-addtab" data-id="100007" data-url="' + href.replace('{ac}', 'cj').replace('{h}', '24') + '" data-name="' + mojia.lister.name(info.collect_name, '【') + '当天">当天</a></td>';
 						html += '<td width="30" align="center"><a href="javascript:;" class="mo-unit-addtab" data-id="100008" data-url="' + href.replace('{ac}', 'cj').replace('{h}', '168') + '" data-name="' + mojia.lister.name(info.collect_name, '【') + '本周">本周</a></td>';
@@ -137,6 +137,7 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 					if (!that.attr('data-url')) return false;
 					if (window.top != window.self) {
 						if ($(window.parent.document).find('iframe[lay-id="' + that.attr('data-id') + '"]')[0]) {
+							console.log(that.attr('data-id'));
 							parent.layui.element.tabChange('macTab', that.attr('data-id'));
 							event.stopPropagation();
 							return false;

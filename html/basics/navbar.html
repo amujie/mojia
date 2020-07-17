@@ -2,7 +2,7 @@
 	<div class="mo-navs-left mo-scre-navs mo-part-slip mo-cols-info mo-cols-xs12 mo-cols-md6 mo-cols-lg8">
 		<ul class="mo-navs-boxs mo-cols-zero">
 			{maccms:foreach name="$mojia['nav']" id="sub"}{if$sub['desktop']}
-			<li class="mo-navs-item mo-coxs-iblock mo-fsxs-16px{if$sub['type']=='cat'&&!in_array($sub['id'], explode(',',model('Group')->getCache()[$user['group_id']]['group_type']))} mo-part-hide{/if}"><a class="mo-text-hover mo-cols-show{if$sub['type']=='cat'&&($sub['id']==[tid]||$sub['id']==[pid])} mo-text-mojia mo-java-navs{elseif$sub['type']=='mid'&&$sub['id']==[mid]} mo-text-mojia mo-java-navs{/if}" href="{$sub['link']}">{if$sub['type']=='logo'}<img class="mo-navs-logo mo-cols-show" width="auto" height="30" alt="{$sub['name']|mac_filter_html}" src="{$sub['src']|mac_url_img}" />{else}{$sub['name']|mac_filter_html}{/if}</a></li>
+			<li class="mo-navs-item mo-coxs-iblock mo-fsxs-16px{if$sub['type']=='cat'&&!in_array($sub['id'], explode(',',model('Group')->getCache()[mac_default($user['group_id'],1)]['group_type']))} mo-part-hide{/if}"><a class="mo-text-hover mo-cols-show{if$sub['type']=='cat'&&($sub['id']==[tid]||$sub['id']==[pid])} mo-text-mojia mo-java-navs{elseif$sub['type']=='mid'&&$sub['id']==[mid]} mo-text-mojia mo-java-navs{/if}" href="{$sub['link']}">{if$sub['type']=='logo'}<img class="mo-navs-logo mo-cols-show" width="auto" height="30" alt="{$sub['name']|mac_filter_html}" src="{$sub['src']|mac_url_img}" />{else}{$sub['name']|mac_filter_html}{/if}</a></li>
 			{/if}{/maccms:foreach}
 		</ul>
 	</div>
