@@ -48,7 +48,7 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 						});
 						html += '</div><div class="mo-face-foot mo-part-btsd mo-bord-muted mo-back-muted">';
 						$.each(mojia.symbol, function(list, name) {
-							html += '<a class="mo-face-btns mo-cols-cell mo-coxs-center' + (list == 'qq' ? ' mo-text-mojia' : '') + '" href="javascript:;">' + name.name + '</a>';
+							html += '<a class="mo-face-btns mo-cols-cell mo-coxs-center' + (list == 'qq' ? ' mo-text-mojia  mo-part-bans' : '') + '" href="javascript:;">' + name.name + '</a>';
 						});
 						html += '</div></div>';
 						$(this).next().html(html).show();

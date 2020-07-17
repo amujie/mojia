@@ -6,11 +6,11 @@
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-part-slip mo-cols-xs10">
 			{if$obj.vod_list|count}
-			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="javascript:;">关联视频</a>
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia mo-part-bans" href="javascript:;">关联视频</a>
 			{/if}{if$obj.art_list|count}
-			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if!$obj.art_list|count} mo-text-mojia{/if}" href="javascript:;">关联文章</a>
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if!$obj.art_list|count} mo-text-mojia mo-part-bans{/if}" href="javascript:;">关联文章</a>
 			{/if}
-			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if!$obj.art_list|count&&!$obj.vod_list|count} mo-text-mojia{/if}" href="javascript:;">专题简介</a>
+			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px{if!$obj.art_list|count&&!$obj.vod_list|count} mo-text-mojia mo-part-bans{/if}" href="javascript:;">专题简介</a>
 			{if$GLOBALS['config']['comment']['status']}
 			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px" href="javascript:;">发表评论</a>
 			{/if}
