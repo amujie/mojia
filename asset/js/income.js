@@ -196,7 +196,17 @@ layui.define(['jquery'], function(exports) {
 				'name': '搜索星座',
 				'code': "$param['starsign']",
 			}],
-			'14,15,16,17,104': [{
+			'14,15,16,24,84,94,104,114': [{
+				'name': '分类标题',
+				'code': "mac_default($obj['type']['type_title'],mac_filter_html($obj['type']['type_name']))",
+				}, {
+				'name': '分类关键字',
+				'code': "mac_default($obj['type']['type_key'],mac_filter_html($obj['type']['type_name']))",
+				}, {
+				'name': '分类描述',
+				'code': "mac_default($obj['type']['type_des'],$maccms['site_description'])",
+			}],
+			'14,15,16,104': [{
 				'name': '视频标题',
 				'code': "mac_default($obj['vod_name'],'404 Not Found')",
 				}, {
@@ -220,9 +230,6 @@ layui.define(['jquery'], function(exports) {
 				}, {
 				'name': '视频类型',
 				'code': "$obj['vod_class']",
-				}, {
-				'name': '视频分类',
-				'code': "mac_filter_html($obj['type']['type_name'])",
 				}, {
 				'name': '视频标签',
 				'code': "$obj['vod_tag']",
@@ -272,9 +279,6 @@ layui.define(['jquery'], function(exports) {
 				}, {
 				'name': '文章类型',
 				'code': "$obj['art_class']",
-				}, {
-				'name': '文章分类',
-				'code': "mac_filter_html($obj['type']['type_name'])",
 				}, {
 				'name': '文章标签',
 				'code': "$obj['art_tag']",
@@ -329,9 +333,6 @@ layui.define(['jquery'], function(exports) {
 				'name': '演员类型',
 				'code': "$obj['actor_class']",
 				}, {
-				'name': '演员分类',
-				'code': "mac_filter_html($obj['type']['type_name'])",
-				}, {
 				'name': '演员标签',
 				'code': "$obj['actor_tag']",
 				}, {
@@ -384,9 +385,6 @@ layui.define(['jquery'], function(exports) {
 				}, {
 				'name': '网站类型',
 				'code': "$obj['website_class']",
-				}, {
-				'name': '网站分类',
-				'code': "mac_filter_html($obj['type']['type_name'])",
 				}, {
 				'name': '网站标签',
 				'code': "$obj['website_tag']",
