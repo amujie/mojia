@@ -6,6 +6,12 @@
 		<meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="{$cdnpath}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
 		{include file="tinier/colour"}
+		<?php if(preg_match(mac_default($mojia['other']['browse']['rule'],'/MSIE\s[0-9]/i'),$_SERVER['HTTP_USER_AGENT']) == mac_default($mojia['other']['browse']['type'],0) && strpos($_SERVER['PHP_SELF'],mac_url("label/update")) !== false){header('Location:'.$maccms['http_type'].$_SERVER['HTTP_HOST'].$_GET['url']);}?>
+		<script type="text/javascript">
+			if ({:mac_default($mojia['other']['browse']['rule'],'/MSIE\s[0-9]/i')}.test(navigator.userAgent) == {:mac_default($mojia['other']['browse']['type'],0)} && location.href.indexOf('label/update') != -1) {
+				location.href = '{$maccms["http_type"].$_SERVER["HTTP_HOST"].$_GET["url"]}';
+			}
+		</script>
 	</head>
 	<body class="mo-brow-info mo-part-view">
 		<div id="mo-java-ienow" class="mo-brow-inow mo-cols-hide">
@@ -26,10 +32,11 @@
 			</div>
 			<div class="mo-brow-main mo-part-core mo-part-maxw mo-coxs-center mo-paxs-20px">
 				<div class="mo-brow-code mo-code-info mo-coxs-center mo-paxs-5px mo-pamd-10px" data-api="{$mojia['other']['share']['apis']}">
-					<img src="{$mojia['other']['icon']['pics']|mac_url_img}" id="mo-code-pics" class="mo-cols-hide" crossorigin="anonymous" />
+					{assign name="chain" value="$mojia['other']['share']['agent']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true&&stristr($image,'//')==true?$template:'').(stristr($image,'//')==true?$mojia['other']['chain']['apis']:''):''"}
+					<img src="{$chain}{$mojia['other']['icon']['pics']|mac_url_img}" id="mo-code-pics" class="mo-cols-hide" crossorigin="anonymous" />
 				</div>
 				<div class="mo-text-black mo-pamd-10px">本站已禁止当前浏览器访问</div>
-				<a class="mo-brow-link mo-mtxs-10px mo-mbxs-10px mo-pnxs-10px mo-lhxs-40px mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;" data-clipboard-text="{$maccms.http_url}">点此复制本站网址</a>
+				<a class="mo-brow-link mo-mtxs-10px mo-mbxs-10px mo-pnxs-10px mo-lhxs-40px mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;" data-clipboard-text="{$maccms['http_type'].$_SERVER['HTTP_HOST'].$_GET['url']}">点此复制本站网址</a>
 				<div class="mo-text-black mo-pamd-10px">以下四款官方正版浏览器任君挑选</div>
 				<ul class="mo-cols-rows mo-paxs-10px mo-maxs-10px mo-java-event">
 					<li class="mo-cols-cell">

@@ -32,7 +32,7 @@
 		{if$maccms.aid==15}{include file="module/videos"}{/if}
 		<div class="mo-word-info mo-pamd-5px">
 			<div class="mo-paxs-5px mo-ptxs-0px">
-				{$obj.vod_content|mac_filter_html|mac_default='暂无剧情简介'}
+				{:mac_default(mac_url_content_img(moJiaHtmlTags($obj[mac_get_mid_code($maccms['mid']).'_content'])),'暂无简介')}
 			</div>
 		</div>
 		{include file="tinier/ploter"}

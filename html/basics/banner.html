@@ -1,9 +1,10 @@
 <div class="mo-swip-container mo-cols-rows{[top]}">
 	<ul class="mo-swip-wrapper mo-cols-zero">
-		{maccms:foreach name="[data]"}
-		{assign name="type" value="$vo['type']['type_mid']?mac_get_mid_code($vo['type']['type_mid']):'topic'"}
+		{maccms:foreach name="[data]"}{assign name="type" value="$vo['type']['type_mid']?mac_get_mid_code($vo['type']['type_mid']):'topic'"}
+		{assign name="image" value="[image]"}{assign name="image" value=":('[type]'=='index')?mac_url_img(trim(mac_default($vo[$type.'_pic_slide'],$vo[$type.'_pic']))):$image"}
+		{assign name="chain" value="$mojia['other']['chain']['state']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true&&stristr($image,'//')==true?$template:'').(stristr($image,'//')==true?$mojia['other']['chain']['apis']:''):''"}
 		<li class="mo-swip-slide">
-			<a class="mo-situ-pics mo-lazy-color mo-swip-lazy mo-lazy-broad{[style]}" href="{if'[type]'=='index'}{:mac_default($vo['art_jumpurl'],mac_url($type.'/detail',[],$vo))}{else}{[href]}{/if}" data-background="{if'[type]'=='index'}{:mac_url_img(trim(mac_default($vo[$type.'_pic_slide'],$vo[$type.'_pic'])))}{else}{[image]}{/if}">
+			<a class="mo-situ-pics mo-lazy-color mo-swip-lazy mo-lazy-broad{[style]}" href="{if'[type]'=='index'}{:mac_default($vo['art_jumpurl'],mac_url($type.'/detail',[],$vo))}{else}{[href]}{/if}" data-background="{$chain.$image}">
 				<div class="mo-swip-title mo-cols-rows mo-part-ramp mo-text-white mo-wrap-arow">
 					<span class="mo-wrap-arow mo-fsxs-18px mo-swip-head">{if'[type]'=='index'}{$vo[$type.'_name']}{else}{[name]}{/if}</span>
 					<span class="mo-wrap-arow mo-fsxs-12px">{if'[type]'=='index'}{:mac_default($vo[$type.'_remarks'],'查看详情')}{else}{[remark]}{/if}</span>

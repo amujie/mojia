@@ -1,4 +1,4 @@
-layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function(exports) {
+layui.define(['income'], function(exports) {
 	var $ = layui.jquery;
 	var mojia = {
 		'global': {
@@ -12,7 +12,8 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 		},
 		'lister': {
 			'name': function(name, str) {
-				return name.substring(0, name.indexOf(str));
+				if (name.indexOf(str) == -1) return name;
+				else return name.substring(0, name.indexOf(str));
 			},
 			'list': function(title, name, favs, data, type) {
 				$.post(magic.tpl + 'asset/exc/create.php?id=col', data, function(data) {
@@ -137,7 +138,6 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 					if (!that.attr('data-url')) return false;
 					if (window.top != window.self) {
 						if ($(window.parent.document).find('iframe[lay-id="' + that.attr('data-id') + '"]')[0]) {
-							console.log(that.attr('data-id'));
 							parent.layui.element.tabChange('macTab', that.attr('data-id'));
 							event.stopPropagation();
 							return false;
@@ -295,16 +295,18 @@ layui.define(['jquery', 'mojia', 'form', 'element', 'layer', 'income'], function
 						var body = layer.getChildFrame('body', index);
 						var name = that.attr('data-name').substring(0, 2);
 						var name = data.indexOf('m3u8') != -1 ? name + '在线' : (data.indexOf('yun') != -1 ? name + '云播' : that.attr('data-name'));
+						body.find('button[type="submit"]').attr('data-child', 'no');
 						if (!body.find('#from').val()) body.find('#from').val(data);
 						if (!body.find('#sort').val()) body.find('#sort').val(layui.income.unions[data] ? layui.income.unions[data][0].sort : 999);
-						if (!body.find('#show').val()) body.find('#show').val(layui.income.unions[data] ? layui.income.unions[data][0].name : name);
+						if (!body.find('#show').val()) body.find('#show').val(layui.income.unions[data] ? layui.income.unions[data][0].name : mojia.lister.name(name, '【'));
 						if (!body.find('#des').val()) body.find('#des').val(that.attr('data-url').split('/')[2]);
 						if (!body.find('textarea[name="tip"]').val()) body.find('textarea[name="tip"]').val(layui.income.unions[data] ? layui.income.unions[data][0].tips : '在线' + that.attr('data-text'));
 						if (body.find('#rad-1').is(':checked')) body.find('#rad-1').attr('checked', false).next('.layui-form-radio').removeClass('layui-form-radioed').find('i').removeClass('layui-anim-scaleSpring').html('&#xe63f;');
 						if (!body.find('#rad-2').is(':checked')) body.find('#rad-2').attr('checked', true).next('.layui-form-radio').addClass('layui-form-radioed').find('i').addClass('layui-anim-scaleSpring').html('&#xe643;');
-						if (body.find('input[name="ps"]').eq(0).is(':checked')) body.find('input[name="ps"]').eq(0).attr('checked', false).next('.layui-form-radio').removeClass('layui-form-radioed').find('i').removeClass('layui-anim-scaleSpring').html('&#xe63f;');
-						if (!body.find('input[name="ps"]').eq(1).is(':checked')) body.find('input[name="ps"]').eq(1).attr('checked', true).next('.layui-form-radio').addClass('layui-form-radioed').find('i').addClass('layui-anim-scaleSpring').html('&#xe643;');
-						body.find('button[type="submit"]').attr('data-child', 'no');
+						if (data.indexOf('m3u8') == -1) {
+							if (body.find('input[name="ps"]').eq(0).is(':checked')) body.find('input[name="ps"]').eq(0).attr('checked', false).next('.layui-form-radio').removeClass('layui-form-radioed').find('i').removeClass('layui-anim-scaleSpring').html('&#xe63f;');
+							if (!body.find('input[name="ps"]').eq(1).is(':checked')) body.find('input[name="ps"]').eq(1).attr('checked', true).next('.layui-form-radio').addClass('layui-form-radioed').find('i').addClass('layui-anim-scaleSpring').html('&#xe643;');
+						}
 					}
 				});
 			}

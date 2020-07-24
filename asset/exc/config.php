@@ -221,7 +221,7 @@
       'type' => '',
       'brand' => '',
       'sort' => '0',
-      'ver' => '1.2.2',
+      'ver' => '1.2.3',
       'num' => '12',
       'state' => '0',
     ),
@@ -1046,12 +1046,19 @@
       'time' => '2021-05-20 13:14:20',
       'state' => '1',
     ),
-    'cdns' => 
+    'cdns' =>
     array (
       'name' => '静态加速',
       'link' => 'https://cdn.jsdelivr.net/gh/amujie/mojia',
       'debug' => '1',
       'state' => '1',
+    ),
+    'init' => 
+    array (
+      'name' => '脚本入口',
+      'file' => 'global',
+      'exclu' => '0',
+      'state' => '0',
     ),
     'edit' => 
     array (

@@ -1,5 +1,5 @@
 {include file="admin/header"}{assign name="GLOBALS['config']['app']['popedom_filter']" value="0"}
-<form class="mo-main-info layui-form layui-form-pane" action="{$maccms.path_tpl}asset/exc/create.php?id=opt" autocomplete="off">
+<form class="mo-main-info layui-form layui-form-pane" action="{$template}asset/exc/create.php?id=opt" autocomplete="off">
 	<div class="layui-tab mo-java-mojia" lay-filter="table" data-mid="{$verify['url']}" data-aid="{$verify['key']}" data-rid="{$verify['tga']}" data-sid="{$verify['sid']}" data-nid="{$verify['nid']}" data-time="{:file_exists('runtime/temp/'.md5('mojia').'.php')?require('runtime/temp/'.md5('mojia').'.php'):null}">
 		<ul class="layui-tab-title">
 			<li lay-id="table1" class="layui-this">欢迎使用</li>
@@ -26,7 +26,9 @@
 <script type="text/javascript">
 	layui.config({
 		version: '{$version}',
-		base: magic.cdn + 'asset/js/'
+		base: magic.tpl + 'asset/js/'
+	}).extend({
+		income: '{/}' + {$mojia['other']['init']['exclu']==1?'magic.tpl':"'https://cdn.jsdelivr.net/gh/amujie/mojia@master/'"} + 'asset/js/income'
 	}).use(['admin'], function() {
 		layui.admin.global.init();
 	});

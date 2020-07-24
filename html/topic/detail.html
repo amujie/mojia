@@ -43,7 +43,7 @@
 	<div class="mo-tabs-item{if!$obj.art_list|count&&!$obj.vod_list|count} mo-cols-show{else} mo-cols-hide{/if}">
 		<div class="mo-word-info mo-pamd-5px">
 			<div class="mo-paxs-5px mo-ptxs-0px">
-				{$obj.topic_content|mac_default='暂无简介'}
+				{:mac_default(mac_url_content_img(moJiaHtmlTags($obj[mac_get_mid_code($maccms['mid']).'_content'])),'暂无简介')}
 			</div>
 		</div>
 	</div>

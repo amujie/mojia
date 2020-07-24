@@ -2,7 +2,7 @@
 	<div class="mo-navs-left mo-scre-navs mo-part-slip mo-cols-info mo-cols-xs12 mo-cols-md6 mo-cols-lg8">
 		<ul class="mo-navs-boxs mo-cols-zero">
 			{maccms:foreach name="$mojia['nav']" id="sub"}{if$sub['desktop']}
-			<li class="mo-navs-item mo-coxs-iblock mo-fsxs-16px{if$sub['type']=='cat'&&!in_array($sub['id'], explode(',',model('Group')->getCache()[mac_default($user['group_id'],1)]['group_type']))} mo-part-hide{/if}"><a class="mo-text-hover mo-cols-show{if$sub['type']=='cat'&&($sub['id']==[tid]||$sub['id']==[pid])} mo-text-mojia mo-java-navs{elseif$sub['type']=='mid'&&$sub['id']==[mid]} mo-text-mojia mo-java-navs{/if}" href="{$sub['link']}">{if$sub['type']=='logo'}<img class="mo-navs-logo mo-cols-show" width="auto" height="30" alt="{$sub['name']|mac_filter_html}" src="{$sub['src']|mac_url_img}" />{else}{$sub['name']|mac_filter_html}{/if}</a></li>
+			<li class="mo-navs-item mo-coxs-iblock mo-fsxs-16px{if$sub['type']=='cat'&&!in_array($sub['id'], explode(',',model('Group')->getCache()[mac_default($user['group_id'],1)]['group_type']))} mo-coxs-none{/if}"><a class="mo-text-hover mo-cols-show{if$sub['type']=='cat'&&($sub['id']==[tid]||$sub['id']==[pid])} mo-text-mojia mo-java-navs{elseif$sub['type']=='mid'&&$sub['id']==[mid]} mo-text-mojia mo-java-navs{/if}" href="{$sub['link']}">{if$sub['type']=='logo'}<img class="mo-navs-logo mo-cols-show" width="auto" height="30" alt="{$sub['name']|mac_filter_html}" src="{$sub['src']|mac_url_img}" />{else}{$sub['name']|mac_filter_html}{/if}</a></li>
 			{/if}{/maccms:foreach}
 		</ul>
 	</div>
@@ -14,7 +14,7 @@
 		</form>
 		<ul class="mo-navs-btns">
 			{maccms:foreach name="$mojia['nav']" id="sub"}{if$sub['type']=='icon'}
-			<li class="mo-navs-font"><a class="mo-navs-{$sub['btns']=='center'&&!$Think.cookie.user_id?'logins':$sub['btns']} mo-cols-show mo-java-event mo-cols-zero" href="{$sub['link']|mac_default='javascript:;'}"{if$sub['btns']=='linker'} target="_blank"{/if}>{if$sub['btns']=='center'&&$Think.cookie.user_id}<img class="mo-part-coin" width="24" height="24" src="{:str_replace('/static/images/touxiang.png',$cdnpath.'asset/img/avatar.png',mac_get_user_portrait($user['user_id']))}" />{else}<i class="mo-cols-show mo-fsxs-24px mo-icon-font {$sub['icon']}"></i>{/if}</a></li>
+			<li class="mo-navs-font"><a class="mo-navs-{$sub['btns']=='center'&&!$Think.cookie.user_id?'logins':$sub['btns']} mo-cols-show mo-java-event mo-cols-zero" href="{$sub['link']|mac_default='javascript:;'}"{if$sub['btns']=='linker'} target="_blank"{/if}>{if$sub['btns']=='center'&&$Think.cookie.user_id}<img class="mo-part-coin" width="24" height="24" src="{$user['user_qq']?'http://q1.qlogo.cn/g?b=qq&nk='.$user['user_qq'].'&s=640':str_replace('/static/images/touxiang.png',$cdnpath.'asset/img/avatar.png',mac_get_user_portrait($user['user_id']))}" />{else}<i class="mo-cols-show mo-fsxs-24px mo-icon-font {$sub['icon']}"></i>{/if}</a></li>
 			{/if}{/maccms:foreach}
 		</ul>
 	</div>
@@ -73,9 +73,9 @@
 </div>
 <div class="mo-pops-info mo-pops-artist mo-fsxs-14px mo-back-white mo-bsmd-shadow mo-cols-hide mo-java-ceal mo-anim-upbit">
 	{maccms:foreach name="$mojia['nav']" id="sub"}{if$sub['btns']=='artist'}
-	{maccms:art ids="'.$sub['artid'].'" order="desc" by="time"}
+	{maccms:art ids="'.$sub['artid'].'" order="desc" by="time" id="artist"}
 	<div class="mo-paxs-5px mo-pamd-10px">
-	{:mac_url_content_img($vo.art_content)}
+	{:mac_default(mac_url_content_img(moJiaHtmlTags($artist.art_content)),'暂无简介')}
 	</div>
 	{/maccms:art}{/if}
 	{/maccms:foreach}

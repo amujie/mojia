@@ -1,20 +1,20 @@
 {assign name="maccms['aid']" value="70"}
-{include file="public/header,basics/banner" data=":moJiaDaTaoKe('https://openapi.dataoke.com/api/category/ddq-goods-list',array('version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']['goodsList']" top=":mac_default(' mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px')" style=":mac_default(' mo-byxs-3by2 mo-bymd-5by2')" name=":mac_default($vo.dtitle)" remark=":mac_default($vo.desc,'查看详情')" image=":mac_url_img(trim($vo.mainPic))" href=":mac_default(mac_url('label/taoke').'?id='.$vo['id'].'&goodsId='.$vo['goodsId'])"}
+{include file="public/header,basics/banner" data=":array_slice(moJiaDaTaoKe('https://openapi.dataoke.com/api/category/ddq-goods-list',array('version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])['data']['goodsList'],0,10)" top=":mac_default(' mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px')" style=":mac_default(' mo-byxs-3by2 mo-bymd-5by2')" name=":mac_default($vo.dtitle)" remark=":mac_default($vo.desc,'查看详情')" image=":mac_url_img(trim($vo.mainPic))" href=":mac_default(mac_url('label/taoke').'?id='.$vo['id'].'&goodsId='.$vo['goodsId'])"}
 {assign name="goodlist" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list',array('sort'=>($_GET['sort']?$_GET['sort']:1),'cids'=>(!$_GET['subcid']?($_GET['cid']?$_GET['cid']:''):''),'subcid'=>($_GET['subcid']?$_GET['subcid']:''),'specialId'=>($_GET['specialId']?$_GET['specialId']:''),'pageSize'=>'100','version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])"}
 {assign name="category" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/category/get-super-category',array('version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])"}
+<?php asort($category['data']); ?>
 <div class="mo-paxs-10px mo-cols-lays mo-back-white mo-cols-rows">
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-sort">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">分类</dt>
 		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['cid']==''} mo-part-bans mo-text-mojia mo-java-sort{/if}" href="{:mac_url('label/index').'?cid=&subcid=&sort='.$_GET['sort'].'&specialId='.$_GET['specialId']}">全部</a></dd>
-		{maccms:foreach name="$category['data']"}
+		{maccms:foreach name=":array_values($category['data'])"}
 		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$vo['cid']==$_GET['cid']} mo-part-bans mo-text-mojia mo-java-sort{/if}" href="{:mac_url('label/index').'?cid='.$vo['cid'].'&subcid=&sort='.$_GET['sort'].'&specialId='.$_GET['specialId']}">{$vo['cname']}</a></dd>
 		{/maccms:foreach}
 	</dl>
-	{:var_dump()}
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-class">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">类型</dt>
 		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['subcid']==''} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url('label/index').'?cid='.($_GET['cid']?$_GET['cid']:1).'&subcid=&sort='.$_GET['sort'].'&specialId='.$_GET['specialId']}">全部</a></dd>
-		{maccms:foreach name="$category['data'][($_GET['cid']?$_GET['cid']:1)]['subcategories']"}
+		{maccms:foreach name=":array_values($category['data'])[($_GET['cid']?($_GET['cid']-1):0)]['subcategories']"}
 		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$vo['subcid']==$_GET['subcid']} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url('label/index').'?cid='.($_GET['cid']?$_GET['cid']:1).'&subcid='.$vo['subcid'].'&sort='.$_GET['sort'].'&specialId='.$_GET['specialId']}">{$vo['subcname']}</a></dd>
 		{/maccms:foreach}
 	</dl>

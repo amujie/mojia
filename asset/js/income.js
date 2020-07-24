@@ -23,6 +23,21 @@ layui.define(['jquery'], function(exports) {
 				'tips': '米上云香港GIA VPS20元起'
 			}]
 		},
+		'browse': {
+			'MSIE\\s[0-9]': 'IE系列',
+			'MSIE\\s[8]': 'IE8',
+			'MSIE\\s[9]': 'IE9',
+			'MSIE\\s[10]': 'IE10',
+			'Trident\\/[7]': 'IE11',
+			'Edge\\/(\d+)': 'Edge',
+			'baiduboxapp': '百度APP',
+			'MicroMessenger': '微信',
+			'WindowsWechat': '微信PC',
+			'MQQBrowser.*\\sQ(?=Q\\/)': 'QQ内置',
+			'MQQBrowser\\/\\d+\\.\\d+\\sMobile': 'QQ手机',
+			'\\sQ(?=QBrowser)QBrowser': 'QQPC',
+			'Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera\\sMini': '移动端'
+		},
 		'unions': {
 			'qq': [{
 				'name': '腾讯视频',

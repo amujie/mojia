@@ -12,19 +12,19 @@
 			<span class="mo-coxs-iblock">&nbsp;-&nbsp;</span>
 			<a class="mo-coxs-iblock" href="{:mac_url('map/index')}" target="_blank">网站地图</a>
 		</p>
-		<p class="mo-coxs-center mo-lhmd-34px mo-fsxs-14px">&copy;&nbsp;{:date('Y')}&nbsp;{$maccms.site_url}&nbsp;Theme&nbsp;by&nbsp;<a class="mo-text-hover" href="{$mojia['other']['copy']['link']}" target="_blank">{$mojia['other']['copy']['tips']}</a></p>
+		<p class="mo-coxs-center mo-lhmd-34px mo-fsxs-14px">&copy;&nbsp;{:date('Y')}&nbsp;{$maccms.site_url}&nbsp;Theme&nbsp;by&nbsp;<a class="mo-text-hover" href="{$mojia['other']['copy']['link']}?theme=https://mojia.amujie.com" target="_blank">{$mojia['other']['copy']['tips']}</a></p>
 	</div>
 </div>
 <div class="mo-goto-info mo-java-fadein">
 	<ul class="mo-coxs-block mo-java-union" data-union="{:in_array($maccms['mid'],explode(',',$mojia['other']['union']['type']))}" data-url="{$mojia['other']['union']['link']}">
 		{if$obj[mac_get_mid_code($maccms['mid']).'_id']&&$mojia['other']['edit']['state']&&model("Admin")->checkLogin()['code']==1}
-		<li class="mo-bsxs-shadow"><a class="mo-goto-calls mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-chuangzuo-line mo-java-event" href="{$install}{$mojia['other']['edit']['link']}/admin/{:mac_get_mid_code($maccms['mid'])}/info/id/{$obj[mac_get_mid_code($maccms['mid']).'_id']}.html" target="_blank"></a></li>
+		<li class="mo-bsxs-shadow"><a class="mo-goto-calls mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-bianji mo-java-event" href="{$install}{$mojia['other']['edit']['link']}/admin/{:mac_get_mid_code($maccms['mid'])}/info/id/{$obj[mac_get_mid_code($maccms['mid']).'_id']}.html" target="_blank"></a></li>
 		{/if}{if$mojia['other']['call']['state']}
 		<li class="mo-bsxs-shadow"><a class="mo-goto-calls mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-zixun mo-java-event" href="{$mojia['other']['call']['link']}" target="_blank"></a></li>
 		{/if}{if$mojia['other']['chat']['state']}
 		<li class="mo-bsxs-shadow"><a class="mo-goto-chats mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-weixin mo-java-event" href="javascript:;" data-tips="{$mojia['other']['chat']['tips']}" data-link="{$mojia['other']['chat']['link']}" data-pics="{$mojia['other']['chat']['pics']|mac_url_img}"></a></li>
 		{/if}{if$mojia['other']['share']['state']}
-		<li class="mo-bsxs-shadow"><a class="mo-goto-share mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-fenxiang mo-java-event" href="javascript:;" data-api="{$mojia['other']['share']['apis']}"></a></li>
+		<li class="mo-bsxs-shadow"><a class="mo-goto-share mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-fenxiang mo-java-event" href="javascript:;" data-api="{$mojia['other']['share']['apis']}" data-tpl="{$template}" data-chain="{:mac_default($mojia['other']['chain']['apis'],'asset/exc/create.php?id=url&pic=')}" data-agent="{$mojia['other']['share']['agent']}"></a></li>
 		{/if}{if$mojia['color']['type']['name']!=2}
 		<li class="mo-bsxs-shadow"><a class="mo-goto-black mo-goto-lump mo-bord-round mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-coxs-center mo-back-white mo-icon-font mo-icon-yingyuan-line" href="javascript:;"></a></li>
 		{/if}
@@ -46,6 +46,7 @@
 <script src="{$cdnpath}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	var magic = {
+		'name': '{$initial}',
 		'path': '{$install}',
 		'tpl': '{$template}',
 		'cdn': '{$cdnpath}'
@@ -53,8 +54,11 @@
 	layui.config({
 		version: '{$version}',
 		base: magic.cdn + 'asset/js/'
-	}).use(['mojia'], function() {
-		layui.mojia.moload.mojia();
+	}).extend({
+		'{$initial}': '{/}' + {$mojia['other']['init']['state']==1?'magic.tpl':'magic.cdn'} + 'asset/js/{$initial}',
+		'common': '{/}' + {$mojia['other']['init']['exclu']==1?'magic.tpl':'magic.cdn'} + 'asset/js/common'
+	}).use([magic.name], function() {
+		layui[magic.name].moload.mojia();
 	});
 </script>
 </body>

@@ -14,7 +14,7 @@
 - 作者首页：[https://amujie.com](https://amujie.com)
 - 加群链接：[https://jq.qq.com/?_wv=1027&k=5Cpumac](https://jq.qq.com/?_wv=1027&k=5Cpumac)
 - 扣群号码：137183109
-- 静态文件：[https://cdn.jsdelivr.net/gh/amujie/mojia@latest/](https://cdn.jsdelivr.net/gh/amujie/mojia@latest/)
+- 静态文件：[https://cdn.jsdelivr.net/gh/amujie/mojia@master/](https://cdn.jsdelivr.net/gh/amujie/mojia@master/)
 
 #### 主题简介
 - 主题定价：¥198(一个站点丨售后永久免费更新)

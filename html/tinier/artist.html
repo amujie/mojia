@@ -12,7 +12,7 @@
 			<div class="mo-pnxs-5px mo-pamd-10px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></div>
 			<div class="mo-word-info mo-cols-rows mo-paxs-5px mo-pamd-10px">
 				{if$obj['art_pwd']&&session('2-1-'.$obj['art_id'])!=1}{include file="tinier/passer" type="1" mold=""}
-				{else}{$obj.art_page_list[$param['page']]['content']|mac_url_content_img}{/if}
+				{else}{:mac_url_content_img(moJiaHtmlTags($obj['art_page_list'][$param['page']]['content']))}{/if}
 			</div>
 			{include file="tinier/paging"}
 		</div>

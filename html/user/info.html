@@ -25,16 +25,16 @@
 		</div>
 		<div class="mo-cols-rows mo-mtxs-5px">
 			<span class="mo-form-name">QQ号</span>
-			<input class="mo-form-left mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="user_qq" value="{$obj.user_qq}" placeholder="QQ号码" maxlength="11" />
+			<input class="mo-form-left mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="user_qq" value="{$obj.user_qq}" placeholder="填写QQ号码可同步QQ头像" maxlength="11" />
 		</div>
 		<div class="mo-cols-rows mo-mtxs-5px">
 			<span class="mo-form-name">邮箱</span>
-			<input class="mo-form-left mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="email" name="user_email" value="{$obj.user_email}" placeholder="点击绑定按钮绑定邮箱账号" maxlength="20" />
+			<input class="mo-form-left mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="email" name="user_email" value="{$obj.user_email}" placeholder="点击绑定按钮绑定邮箱账号" maxlength="20" disabled />
 			{if!$obj.user_email}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" href="{:mac_url('user/bind')}?ac=email">绑定</a>{else}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" data-type="email" href="javascript:;" data-url="{:mac_url('user/unbind')}" lay-submit lay-filter="unbind">解绑</a>{/if}</a>
 		</div>
 		<div class="mo-cols-rows mo-mtxs-5px">
 			<span class="mo-form-name">手机号</span>
-			<input class="mo-form-left mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="user_phone" value="{$obj.user_phone}" placeholder="点击绑定按钮绑定手机号码" maxlength="11" />
+			<input class="mo-form-left mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="user_phone" value="{$obj.user_phone}" placeholder="点击绑定按钮绑定手机号码" maxlength="11" disabled />
 			{if!$obj.user_phone}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" href="{:mac_url('user/bind')}?ac=phone">绑定</a>{else}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" data-type="phone" href="javascript:;" data-url="{:mac_url('user/unbind')}" lay-submit lay-filter="unbind">解绑</a>{/if}</a>
 		</div>
 		<div class="mo-cols-rows mo-mtxs-5px">

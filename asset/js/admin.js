@@ -1,13 +1,15 @@
-layui.define(['mojia', 'common', 'iconfonts', 'multiple', 'sortable'], function(exports) {
+layui.define(['income', 'iconfonts', 'multiple', 'sortable'], function(exports) {
 	var $ = layui.jquery;
 	var mojia = {
 		'global': {
 			'init': function() {
-				layui.util.fixbar();
-				mojia.global.seokey();
-				mojia.global.update(0);
-				layui.multiple.init('select[multiple]');
+				layui.income.global.init();
 				layui.iconfonts.init('.layui-font-info');
+				layui.multiple.init('select[multiple]');
+				mojia.global.update();
+				mojia.global.seokey();
+				mojia.global.browse();
+				layui.util.fixbar();
 				layui.laydate.render({
 					elem: '.mo-date-time',
 					type: 'datetime'
@@ -21,6 +23,9 @@ layui.define(['mojia', 'common', 'iconfonts', 'multiple', 'sortable'], function(
 					$(this).parents('td').next().next().next().find('input').val(data.elem[data.elem.selectedIndex].dataset.link);
 				});
 				layui.form.on('select(iconer)', function(data) {
+					$(this).parents('td').prev().find('input').next().find('span').find('i').attr('class', 'mo-icon-font ' + data.elem[data.elem.selectedIndex].dataset.icon);
+					$(this).parents('td').prev().find('input').val(data.elem[data.elem.selectedIndex].dataset.icon);
+					$(this).parents('td').next().find('input').val(data.elem[data.elem.selectedIndex].dataset.url);
 					if (data.value == 'artist') {
 						$(this).parents('td').next().find('.layui-form-select').addClass('mo-cols-show').removeClass('mo-cols-hide');
 						$(this).parents('td').next().find('.layui-font-select').addClass('mo-cols-hide').removeClass('mo-cols-show');
@@ -31,8 +36,6 @@ layui.define(['mojia', 'common', 'iconfonts', 'multiple', 'sortable'], function(
 				});
 				layui.form.on('submit(submit)', function(data) {
 					$.post($('.layui-form-pane').attr('action'), data.field, function(data) {
-						$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'chat=chat&send=' + $('input[name="mojia[play][chat][send]"]').val() + '&code=' + $('input[name="mojia[play][chat][code]"]').val() + '&close=' + $('input[name="mojia[other][close][state]"]:checked').val());
-						$.post(magic.tpl + 'asset/exc/create.php?id=url', 'tao=tao');
 						layer.msg(data.msg, {
 							time: 1000
 						}, function() {
@@ -117,12 +120,6 @@ layui.define(['mojia', 'common', 'iconfonts', 'multiple', 'sortable'], function(
 						}
 					}
 				});
-				layui.element.on('tab(table)', function() {
-					layui.common.cookie.set('mo_table', this.getAttribute('lay-id'), 1);
-				});
-				if (layui.common.cookie.get('mo_table') != null) {
-					layui.element.tabChange('table', layui.common.cookie.get('mo_table'));
-				}
 				$('.mo-look-btns').each(function(nums, info) {
 					layui.colorpicker.render({
 						elem: '.mo-look-btns' + nums,
@@ -162,9 +159,9 @@ layui.define(['mojia', 'common', 'iconfonts', 'multiple', 'sortable'], function(
 				var array = [];
 				for (var i = 0; i < string.length; i++) {
 					var item = string[i];
-					if (item === "(") {
-						array.push("(");
-					} else if (item === ")") {
+					if (item === '(') {
+						array.push('(');
+					} else if (item === ')') {
 						if (array.length === 0) {
 							return false;
 						} else {
@@ -175,6 +172,60 @@ layui.define(['mojia', 'common', 'iconfonts', 'multiple', 'sortable'], function(
 					}
 				};
 				return array.length === 0;
+			},
+			'browse': function() {
+				$(document).on('click', '.mo-java-brow', function(data) {
+					var that = $(this);
+					if (that.css('background-color') != 'rgb(176, 224, 230)') {
+						that.css('background-color', 'lemonchiffon');
+					}
+					var array = $(this).val().substring(1, $(this).val().indexOf('/i')).split('|');
+					layer.open({
+						type: 1,
+						btn: '确认修改',
+						area: ['640px', '500px'],
+						content: '<ul class="mo-brow-nows mo-pzxs-5px mo-coxs-center mo-part-bord mo-bord-muted"></ul><ul class="mo-brow-news mo-pzxs-5px mo-mtxs-10px mo-coxs-center mo-part-bord mo-bord-muted"></ul>',
+						success: function(layero, index) {
+							$('.layui-layer-content').addClass('mo-cols-rows mo-paxs-20px');
+							$('.mo-brow-nows').after('<table class="layui-table"><tbody><tr><td width="70"><a href="https://www.runoob.com/regexp/regexp-syntax.html" target="_blank"><font color="red">正则表达式</font></a></td><td><input type="text" class="layui-input mo-brow-custom" placeholder="自定义内容"></td><td width="90"><a class="layui-btn layui-btn-primary mo-brow-cust">添加内容</a></td></tr><tbody></table>');
+							var html = '';
+							for (var i = 0; i < array.length; i++) {
+								html += '<li class="mo-java-seoe mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span class="mo-coxs-arow" style="vertical-align:text-bottom;max-width:500px;display:inline-block!important;cursor:move">' + array[i] + '</span><i class="mo-brow-dels mo-icon-font mo-icon-shibai-line mo-plxs-10px" style="vertical-align:top"></i></a></li>';
+							}
+							$('.mo-brow-nows').html(html);
+							var item = '';
+							var income = layui.income.browse;
+							$.each(income, function(nums, info) {
+								item += '<li class="mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span style="vertical-align:text-bottom" data-code="' + nums + '">' + info + '</span><i class="mo-brow-adds mo-icon-font mo-icon-zengjia-line mo-plxs-10px" style="vertical-align:top"></i></a></li>';
+							});
+							$('.mo-brow-news').html(item);
+						},
+						yes: function(index, layero) {
+							var array = [];
+							that.css('background-color', 'powderblue');
+							$('.mo-brow-nows').find('li').each(function() {
+								array.push($(this).find('span').text());
+							});
+							that.val('/' + array.join('|') + '/i');
+							layer.close(index);
+						},
+						cancel: function(index, layero) {
+							if (that.css('background-color') == 'rgb(255, 250, 205)') {
+								that.css('background-color', '');
+							}
+						}
+					});
+				});
+				$(document).on('click', '.mo-brow-cust', function(data) {
+					if (!$(this).parent().prev().find('input').val()) return false;
+					$('.mo-brow-nows').append('<li class="mo-java-seoe mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span class="mo-coxs-arow" style="vertical-align:text-bottom;max-width:500px;display:inline-block!important;cursor:move">' + $(this).parent().prev().find('input').val() + '</span><i class="mo-brow-dels mo-icon-font mo-icon-shibai-line mo-plxs-10px" style="vertical-align:top"></i></a></li>');
+				});
+				$(document).on('click', '.mo-brow-dels', function(data) {
+					$(this).parent().parent().remove();
+				});
+				$(document).on('click', '.mo-brow-adds', function(data) {
+					$('.mo-brow-nows').append('<li class="mo-java-seoe mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span class="mo-coxs-arow" style="vertical-align:text-bottom;max-width:500px;display:inline-block!important;cursor:move">' + $(this).prev().attr('data-code') + '</span><i class="mo-brow-dels mo-icon-font mo-icon-shibai-line mo-plxs-10px" style="vertical-align:top"></i></a></li>');
+				});
 			},
 			'seokey': function() {
 				$(document).on('click', '.mo-java-seos', function(data) {
@@ -192,25 +243,23 @@ layui.define(['mojia', 'common', 'iconfonts', 'multiple', 'sortable'], function(
 						content: '<ul class="mo-seos-nows mo-pzxs-5px mo-coxs-center mo-part-bord mo-bord-muted"></ul><ul class="mo-seos-news mo-pzxs-5px mo-mtxs-10px mo-coxs-center mo-part-bord mo-bord-muted"></ul>',
 						success: function(layero, index) {
 							$('.layui-layer-content').addClass('mo-cols-rows mo-paxs-20px');
-							$('.mo-seos-nows').after('<table class="layui-table"><tbody><tr><td width="70">自定义内容</td><td><input type="text" value="\'自定义内容\'" class="layui-input mo-seos-custom" placeholder="模块"></td><td width="90"><a class="layui-btn layui-btn-primary mo-seos-cust">添加内容</a></td></tr><tbody></table>');
-							layui.use('income', function() {
-								var html = '';
-								for (var i = 0; i < array.length; i++) {
-									html += '<li class="mo-java-seoe mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span class="mo-coxs-arow" style="vertical-align:text-bottom;max-width:500px;display:inline-block!important;cursor:move">' + array[i] + '</span><i class="mo-seos-dels mo-icon-font mo-icon-shibai-line mo-plxs-10px" style="vertical-align:top"></i></a></li>';
+							$('.mo-seos-nows').after('<table class="layui-table"><tbody><tr><td width="70">自定义内容</td><td><input type="text" value="\'自定义内容\'" class="layui-input mo-seos-custom" placeholder="自定义内容"></td><td width="90"><a class="layui-btn layui-btn-primary mo-seos-cust">添加内容</a></td></tr><tbody></table>');
+							var html = '';
+							for (var i = 0; i < array.length; i++) {
+								html += '<li class="mo-java-seoe mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span class="mo-coxs-arow" style="vertical-align:text-bottom;max-width:500px;display:inline-block!important;cursor:move">' + array[i] + '</span><i class="mo-seos-dels mo-icon-font mo-icon-shibai-line mo-plxs-10px" style="vertical-align:top"></i></a></li>';
+							}
+							$('.mo-seos-nows').html(html);
+							$('.mo-java-seoe').arrangeable();
+							var item = '';
+							var income = layui.income.seokey;
+							$.each(income, function(nums, info) {
+								if (nums == 'common' || mojia.global.search(aids, nums.split(','))) {
+									for (var i = 0; i < info.length; i++) {
+										item += '<li class="mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span style="vertical-align:text-bottom" data-code="' + income[nums][i].code + '">' + income[nums][i].name + '</span><i class="mo-seos-adds mo-icon-font mo-icon-zengjia-line mo-plxs-10px" style="vertical-align:top"></i></a></li>';
+									};
 								}
-								$('.mo-seos-nows').html(html);
-								$('.mo-java-seoe').arrangeable();
-								var item = '';
-								var income = layui.income.seokey;
-								$.each(income, function(nums, info) {
-									if (nums == 'common' || mojia.global.search(aids, nums.split(','))) {
-										for (var i = 0; i < info.length; i++) {
-											item += '<li class="mo-coxs-iblock mo-maxs-5px"><a class="layui-btn layui-btn-sm mo-pnxs-10px"><span style="vertical-align:text-bottom" data-code="' + income[nums][i].code + '">' + income[nums][i].name + '</span><i class="mo-seos-adds mo-icon-font mo-icon-zengjia-line mo-plxs-10px" style="vertical-align:top"></i></a></li>';
-										};
-									}
-								});
-								$('.mo-seos-news').html(item);
 							});
+							$('.mo-seos-news').html(item);
 						},
 						yes: function(index, layero) {
 							var array = [];
@@ -275,7 +324,7 @@ layui.define(['mojia', 'common', 'iconfonts', 'multiple', 'sortable'], function(
 					});
 				});
 			},
-			'update': function(count) {
+			'update': function() {
 				$('.layui-body', parent.document).css('overflow-y', 'hidden');
 				$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'ver=new', function(data) {
 					if (mojia.global.contra(0, $('.mo-opts-vers').text(), data.ver) > 0) {
@@ -298,7 +347,7 @@ layui.define(['mojia', 'common', 'iconfonts', 'multiple', 'sortable'], function(
 				$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'tpl=mojia-' + news, function(data) {
 					if (data.msg == 'mojia-' + news) {
 						layer.alert('升级成功', function(index) {
-							$.post($('.j-ajax', parent.document).attr('href'), function(data) {
+							$.post(magic.path + magic.admin + '/admin/index/clear', function(data) {
 								layer.msg((data.msg ? data.msg : '请手动清除缓存'), {
 									time: 1000
 								}, function() {

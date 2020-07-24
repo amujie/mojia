@@ -1,4 +1,10 @@
 <?php
+/**
+ * 作者:大橙子
+ * 网址:https://amujie.com
+ * QQ:1570457334
+ */
+
 // 主题路径
 function moJiaPath($path) {
 	$install = '../../../../';
@@ -12,9 +18,9 @@ function moJiaPath($path) {
 	} elseif ($path == 'home') {
 		return $maccms['site']['install_dir'];
 	} elseif ($path == 'down') {
-		return 'https://cdn.jsdelivr.net/gh/amujie/download@latest/';
+		return 'https://cdn.jsdelivr.net/gh/amujie/download@master/';
 	} elseif ($path == 'vers') {
-		return 'https://cdn.jsdelivr.net/gh/amujie/mojia@latest/';
+		return 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/';
 	} elseif ($path == 'path') {
 		return $install;
 	}
@@ -83,11 +89,13 @@ function moJiaDaTaoKe($api, $param, $appSecret) {
 // 表情转换
 function moJiaFace($data) {
 	$version = parse_ini_file(substr(moJiaPath('temp'), strlen(moJiaPath('home'))) . 'info.ini');
-	$mojia = file_exists('application/extra/mojiaopt.php') ? @require ('application/extra/mojiaopt.php') : @require ('config.php'); ;
+	$mojia = file_exists('application/extra/mojiaopt.php') ? @require ('application/extra/mojiaopt.php') : @require ('config.php');
 	$cdnpath = $mojia['other']['cdns']['state'] ? $mojia['other']['cdns']['link'] . (strpos($mojia['other']['cdns']['link'], 'cdn.jsdelivr.net/gh/amujie') !== false ? '@' . $version['version'] : '') . '/' : moJiaPath('temp');
-	preg_match_all('/(?:\[)[^(?:\])]+]/i', $data, $match);
+	preg_match_all('/(\[)[^(\])]+]/i', $data, $match);
 	foreach ($match[0] as $key => $value) {
-		$data = str_replace($match[0][$key], '<img class="mo-part-mtop" width="auto" height="24" src="' . $cdnpath . 'asset/face/' . str_replace(array('[', ']'), '', $match[0][$key]) . (strstr($match[0][$key], 'qq') ? '.gif' : '.png') . '"/>', $data);
+		if (preg_match('/\[(.*)\/(.*)\]/', $match[0][$key])) {
+			$data = str_replace($match[0][$key], '<img class="mo-part-mtop" width="auto" height="24" src="' . $cdnpath . 'asset/face/' . str_replace(array('[', ']'), '', $match[0][$key]) . (strstr($match[0][$key], 'qq') ? '.gif' : '.png') . '"/>', $data);
+		}
 	}
 	return $data;
 }
@@ -101,6 +109,41 @@ function moJiaSimple($data) {
 		libxml_disable_entity_loader(true);
 		return json_decode(json_encode(@simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
 	}
+}
+
+// HTML标签校对
+function moJiaHtmlTags($html, $tags = array()) {
+	$result = null;
+	$stack = array();
+	$single = array('br', 'hr', 'img', 'input');
+	if ($tags && is_array($tags)) {
+		$single = array_merge($single, $tags);
+		$single = array_map('strtolower', $single);
+		$single = array_unique($single);
+	}
+	$content = preg_split('/(<[^>]+>)/si', $html, null, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+	foreach ($content as $val) {
+		if (preg_match('/<(\w+)[^\/]*>/si', $val, $m) && in_array(strtolower($m[1]), $single)) {
+			$result .= "\r\n" . $val;
+		} else if (preg_match('/<(\w+)[^\/]*\/>/si', $val, $m)) {
+			$result .= $val;
+		} else if (preg_match('/<(\w+)[^\/]*>/si', $val, $m)) {
+			$result .= "\r\n" . str_repeat("\t", count($stack)) . $val;
+			array_push($stack, $m[1]);
+		} else if (preg_match('/<\/(\w+)[^\/]*>/si', $val, $m)) {
+			if (strtolower(end($stack)) == strtolower($m[1])) {
+				array_pop($stack);
+				$result .= $val;
+			}
+		} else {
+			$result .= $val;
+		}
+	}
+	while ($stack) {
+		$result .= "</" . array_pop($stack) . ">";
+		$result .= "\r\n";
+	}
+	return $result;
 }
 
 // 获取网址内容

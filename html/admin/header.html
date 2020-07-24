@@ -3,10 +3,10 @@
 	<head>
 		<title>魔加主题设置</title>
 		{include file="tinier/config,admin/config,tinier/metaer"}
-		<link href="{$cdnpath}asset/inc/css/layui.css?v={$version}" rel="stylesheet" type="text/css" />
-		<link href="{$cdnpath}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
+		<link href="{$template}asset/inc/css/layui.css?v={$version}" rel="stylesheet" type="text/css" />
+		<link href="{$template}asset/css/style.css?v={$version}" rel="stylesheet" type="text/css" />
 		{include file="tinier/colour"}
-		<script src="{$cdnpath}asset/inc/layui.all.js?v={$version}" type="text/javascript" charset="utf-8"></script>
+		<script src="{$template}asset/inc/layui.all.js?v={$version}" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var magic = {
 				'admin': '{$mojia["other"]["edit"]["link"]}',
@@ -16,4 +16,4 @@
 			};
 		</script>
 	</head>
-	<body>
+	<body style="min-width:1165px">

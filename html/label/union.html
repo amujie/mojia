@@ -1,6 +1,7 @@
 {include file="admin/header"}
 <table class="layui-table">
 	<tbody>
+		<?php use think\Cache; $collect_break_vod = Cache::get($GLOBALS['config']['app']['cache_flag']. '_'. 'collect_break_vod'); $collect_break_art = Cache::get($GLOBALS['config']['app']['cache_flag']. '_'. 'collect_break_art'); $collect_break_actor = Cache::get($GLOBALS['config']['app']['cache_flag']. '_'. 'collect_break_actor'); $collect_break_role = Cache::get($GLOBALS['config']['app']['cache_flag']. '_'. 'collect_break_role'); $collect_break_website = Cache::get($GLOBALS['config']['app']['cache_flag']. '_'. 'collect_break_website'); ?>
 		<tr class="mo-java-mojia" data-mid="{$verify['url']}" data-aid="{$verify['key']}" data-rid="{$verify['tga']}" data-sid="{$verify['sid']}" data-nid="{$verify['nid']}" data-time="{:file_exists('runtime/temp/'.md5('mojia').'.php')?require('runtime/temp/'.md5('mojia').'.php'):null}">
 			<td width="50"><a class="layui-btn layui-btn-primary mo-unit-addtor" href="javascript:;"><i class="layui-icon">&#xe654;</i>添加资源</a></td>
 			<td style="min-width: 110px"><input class="layui-input mo-unit-input" type="text" placeholder="请输入关键字" autocomplete="off"></td>
@@ -19,9 +20,9 @@
 <script type="text/javascript">
 	layui.config({
 		version: '{$version}',
-		base: magic.cdn + 'asset/js/'
+		base: magic.tpl + 'asset/js/'
 	}).extend({
-		income: '{/}https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/js/income'
+		income: '{/}' + {$mojia['other']['init']['exclu']==1?'magic.tpl':"'https://cdn.jsdelivr.net/gh/amujie/mojia@master/'"} + 'asset/js/income'
 	}).use(['union'], function() {
 		layui.union.global.init();
 	});

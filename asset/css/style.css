@@ -220,7 +220,7 @@ p {line-height: 1.875rem;word-wrap: break-word}
 i {font-style: normal;display: inline-block}
 li {list-style: none}
 hr {border-width: 0;border-bottom-width: 1px;}
-img {display: inline-block;border: 0;vertical-align: middle;max-width: 100%;}
+img {display: inline-block;border: 0;vertical-align: middle;max-width: 100% !important;}
 table {border-collapse: collapse;border-spacing: 0}
 html,
 body {height: auto !important;}
@@ -569,9 +569,34 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	.mo-lhxl-24px {line-height: 1.5rem}
 	.mo-byxl-20by15 {padding-top: 75%}
 }
+@media(min-width:1400px) {
+	/* 1440 */
+	.mo-cols-sl1 {width: 8.33333333%}
+	.mo-cols-sl2 {width: 16.66666667%}
+	.mo-cols-sl3 {width: 25%}
+	.mo-cols-sl4 {width: 33.33333333%}
+	.mo-cols-sl5 {width: 41.66666667%}
+	.mo-cols-sl6 {width: 50%}
+	.mo-cols-sl7 {width: 58.33333333%}
+	.mo-cols-sl8 {width: 66.66666667%}
+	.mo-cols-sl9 {width: 75%}
+	.mo-cols-sl10 {width: 83.33333333%}
+	.mo-cols-sl11 {width: 91.66666667%}
+	.mo-cols-sl12 {width: 100%}
+	.mo-cols-sl1x {width: 10%}
+	.mo-cols-case {width: 82.5rem}
+	.mo-cosl-west {float: left;}
+	.mo-cosl-east {float: right;}
+	.mo-cosl-none {display: none !important}
+	.mo-cosl-block {display: block !important}
+	.mo-cosl-inline {display: inline !important}
+	.mo-cosl-iblock {display: inline-block !important}
+	.mo-cosl-table {display: table-cell !important}
+	.mo-cosl-left {text-align: left !important}
+	.mo-cosl-right {text-align: right !important}
+	.mo-cosl-center {text-align: center !important}
+}
 /* 通用组件 */
-.mo-part-hide {display: none !important}
-.mo-part-show {display: block !important}
 .mo-part-curs {cursor: pointer}
 .mo-part-coin {border-radius: 100%}
 .mo-part-hund {border-radius: 6.25rem}

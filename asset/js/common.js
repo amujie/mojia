@@ -11,6 +11,7 @@ layui.define(['jquery'], function(exports) {
 				mojia.global.output();
 				mojia.global.paging();
 				mojia.global.passer();
+				mojia.global.verify();
 				mojia.global.jumper(3);
 				mojia.picing.init('.mo-situ-lazy');
 				var screen = [['.mo-movs-btns', '.mo-movs-item'], ['.mo-down-btns', '.mo-down-item'], ['.mo-tabs-btns', '.mo-tabs-item'], ['.mo-face-btns', '.mo-face-item'], ['.mo-pops-hots', '.mo-pops-boxs']];
@@ -126,10 +127,10 @@ layui.define(['jquery'], function(exports) {
 				});
 			},
 			'mobile': function() {
-				return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+				return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|EdgA|Opera\sMini/i.test(navigator.userAgent));
 			},
 			'trident': function() {
-				return (/MSIE\s[0-9]|Trident\/[\d.]/i.test(navigator.userAgent));
+				return (/MSIE\s[0-9]|Trident\/[0-9]/i.test(navigator.userAgent));
 			},
 			'filter': function(keyword) {
 				return keyword.replace(/</g, '').replace(/>/g, '').trim();
@@ -168,10 +169,9 @@ layui.define(['jquery'], function(exports) {
 				});
 			},
 			'jumper': function(count) {
-				if (count == 0) {
-					if ($('.mo-jump-info').attr('data-msg')) {
-						location.href = $('.mo-jump-href').attr('href');
-					} else return false;
+				if (count == 0 && $('.mo-jump-info').attr('data-msg')) {
+					location.href = $('.mo-jump-href').attr('href');
+					return false;
 				} else $('.mo-jump-nums').empty().append(count--);
 				setTimeout(function() {
 					mojia.global.jumper(count);
@@ -442,6 +442,7 @@ layui.define(['jquery'], function(exports) {
 						var load = layer.load(2);
 						$('.mo-java-left').addClass('mo-part-left');
 						$.post(magic.path + 'index.php/label/share.html', function(data) {
+							var chain = that.attr('data-agent') == 1 ? (that.attr('data-chain').indexOf('asset/exc/create') != -1 && $('meta[itemprop="image"]').attr('content').indexOf('//') != -1 ? that.attr('data-tpl') : '') + ($('meta[itemprop="image"]').attr('content').indexOf('//') != -1 ? that.attr('data-chain') : '') : '';
 							layer.close(load);
 							$('.mo-java-left').addClass('mo-part-left');
 							layer.open({
@@ -452,7 +453,7 @@ layui.define(['jquery'], function(exports) {
 								closeBtn: 0,
 								shadeClose: true,
 								skin: 'mo-bord-round mo-have-open',
-								content: data.replace('{image}', $('meta[itemprop="image"]').attr('content')).replace('{title}', $(document).attr('title')).replace('{keywords}', $('meta[name="keywords"]').attr('content').substring(0, 28)),
+								content: data.replace('{favicon}', chain + $('link[type="image/ico"]').attr('href')).replace('{image}', chain + $('meta[itemprop="image"]').attr('content')).replace('{title}', $(document).attr('title')).replace('{keywords}', $('meta[name="keywords"]').attr('content').substring(0, 28)),
 								success: function(layero, index) {
 									if (that.attr('data-api')) {
 										$.post(magic.tpl + 'asset/exc/create.php?id=url', 'url=' + encodeURIComponent(location.href), function(data) {
@@ -509,13 +510,14 @@ layui.define(['jquery'], function(exports) {
 				});
 			},
 			'colors': function(str) {
-				var color = $('#mo-java-dark').html();
+				var color1 = $('#mo-java-rule').html();
+				var color2 = $('#mo-java-dark').html();
 				$(document).on('click', str, function() {
 					if (mojia.cookie.get('mo_dark')) {
-						$('#mo-java-dark').attr('type', 'text/dark').html('');
+						$('#mo-java-dark').attr('type', 'text/css').html(color1);
 						mojia.cookie.del('mo_dark');
 					} else {
-						$('#mo-java-dark').attr('type', 'text/css').html(color);
+						$('#mo-java-dark').attr('type', 'text/css').html(color2);
 						mojia.cookie.set('mo_dark', '1', 7);
 					}
 				});
@@ -534,6 +536,7 @@ layui.define(['jquery'], function(exports) {
 		},
 		'player': {
 			'init': function() {
+				this.copyer();
 				this.store(2);
 				this.parse();
 				this.click();
@@ -565,6 +568,39 @@ layui.define(['jquery'], function(exports) {
 						else mojia.player.judge('.mo-play-load');
 					}
 				});
+			},
+			'copyer': function(that) {
+				if ($('.mo-java-data').attr('data-aid') == 16) {
+					layui.use(['layer', 'clipboard'], function() {
+						var copy = new ClipboardJS('.mo-copy-btns', {
+							text: function() {
+								var that = $('.mo-copy-btns');
+								var html = '';
+								var sort = that.parents('.mo-sort-head').find('.mo-text-mojia').index();
+								for (var i = 0; i < that.parents('.mo-sort-head').nextAll('.mo-sort-boxs').eq(sort).find('li').length; i++) {
+									html += "\n" + that.parents('.mo-sort-head').nextAll('.mo-sort-boxs').eq(sort).find('li').eq(i).find('input').val();
+								}
+								return html;
+							}
+						});
+						copy.on('success', function(data) {
+							layer.msg($('.mo-copy-btns').parents('.mo-sort-head').find('.mo-text-mojia').text() + '链接全部复制成功,快去粘贴下载吧');
+							data.clearSelection();
+						});
+						$(document).on('focus', '.mo-down-copy', function() {
+							var that = $(this);
+							var copy = new ClipboardJS('.mo-down-copy' + (that.parent().parent().index() + 1), {
+								text: function() {
+									return that.val();
+								}
+							});
+							copy.on('success', function(data) {
+								layer.msg(that.parent().next().find('a').text() + '复制成功,快去粘贴下载吧');
+								data.clearSelection();
+							});
+						});
+					});
+				}
 			},
 			'power': function(that) {
 				$(that).click(function() {
@@ -706,7 +742,7 @@ layui.define(['jquery'], function(exports) {
 						live: JSON.parse(live),
 						video: {
 							url: mojia.player.video(str),
-							type: (!/MSIE\s[0-9]|Trident\/[\d.]|MQQBrowser/i.test(navigator.userAgent)) && mojia.player.video(str).indexOf('.m3u8') > -1 ? 'customHls' : 'auto',
+							type: !mojia.global.mobile() && mojia.player.video(str).indexOf('.m3u8') > -1 ? 'customHls' : 'auto',
 							pic: $(str).attr('data-pics'),
 							customType: {
 								'customHls': function(video, player) {
@@ -731,10 +767,15 @@ layui.define(['jquery'], function(exports) {
 						}
 					});
 					player.on('loadstart', function() {
+						if (mojia.global.mobile()) {
+							$('video').attr('controls', 'true');
+							$('.dplayer-controller,.dplayer-mobile-play').hide();
+						}
 						$('video').attr('playsinline', 'true');
 						$('video').attr('x5-playsinline', 'true');
 						$('video').attr('webkit-playsinline', 'true');
-						$('.mo-play-player').show().css('z-index', '99').prepend('<a class="mo-play-btns mo-part-core" href="javascript:;"></a>');
+						$('video').attr('autoplay', JSON.parse($(str).attr('data-auto')));
+						$('.mo-play-player').show().css('z-index', '99');
 						$('.dplayer-info-panel-close').html('×').css('font-size', '20px').css('font-family', 'monospace');
 						$('.dplayer-info-panel').css('line-height', '20px');
 						$('.dplayer-icon.dplayer-full-in-icon').remove();
@@ -742,7 +783,6 @@ layui.define(['jquery'], function(exports) {
 						mojia.player.logo('player', str);
 					});
 					player.on('loadeddata', function() {
-						if (!player.video.paused) $('.mo-play-btns').hide();
 						if (mojia.cookie.get(sole) && JSON.parse(live) == false) {
 							if (player.video.duration - mojia.cookie.get(sole) < 60 || mojia.cookie.get(sole) < $(str).attr('data-trys') * 60) player.seek(0);
 							else player.seek(mojia.cookie.get(sole));
@@ -770,13 +810,6 @@ layui.define(['jquery'], function(exports) {
 					});
 					player.on('ended', function() {
 						if ($(str).attr('data-next')) top.location.href = $(str).attr('data-next');
-					});
-					player.on('pause', function() {
-						$('.mo-play-btns').show();
-					});
-					$(document).on('click', '.mo-play-btns', function() {
-						$(this).hide();
-						player.play();
 					});
 				});
 			},

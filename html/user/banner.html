@@ -2,8 +2,8 @@
 	<div class="mo-situ-pics mo-lazy-color mo-byxs-3by2 mo-bymd-5by2" style="background-image:url({$cdnpath}asset/img/user.jpg)">
 		<div class="mo-part-core mo-coxs-center">
 			<div class="mo-user-avat mo-user-hove">
-				<a class="mo-user-avat mo-part-coin mo-user-load mo-cols-show mo-text-white mo-fsxs-24px mo-icon-font mo-icon-chuangzuo" href="javascript:;" data-role="{:mac_url('user/portrait')}"></a>
-				<img class="mo-user-avat mo-part-coin mo-cols-show" src="{:str_replace('/static/images/touxiang.png',$cdnpath.'asset/img/avatar.png',mac_get_user_portrait($user['user_id']))}" />
+				<a class="mo-user-avat mo-part-coin mo-user-load mo-cols-show mo-text-white mo-fsxs-24px mo-icon-font mo-icon-bianji" href="javascript:;" data-role="{:mac_url('user/portrait')}"></a>
+				<img class="mo-user-avat mo-part-coin mo-cols-show" src="{$user['user_qq']?'http://q1.qlogo.cn/g?b=qq&nk='.$user['user_qq'].'&s=640':str_replace('/static/images/touxiang.png',$cdnpath.'asset/img/avatar.png',mac_get_user_portrait($user['user_id']))}" />
 			</div>
 			<span class="mo-cols-show mo-text-white mo-lhxs-34px">{$obj.user_nick_name|mac_default=$obj.user_name}</span>
 		</div>

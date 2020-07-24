@@ -15,6 +15,9 @@
 		</h2>
 		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
 			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-plmd-10px mo-comm-report" href="javascript:;" data-href="{:mac_url('gbook/report')}" data-show="{$obj['vod_down_list'][$param['sid']]['player_info']['show']|mac_default='详情'}">报错</a></li>
+			{if$maccms.aid==16}
+			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-plmd-10px mo-copy-btns" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-fuzhi"></i><span class="mo-sort-name">复制</span></a></li>
+			{/if}
 			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-plmd-10px mo-sort-btns" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-paixu"></i><span class="mo-sort-name">正序</span></a></li>
 		</ul>
 	</div>
@@ -41,15 +44,15 @@
 		</div>
 	</div>
 	{maccms:foreach name="obj.vod_down_list" id="par"}
-	<ul class="mo-down-item mo-down-info mo-sort-boxs mo-cols-rows mo-pamd-5px{if in_array($obj['type_id'],explode(',',$mojia['play']['chat']['type']))}{if$_COOKIE['mo_wechat']} mo-cols-hide{else} mo-cols-show{/if}{else}{if$maccms.aid==16}{if$par.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-cols-show{else} mo-cols-hide{/if}{elseif$key==$param['sid']} mo-cols-show{else} mo-cols-hide{/if}{/if}">
+	<ul class="mo-down-item mo-down-info mo-sort-boxs mo-cols-rows mo-pamd-5px{if in_array($obj['type_id'],explode(',',$mojia['play']['chat']['type']))}{if$_COOKIE['mo_wechat']} mo-cols-show{else} mo-cols-hide{/if}{else}{if$maccms.aid==16}{if$par.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-cols-show{else} mo-cols-hide{/if}{elseif$key==$param['sid']} mo-cols-show{else} mo-cols-hide{/if}{/if}">
 		{maccms:foreach name="obj['vod_down_list'][$par['sid']]['urls']" id="sub"}
 		<li class="mo-cols-rows mo-cols-info mo-cols-xs12">
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
-				<input class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}" />
+				<input class="mo-down-copy mo-down-copy{$key} mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}" />
 			</div>
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs5 mo-cols-sm4 mo-cols-lg2">
 				{assign name="download" value=":str_replace(array('thunder','magnet','ed2k','pan.baidu.com','share.weiyun.com'),'',$sub.url,$count)"}
-				<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click{if$key==$param.nid&&$par.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}" href="{if$count}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}{else}thunder://{$mojia['other']['demo']['state']?base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ'):base64_encode('AA'.$sub.url.'ZZ')}{/if}" target="_blank">{$sub.name}</a>
+				<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click{if$key==$param.nid&&$par.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}" href="{if$count||preg_match('/iPhone|iPad|iPod|iOS/i',$_SERVER['HTTP_USER_AGENT'])}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}{else}thunder://{$mojia['other']['demo']['state']?base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ'):base64_encode('AA'.$sub.url.'ZZ')}{/if}" target="_blank">{$sub.name}</a>
 			</div>
 		</li>
 		{/maccms:foreach}
@@ -59,11 +62,11 @@
 		<li class="mo-cols-rows">
 			{if$popedom.code==1||$popedom.code==''}
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
-				<input class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url']}" />
+				<input class="mo-down-copy mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url']}" />
 			</div>
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs5 mo-cols-sm4 mo-cols-lg2">
 				{assign name="download" value=":str_replace(array('thunder','magnet','ed2k','pan.baidu.com','share.weiyun.com'),'',$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url'],$count)"}
-				<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click" href="{if$count}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url']}{else}thunder://{$mojia['other']['demo']['state']?base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ'):base64_encode('AA'.$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url'].'ZZ')}{/if}" target="_blank">{$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['name']}</a>
+				<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click" href="{if$count||preg_match('/iPhone|iPad|iPod|iOS/i',$_SERVER['HTTP_USER_AGENT'])}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url']}{else}thunder://{$mojia['other']['demo']['state']?base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ'):base64_encode('AA'.$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url'].'ZZ')}{/if}" target="_blank">{$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['name']}</a>
 			</div>
 			{else}
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg8">

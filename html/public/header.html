@@ -4,10 +4,10 @@
 		{include file="basics/navbar" mid="mac_filter_html($maccms['mid'])" aid="mac_filter_html($maccms['aid'])" tid="mac_filter_html($GLOBALS['type_id'])" pid="mac_filter_html($GLOBALS['type_pid'])"}
 	</div>
 </div>
-<div class="mo-tabr-info mo-back-white mo-cols-minw mo-line-top mo-bord-muted mo-cosm-none mo-java-fadein{if!$mobile} mo-cols-hide{/if}">
+<div class="mo-tabr-info mo-back-white mo-cols-minw mo-line-top mo-bord-muted mo-cosm-none mo-java-fadein{if!$mobile} mo-coxs-none{/if}">
 	<ul class="mo-cols-rows mo-java-mojia" data-mid="{$verify['url']}" data-aid="{$verify['key']}" data-rid="{$verify['tga']}" data-sid="{$verify['sid']}" data-nid="{$verify['nid']}" data-time="{:file_exists('runtime/temp/'.md5('mojia').'.php')?require('runtime/temp/'.md5('mojia').'.php'):null}">
 		{maccms:foreach name="$mojia['nav']" id="sub"}{if$sub['mobile']}
-		<li class="mo-pzxs-5px mo-cols-cell mo-coxs-center{if$sub['type']=='cat'&&!in_array($sub['id'], explode(',',model('Group')->getCache()[mac_default($user['group_id'],1)]['group_type']))} mo-part-hide{/if}"><a class="mo-cols-show{if$sub['type']=='cat'&&($sub['id']==$obj.type_id||$sub['id']==$obj.type_1.type_id||$sub['id']==$obj.parent.type_id)} mo-text-mojia{elseif$sub['type']=='mid'&&$maccms.mid==$sub['id']} mo-text-mojia{/if}" href="{if$sub['link']==mac_url('user/index')&&!$Think.cookie.user_id}{:mac_url('user/login')}{else}{$sub['link']}{/if}"><i class="mo-fsxs-24px mo-lhxs-24px mo-cols-show mo-icon-font {$sub['icon']}"></i><span class="mo-cols-show mo-fsxs-12px">{$sub['name']|mac_filter_html}</span></a></li>
+		<li class="mo-pzxs-5px mo-cols-cell mo-coxs-center{if$sub['type']=='cat'&&!in_array($sub['id'], explode(',',model('Group')->getCache()[mac_default($user['group_id'],1)]['group_type']))} mo-coxs-none{/if}"><a class="mo-cols-show{if$sub['type']=='cat'&&($sub['id']==$obj.type_id||$sub['id']==$obj.type_1.type_id||$sub['id']==$obj.parent.type_id)} mo-text-mojia{elseif$sub['type']=='mid'&&$maccms.mid==$sub['id']} mo-text-mojia{/if}" href="{if$sub['link']==mac_url('user/index')&&!$Think.cookie.user_id}{:mac_url('user/login')}{else}{$sub['link']}{/if}"><i class="mo-fsxs-24px mo-lhxs-24px mo-cols-show mo-icon-font {$sub['icon']}"></i><span class="mo-cols-show mo-fsxs-12px">{$sub['name']|mac_filter_html}</span></a></li>
 		{/if}{/maccms:foreach}
 	</ul>
 </div>

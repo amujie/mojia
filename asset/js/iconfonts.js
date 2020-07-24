@@ -11,7 +11,7 @@ layui.define(['jquery', 'form'], function(exports) {
 			}
 			$(elem).each(function() {
 				var item = $(this);
-				var font = item.val() ? item.val() : 'mo-icon-shibai';
+				var font = item.val() ? item.val() : 'mo-icon-shibai-line';
 				item.after('<div class="mo-font-info layui-unselect layui-form-select"><div class="mo-font-boxs"><span class="mo-font-icon layui-unselect"><i class="mo-icon-font ' + font + '"></i></span><i class="layui-edge"></i></div><dl class="mo-font-anim layui-anim layui-anim-upbit">' + icons + '</dl>');
 			});
 			this.select();
@@ -243,7 +243,7 @@ layui.define(['jquery', 'form'], function(exports) {
 			$(document).on('click', '.mo-font-item', function(data) {
 				var clsArr = $(data.currentTarget).find('.mo-icon-font').attr('class').split(/[\s\n]/);
 				$(this).parent().prev().find('.mo-icon-font').attr('class', clsArr.join(' '));
-				var font = clsArr[1] == 'mo-icon-shibai' ? '' : clsArr[1];
+				var font = clsArr[1] == 'mo-icon-shibai-line' ? '' : clsArr[1];
 				$(this).parents('.mo-font-info').prev().attr('value', font);
 			});
 		}

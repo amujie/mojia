@@ -41,6 +41,20 @@
 				</td>
 			</tr>
 			<tr>
+				<td><input type="input" name="mojia[other][init][name]" value="{$mojia['other']['init']['name']}" class="layui-input" placeholder="脚本入口"></td>
+				<td><input type="input" name="mojia[other][init][file]" value="{$mojia['other']['init']['file']}" class="layui-input" placeholder="自定义脚本入口文件名称"></td>
+				<td colspan="2">
+					<select name="mojia[other][init][exclu]" lay-verify="">
+						<option value="0"{if$mojia['other']['init']['exclu']==0} selected{/if}>远程加载通用脚本</option>
+						<option value="1"{if$mojia['other']['init']['exclu']==1} selected{/if}>本地加载通用脚本</option>
+					</select>
+				</td>
+				<td>
+					<input type="radio" name="mojia[other][init][state]" value="1" title="开启"{if$mojia['other']['init']['state']==1} checked{/if}>
+					<input type="radio" name="mojia[other][init][state]" value="0" title="关闭"{if$mojia['other']['init']['state']==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
 				<td><input type="input" name="mojia[other][edit][name]" value="{$mojia['other']['edit']['name']}" class="layui-input" placeholder="编辑按钮"></td>
 				<td colspan="3"><input type="input" name="mojia[other][edit][link]" value="{$mojia['other']['edit']['link']}" class="layui-input" placeholder="请填写后台入口文件,如admin.php"></td>
 				<td>
@@ -170,7 +184,7 @@
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][browse][name]" value="{$mojia['other']['browse']['name']}" class="layui-input" placeholder="浏览控制"></td>
-				<td colspan="2"><input type="input" name="mojia[other][browse][rule]" value="{$mojia['other']['browse']['rule']}" class="layui-input" placeholder="请填写正则表达式"></td>
+				<td colspan="2"><input type="input" name="mojia[other][browse][rule]" value="{$mojia['other']['browse']['rule']}" class="layui-input mo-java-brow" placeholder="请填写正则表达式"></td>
 				<td>
 					<select name="mojia[other][browse][type]" lay-verify="">
 						<option value="1"{if$mojia['other']['browse']['type']==1} selected{/if}>允许</option>
