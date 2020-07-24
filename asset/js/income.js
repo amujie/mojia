@@ -8,7 +8,7 @@ layui.define(['jquery'], function(exports) {
 			'html': function() {
 				var html = '';
 				$.each(mojia.global.info, function(nums, info) {
-					html += '<table class="layui-table"><tbody><tr><td colspan="8" style="padding:0">';
+					html += '<table class="layui-table"' + (location.href.indexOf('label/admin') != -1 ? ' style="margin-top:0"' : '') + '><tbody><tr><td colspan="8" style="padding:0">';
 					html += '<a target="_blank" href="' + info.link + '" title="' + info.name + '">';
 					html += '<img src="' + info.pics + '" alt="' + info.tips + '" style="max-width:100%;width:100%;" />';
 					html += '</a></td></tr></tbody></table>';
