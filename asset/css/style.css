@@ -571,30 +571,30 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 }
 @media(min-width:1400px) {
 	/* 1440 */
-	.mo-cols-sl1 {width: 8.33333333%}
-	.mo-cols-sl2 {width: 16.66666667%}
-	.mo-cols-sl3 {width: 25%}
-	.mo-cols-sl4 {width: 33.33333333%}
-	.mo-cols-sl5 {width: 41.66666667%}
-	.mo-cols-sl6 {width: 50%}
-	.mo-cols-sl7 {width: 58.33333333%}
-	.mo-cols-sl8 {width: 66.66666667%}
-	.mo-cols-sl9 {width: 75%}
-	.mo-cols-sl10 {width: 83.33333333%}
-	.mo-cols-sl11 {width: 91.66666667%}
-	.mo-cols-sl12 {width: 100%}
-	.mo-cols-sl1x {width: 10%}
+	.mo-cols-el1 {width: 8.33333333%}
+	.mo-cols-el2 {width: 16.66666667%}
+	.mo-cols-el3 {width: 25%}
+	.mo-cols-el4 {width: 33.33333333%}
+	.mo-cols-el5 {width: 41.66666667%}
+	.mo-cols-el6 {width: 50%}
+	.mo-cols-el7 {width: 58.33333333%}
+	.mo-cols-el8 {width: 66.66666667%}
+	.mo-cols-el9 {width: 75%}
+	.mo-cols-el10 {width: 83.33333333%}
+	.mo-cols-el11 {width: 91.66666667%}
+	.mo-cols-el12 {width: 100%}
+	.mo-cols-el1x {width: 10%}
 	.mo-cols-case {width: 82.5rem}
-	.mo-cosl-west {float: left;}
-	.mo-cosl-east {float: right;}
-	.mo-cosl-none {display: none !important}
-	.mo-cosl-block {display: block !important}
-	.mo-cosl-inline {display: inline !important}
-	.mo-cosl-iblock {display: inline-block !important}
-	.mo-cosl-table {display: table-cell !important}
-	.mo-cosl-left {text-align: left !important}
-	.mo-cosl-right {text-align: right !important}
-	.mo-cosl-center {text-align: center !important}
+	.mo-coel-west {float: left;}
+	.mo-coel-east {float: right;}
+	.mo-coel-none {display: none !important}
+	.mo-coel-block {display: block !important}
+	.mo-coel-inline {display: inline !important}
+	.mo-coel-iblock {display: inline-block !important}
+	.mo-coel-table {display: table-cell !important}
+	.mo-coel-left {text-align: left !important}
+	.mo-coel-right {text-align: right !important}
+	.mo-coel-center {text-align: center !important}
 }
 /* 通用组件 */
 .mo-part-curs {cursor: pointer}
