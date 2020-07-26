@@ -224,3 +224,4 @@ function moJiaUnzip($path, $name, $pass) {
 		return false;
 	}
 }
+?>
