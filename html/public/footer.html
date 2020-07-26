@@ -45,22 +45,8 @@
 {/if}
 <script src="{$cdnpath}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	var magic = {
-		'name': '{$initial}',
-		'base': '{$commons}',
-		'path': '{$install}',
-		'tpl': '{$template}',
-		'cdn': '{$cdnpath}'
-	};
-	layui.config({
-		version: '{$version}',
-		base: magic.cdn + 'asset/js/'
-	}).extend({
-		'{$initial}': '{/}' + {$mojia['other']['init']['state']==1?'magic.tpl':'magic.cdn'} + 'asset/js/{$initial}',
-		'{$commons}': '{/}' + {$mojia['other']['init']['state']==1?'magic.tpl':'magic.cdn'} + 'asset/js/{$commons}'
-	}).use([magic.name], function() {
-		layui[magic.name].moload.mojia();
-	});
+	var magic = {'path': '{$install}', 'tpl': '{$template}', 'cdn': '{$cdnpath}', 'ver': '{$version}'};
+	{:require(substr($template, strlen($install)).'asset/js/mojia.js')}
 </script>
 </body>
 </html>

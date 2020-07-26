@@ -1,7 +1,7 @@
 {if!is_array($vo)}{assign name="vo" value="$obj"}{/if}{assign name="image" value="[image]"}
 {assign name="chain" value="$mojia['other']['chain']['state']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true&&stristr($image,'//')==true?$template:'').(stristr($image,'//')==true?$mojia['other']['chain']['apis']:''):''"}
 <a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-bord-round mo-cols-rows{[style]}" href="{[href]}" data-original="{$chain.$image}"{if'[lazy]'=='shut'} style="background-image:url({$chain.$image})"{/if}>
-	{if'[title]'=='hide'&&stristr($maccms.aid,'4')==true}
+	{if'[title]'=='hide'&&in_array($maccms['aid'],explode(',','14,15,16,24,84,94,104,114'))}
 	<img class="mo-part-full" src="{$chain.$image}" alt="{[name]}" >
 	{/if}
 	<span class="mo-situ-play{if'[type]'!='vod'} mo-situ-npic{/if}"></span>

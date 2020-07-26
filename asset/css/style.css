@@ -597,6 +597,8 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	.mo-coel-center {text-align: center !important}
 }
 /* 通用组件 */
+.mo-part-hide {display: none !important}
+.mo-part-show {display: block !important}
 .mo-part-curs {cursor: pointer}
 .mo-part-coin {border-radius: 100%}
 .mo-part-hund {border-radius: 6.25rem}
@@ -784,6 +786,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-trea-info {min-width: 280px;max-width: 600px;}
 /* 主题设置 */
 .mo-main-info .mo-main-area {min-height: 38px;height: 38px;line-height: 38px;padding: 0px 10px;}
+.mo-main-info .mo-main-area::-webkit-input-placeholder {padding: 10px 0}
 /* 主题设置多选 */
 .mo-many-info .mo-many-this {background-color: white !important}
 /* 主题升级日志 */

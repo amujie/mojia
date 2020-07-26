@@ -1,4 +1,5 @@
-<?php return array (
+<?php 
+return array (
   'nav' => 
   array (
     'base' => 
@@ -1064,13 +1065,6 @@
       'debug' => '1',
       'state' => '1',
     ),
-    'init' => 
-    array (
-      'name' => '脚本名称',
-      'file' => 'global',
-      'base' => 'basics',
-      'state' => '0',
-    ),
     'demo' => 
     array (
       'name' => '站点演示',
@@ -1174,4 +1168,4 @@
       'code' => '',
     ),
   ),
-);?>
+);
