@@ -294,4 +294,3 @@ function moJiaCommon() {
 		die($output);
 	}
 }
-?>
