@@ -82,16 +82,6 @@ function moJiaOptions() {
 		if (file_put_contents(moJiaPath('path') . 'application/extra/maccms.php', '<?php return ' . var_export($option, true) . ';?>')) {
 			@unlink('../../../' . $_POST['tpl'] . '.zip');
 			$mojia = moJiaPath('mojia');
-			if ($mojia['other']['init']['state'] == 1 && $mojia['other']['init']['file'] && $mojia['other']['init']['file'] != 'global') {
-				if (!file_put_contents('../../asset/js/' . $mojia['other']['init']['file'] . '.js', file_get_contents('../../asset/js/global.js'))) {
-					die(json_encode(array('msg' => '入口脚本文件更新失败')));
-				}
-			}
-			if ($mojia['other']['init']['state'] == 1 && $mojia['other']['init']['base'] && $mojia['other']['init']['base'] != 'basics') {
-				if (!file_put_contents('../../asset/js/' . $mojia['other']['init']['base'] . '.js', file_get_contents('../../asset/js/basics.js'))) {
-					die(json_encode(array('msg' => '通用脚本文件更新失败')));
-				}
-			}
 			$option = @require (moJiaPath('path') . 'application/extra/maccms.php');
 			die(json_encode(array('msg' => $option['site']['template_dir'])));
 		} else {
@@ -139,16 +129,6 @@ function moJiaOptions() {
 				$taoke = moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list', array('pageSize' => '50', 'cids' => $_POST['mojia']['home']['taoke']['type'], 'juHuaSuan' => $_POST['mojia']['home']['taoke']['qiang'] == 1 ? 1 : '', 'taoQiangGou' => $_POST['mojia']['home']['taoke']['qiang'] == 2 ? 1 : '', 'tmall' => $_POST['mojia']['home']['taoke']['qiang'] == 3 ? 1 : '', 'tchaoshi' => $_POST['mojia']['home']['taoke']['qiang'] == 4 ? 1 : '', 'goldSeller' => $_POST['mojia']['home']['taoke']['qiang'] == 5 ? 1 : '', 'haitao' => $_POST['mojia']['home']['taoke']['qiang'] == 6 ? 1 : '', 'specialId' => $_POST['mojia']['home']['taoke']['brand'], 'sort' => $_POST['mojia']['home']['taoke']['sort'], 'version' => $_POST['mojia']['home']['taoke']['ver'], 'appKey' => $_POST['mojia']['other']['taoke']['key']), $_POST['mojia']['other']['taoke']['secret']);
 				if (!file_put_contents(moJiaPath('path') . 'application/extra/mojiatao.php', '<?php return ' . var_export(array_slice($taoke['data']['list'], 0, $_POST['mojia']['home']['taoke']['num']), true) . ';?>')) {
 					die(json_encode(array('msg' => '首页淘客数据更新失败')));
-				}
-			}
-			if ($_POST['mojia']['other']['init']['state'] == 1 && $_POST['mojia']['other']['init']['file'] && $_POST['mojia']['other']['init']['file'] != 'global') {
-				if (!file_put_contents('../../asset/js/' . $_POST['mojia']['other']['init']['file'] . '.js', file_get_contents('../../asset/js/global.js'))) {
-					die(json_encode(array('msg' => '入口脚本文件更新失败')));
-				}
-			}
-			if ($_POST['mojia']['other']['init']['state'] == 1 && $_POST['mojia']['other']['init']['base'] && $_POST['mojia']['other']['init']['base'] != 'basics') {
-				if (!file_put_contents('../../asset/js/' . $_POST['mojia']['other']['init']['base'] . '.js', file_get_contents('../../asset/js/basics.js'))) {
-					die(json_encode(array('msg' => '通用脚本文件更新失败')));
 				}
 			}
 			die(json_encode(array('msg' => '保存成功')));
@@ -314,3 +294,4 @@ function moJiaCommon() {
 		die($output);
 	}
 }
+?>
