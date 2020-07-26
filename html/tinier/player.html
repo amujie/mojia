@@ -1,10 +1,10 @@
 {if$obj.vod_play_list&&$maccms.aid!=16&&$maccms.aid!=17}{assign name="short['sid']" value="$param['sid']"}
 {if in_array(mac_default($user['group_id'],1), explode(',',$mojia['advs']['list']['group']))}
 <div class="mo-back-white mo-mtxs-10px mo-mtmd-20px">
-{$mojia['advs']['list']['area']}
+{:moJiaHtmlTags($mojia['advs']['list']['area'])}
 </div>
 {/if}{if$maccms.aid!=15}{assign name="param['sid']" value=":key($obj.vod_play_list)"}{/if}
-<div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over">
+<div class="mo-cols-lays mo-back-white mo-part-round mo-cols-rows mo-part-over">
 	<div class="mo-sort-head mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-cols-zero mo-part-slip mo-cols-xs8 mo-cols-sm9 mo-cols-lg10">
 			{maccms:foreach name="obj.vod_play_list" id="sub"}
@@ -19,7 +19,7 @@
 	{maccms:foreach name="obj.vod_play_list" id="par"}
 	<ul class="mo-movs-item mo-sort-boxs mo-cols-rows mo-pamd-5px{if$maccms.aid==15}{if$par.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']} mo-cols-show{else} mo-cols-hide{/if}{elseif$key==$param['sid']} mo-cols-show{else} mo-cols-hide{/if}">
 		{maccms:foreach name="obj['vod_play_list'][$par['sid']]['urls']" id="sub"}
-		<li class="mo-paxs-5px{if strpos($sub.name,'第')!==false&&strpos($sub.name,'集')!==false} mo-cols-info mo-cols-xs2 mo-cols-lg1{else} mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-md3 mo-cols-lg2{/if}">
+		<li class="mo-paxs-5px{if is_numeric($sub.name)||strpos($sub.name,'第')!==false&&strpos($sub.name,'集')!==false} mo-cols-info mo-cols-xs2 mo-cols-lg1{else} mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-md3 mo-cols-lg2{/if}">
 			<a class="mo-part-btns mo-fsxs-14px mo-bord-muted mo-bord-round mo-cols-show mo-wrap-arow mo-lhxs-40px mo-back-click mo-back-write{if$key==$param.nid&&$par.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}" href="{:mac_url_vod_play($obj,['sid'=>$par['sid'],'nid'=>$sub.nid])}"{if$maccms.aid==14} target="{$obj['vod_play_list'][$param['sid']]['player_info']['target']}"{/if}>{:str_replace(array('第','集'),'',$sub.name)}</a>
 		</li>
 		{/maccms:foreach}

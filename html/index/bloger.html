@@ -1,8 +1,8 @@
 {if$mojia['home']['blog']['state']||$maccms.mid==2}
-<div class="mo-cols-rows mo-java-theia">
+<div class="mo-cols-rows mo-part-over mo-java-theia">
 	<div class="mo-cols-info mo-cols-xs12 mo-cols-lg8 mo-java-side">
 		{maccms:type ids="'.$mojia['home']['blog']['type'].'" order="asc" by="sort" flag="art" id="magic"}
-		<div class="mo-cols-lays mo-back-white">
+		<div class="mo-cols-lays mo-back-white mo-part-round">
 			{include file="basics/titles" module="blog" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
 			{maccms:art num="'.$mojia['home']['blog']['num'].'" type="'.$magic['type_id'].'" level="'.$mojia['home']['blog']['level'].'" order="'.$mojia['home']['blog']['order'].'" by="'.$mojia['home']['blog']['sort'].'"}
 			{include file="module/artist"}

@@ -1,4 +1,4 @@
-<div class="mo-swip-container mo-cols-rows{[top]}">
+<div class="mo-swip-container mo-cols-rows mo-part-round{[top]}">
 	<ul class="mo-swip-wrapper mo-cols-zero">
 		{maccms:foreach name="[data]"}{assign name="type" value="$vo['type']['type_mid']?mac_get_mid_code($vo['type']['type_mid']):'topic'"}
 		{assign name="image" value="[image]"}{assign name="image" value=":('[type]'=='index')?mac_url_img(trim(mac_default($vo[$type.'_pic_slide'],$vo[$type.'_pic']))):$image"}

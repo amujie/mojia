@@ -1,10 +1,10 @@
 {include file="public/header"}
 {php}$magic_actor = array_filter(array_merge(model("Vod")->listCacheData('{"actor":"'.$obj['actor_name'].'","order":"desc","by":"time"}')['list'],model("Vod")->listCacheData('{"director":"'.$obj['actor_name'].'","order":"desc","by":"time"}')['list']));{/php}
 {php}$magic_role = model("Role")->listCacheData('{"actor":"'.$obj['actor_name'].'"}')['list'];{/php}
-<div class="mo-cols-lays mo-back-white mo-cols-rows">
+<div class="mo-cols-lays mo-back-white mo-part-round mo-cols-rows">
 	{include file="module/actors"}
 </div>
-<div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over mo-java-page">
+<div class="mo-cols-lays mo-back-white mo-part-round mo-cols-rows mo-part-over mo-java-page">
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-part-slip mo-cols-xs10">
 			<a class="mo-tabs-btns mo-mrxs-5px mo-mrmd-10px mo-text-mojia" href="javascript:;">明星简介</a>

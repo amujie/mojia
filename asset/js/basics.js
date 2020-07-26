@@ -13,7 +13,6 @@ layui.define(['jquery'], function(exports) {
 				mojia.global.passer();
 				mojia.global.verify();
 				mojia.global.jumper(3);
-				mojia.picing.init('.mo-situ-lazy');
 				var screen = [['.mo-movs-btns', '.mo-movs-item'], ['.mo-down-btns', '.mo-down-item'], ['.mo-tabs-btns', '.mo-tabs-item'], ['.mo-face-btns', '.mo-face-item'], ['.mo-pops-hots', '.mo-pops-boxs']];
 				for (var i = 0; i < screen.length; i++) {
 					mojia.global.tabser(screen[i][0], screen[i][1], 'mo-text-mojia mo-part-bans');
@@ -467,14 +466,14 @@ layui.define(['jquery'], function(exports) {
 									}
 								}
 							});
+							$(document).on('click', '.mo-have-shut', function() {
+								layer.closeAll();
+							});
 						});
 					});
 				});
 			},
 			'canvas': function(url, index) {
-				$(document).on('click', '.mo-have-shut', function() {
-					layer.close(index);
-				});
 				$(document).on('click', '.mo-have-btns', function() {
 					var that = $(this);
 					that.text('生成中...').removeClass('mo-have-btns');
@@ -1228,5 +1227,5 @@ layui.define(['jquery'], function(exports) {
 			}
 		}
 	};
-	exports('common', mojia);
+	exports(magic.base, mojia);
 });

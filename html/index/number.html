@@ -1,5 +1,5 @@
 {if$mojia['home']['small']['state']}
-<div class="mo-cols-lays mo-back-white mo-cols-rows">
+<div class="mo-cols-lays mo-back-white mo-part-round mo-cols-rows">
 	<div class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs12 mo-cols-lg5">
 		{php}$__LIST1__ = $mojia['home']['small']['advs']?model("Art")->listCacheData('{"ids":"'.$mojia['home']['small']['advs'].'"}')['list']:array('list'=>array());{/php}
 		{php}$__LIST2__ = model('Topic')->listCacheData('{"num":"'.$mojia['home']['small']['num'].'","order":"'.$mojia['home']['small']['order'].'","by":"'.$mojia['home']['small']['sort'].'","level":"'.$mojia['home']['small']['level'].'"}')['list'];{/php}

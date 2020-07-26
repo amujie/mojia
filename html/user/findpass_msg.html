@@ -1,29 +1,29 @@
 {include file="public/header"}
-<div class="mo-cols-lays mo-back-white">
+<div class="mo-cols-lays mo-back-white mo-part-round">
 	<div class="mo-part-maxw mo-part-patb">
 		<h2 class="mo-fsxs-18px mo-coxs-center">{$param['ac_text']}找回密码</h2>
 		<form class="layui-form mo-user-form mo-cols-rows mo-pnxs-15px mo-lhxs-40px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
 			<input type="hidden" name="ac" value="{$param['ac']}">
 			<div class="mo-cols-rows mo-mtxs-5px">
 				<span class="mo-form-name">{$param['ac_text']}</span>
-				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="{$param['ac']=='phone'?'tel':$param['ac']}"  name="to" placeholder="请输入您绑定的{$param['ac_text']}" maxlength="40" />
+				<input class="mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="{$param['ac']=='phone'?'tel':$param['ac']}"  name="to" placeholder="请输入您绑定的{$param['ac_text']}" maxlength="40" />
 			</div>
 			<div class="mo-cols-rows mo-mtxs-5px">
 				<span class="mo-form-name">验证</span>
-				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="code" placeholder="请输入邮{$param['ac_text']}证码" maxlength="8" />
+				<input class="mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="code" placeholder="请输入邮{$param['ac_text']}证码" maxlength="8" />
 				<a class="mo-part-more mo-prxs-10px mo-pnxs-10px mo-lhxs-40px mo-back-white" href="javascript:;" data-url="{:mac_url('user/findpass_msg')}" lay-submit lay-filter="bindmsg">获取验证码</a>
 			</div>
 			<div class="mo-cols-rows mo-mtxs-5px">
 				<span class="mo-form-name">密码</span>
-				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd" placeholder="请输入密码" maxlength="20" />
+				<input class="mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd" placeholder="请输入密码" maxlength="20" />
 			</div>
 			<div class="mo-cols-rows mo-mtxs-5px">
 				<span class="mo-form-name">密码</span>
-				<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd2" placeholder="再次输入密码" maxlength="20" />
+				<input class="mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd2" placeholder="再次输入密码" maxlength="20" />
 			</div>
 			<div class="mo-cols-rows mo-mtxs-5px">
 				<span class="mo-form-name">验证</span>
-				<input class="mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="verify" placeholder="输入验证码" maxlength="6" />
+				<input class="mo-form-text mo-text-input mo-bord-muted mo-form-righ mo-cols-info mo-cols-xs12" type="tel" name="verify" placeholder="输入验证码" maxlength="6" />
 				<img class="mo-part-more mo-part-curs mo-java-verify" height="44" src="{:mac_url('verify/index')}" title="看不清楚? 换一张！" />
 			</div>
 			<span class="mo-user-tips mo-lhxs-20px mo-text-gules mo-paxs-5px mo-cols-show">&emsp;</span>

@@ -1,16 +1,16 @@
 <form class="mo-pops-form mo-cols-rows mo-pnxs-15px mo-lhxs-40px mo-java-event" autocomplete="off" action="{:mac_url('user/login')}" data-jump="{:mac_url('user/index')}">
 	<div class="mo-cols-rows mo-mtxs-5px">
 		<span class="mo-form-name">账号</span>
-		<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="text" name="user_name" placeholder="账号/邮箱/手机号" maxlength="16" />
+		<input class="mo-form-text mo-text-muted mo-bord-muted mo-cols-info mo-cols-xs12" type="text" name="user_name" placeholder="账号/邮箱/手机号" maxlength="16" />
 	</div>
 	<div class="mo-cols-rows mo-mtxs-5px">
 		<span class="mo-form-name">密码</span>
-		<input class="mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd" placeholder="输入密码" maxlength="20" />
+		<input class="mo-form-text mo-text-muted mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd" placeholder="输入密码" maxlength="20" />
 	</div>
 	{if$GLOBALS['config']['user']['login_verify']}
 	<div class="mo-cols-rows mo-mtxs-5px">
 		<span class="mo-form-name">验证</span>
-		<input class="mo-form-text mo-form-righ mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="verify" placeholder="输入验证码" maxlength="4" />
+		<input class="mo-form-text mo-text-input mo-bord-muted mo-form-righ mo-cols-info mo-cols-xs12" type="tel" name="verify" placeholder="输入验证码" maxlength="4" />
 		<img class="mo-part-more mo-part-curs mo-java-verify" height="44" src="{:mac_url('verify/index')}" title="看不清楚? 换一张！" />
 	</div>
 	{/if}

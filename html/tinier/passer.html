@@ -5,7 +5,7 @@
 	<form class="mo-pnxs-15px mo-lhxs-40px mo-pops-form mo-cols-rows mo-java-event" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
 		<div class="mo-cols-rows mo-mtxs-5px">
 			<span class="mo-form-name">密码</span>
-			<input class="mo-pass-text mo-form-text mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="pwd" placeholder="请输入密码" maxlength="32">
+			<input class="mo-pass-text mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="pwd" placeholder="请输入密码" maxlength="32">
 			{if$obj[mac_get_mid_code($maccms['mid']).'_pwd[mold]_url']}
 			<a class="mo-part-more mo-prxs-10px mo-pnxs-10px mo-lhxs-44px mo-back-white" href="{$obj[mac_get_mid_code($maccms['mid']).'_pwd[mold]_url']}" target="_blank">获取密码</a>
 			{else}

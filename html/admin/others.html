@@ -18,6 +18,17 @@
 		</thead>
 		<tbody>
 			<tr>
+				<td><input type="input" name="mojia[other][edit][name]" value="{$mojia['other']['edit']['name']}" class="layui-input" placeholder="后台入口"></td>
+				<td><input type="input" name="mojia[other][edit][link]" value="{$mojia['other']['edit']['link']}" class="layui-input" placeholder="请填写后台入口文件,如admin.php"></td>
+				<td colspan="2">
+					<select name="mojia[other][edit][state]" lay-verify="">
+						<option value="1"{if$mojia['other']['edit']['state']==1} selected{/if}>开启详情页编辑按钮</option>
+						<option value="0"{if$mojia['other']['edit']['state']==0} selected{/if}>关闭详情页编辑按钮</option>
+					</select>
+				</td>
+				<td>填写正确的入口文件主题相关组件才能正常工作</td>
+			</tr>
+			<tr>
 				<td><input type="input" name="mojia[other][close][name]" value="{$mojia['other']['close']['name']}" class="layui-input" placeholder="站点状态"></td>
 				<td><input type="input" name="mojia[other][close][tips]" value="{$mojia['other']['close']['tips']}" class="layui-input" placeholder="请填写站点关闭提示"></td>
 				<td colspan="2"><input type="input" name="mojia[other][close][time]" value="{$mojia['other']['close']['time']}" class="layui-input mo-date-time" placeholder="请填写下次开启站点时间"></td>
@@ -41,25 +52,12 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="input" name="mojia[other][init][name]" value="{$mojia['other']['init']['name']}" class="layui-input" placeholder="脚本入口"></td>
-				<td><input type="input" name="mojia[other][init][file]" value="{$mojia['other']['init']['file']}" class="layui-input" placeholder="自定义脚本入口文件名称"></td>
-				<td colspan="2">
-					<select name="mojia[other][init][exclu]" lay-verify="">
-						<option value="0"{if$mojia['other']['init']['exclu']==0} selected{/if}>远程加载通用脚本</option>
-						<option value="1"{if$mojia['other']['init']['exclu']==1} selected{/if}>本地加载通用脚本</option>
-					</select>
-				</td>
+				<td><input type="input" name="mojia[other][init][name]" value="{$mojia['other']['init']['name']}" class="layui-input" placeholder="脚本名称"></td>
+				<td><input type="input" name="mojia[other][init][file]" value="{$mojia['other']['init']['file']}" class="layui-input" placeholder="自定义入口脚本文件名称"></td>
+				<td colspan="2"><input type="input" name="mojia[other][init][base]" value="{$mojia['other']['init']['base']}" class="layui-input" placeholder="自定义通用脚本文件名称"></td>
 				<td>
 					<input type="radio" name="mojia[other][init][state]" value="1" title="开启"{if$mojia['other']['init']['state']==1} checked{/if}>
 					<input type="radio" name="mojia[other][init][state]" value="0" title="关闭"{if$mojia['other']['init']['state']==0} checked{/if}>
-				</td>
-			</tr>
-			<tr>
-				<td><input type="input" name="mojia[other][edit][name]" value="{$mojia['other']['edit']['name']}" class="layui-input" placeholder="编辑按钮"></td>
-				<td colspan="3"><input type="input" name="mojia[other][edit][link]" value="{$mojia['other']['edit']['link']}" class="layui-input" placeholder="请填写后台入口文件,如admin.php"></td>
-				<td>
-					<input type="radio" name="mojia[other][edit][state]" value="1" title="开启"{if$mojia['other']['edit']['state']==1} checked{/if}>
-					<input type="radio" name="mojia[other][edit][state]" value="0" title="关闭"{if$mojia['other']['edit']['state']==0} checked{/if}>
 				</td>
 			</tr>
 			<tr>
@@ -94,19 +92,23 @@
 				<td>微信公众号二维码</td>
 			</tr>
 			<tr>
-				<td rowspan="2"><input type="input" name="mojia[other][share][name]" value="{$mojia['other']['share']['name']}" class="layui-input" placeholder="分享设置"></td>
-				<td><input type="input" name="mojia[other][share][apis]" value="{$mojia['other']['share']['apis']}" class="layui-input" placeholder="请填写短连接API地址(仅支持TXT)"></td>
+				<td rowspan="3"><input type="input" name="mojia[other][share][name]" value="{$mojia['other']['share']['name']}" class="layui-input" placeholder="分享设置"></td>
 				<td><input type="input" name="mojia[other][share][host]" value="{$mojia['other']['share']['host']}" class="layui-input" placeholder="自定义域名"></td>
-				<td>
+				<td colspan="2">
 					<select name="mojia[other][share][agent]" lay-verify="">
-						<option value="1"{if$mojia['other']['share']['agent']==1} selected{/if}>代理</option>
-						<option value="0"{if$mojia['other']['share']['agent']==0} selected{/if}>默认</option>
+						<option value="1"{if$mojia['other']['share']['agent']==1} selected{/if}>开启代理加载图片模式</option>
+						<option value="0"{if$mojia['other']['share']['agent']==0} selected{/if}>关闭代理加载图片模式</option>
 					</select>
 				</td>
 				<td>
 					<input type="radio" name="mojia[other][share][state]" value="1" title="开启"{if$mojia['other']['share']['state']==1} checked{/if}>
 					<input type="radio" name="mojia[other][share][state]" value="0" title="关闭"{if$mojia['other']['share']['state']==0} checked{/if}>
 				</td>
+			</tr>
+			<tr>
+				<td><input type="input" name="mojia[other][share][apis]" value="{$mojia['other']['share']['apis']}" class="layui-input" placeholder="请填写短连接API地址"></td>
+				<td colspan="2"><textarea name="mojia[other][share][regex]" class="layui-textarea mo-main-area" placeholder="正则表达式：/(.*)/i">{$mojia['other']['share']['regex']}</textarea></td>
+				<td><a href="https://www.runoob.com/regexp/regexp-syntax.html" target="_blank"><font color="red">正则表达式</font></a>&nbsp;正则获取短连接地址</td>
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][share][image]" value="{$mojia['other']['share']['image']}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
@@ -184,7 +186,7 @@
 			</tr>
 			<tr>
 				<td><input type="input" name="mojia[other][browse][name]" value="{$mojia['other']['browse']['name']}" class="layui-input" placeholder="浏览控制"></td>
-				<td colspan="2"><input type="input" name="mojia[other][browse][rule]" value="{$mojia['other']['browse']['rule']}" class="layui-input mo-java-brow" placeholder="请填写正则表达式"></td>
+				<td colspan="2"><textarea name="mojia[other][browse][rule]" class="layui-textarea mo-main-area mo-java-brow" placeholder="请填写正则表达式">{$mojia['other']['browse']['rule']}</textarea></td>
 				<td>
 					<select name="mojia[other][browse][type]" lay-verify="">
 						<option value="1"{if$mojia['other']['browse']['type']==1} selected{/if}>允许</option>

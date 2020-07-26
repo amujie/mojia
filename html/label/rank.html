@@ -1,11 +1,11 @@
 {assign name="maccms['aid']" value="72"}
 {include file="public/header"}
-<div class="mo-cols-lays mo-back-white">
+<div class="mo-cols-lays mo-back-white mo-part-round">
 	<h1 class="mo-paxs-5px mo-pamd-10px mo-coxs-center mo-fsxs-18px">本站热门排行</h1>
 </div>
 <div class="mo-cols-case mo-cols-rows">
 	{maccms:type num="24" order="asc" by="sort" flag="vod" id="magic"}
-	<div class="mo-cols-lays mo-back-white mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg4">
+	<div class="mo-cols-lays mo-back-white mo-part-round mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg4">
 		{include file="basics/titles" module="rank" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
 		{include file="basics/charts" type="mac_default($magic['type_id'])" name=":mac_filter_html($vo['vod_name'])" href=":mac_url_vod_detail($vo)"}
 	</div>

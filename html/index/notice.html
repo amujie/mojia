@@ -1,13 +1,13 @@
 {if$mojia['home']['note']['state']}
 {if$maccms.aid==1&&$mojia['home']['note']['index']}{maccms:art ids="'.$mojia['home']['note']['index'].'" order="desc" by="time"}
-<div class="{if$banner!=1}mo-cols-lays {else}mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px {/if}mo-back-white">
+<div class="{if$banner!=1}mo-cols-lays {else}mo-mtxs-0px mo-mtsm-10px mo-mtmd-20px {/if}mo-back-white mo-part-round">
 	<div class="mo-word-info mo-paxs-5px mo-pamd-10px">
 		{$mojia['home']['note']['type']?mac_url_content_img($vo.art_content):'<marquee>'.mac_url_content_img($vo.art_content).'</marquee>'}
 	</div>
 </div>
 {/maccms:art}{/if}
 {if$maccms.aid==4&&$mojia['home']['note']['gbook']}{maccms:art ids="'.$mojia['home']['note']['gbook'].'" order="desc" by="time"}
-<div class="mo-cols-lays mo-back-white">
+<div class="mo-cols-lays mo-back-white mo-part-round">
 	<div class="mo-word-info mo-paxs-5px mo-pamd-10px">
 		{$mojia['home']['note']['gtype']?mac_url_content_img($vo.art_content):'<marquee>'.mac_url_content_img($vo.art_content).'</marquee>'}
 	</div>

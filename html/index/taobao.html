@@ -1,5 +1,5 @@
 {if$mojia['home']['taoke']['state']}{assign name="taoke" value=":file_exists('application/extra/mojiatao.php')?require('application/extra/mojiatao.php'):require(substr($template,strlen($install)).'asset/exc/taobao.php')"}
-<div class="mo-cols-lays mo-back-white">
+<div class="mo-cols-lays mo-back-white mo-part-round">
 	{include file="basics/titles" module="taoke" title=":mac_default($mojia['home']['taoke']['name'])" btns="更多" href=":mac_url('label/index')"}
 	<ul class="mo-cols-rows mo-java-taoke" data-taoke="{:in_array($maccms['mid'],explode(',',$mojia['other']['taoke']['type']))}">
 		{maccms:foreach name="$taoke"}

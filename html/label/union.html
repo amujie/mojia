@@ -20,9 +20,9 @@
 <script type="text/javascript">
 	layui.config({
 		version: '{$version}',
-		base: magic.tpl + 'asset/js/'
+		base: {:stristr($mojia['other']['cdns']['link'],'amujie/mojia')==true?'magic.cdn':'magic.tpl'} + 'asset/js/'
 	}).extend({
-		income: '{/}' + {$mojia['other']['init']['exclu']==1?'magic.tpl':"'https://cdn.jsdelivr.net/gh/amujie/mojia@master/'"} + 'asset/js/income'
+		income: '{/}https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/js/income'
 	}).use(['union'], function() {
 		layui.union.global.init();
 	});

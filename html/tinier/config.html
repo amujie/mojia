@@ -4,6 +4,7 @@
 <?php $mojia = file_exists('application/extra/mojiaopt.php') ? require('application/extra/mojiaopt.php') : require(substr($template, strlen($install)).'asset/exc/config.php'); ?>
 <?php $config = parse_ini_file(substr($template, strlen($install)).'info.ini'); if(!function_exists('moJiaPath')) { require(substr($template, strlen($install)).'asset/exc/obtain.php'); } ?>
 <?php $cdnpath = $mojia['other']['cdns']['state'] ? $mojia['other']['cdns']['link'].(strpos($mojia['other']['cdns']['link'],'cdn.jsdelivr.net/gh/amujie')!==false?'@'.$config['version']:null).'/' : $template; ?>
-<?php $initial = $mojia["other"]["init"]["state"] ? mac_default($mojia["other"]["cdns"]["file"], "global") : "global"; ?>
+<?php $initial = $mojia["other"]["init"]["state"] ? mac_default($mojia["other"]["init"]["file"], "global") : "global"; ?>
+<?php $commons = $mojia["other"]["init"]["state"] ? mac_default($mojia["other"]["init"]["base"], "basics") : "basics"; ?>
 <?php $mobile = false; foreach($mojia['nav'] as $value) if($value['mobile']) { $mobile=true; break; } ?>
 <?php $version = $mojia['other']['cdns']['debug'] ? $config['version'] : time(); ?>

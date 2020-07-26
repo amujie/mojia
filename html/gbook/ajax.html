@@ -4,7 +4,7 @@
 	{assign name="userinfo" value=":model('User')->listData(array('user_id'=>$vo['user_id']),'user_id desc',1)['list'][0]"}
 	<li class="mo-part-btsd mo-bord-muted mo-ptxs-5px mo-ptmd-10px mo-mtxs-5px mo-mrxs-5px mo-mlxs-5px"></li>
 	<li class="mo-cols-rows mo-maxs-5px mo-mamd-10px">
-		<img class="mo-comm-avat mo-part-peer mo-part-coin" src="{$userinfo['user_qq']?'http://q1.qlogo.cn/g?b=qq&nk='.$userinfo['user_qq'].'&s=640':str_replace('/static/images/touxiang.png',$cdnpath.'asset/img/avatar.png',mac_get_user_portrait($vo['user_id']))}" />
+		<img class="mo-comm-avat mo-part-peer mo-part-coin" src="{$userinfo['user_qq']?'http://q1.qlogo.cn/g?b=qq&nk='.$userinfo['user_qq'].'&s=640':str_replace($install.'static/images/touxiang.png',$cdnpath.'asset/img/avatar.png',mac_get_user_portrait($vo['user_id']))}" />
 		<div class="mo-comm-left">
 			<span class="mo-part-bold">{:mac_default($userinfo['user_nick_name'],$vo['gbook_name'])}</span>
 			<span class="mo-part-more mo-fsxs-12px mo-fssm-14px">{$vo.gbook_time|mac_day}</span>

@@ -1,6 +1,6 @@
 {include file="public/header,tinier/screen"}
 {if$obj.childids}{maccms:type ids="current" order="asc" by="sort" id="magic"}
-<div class="mo-cols-lays mo-back-white">
+<div class="mo-cols-lays mo-back-white mo-part-round">
 	{include file="basics/titles" module="type" title=":mac_filter_html($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
 	<ul class="mo-cols-rows">
 		{maccms:website num="12" type="'.$magic['type_id'].'" order="desc" by="time"}
@@ -11,7 +11,7 @@
 	</ul>
 </div>
 {/maccms:type}{else}
-<div class="mo-cols-lays mo-back-white">
+<div class="mo-cols-lays mo-back-white mo-part-round">
 	{include file="basics/titles" module="child" title=":mac_filter_html($obj.type_name)" btns="返回" href=":mac_default($obj.parent?mac_url_type($obj.parent):mac_url(mac_get_mid_code($maccms.mid).'/index'))"}
 	<ul class="mo-cols-rows">
 		{maccms:website num="48" paging="yes" half="3" type="current" order="desc" by="time"}

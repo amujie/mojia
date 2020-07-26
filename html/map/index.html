@@ -1,9 +1,9 @@
 {include file="public/header"}
-<div class="mo-cols-lays mo-back-white">
+<div class="mo-cols-lays mo-back-white mo-part-round">
 	<h1 class="mo-paxs-5px mo-pamd-10px mo-coxs-center mo-fsxs-18px">分类导航</h1>
 </div>
 {maccms:type ids="parent" order="asc" by="sort" id="magic"}
-<div class="mo-cols-lays mo-back-white">
+<div class="mo-cols-lays mo-back-white mo-part-round">
 	{include file="basics/titles" module="type" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
 	<ul class="mo-cols-rows">
 		{maccms:type parent="'.$magic['type_id'].'" order="asc" by="sort"}

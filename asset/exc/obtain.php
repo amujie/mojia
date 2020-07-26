@@ -4,7 +4,6 @@
  * 网址:https://amujie.com
  * QQ:1570457334
  */
-
 // 主题路径
 function moJiaPath($path) {
 	$install = '../../../../';

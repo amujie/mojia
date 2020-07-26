@@ -1,5 +1,5 @@
-layui.define(['jquery', 'layer', 'common'], function(exports) {
-	var common = layui.common,
+layui.define(['jquery', 'layer', magic.base], function(exports) {
+	var common = layui[magic.base],
 		layer = layui.layer,
 		$ = layui.jquery;
 	var mojia = {

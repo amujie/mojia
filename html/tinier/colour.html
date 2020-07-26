@@ -24,11 +24,13 @@
 	.mo-text-muted {color: {$mojia['color']['dusts']['text']|mac_default='#666666'}!important}
 	.mo-text-gules {color: {$mojia['color']['gules']['text']|mac_default='#ff0d29'}!important}
 	.mo-text-green {color: {$mojia['color']['green']['text']|mac_default='#28bd98'}!important}
+	.mo-text-input {color: {$mojia['color']['input']['text']|mac_default='#333333'}!important}
 	.mo-text-blush {color: {$mojia['color']['blush']['text']|mac_default='#ff6f6f'}!important}
 	.mo-text-disad {color: {$mojia['color']['disad']['text']|mac_default='#999999'}!important}
 	.mo-text-mojia {color: {$mojia['color']['mojia']['back']|mac_default='#ff5f00'}!important}
 	.mo-text-hover:hover {color: {$mojia['color']['mojia']['back']|mac_default='#ff5f00'} !important}
 	.mo-lazy-color {background-color: {$mojia['color']['lazys']['back']|mac_default='#dedede'} !important;color: {$mojia['color']['lazys']['text']|mac_default='#333333'} !important}
+	@media(min-width:768px) {.mo-part-round {border-radius: {$mojia['other']['part']['round']} !important}}
 	{if$mojia['other']['bigs']['pics']}
 	.mo-lazy-broad {background-image: url("{$mojia['other']['bigs']['pics']|mac_url_img}")}
 	{/if}{if$mojia['other']['lazy']['pics']}
@@ -69,6 +71,7 @@
 	.mo-text-muted {color: #666666!important}
 	.mo-text-gules {color: #ff0d29!important}
 	.mo-text-green {color: #28bd98!important}
+	.mo-text-input {color: #999999!important}
 	.mo-text-blush {color: #ff6f6f!important}
 	.mo-text-disad {color: #aaaaaa!important}
 	.mo-text-mojia {color: #d3b270!important}

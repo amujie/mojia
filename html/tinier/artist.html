@@ -1,6 +1,6 @@
 <div class="mo-cols-rows mo-java-theia">
 	<div class="mo-cols-info mo-cols-xs12 mo-cols-lg8 mo-java-side">
-		<div class="mo-cols-lays mo-back-white">
+		<div class="mo-cols-lays mo-back-white mo-part-round">
 			<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px mo-comd-center">
 				<h1 class="mo-fsxs-18px mo-fsmd-24px">{$obj.art_name|mac_filter_html}</h1>
 				<div class="mo-pzxs-5px mo-ptmd-10px mo-text-muted mo-cols-zero">
@@ -17,7 +17,7 @@
 			{include file="tinier/paging"}
 		</div>
 		{if$GLOBALS['config']['comment']['status']&&$maccms.mid!=20}
-		<div class="mo-cols-lays mo-back-white mo-cols-rows mo-part-over">
+		<div class="mo-cols-lays mo-back-white mo-part-round mo-cols-rows mo-part-over">
 			{include file="basics/titles" module="type" title=":mac_filter_html('发表评论')" more="hide" href=":mac_url_type($magic)"}
 			<div class="mo-cols-rows mo-part-over">
 				<div class="mo-comm-critic"></div>

@@ -133,8 +133,8 @@ layui.define(['jquery', 'layer', 'form', 'upload', 'clipboard'], function(export
 					$('input[name="paytype"]').val($(this).val());
 				});
 				$('input[name="payment"]').click(function() {
-					$('.mo-tabs-item').hide();
-					$('.mo-tabs-' + $(this).val()).show();
+					$('.mo-tabs-item').hide().fadeOut();
+					$('.mo-tabs-' + $(this).val().toLowerCase()).fadeIn();
 					$('input[name="paytype"]').val($('.mo-tabs-' + $(this).val()).show().find('input[name="' + $(this).val() + '"]:checked').val());
 				});
 			},

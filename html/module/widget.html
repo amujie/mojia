@@ -1,4 +1,4 @@
-<div class="mo-cols-lays mo-back-white mo-mlmd-20px">
+<div class="mo-cols-lays mo-back-white mo-part-round mo-mlmd-20px">
 	{assign name="advert" value="$mojia['home']['blog']['advs']?'1':'0'"}{if$advert}
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		{maccms:art ids="'.$mojia['home']['blog']['advs'].'" order="desc" by="time"}
@@ -11,7 +11,7 @@
 	</ul>
 	{/if}
 </div>
-<div class="mo-cols-lays mo-back-white mo-mlmd-20px">
+<div class="mo-cols-lays mo-back-white mo-part-round mo-mlmd-20px">
 	{include file="basics/titles" module="rank" title=":mac_default('热门排行')" btns="更多" href=":mac_url('label/rank')"}
 	{include file="basics/charts" type="all" name=":mac_filter_html($vo['vod_name'])" href=":mac_url_vod_detail($vo)"}
 </div>

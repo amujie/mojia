@@ -541,6 +541,11 @@
       'name' => '评论反对',
       'text' => '#ff6f6f',
     ),
+	'input' =>
+	array (
+	  'name' => '文本输入',
+	  'text' => '#333333',
+	),
   ),
   'advs' => 
   array (
@@ -1039,6 +1044,12 @@
   ),
   'other' => 
   array (
+    'edit' =>
+    array (
+      'name' => '后台入口',
+      'link' => 'admin.php',
+      'state' => '1',
+    ),
     'close' => 
     array (
       'name' => '站点状态',
@@ -1055,16 +1066,10 @@
     ),
     'init' => 
     array (
-      'name' => '脚本入口',
+      'name' => '脚本名称',
       'file' => 'global',
-      'exclu' => '0',
+      'base' => 'basics',
       'state' => '0',
-    ),
-    'edit' => 
-    array (
-      'name' => '编辑按钮',
-      'link' => 'admin.php',
-      'state' => '1',
     ),
     'demo' => 
     array (
@@ -1089,10 +1094,11 @@
     'share' => 
     array (
       'name' => '分享设置',
-      'apis' => '',
       'host' => '',
       'agent' => '0',
       'state' => '1',
+      'apis' => '',
+      'regex' => '/(.*)/i',
       'image' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/image.jpg',
     ),
     'icon' => 

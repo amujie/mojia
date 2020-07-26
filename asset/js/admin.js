@@ -304,15 +304,21 @@ layui.define(['income', 'iconfonts', 'multiple', 'sortable'], function(exports) 
 			},
 			'record': function(newmojia, password) {
 				$.post(magic.tpl + 'asset/exc/create.php?id=opt', 'ver=log&new=' + newmojia, function(data) {
-					var output = '<table class="layui-table mo-logs-form"><tbody>';
-					for (var i = 0; i < data[newmojia].length; i++) output += '<tr><td width="20" align="center" class="mo-logs-nums">' + (i + 1) + '</td><td class="mo-logs-item">' + data[newmojia][i] + '</td></tr>';
-					output += '</tbody></table>';
+					var output = '<table class="layui-table mo-logs-form">';
+					$.each(data, function(nums, info) {
+						if (newmojia == nums) output += '<thead></thead>';
+						else output += '<thead><tr><th colspan="2" scope="col" style="font-weight:bold">' + nums + ' 版更新日志</th></tr></thead>';
+						output += '<tbody>';
+						for (var i = 0; i < info.length; i++) output += '<tr><td width="20" align="center" class="mo-logs-nums">' + (i + 1) + '</td><td class="mo-logs-item">' + info[i] + '</td></tr>';
+						output += '</tbody>';
+					});
+					output += '</table>';
 					$(document).on('click', '.mo-opts-btns', function() {
 						layer.confirm(output, {
 							area: 'auto',
 							maxWidth: '50%',
 							maxHeight: '400',
-							title: '最新版更新日志',
+							title: '最新版' + newmojia + '更新日志<font color="red">(静态页面需重新生成)</font>',
 							btn: ['立即更新', '取消更新'],
 							skin: 'mo-logs-info',
 							success: function() {

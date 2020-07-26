@@ -3,7 +3,7 @@
 {assign name="goodlist" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list',array('sort'=>($_GET['sort']?$_GET['sort']:1),'cids'=>(!$_GET['subcid']?($_GET['cid']?$_GET['cid']:''):''),'subcid'=>($_GET['subcid']?$_GET['subcid']:''),'specialId'=>($_GET['specialId']?$_GET['specialId']:''),'pageSize'=>'100','version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])"}
 {assign name="category" value=":moJiaDaTaoKe('https://openapi.dataoke.com/api/category/get-super-category',array('version'=>$mojia['home']['taoke']['ver'],'appKey'=>$mojia['other']['taoke']['key']),$mojia['other']['taoke']['secret'])"}
 <?php asort($category['data']); ?>
-<div class="mo-paxs-10px mo-cols-lays mo-back-white mo-cols-rows">
+<div class="mo-paxs-10px mo-cols-lays mo-back-white mo-part-round mo-cols-rows">
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-sort">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">分类</dt>
 		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['cid']==''} mo-part-bans mo-text-mojia mo-java-sort{/if}" href="{:mac_url('label/index').'?cid=&subcid=&sort='.$_GET['sort'].'&specialId='.$_GET['specialId']}">全部</a></dd>
@@ -28,7 +28,7 @@
 		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$_GET['specialId']==6} mo-part-bans mo-text-mojia mo-java-level{/if}" href="{:mac_url('label/index').'?cid='.$_GET['cid'].'&subcid='.$_GET['subcid'].'&sort='.$_GET['sort'].'&specialId=6'}">买商品礼赠</a></dd>
 	</dl>
 </div>
-<div class="mo-cols-lays mo-back-white">
+<div class="mo-cols-lays mo-back-white mo-part-round">
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
 		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-cols-zero">
 			<a class="mo-mrxs-5px mo-mrmd-10px{if$_GET['sort']==''||$_GET['sort']==1} mo-text-mojia{/if}" href="{:mac_url('label/index').'?cid='.$_GET['cid'].'&subcid='.$_GET['subcid'].'&sort=1&specialId='.$_GET['specialId']}">按时间</a>

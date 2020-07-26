@@ -1,6 +1,6 @@
 {if$mojia['home']['info']['state']}
 {maccms:type ids="'.$mojia['home']['info']['type'].'" order="asc" by="sort" flag="art" id="magic"}
-<div class="mo-cols-lays mo-back-white">
+<div class="mo-cols-lays mo-back-white mo-part-round">
 	{include file="basics/titles" module="info" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
 	<ul class="mo-cols-rows">
 		{include file="basics/advert" module="info" count="mojia['home']['info']['num']"}

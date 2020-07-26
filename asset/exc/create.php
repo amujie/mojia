@@ -4,6 +4,7 @@
  * 网址:https://amujie.com
  * QQ:1570457334
  */
+// 请勿修改此文件
 error_reporting(0);
 require ('obtain.php');
 header('Content-type: application/json; charset=utf-8');
@@ -24,13 +25,13 @@ function moJiaOptions() {
 	} elseif (isset($_POST['ver'])) {
 		if (@$_POST['ver'] == 'now') {
 			$version = parse_ini_file('../../info.ini');
-			echo json_encode(array('ver' => $version['version']));
+			die(json_encode(array('ver' => $version['version'])));
 		} elseif (@$_POST['ver'] == 'new') {
 			$versnew = moJiaCurlGet(moJiaPath('vers'));
 			preg_match_all('/<option\s+value="amujie\/mojia@(.*)">/i', $versnew, $match);
-			echo json_encode(array('ver' => $match[1][0], 'key' => md5('mojia-' . $match[1][0])));
+			die(json_encode(array('ver' => $match[1][0], 'key' => md5('mojia-' . $match[1][0]))));
 		} elseif (@$_POST['ver'] == 'log') {
-			echo moJiaCurlGet(str_replace('latest', $_POST['new'], moJiaPath('vers')) . 'about/changelog.json');
+			die(moJiaCurlGet(str_replace('latest', $_POST['new'], moJiaPath('vers')) . 'about/changelog.json'));
 		}
 	} elseif (isset($_POST['key'])) {
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiakey.php', '<?php return ' . var_export($_POST, true) . ';?>')) {
@@ -80,6 +81,17 @@ function moJiaOptions() {
 		$option['site']['template_dir'] = @$_POST['tpl'];
 		if (file_put_contents(moJiaPath('path') . 'application/extra/maccms.php', '<?php return ' . var_export($option, true) . ';?>')) {
 			@unlink('../../../' . $_POST['tpl'] . '.zip');
+			$mojia = moJiaPath('mojia');
+			if ($mojia['other']['init']['state'] == 1 && $mojia['other']['init']['file'] && $mojia['other']['init']['file'] != 'global') {
+				if (!file_put_contents('../../asset/js/' . $mojia['other']['init']['file'] . '.js', file_get_contents('../../asset/js/global.js'))) {
+					die(json_encode(array('msg' => '入口脚本文件更新失败')));
+				}
+			}
+			if ($mojia['other']['init']['state'] == 1 && $mojia['other']['init']['base'] && $mojia['other']['init']['base'] != 'basics') {
+				if (!file_put_contents('../../asset/js/' . $mojia['other']['init']['base'] . '.js', file_get_contents('../../asset/js/basics.js'))) {
+					die(json_encode(array('msg' => '通用脚本文件更新失败')));
+				}
+			}
 			$option = @require (moJiaPath('path') . 'application/extra/maccms.php');
 			die(json_encode(array('msg' => $option['site']['template_dir'])));
 		} else {
@@ -129,9 +141,14 @@ function moJiaOptions() {
 					die(json_encode(array('msg' => '首页淘客数据更新失败')));
 				}
 			}
-			if ($_POST['mojia']['other']['init']['state'] == 1 && $_POST['mojia']['other']['init']['file'] != 'global') {
+			if ($_POST['mojia']['other']['init']['state'] == 1 && $_POST['mojia']['other']['init']['file'] && $_POST['mojia']['other']['init']['file'] != 'global') {
 				if (!file_put_contents('../../asset/js/' . $_POST['mojia']['other']['init']['file'] . '.js', file_get_contents('../../asset/js/global.js'))) {
-					die(json_encode(array('msg' => '脚本入口文件更新失败')));
+					die(json_encode(array('msg' => '入口脚本文件更新失败')));
+				}
+			}
+			if ($_POST['mojia']['other']['init']['state'] == 1 && $_POST['mojia']['other']['init']['base'] && $_POST['mojia']['other']['init']['base'] != 'basics') {
+				if (!file_put_contents('../../asset/js/' . $_POST['mojia']['other']['init']['base'] . '.js', file_get_contents('../../asset/js/basics.js'))) {
+					die(json_encode(array('msg' => '通用脚本文件更新失败')));
 				}
 			}
 			die(json_encode(array('msg' => '保存成功')));
@@ -280,7 +297,8 @@ function moJiaCommon() {
 	} elseif (isset($_POST['url'])) {
 		$mojia = moJiaPath('mojia');
 		$url = $mojia['other']['share']['host'] ? $mojia['other']['share']['host'] . parse_url(@$_POST['url'], PHP_URL_PATH) : @$_POST['url'];
-		die(json_encode(array('msg' => moJiaCurlGet($mojia['other']['share']['apis'] . rawurlencode($url)))));
+		preg_match_all(($mojia['other']['share']['regex'] ? $mojia['other']['share']['regex'] : '/(.*)/i'), moJiaCurlGet($mojia['other']['share']['apis'] . rawurlencode($url)), $match);
+		die(json_encode(array('msg' => $match[1][0])));
 	} elseif (isset($_GET['pic'])) {
 		header('Content-Type: image/jpeg; charset=utf-8');
 		$time = isset($_GET['time']) ? $_GET['time'] : 5;
@@ -293,7 +311,6 @@ function moJiaCommon() {
 		curl_setopt($curl, CURLOPT_TIMEOUT, $time);
 		$output = curl_exec($curl);
 		curl_close($curl);
-		echo $output;
-		exit ;
+		die($output);
 	}
 }

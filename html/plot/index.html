@@ -1,6 +1,6 @@
 {include file="public/header"}
 {maccms:type ids="parent" order="asc" by="sort" mid="1" id="magic"}
-<div class="mo-cols-lays mo-back-white">
+<div class="mo-cols-lays mo-back-white mo-part-round">
 	{include file="basics/titles" module="type" title=":mac_filter_html($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
 	<ul class="mo-cols-rows">
 		{maccms:vod num="12" type="'.$magic['type_id'].'" order="desc" by="time" plot="1"}

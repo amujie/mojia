@@ -27,7 +27,7 @@
 						{/maccms:foreach}
 					</select>
 				</td>
-				<td colspan="2"><textarea name="mojia[advs][head][area]" class="layui-textarea" placeholder="全站导航栏下方,固定位广告">{$mojia['advs']['head']['area']}</textarea></td>
+				<td colspan="2"><textarea name="mojia[advs][head][area]" class="layui-textarea" placeholder="全站导航栏下方,固定位广告">{:moJiaHtmlTags($mojia['advs']['head']['area'])}</textarea></td>
 				<td>全站导航栏下方,固定位广告</td>
 			</tr>
 			<tr>
@@ -41,7 +41,7 @@
 						{/maccms:foreach}
 					</select>
 				</td>
-				<td colspan="2"><textarea name="mojia[advs][foot][area]" class="layui-textarea" placeholder="移动端导航栏上方,固定位广告">{$mojia['advs']['foot']['area']}</textarea></td>
+				<td colspan="2"><textarea name="mojia[advs][foot][area]" class="layui-textarea" placeholder="移动端导航栏上方,固定位广告">{:moJiaHtmlTags($mojia['advs']['foot']['area'])}</textarea></td>
 				<td>移动端导航栏上方,固定位广告</td>
 			</tr>
 			<tr>
@@ -55,7 +55,7 @@
 						{/maccms:foreach}
 					</select>
 				</td>
-				<td colspan="2"><textarea name="mojia[advs][play][area]" class="layui-textarea" placeholder="播放器上方广告,固定位广告">{$mojia['advs']['play']['area']}</textarea></td>
+				<td colspan="2"><textarea name="mojia[advs][play][area]" class="layui-textarea" placeholder="播放器上方广告,固定位广告">{:moJiaHtmlTags($mojia['advs']['play']['area'])}</textarea></td>
 				<td>播放器上方广告,固定位广告</td>
 			</tr>
 			<tr>
@@ -69,7 +69,7 @@
 						{/maccms:foreach}
 					</select>
 				</td>
-				<td colspan="2"><textarea name="mojia[advs][built][area]" class="layui-textarea" placeholder="播放器前置广告,固定位广告">{$mojia['advs']['built']['area']}</textarea></td>
+				<td colspan="2"><textarea name="mojia[advs][built][area]" class="layui-textarea" placeholder="播放器前置广告,固定位广告">{:moJiaHtmlTags($mojia['advs']['built']['area'])}</textarea></td>
 				<td>播放器前置广告,固定位广告</td>
 			</tr>
 			<tr>
@@ -83,7 +83,7 @@
 						{/maccms:foreach}
 					</select>
 				</td>
-				<td colspan="2"><textarea name="mojia[advs][list][area]" class="layui-textarea" placeholder="播放列表上方,固定位广告">{$mojia['advs']['list']['area']}</textarea></td>
+				<td colspan="2"><textarea name="mojia[advs][list][area]" class="layui-textarea" placeholder="播放列表上方,固定位广告">{:moJiaHtmlTags($mojia['advs']['list']['area'])}</textarea></td>
 				<td>播放列表上方,固定位广告</td>
 			</tr>
 			<tr>
@@ -97,7 +97,7 @@
 						{/maccms:foreach}
 					</select>
 				</td>
-				<td colspan="2"><textarea name="mojia[advs][down][area]" class="layui-textarea" placeholder="下载列表上方,固定位广告">{$mojia['advs']['down']['area']}</textarea></td>
+				<td colspan="2"><textarea name="mojia[advs][down][area]" class="layui-textarea" placeholder="下载列表上方,固定位广告">{:moJiaHtmlTags($mojia['advs']['down']['area'])}</textarea></td>
 				<td>下载列表上方,固定位广告</td>
 			</tr>
 			<tr>
@@ -111,7 +111,7 @@
 						{/maccms:foreach}
 					</select>
 				</td>
-				<td colspan="2"><textarea name="mojia[advs][info][area]" class="layui-textarea" placeholder="视频简介上方,固定位广告">{$mojia['advs']['info']['area']}</textarea></td>
+				<td colspan="2"><textarea name="mojia[advs][info][area]" class="layui-textarea" placeholder="视频简介上方,固定位广告">{:moJiaHtmlTags($mojia['advs']['info']['area'])}</textarea></td>
 				<td>视频简介上方,固定位广告</td>
 			</tr>
 			<tr>
@@ -125,8 +125,8 @@
 						{/maccms:foreach}
 					</select>
 				</td>
-				<td><textarea name="mojia[advs][float][left]" class="layui-textarea" placeholder="左侧漂浮广告,固定位广告">{$mojia['advs']['float']['left']}</textarea></td>
-				<td><textarea name="mojia[advs][float][right]" class="layui-textarea" placeholder="右侧漂浮广告,固定位广告">{$mojia['advs']['float']['right']}</textarea></td>
+				<td><textarea name="mojia[advs][float][left]" class="layui-textarea" placeholder="左侧漂浮广告,固定位广告">{:moJiaHtmlTags($mojia['advs']['float']['left'])}</textarea></td>
+				<td><textarea name="mojia[advs][float][right]" class="layui-textarea" placeholder="右侧漂浮广告,固定位广告">{:moJiaHtmlTags($mojia['advs']['float']['right'])}</textarea></td>
 				<td>对联广告</td>
 			</tr>
 		</tbody>
