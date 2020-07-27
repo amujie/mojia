@@ -2,111 +2,111 @@
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-show">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">频道</dt>
 		{maccms:type ids="parent" order="asc" by="sort"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$vo.type_id==$obj.type_id||$vo.type_id==$obj.parent.type_id} mo-part-bans mo-text-mojia mo-java-show{/if}" href="{:mac_url_type($vo,[],'show')}">{$vo.type_name|mac_filter_html}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$vo.type_id==$obj.type_id||$vo.type_id==$obj.parent.type_id} mo-part-bans mo-text-mojia mo-java-show{/if}" href="{:mac_url_type($vo,[],'show')}">{$vo.type_name|mac_filter_html}</a></dd>
 		{/maccms:type}
 	</dl>
 	{if$obj.childids||$obj.parent.childids}
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-sort">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">分类</dt>
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$vo.parent.type_id==$obj.parent.type_id} mo-part-bans mo-text-mojia mo-java-sort{/if}" href="{:mac_url_type($obj.parent,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$vo.parent.type_id==$obj.parent.type_id} mo-part-bans mo-text-mojia mo-java-sort{/if}" href="{:mac_url_type($obj.parent,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
 		{maccms:type ids="current" order="asc" by="sort"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$vo.type_id==$obj.type_id} mo-part-bans mo-text-mojia mo-java-sort{/if}" href="{:mac_url_type($vo,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo.type_name|mac_filter_html}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$vo.type_id==$obj.type_id} mo-part-bans mo-text-mojia mo-java-sort{/if}" href="{:mac_url_type($vo,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo.type_name|mac_filter_html}</a></dd>
 		{/maccms:type}
 	</dl>
 	{/if}{if$maccms.mid==1||$maccms.mid==2}
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-class">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">类型</dt>
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.class==''} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url_type($obj,['class'=>'','starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.class==''} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url_type($obj,['class'=>'','starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
 		{if$obj.type_extend.class}
 		{maccms:foreach name=":explode(',',$obj.type_extend.class)"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.class==$vo} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.class==$vo} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{elseif$obj.parent.type_extend.class}
 		{maccms:foreach name=":explode(',',$obj.parent.type_extend.class)"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.class==$vo} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.class==$vo} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{else}
 		{maccms:foreach name=":explode(',',$maccms[mac_get_mid_code(in_array($maccms['mid'],array('2'))?$maccms['mid']:1).'_extend_class'])"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.class==$vo} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.class==$vo} mo-part-bans mo-text-mojia mo-java-class{/if}" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{/if}
 	</dl>
 	{elseif$maccms.mid==8}
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-starsign">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">星座</dt>
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.starsign==''} mo-part-bans mo-text-mojia mo-java-starsign{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>'','area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.starsign==''} mo-part-bans mo-text-mojia mo-java-starsign{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>'','area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
 		{maccms:foreach name=":explode(',','白羊座,金牛座,双子座,巨蟹座,狮子座,处女座,天秤座,天蝎座,射手座,摩羯座,水瓶座,双鱼座')"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.starsign==$vo} mo-part-bans mo-text-mojia mo-java-starsign{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$vo,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.starsign==$vo} mo-part-bans mo-text-mojia mo-java-starsign{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$vo,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 	</dl>
 	{/if}{if$maccms.mid!=2}
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-area">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">地区</dt>
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.area==''} mo-part-bans mo-text-mojia mo-java-area{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>'','lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.area==''} mo-part-bans mo-text-mojia mo-java-area{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>'','lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
 		{if$obj.type_extend.area}
 		{maccms:foreach name=":explode(',',$obj.type_extend.area)"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.area==$vo} mo-part-bans mo-text-mojia mo-java-area{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.area==$vo} mo-part-bans mo-text-mojia mo-java-area{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{elseif$obj.parent.type_extend.area}
 		{maccms:foreach name=":explode(',',$obj.parent.type_extend.area)"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.area==$vo} mo-part-bans mo-text-mojia mo-java-area{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.area==$vo} mo-part-bans mo-text-mojia mo-java-area{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{else}
 		{maccms:foreach name=":explode(',',$maccms[mac_get_mid_code(!in_array($maccms['mid'],array('1'))?1:$maccms['mid']).'_extend_area'])"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.area==$vo} mo-part-bans mo-text-mojia mo-java-area{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.area==$vo} mo-part-bans mo-text-mojia mo-java-area{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{/if}
 	</dl>
 	{/if}{if$maccms.mid==1||$maccms.mid==11}
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-lang">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">语言</dt>
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.lang==''} mo-part-bans mo-text-mojia mo-java-lang{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>'','level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.lang==''} mo-part-bans mo-text-mojia mo-java-lang{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>'','level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
 		{if$obj.type_extend.lang}
 		{maccms:foreach name=":explode(',',$obj.type_extend.lang)"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.lang==$vo} mo-part-bans mo-text-mojia mo-java-lang{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.lang==$vo} mo-part-bans mo-text-mojia mo-java-lang{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{elseif$obj.parent.type_extend.lang}
 		{maccms:foreach name=":explode(',',$obj.parent.type_extend.lang)"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.lang==$vo} mo-part-bans mo-text-mojia mo-java-lang{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.lang==$vo} mo-part-bans mo-text-mojia mo-java-lang{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{else}
 		{maccms:foreach name=":explode(',',$maccms[mac_get_mid_code(in_array($maccms['mid'],array('2'))?$maccms['mid']:1).'_extend_lang'])"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.lang==$vo} mo-part-bans mo-text-mojia mo-java-lang{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.lang==$vo} mo-part-bans mo-text-mojia mo-java-lang{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{/if}
 	</dl>
 	{/if}
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-level">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">推荐</dt>
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.level==''} mo-part-bans mo-text-mojia mo-java-level{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>'','year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.level==''} mo-part-bans mo-text-mojia mo-java-level{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>'','year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
 		{maccms:foreach name=":explode(',','1,2,3,4,5,6,7,8,9')"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.level==$vo} mo-part-bans mo-text-mojia mo-java-level{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$vo,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">推荐{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.level==$vo} mo-part-bans mo-text-mojia mo-java-level{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$vo,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">推荐{$vo}</a></dd>
 		{/maccms:foreach}
 	</dl>
 	{if$maccms.mid==1}
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-year">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">年代</dt>
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.year==''} mo-part-bans mo-text-mojia mo-java-year{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>'','letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.year==''} mo-part-bans mo-text-mojia mo-java-year{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>'','letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
 		{if$obj.type_extend.year}
 		{maccms:foreach name=":explode(',',$obj.type_extend.year)"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.year==$vo} mo-part-bans mo-text-mojia mo-java-year{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.year==$vo} mo-part-bans mo-text-mojia mo-java-year{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{elseif$obj.parent.type_extend.year}
 		{maccms:foreach name=":explode(',',$obj.parent.type_extend.year)"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.year==$vo} mo-part-bans mo-text-mojia mo-java-year{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.year==$vo} mo-part-bans mo-text-mojia mo-java-year{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{else}
 		{maccms:foreach name=":explode(',',$maccms.vod_extend_year)"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.year==$vo} mo-part-bans mo-text-mojia mo-java-year{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.year==$vo} mo-part-bans mo-text-mojia mo-java-year{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{/if}
 	</dl>
 	{/if}
 	<dl class="mo-scre-info mo-paxs-10x5 mo-pamd-1510 mo-bord-muted mo-part-slip mo-scre-letter">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">字母</dt>
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.letter==''} mo-part-bans mo-text-mojia mo-java-letter{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>'','by'=>$param.by],'show')}">全部</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.letter==''} mo-part-bans mo-text-mojia mo-java-letter{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>'','by'=>$param.by],'show')}">全部</a></dd>
 		{maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0')"}
-		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-mrxs-10px mo-lhxs-24px{if$param.letter==$vo} mo-part-bans mo-text-mojia mo-java-letter{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$vo,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-lhxs-24px{if$param.letter==$vo} mo-part-bans mo-text-mojia mo-java-letter{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$vo,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 	</dl>
 </div>

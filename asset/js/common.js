@@ -35,16 +35,10 @@ layui.define(['jquery'], function(exports) {
 						layui.social.global.init();
 					});
 				}
-				if ($('.mo-part-slip').length && !mojia.global.mobile()) {
-					layui.use('nicescroll', function() {
-						$('.mo-part-slip').niceScroll({
-							cursorborderradius: '5px',
-							cursorcolor: '#ccc',
-							cursoropacitymax: 1,
-							touchbehavior: false,
-							cursorwidth: '5px',
-							cursorborder: '0'
-						});
+				if ($('.mo-java-data').attr('data-mid') == 6) {
+					layui.use('center', function() {
+						mojia.global.submit('.mo-user-btns', '.mo-user-form');
+						layui.center.global.init();
 					});
 				}
 				if ($('.mo-java-taoke').attr('data-taoke')) {
@@ -59,10 +53,12 @@ layui.define(['jquery'], function(exports) {
 					});
 				}
 				if ($('.mo-word-info').find('pre').length) {
+					$('head').append('<style type="text/css">.layui-code-notepad{border-left-width:6px!important;border-color:#222!important;background-color:#2b2a2a!important}.layui-code-notepad .layui-code-h3{border-bottom:#2b2a2a!important}</style>');
 					layui.use('code', function() {
 						layui.code({
+							skin: mojia.cookie.get('mo_dark') ? 'notepad' : 0,
 							about: false,
-							elem: 'pre'
+							elem: 'pre',
 						});
 					});
 				}
@@ -74,10 +70,16 @@ layui.define(['jquery'], function(exports) {
 						});
 					});
 				}
-				if ($('.mo-java-data').attr('data-mid') == 6) {
-					layui.use('center', function() {
-						mojia.global.submit('.mo-user-btns', '.mo-user-form');
-						layui.center.global.init();
+				if ($('.mo-part-slip').length && !mojia.global.mobile()) {
+					layui.use('nicescroll', function() {
+						$('.mo-part-slip').niceScroll({
+							cursorborderradius: '5px',
+							cursorcolor: '#ccc',
+							cursoropacitymax: 1,
+							touchbehavior: false,
+							cursorwidth: '5px',
+							cursorborder: '0'
+						});
 					});
 				}
 			},
@@ -513,9 +515,11 @@ layui.define(['jquery'], function(exports) {
 				var color2 = $('#mo-java-dark').html();
 				$(document).on('click', str, function() {
 					if (mojia.cookie.get('mo_dark')) {
+						$('.layui-code-view').removeClass('layui-code-notepad');
 						$('#mo-java-dark').attr('type', 'text/css').html(color1);
 						mojia.cookie.del('mo_dark');
 					} else {
+						$('.layui-code-view').addClass('layui-code-notepad');
 						$('#mo-java-dark').attr('type', 'text/css').html(color2);
 						mojia.cookie.set('mo_dark', '1', 7);
 					}

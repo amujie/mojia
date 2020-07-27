@@ -3,14 +3,14 @@
 	<dl class="mo-scre-info mo-scre-type mo-bord-muted mo-part-slip mo-paxs-10x5 mo-pamd-1510 mo-cols-info mo-cols-xs12 mo-cols-md6 mo-cols-lg4">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">分类</dt>
 		{maccms:type num="8" ids="current" order="asc" by="sort"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($vo,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo.type_name|mac_filter_html}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($vo,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo.type_name|mac_filter_html}</a></dd>
 		{/maccms:type}
 	</dl>
 	{elseif$maccms.mid==8}
 	<dl class="mo-scre-info mo-scre-type mo-bord-muted mo-part-slip mo-paxs-10x5 mo-pamd-1510 mo-cols-info mo-cols-xs12 mo-cols-md6 mo-cols-lg4">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">星座</dt>
 		{maccms:foreach name=":explode(',','白羊座,金牛座,双子座,巨蟹座,狮子座,处女座,天秤座,天蝎座,射手座,摩羯座,水瓶座,双鱼座')"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$vo,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$vo,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 	</dl>
 	{elseif$maccms.mid==1||$maccms.mid==2}
@@ -18,15 +18,15 @@
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">类型</dt>
 		{if$obj.type_extend.class}
 		{maccms:foreach name=":explode(',',$obj.type_extend.class)"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{elseif$obj.parent.type_extend.class}
 		{maccms:foreach name=":explode(',',$obj.parent.type_extend.class)"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{else}
 		{maccms:foreach name=":explode(',',$maccms[mac_get_mid_code(in_array($maccms['mid'],array('2'))?$maccms['mid']:1).'_extend_class'])"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{/if}
 	</dl>
@@ -35,15 +35,15 @@
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">语言</dt>
 		{if$obj.type_extend.lang}
 		{maccms:foreach name=":explode(',',$obj.type_extend.lang)"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{elseif$obj.parent.type_extend.lang}
 		{maccms:foreach name=":explode(',',$obj.parent.type_extend.lang)"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{else}
 		{maccms:foreach name=":explode(',',$maccms[mac_get_mid_code(in_array($maccms['mid'],array('2'))?$maccms['mid']:1).'_extend_lang'])"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$vo,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{/if}
 	</dl>
@@ -51,7 +51,7 @@
 	<dl class="mo-scre-info mo-scre-type mo-bord-muted mo-part-slip mo-paxs-10x5 mo-pamd-1510 mo-cols-info mo-cols-xs12 mo-cols-md6 mo-cols-lg4">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">推荐</dt>
 		{maccms:foreach name=":explode(',','9,8,7,6,5,4,3,2,1')"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">推荐{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">推荐{$vo}</a></dd>
 		{/maccms:foreach}
 	</dl>
 	{else}
@@ -59,15 +59,15 @@
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">地区</dt>
 		{if$obj.type_extend.area}
 		{maccms:foreach name=":explode(',',$obj.type_extend.area)"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{elseif$obj.parent.type_extend.area}
 		{maccms:foreach name=":explode(',',$obj.parent.type_extend.area)"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{else}
 		{maccms:foreach name=":explode(',',$maccms[mac_get_mid_code(in_array($maccms['mid'],array('2'))?$maccms['mid']:1).'_extend_area'])"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{/if}
 	</dl>
@@ -76,15 +76,15 @@
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">年代</dt>
 		{if$obj.type_extend.year}
 		{maccms:foreach name=":explode(',',$obj.type_extend.year)"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{elseif$obj.parent.type_extend.year}
 		{maccms:foreach name=":explode(',',$obj.parent.type_extend.year)"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{else}
 		{maccms:foreach name=":explode(',',$maccms.vod_extend_year)"}
-		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>7} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 		{/if}
 	</dl>
@@ -92,7 +92,7 @@
 	<dl class="mo-scre-info mo-scre-type mo-bord-muted mo-part-slip mo-paxs-10x5 mo-pamd-1510 mo-cols-info mo-cols-xs12 mo-cols-md6 mo-cols-lg4 mo-comd-none mo-colg-block">
 		<dt class="mo-scre-head mo-mrxs-10px mo-coxs-iblock">字母</dt>
 		{maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0')"}
-		<dd class="mo-coxs-iblock{if$key>14} mo-comd-none{/if}"><a class="mo-scre-name mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$vo,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		<dd class="mo-coxs-iblock{if$key>14} mo-comd-none{/if}"><a class="mo-scre-name mo-text-hover mo-mrxs-10px mo-cols-show" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'lang'=>$param.lang,'level'=>$param.level,'year'=>$param.year,'letter'=>$vo,'by'=>$param.by],'show')}">{$vo}</a></dd>
 		{/maccms:foreach}
 	</dl>
 	{/if}

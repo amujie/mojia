@@ -81,7 +81,16 @@ function moJiaOptions() {
 		$option['site']['template_dir'] = @$_POST['tpl'];
 		if (file_put_contents(moJiaPath('path') . 'application/extra/maccms.php', '<?php ' . PHP_EOL . 'return ' . var_export($option, true) . ';')) {
 			@unlink('../../../' . $_POST['tpl'] . '.zip');
-			$mojia = moJiaPath('mojia');
+			$seokey = @require (moJiaPath('path') . 'application/extra/mojiaopt.php');
+			$html = file_get_contents('../../html/basics/seokey.html');
+			foreach ($seokey['seo'] as $value => $key) {
+				foreach ($seokey['seo'][$value] as $item => $sub) {
+					$html = str_replace('{' . $item . $seokey['seo'][$value]['aid'] . '}', $sub, $html);
+				}
+			}
+			if (!file_put_contents('../../html/tinier/seokey.html', $html)) {
+				die(json_encode(array('msg' => 'SEO设置更新失败,请检查文件权限')));
+			}
 			$option = @require (moJiaPath('path') . 'application/extra/maccms.php');
 			die(json_encode(array('msg' => $option['site']['template_dir'])));
 		} else {
@@ -214,7 +223,9 @@ function moJiaCollect() {
 			die(json_encode(@$result['list']));
 		}
 	} elseif (isset($_POST['favs'])) {
-		if ($_POST['favs'] == 'add') {
+		if (!moJiaPower('mojia', moJiaPath('base'))) {
+			die(json_encode(array('msg' => '权限不足')));
+		} elseif ($_POST['favs'] == 'add') {
 			if (file_exists(moJiaPath('path') . 'application/extra/mojiafav.php')) {
 				$html = @require (moJiaPath('path') . 'application/extra/mojiafav.php');
 				if (is_array($html)) {

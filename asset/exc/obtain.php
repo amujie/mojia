@@ -111,8 +111,9 @@ function moJiaSimple($data) {
 }
 
 // HTML标签校对
-function moJiaHtmlTags($html, $tags = array()) {
+function moJiaHtmlTags($html) {
 	$result = null;
+	$tags = array();
 	$stack = array();
 	$single = array('br', 'hr', 'img', 'input');
 	if ($tags && is_array($tags)) {
@@ -121,21 +122,21 @@ function moJiaHtmlTags($html, $tags = array()) {
 		$single = array_unique($single);
 	}
 	$content = preg_split('/(<[^>]+>)/si', $html, null, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
-	foreach ($content as $val) {
-		if (preg_match('/<(\w+)[^\/]*>/si', $val, $m) && in_array(strtolower($m[1]), $single)) {
-			$result .= "\r\n" . $val;
-		} else if (preg_match('/<(\w+)[^\/]*\/>/si', $val, $m)) {
-			$result .= $val;
-		} else if (preg_match('/<(\w+)[^\/]*>/si', $val, $m)) {
-			$result .= "\r\n" . str_repeat("\t", count($stack)) . $val;
-			array_push($stack, $m[1]);
-		} else if (preg_match('/<\/(\w+)[^\/]*>/si', $val, $m)) {
-			if (strtolower(end($stack)) == strtolower($m[1])) {
+	foreach ($content as $value) {
+		if (preg_match('/<(\w+)[^>]*>/si', $value, $match) && in_array(strtolower($match[1]), $single)) {
+			$result .= "\r\n" . $value;
+		} else if (preg_match('/<(\w+)[^>]*\/>/si', $value, $match)) {
+			$result .= $value;
+		} else if (preg_match('/<(\w+)[^>]*>/si', $value, $match)) {
+			$result .= "\r\n" . str_repeat("\t", count($stack)) . $value;
+			array_push($stack, $match[1]);
+		} else if (preg_match('/<\/(\w+)[^>]*>/si', $value, $match)) {
+			if (strtolower(end($stack)) == strtolower($match[1])) {
 				array_pop($stack);
-				$result .= $val;
+				$result .= $value;
 			}
 		} else {
-			$result .= $val;
+			$result .= $value;
 		}
 	}
 	while ($stack) {

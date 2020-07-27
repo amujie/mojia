@@ -14,11 +14,11 @@
 			{/maccms:foreach}
 		</h2>
 		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
-			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-plmd-10px mo-comm-report" href="javascript:;" data-href="{:mac_url('gbook/report')}" data-show="{$obj['vod_down_list'][$param['sid']]['player_info']['show']|mac_default='详情'}">报错</a></li>
+			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px mo-lhxs-24px"><a class="mo-plxs-5px mo-plmd-10px mo-comm-report" href="javascript:;" data-href="{:mac_url('gbook/report')}" data-show="{$obj['vod_down_list'][$param['sid']]['player_info']['show']|mac_default='详情'}">报错</a></li>
 			{if$maccms.aid==16}
-			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-plmd-10px mo-copy-btns" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-fuzhi"></i><span class="mo-sort-name">复制</span></a></li>
+			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px mo-lhxs-24px"><a class="mo-plxs-5px mo-plmd-10px mo-copy-btns" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-fuzhi"></i><span class="mo-sort-name">复制</span></a></li>
 			{/if}
-			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px"><a class="mo-plxs-5px mo-plmd-10px mo-sort-btns" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-paixu"></i><span class="mo-sort-name">正序</span></a></li>
+			<li class="mo-coxs-iblock mo-fsxs-14px mo-fsss-16px mo-lhxs-24px"><a class="mo-plxs-5px mo-plmd-10px mo-sort-btns" href="javascript:;"><i class="mo-prxs-2px mo-icon-font mo-icon-paixu"></i><span class="mo-sort-name">正序</span></a></li>
 		</ul>
 	</div>
 	{if$obj['vod_pwd_down']&&session('1-5-'.$obj['vod_id'])!=1&&$maccms.aid==10}{include file="tinier/passer" type="5" mold="_down"}{else}

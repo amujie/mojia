@@ -806,6 +806,9 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 /* 详情排版优化 */
 .mo-word-info strong,
 .mo-word-info b {font-weight: bold;}
+.mo-word-info span,
+.mo-word-info p {background: inherit !important;color: inherit !important}
+.mo-word-info p {word-break: break-word;line-height: 1.6;}
 .mo-word-info ol,
 .mo-word-info ul {margin: 1em 0;padding: 0}
 .mo-word-info ul {display: table;}
@@ -827,7 +830,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	/* 组件 */
 	.mo-part-slip {overflow-x: hidden}
 	.mo-part-left {left: 0 !important}
-	.mo-part-round {box-shadow: 0 0 2px rgba(0, 0, 0, 0.1)}
+	.mo-part-round {box-shadow: 0 0 1px rgba(0, 0, 0, 0.1)}
 	.mo-situ-pics:hover .mo-situ-play {opacity: 1;z-index: 1}
 	/* 导航栏 */
 	.mo-head-info {box-shadow: 0 .0625rem .25rem rgba(0, 0, 0, 0.1)}

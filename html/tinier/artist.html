@@ -5,7 +5,7 @@
 				<h1 class="mo-fsxs-18px mo-fsmd-24px">{$obj.art_name|mac_filter_html}</h1>
 				<div class="mo-pzxs-5px mo-ptmd-10px mo-text-muted mo-cols-zero">
 					<span class="mo-fsxs-14px mo-prxs-5px mo-coxs-iblock">{$obj.art_time|mac_day}</span>
-					<span class="mo-fsxs-14px mo-pnxs-5px mo-coxs-iblock">{$obj.type.type_name}</span>
+					<span class="mo-fsxs-14px mo-pnxs-5px mo-coxs-iblock"><a class="mo-text-hover" href="{:mac_url_type($obj)}" target="_blank">{$obj.type.type_name}</a></span>
 					<span class="mo-fsxs-14px mo-pnxs-5px mo-coxs-iblock">{$obj.art_hits}阅读</span>
 				</div>
 			</div>
@@ -18,7 +18,7 @@
 		</div>
 		{if$GLOBALS['config']['comment']['status']&&$maccms.mid!=20}
 		<div class="mo-cols-lays mo-back-white mo-part-round mo-cols-rows mo-part-over">
-			{include file="basics/titles" module="type" title=":mac_filter_html('发表评论')" more="hide" href=":mac_url_type($magic)"}
+			{include file="basics/titles" module="type" title=":mac_filter_html('发表评论')" more="hide"}
 			<div class="mo-cols-rows mo-part-over">
 				<div class="mo-comm-critic"></div>
 			</div>

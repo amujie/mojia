@@ -6,7 +6,7 @@
 			{assign name="days" value=":array('week','monday','tuesday','wednesday','thursday','friday','saturday','sunday')"}
 			{assign name="week" value=":array('周','一','二','三','四','五','六','日')"}{assign name="nows" value=":date('w')==0?7:date('w')"}
 			{maccms:foreach name="$week"}{if$key>0}
-			<li class="mo-coxs-iblock mo-fsxs-14px"><a class="mo-coxs-iblock mo-week-btns{if$key==$nows} mo-text-mojia{/if}" href="javascript:;" data-date="{:date('m-d',($key==$nows?time():strtotime('next '.$days[$key])))}">{if$key==$nows}<span class="mo-coxs-iblock mo-week-name">今</span><span class="mo-coxs-none mo-cosm-iblock">日</span>{else}<span class="mo-coxs-none mo-cosm-iblock">周</span><span class="mo-week-name mo-cosm-iblock">{$week[$key]}</span>{/if}</a>{if(7>$key)}<span class="mo-text-muted mo-coxs-iblock mo-pnxs-5px">/</span>{/if}</li>
+			<li class="mo-coxs-iblock mo-fsxs-14px mo-lhxs-24px"><a class="mo-coxs-iblock mo-week-btns{if$key==$nows} mo-text-mojia{/if}" href="javascript:;" data-date="{:date('m-d',($key==$nows?time():strtotime('next '.$days[$key])))}">{if$key==$nows}<span class="mo-coxs-iblock mo-week-name">今</span><span class="mo-coxs-none mo-cosm-iblock">日</span>{else}<span class="mo-coxs-none mo-cosm-iblock">周</span><span class="mo-week-name mo-cosm-iblock">{$week[$key]}</span>{/if}</a>{if(7>$key)}<span class="mo-text-muted mo-coxs-iblock mo-pnxs-5px">/</span>{/if}</li>
 			{/if}{/maccms:foreach}
 		</ul>
 	</div>
