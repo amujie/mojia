@@ -37,10 +37,10 @@ function moJiaOptions() {
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiakey.php', '<?php ' . PHP_EOL . 'return ' . var_export($_POST, true) . ';')) {
 			file_put_contents(moJiaPath('path') . 'runtime/temp/' . md5('mojia') . '.php', '<?php ' . PHP_EOL . 'return ' . var_export(time(), true) . ';');
 			$path = moJiaPath('path') . 'application/data/config/quickmenu.txt';
-			$info = '魔加主题设置,' . moJiaPath('home') . 'index.php/label/admin' . PHP_EOL . '魔加采集优化,' . moJiaPath('home') . 'index.php/label/union';
+			$info = '魔加主题设置,' . moJiaPath('home') . 'index.php/label/admin' . chr(13) . chr(10) . '魔加采集优化,' . moJiaPath('home') . 'index.php/label/union';
 			if (stristr(file_get_contents($path), $info)) {
 				die(json_encode(array('msg' => '授权成功,快捷菜单已存在')));
-			} elseif (file_put_contents($path, '行分隔符,###' . PHP_EOL . $info . PHP_EOL . '行分隔符,###' . PHP_EOL . file_get_contents($path))) {
+			} elseif (file_put_contents($path, '行分隔符,###' . chr(13) . chr(10) . $info . chr(13) . chr(10) . '行分隔符,###' . chr(13) . chr(10) . file_get_contents($path))) {
 				die(json_encode(array('msg' => '授权成功,快捷菜单添加成功')));
 			}
 		} else {
