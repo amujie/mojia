@@ -6,7 +6,7 @@ return array (
     array (
       'name' => '基本设置',
       'status' => '1',
-      'loadon' => '1',
+      'loadon' => '0',
       'search' => '1',
     ),
     'logo' => 
@@ -610,7 +610,7 @@ return array (
       'title' => '$maccms[\'site_name\']',
       'image' => 'mac_url_img(trim($mojia[\'other\'][\'share\'][\'image\']))',
       'key' => '$maccms[\'site_keywords\']',
-      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].$maccms[\'path\']',
       'des' => '$maccms[\'site_description\']',
     ),
     'index2' => 
@@ -621,7 +621,7 @@ return array (
       'title' => '\'网站地图 - \'.$maccms[\'site_name\']',
       'image' => 'mac_url_img(trim($mojia[\'other\'][\'share\'][\'image\']))',
       'key' => '$maccms[\'site_keywords\']',
-      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
+      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'map/index\')',
       'des' => '$maccms[\'site_description\']',
     ),
     'index4' => 

@@ -14,10 +14,10 @@
 - 作者首页：[https://amujie.com](https://amujie.com)
 - 加群链接：[https://jq.qq.com/?_wv=1027&k=5Cpumac](https://jq.qq.com/?_wv=1027&k=5Cpumac)
 - 扣群号码：137183109
-- 静态文件：[https://cdn.jsdelivr.net/gh/amujie/mojia@master/](https://cdn.jsdelivr.net/gh/amujie/mojia@master/)
+- 静态加速：[https://cdn.jsdelivr.net/gh/amujie/mojia@master/](https://cdn.jsdelivr.net/gh/amujie/mojia@master/)
 
 #### 主题简介
-- 主题定价：¥198(一个站点丨售后永久免费更新)
+- 主题定价：¥198(一个站点丨免费换域名丨售后永久免费更新)
 - 主题优化：全站响应式　自带主题设置面板　资源采集功能优化
 - 主题模块：视频　文章　专题　明星　用户中心　站内公告　影院热映
 - 搜索功能：搜索联想　热门搜索　搜索记录　一键求片　同音字搜索

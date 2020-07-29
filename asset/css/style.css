@@ -837,7 +837,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	.mo-head-info .mo-navs-logo {height: 3.125rem}
 	.mo-head-info .mo-navs-item {line-height: 80px;padding-right: 15px;}
 	.mo-head-info .mo-navs-item:first-child {padding-left: 0;}
-	.mo-head-info .mo-navs-right {top: 0;right: 0;max-width: 320px}
+	.mo-head-info .mo-navs-right {top: 0;right: 0;max-width: 350px}
 	.mo-head-info .mo-navs-form {margin: 1.375rem 80px 1.375rem 0;z-index: 0}
 	.mo-head-info .mo-navs-cuts {left: 15px;line-height: 36px}
 	.mo-head-info .mo-navs-input {height: 2.25rem;line-height: 2.25rem;padding: 0 40px 0 65px}
@@ -845,7 +845,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	.mo-head-info .mo-navs-font {line-height: 80px}
 	.mo-head-info .mo-navs-font:last-child {margin-right: 0}
 	/* 导航弹出框 */
-	.mo-pops-info {max-width: 320px}
+	.mo-pops-info {max-width: 350px}
 	/* 底部 */
 	.mo-foot-advs {bottom: 0;}
 	/* 轮播图 */

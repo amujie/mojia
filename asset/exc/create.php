@@ -20,9 +20,7 @@ if (@$_GET['id'] != 'url' && !moJiaPower('login', moJiaPath('base'))) {
 
 // 主题设置
 function moJiaOptions() {
-	if (!moJiaPower('mojia', moJiaPath('base'))) {
-		die(json_encode(array('msg' => '权限不足')));
-	} elseif (isset($_POST['ver'])) {
+	if (isset($_POST['ver'])) {
 		if (@$_POST['ver'] == 'now') {
 			$version = parse_ini_file('../../info.ini');
 			die(json_encode(array('ver' => $version['version'])));
@@ -33,6 +31,8 @@ function moJiaOptions() {
 		} elseif (@$_POST['ver'] == 'log') {
 			die(moJiaCurlGet(str_replace('latest', $_POST['new'], moJiaPath('vers')) . 'about/changelog.json'));
 		}
+	} elseif (!moJiaPower('mojia', moJiaPath('base'))) {
+		die(json_encode(array('msg' => '权限不足')));
 	} elseif (isset($_POST['key'])) {
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiakey.php', '<?php ' . PHP_EOL . 'return ' . var_export($_POST, true) . ';')) {
 			file_put_contents(moJiaPath('path') . 'runtime/temp/' . md5('mojia') . '.php', '<?php ' . PHP_EOL . 'return ' . var_export(time(), true) . ';');
@@ -223,7 +223,13 @@ function moJiaCollect() {
 			die(json_encode(@$result['list']));
 		}
 	} elseif (isset($_POST['favs'])) {
-		if (!moJiaPower('mojia', moJiaPath('base'))) {
+		if ($_POST['favs'] == 'list') {
+			if (file_exists(moJiaPath('path') . 'application/extra/mojiafav.php')) {
+				die(json_encode(@require (moJiaPath('path') . 'application/extra/mojiafav.php')));
+			} else {
+				die(json_encode(array()));
+			}
+		} elseif (!moJiaPower('mojia', moJiaPath('base'))) {
 			die(json_encode(array('msg' => '权限不足')));
 		} elseif ($_POST['favs'] == 'add') {
 			if (file_exists(moJiaPath('path') . 'application/extra/mojiafav.php')) {
@@ -253,12 +259,6 @@ function moJiaCollect() {
 			} else {
 				die(json_encode(array('msg' => '取消收藏失败')));
 			}
-		} elseif ($_POST['favs'] == 'list') {
-			if (file_exists(moJiaPath('path') . 'application/extra/mojiafav.php')) {
-				die(json_encode(@require (moJiaPath('path') . 'application/extra/mojiafav.php')));
-			} else {
-				die(json_encode(array()));
-			}
 		}
 	}
 }
@@ -279,6 +279,8 @@ function moJiaCommon() {
 		} else {
 			die(json_encode(array('msg' => '更新失败')));
 		}
+	} elseif (isset($_POST['agent'])) {
+		die(moJiaCurlGet($_POST['agent']));
 	} elseif (isset($_POST['addr'])) {
 		die(json_encode(array('msg' => md5($_SERVER['SERVER_ADDR']))));
 	} elseif (isset($_POST['key'])) {

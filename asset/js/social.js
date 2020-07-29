@@ -145,9 +145,9 @@ layui.define(['jquery', 'layer', 'common'], function(exports) {
 		'message': {
 			'init': function() {
 				if ($('.mo-java-data').attr('data-mid') == 5) mojia.message.show(1);
-				mojia.global.count('.mo-comm-gbform');
 				common.global.submit('.mo-comm-gbooks', '.mo-comm-gbform');
 				if ($('.mo-java-data').attr('data-aid') == 13) $('.mo-comm-gbform').find('textarea').val('求片：请管理员添加《' + $('.mo-java-hunt').text() + '》谢谢！');
+				mojia.global.count('.mo-comm-gbform');
 				$(document).on('click', '.mo-comm-report', function() {
 					var that = $(this);
 					$.post($(this).attr('data-href'), function(data) {

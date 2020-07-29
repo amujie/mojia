@@ -13,11 +13,11 @@ layui.define(['jquery'], function(exports) {
 				mojia.global.passer();
 				mojia.global.verify();
 				mojia.global.jumper(3);
-				var screen = [['.mo-movs-btns', '.mo-movs-item'], ['.mo-down-btns', '.mo-down-item'], ['.mo-tabs-btns', '.mo-tabs-item'], ['.mo-face-btns', '.mo-face-item'], ['.mo-pops-hots', '.mo-pops-boxs']];
+				var screen = [['.mo-movs-btns', '.mo-movs-item'], ['.mo-down-btns', '.mo-down-item'], ['.mo-tabs-btns', '.mo-tabs-item'], ['.mo-face-btns', '.mo-face-item']];
 				for (var i = 0; i < screen.length; i++) {
 					mojia.global.tabser(screen[i][0], screen[i][1], 'mo-text-mojia mo-part-bans');
 				}
-				var screen = ['navs', 'show', 'sort', 'class', 'starsign', 'area', 'lang', 'level', 'year', 'letter'];
+				var screen = ['show', 'sort', 'class', 'starsign', 'area', 'lang', 'level', 'year', 'letter'];
 				for (var i = 0; i < screen.length; i++) {
 					mojia.global.scroll('.mo-java-' + screen[i], '.mo-scre-' + screen[i]);
 				}
@@ -138,10 +138,12 @@ layui.define(['jquery'], function(exports) {
 			},
 			'tabser': function(btns, item, tabs) {
 				$(document).on('click', btns, function() {
-					$(item).hide().fadeOut();
+					var that = $(this);
+					if (that.hasClass(tabs)) return false;
+					$(item).hide();
 					$(btns).removeClass(tabs);
-					$(this).addClass(tabs);
-					$(item).eq($(this).index()).fadeIn();
+					that.addClass(tabs);
+					$(item).eq(that.index()).fadeIn();
 				});
 			},
 			'submit': function(str, form) {
@@ -163,8 +165,10 @@ layui.define(['jquery'], function(exports) {
 				});
 			},
 			'verify': function() {
-				var verify = $('.mo-java-verify').attr('src');
-				$('.mo-java-verify').attr('src', verify);
+				if ($('.mo-comm-critic').length || $('.mo-comm-gbform').length) {
+					var verify = $('.mo-java-verify').attr('src');
+					$('.mo-java-verify').attr('src', verify);
+				}
 				$(document).on('click', '.mo-java-verify', function() {
 					$('.mo-java-verify').attr('src', verify + '?t=' + new Date().getTime());
 				});
@@ -259,19 +263,36 @@ layui.define(['jquery'], function(exports) {
 					this.toggle('.mo-navs-' + screen[i], '.mo-pops-' + screen[i]);
 				}
 			},
+			'baidu': function() {
+				if ($('.mo-navs-input').attr('data-search') == 1) return false;
+				$.post(magic.tpl + 'asset/exc/create.php?id=url', 'agent=' + encodeURIComponent('https://v.baidu.com/videoapi/?page_name=index&format=json&block_sign=list_index_top_movie_all,index_top_tv_all,index_top_tamasha,index_top_cartoon'), function(data) {
+					if (data) $('.mo-navs-input').attr('data-search', 1)
+					for (var i = 0; i < 4; i++) {
+						var output = '';
+						for (var k = 0; k < data[i].data.videos.length; k++) {
+							if (k < 10) output += '<li class="mo-pops-item mo-cols-info mo-cols-xs6"><a class="mo-pnxs-15px mo-lhxs-34px mo-java-event mo-wrap-arow" href="' + $('.mo-pops-recs').parent().prev().find('div').eq(0).attr('data-search') + '?wd=' + data[i].data.videos[k].title + '"><span class="mo-part-seal mo-back-items mo-back-item' + (k + 1) + '">' + (k + 1) + '</span><span class="mo-pops-text">' + data[i].data.videos[k].title + '</span></a></li>';
+						}
+						$('.mo-pops-tabs').find('ul').eq(i + ($('.mo-pops-hots').length == 6 ? 1 : 0)).html(output);
+					}
+				});
+			},
 			'loading': function(that) {
-				mojia.navbar.output('mo_record', '.mo-pops-recs');
-				mojia.navbar.output('mo_history', '.mo-pops-record .mo-pops-list');
-				if (that.attr('data-load') == 1) return false;
-				$.post(that.attr('data-url'), 'mid=' + that.attr('data-mid') + '&aid=' + that.attr('data-aid') + '&tid=' + that.attr('data-tid') + '&pid=' + that.attr('data-pid'), function(data) {
-					that.html(data);
+				if (that.attr('data-load') == 1) {
+					$.post(that.attr('data-url'), 'mid=' + that.attr('data-mid') + '&aid=' + that.attr('data-aid') + '&tid=' + that.attr('data-tid') + '&pid=' + that.attr('data-pid'), function(data) {
+						that.html(data);
+						mojia.global.tabser('.mo-pops-hots', '.mo-pops-boxs', 'mo-text-mojia');
+						mojia.global.scroll('.mo-java-navs', '.mo-scre-navs');
+						mojia.navbar.output('mo_history', '.mo-pops-record .mo-pops-list');
+						mojia.navbar.output('mo_record', '.mo-pops-recs');
+					}).error(function() {
+						mojia.navbar.loading(that);
+					});
+				} else {
+					mojia.navbar.output('mo_record', '.mo-pops-recs');
+					mojia.navbar.output('mo_history', '.mo-pops-record .mo-pops-list');
 					mojia.global.tabser('.mo-pops-hots', '.mo-pops-boxs', 'mo-text-mojia');
 					mojia.global.scroll('.mo-java-navs', '.mo-scre-navs');
-					mojia.navbar.output('mo_history', '.mo-pops-record .mo-pops-list');
-					mojia.navbar.output('mo_record', '.mo-pops-recs');
-				}).error(function() {
-					mojia.navbar.loading(that);
-				});
+				}
 			},
 			'login': function(str, form) {
 				mojia.global.submit(str, form);
