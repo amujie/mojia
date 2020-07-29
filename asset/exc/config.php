@@ -183,12 +183,12 @@ return array (
       'num' => '5',
       'state' => '1',
     ),
-    'note' => 
+    'note' =>
     array (
       'name' => '站内公告',
-      'index' => '1',
+      'index' => '',
       'type' => '1',
-      'gbook' => '2',
+      'gbook' => '',
       'gtype' => '1',
       'alert' => '',
       'num' => '3',
