@@ -1,9 +1,9 @@
-{if$mojia['home']['class']['state']}
-{maccms:type ids="'.$mojia['home']['class']['type'].'" order="asc" by="sort" flag="vod" id="magic"}
+{if$mojia['home']['sorted']['state']}
+{maccms:type ids="'.$mojia['home']['sorted']['type'].'" order="asc" by="sort" flag="vod" id="magic"}
 <div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="class" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
+	{include file="basics/titles" module="sorted" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
 	<ul class="mo-cols-rows">
-		{include file="basics/advert,basics/lister" module="class" count="mojia['home']['class']['num']" class="magic"}
+		{include file="basics/advert,basics/lister" module="sorted" count="mojia['home']['sorted']['num']" class="magic"}
 	</ul>
 </div>
 {/maccms:type}

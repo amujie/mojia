@@ -1,10 +1,10 @@
-{if$mojia['home']['taoke']['state']}{assign name="taoke" value=":file_exists('application/extra/mojiatao.php')?require('application/extra/mojiatao.php'):require(substr($template,strlen($install)).'asset/exc/taobao.php')"}
+{if$mojia['home']['taobao']['state']}{assign name="taobao" value=":file_exists('application/extra/mojiatao.php')?require('application/extra/mojiatao.php'):require(substr($template,strlen($install)).'asset/exc/taobao.php')"}
 <div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="taoke" title=":mac_default($mojia['home']['taoke']['name'])" btns="更多" href=":mac_url('label/index')"}
-	<ul class="mo-cols-rows mo-java-taoke" data-taoke="{:in_array($maccms['mid'],explode(',',$mojia['other']['taoke']['type']))}">
-		{maccms:foreach name="$taoke"}
-		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if$mojia['home']['taoke']['num']%3} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}{if$mojia['home']['taoke']['num']==4&&$key>2} mo-cosm-none mo-colg-block{elseif$mojia['home']['taoke']['num']==6&&$key>3} mo-cosm-none mo-colg-block{elseif$mojia['home']['taoke']['num']==8&&$key>5} mo-cosm-none mo-colg-block{/if}">
-		{include file="basics/picture" type="tao" style=":mac_default($mojia['home']['taoke']['num']%3?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default('券后¥'.$vo['actualPrice'])" remark=":mac_default($vo['brandName'])" name=":mac_default($vo['dtitle'])" desc=":mac_default($vo['desc'],'暂无简介')" image=":mac_url_img(trim($vo['marketingMainPic']))" href=":mac_default(mac_url('label/taoke').'?id='.$vo['id'].'&goodsId='.$vo['goodsId'])" title="show" lazy="open"}
+	{include file="basics/titles" module="taobao" title=":mac_default($mojia['home']['taobao']['name'])" btns="更多" href=":mac_url('label/index')"}
+	<ul class="mo-cols-rows mo-java-taoke" data-taoke="{:in_array($maccms['mid'],explode(',',$mojia['other']['taobao']['type']))}">
+		{maccms:foreach name="$taobao"}
+		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if$mojia['home']['taobao']['num']%3} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}{if$mojia['home']['taobao']['num']==4&&$key>2} mo-cosm-none mo-colg-block{elseif$mojia['home']['taobao']['num']==6&&$key>3} mo-cosm-none mo-colg-block{elseif$mojia['home']['taobao']['num']==8&&$key>5} mo-cosm-none mo-colg-block{/if}">
+		{include file="basics/picture" type="tao" style=":mac_default($mojia['home']['taobao']['num']%3?' mo-lazy-broad mo-byxs-16by9':' mo-lazy-highs mo-byxs-2by3')" tips=":mac_default('券后¥'.$vo['actualPrice'])" remark=":mac_default($vo['brandName'])" name=":mac_default($vo['dtitle'])" desc=":mac_default($vo['desc'],'暂无简介')" image=":mac_url_img(trim($vo['marketingMainPic']))" href=":mac_default(mac_url('label/taoke').'?id='.$vo['id'].'&goodsId='.$vo['goodsId'])" title="show" lazy="open"}
 		</li>
 		{/maccms:foreach}
 	</ul>

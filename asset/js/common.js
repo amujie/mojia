@@ -241,7 +241,7 @@ layui.define(['jquery'], function(exports) {
 					layui.use('qrcode', function() {
 						if ($('.mo-code-info').attr('data-api')) {
 							$.post(magic.tpl + 'asset/exc/create.php?id=url', 'url=' + encodeURIComponent(location.href), function(data) {
-								var url = data.msg && data.msg.indexOf('//') != -1 ? data.msg : location.href;
+								var url = data.msg && (data.msg.indexOf('//') != -1 || data.msg.indexOf('\\/\\/') != -1) ? data.msg : location.href;
 								mojia.global.qrcode(148, url, '.mo-code-info', 'mo-code-pics')
 							});
 						} else {
@@ -479,7 +479,7 @@ layui.define(['jquery'], function(exports) {
 								success: function(layero, index) {
 									if (that.attr('data-api')) {
 										$.post(magic.tpl + 'asset/exc/create.php?id=url', 'url=' + encodeURIComponent(location.href), function(data) {
-											var url = data.msg && data.msg.indexOf('//') != -1 ? data.msg : location.href;
+											var url = data.msg && (data.msg.indexOf('//') != -1 || data.msg.indexOf('\\/\\/') != -1) ? data.msg : location.href;
 											mojia.global.qrcode(200, url, '.mo-have-code', 'mo-have-pics')
 											mojia.button.canvas(url, index);
 										});

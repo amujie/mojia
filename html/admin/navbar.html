@@ -128,57 +128,33 @@
 					<input type="checkbox" name="mojia[nav][{$magic}][mobile]" title="移动端" lay-skin="primary"{if$mojia['nav'][$magic]['mobile']} checked{/if}>
 				</td>
 			</tr>
+			{/maccms:foreach}{maccms:foreach name=":array(array('icon','一'),array('font','二'))" id="magic"}
+			<tr>
+				<td><input type="text" name="mojia[nav][{$magic[0]}][name]" value="{$mojia['nav'][$magic[0]]['name']}" class="layui-input" placeholder="图标设置"></td>
+				<td><input type="text" name="mojia[nav][{$magic[0]}][icon]" value="{$mojia['nav'][$magic[0]]['icon']}" class="layui-input layui-font-info"></td>
+				<td>
+					<input type="hidden" name="mojia[nav][{$magic[0]}][type]" value="icon" />
+					<select name="mojia[nav][{$magic[0]}][btns]" lay-filter="iconer">
+						<option value="record"{if$mojia['nav'][$magic[0]]['btns']=='record'} selected{/if} data-url="javascript:;" data-icon="mo-icon-shijian-line">播放记录</option>
+						<option value="center"{if$mojia['nav'][$magic[0]]['btns']=='center'} selected{/if} data-url="javascript:;" data-icon="mo-icon-shequ-line">个人中心</option>
+						<option value="shares"{if$mojia['nav'][$magic[0]]['btns']=='shares'} selected{/if} data-url="javascript:;" data-icon="mo-icon-fenxiang">点击分享</option>
+						<option value="artist"{if$mojia['nav'][$magic[0]]['btns']=='artist'} selected{/if} data-url="" data-icon="mo-icon-zengjia-line">推荐文章</option>
+						<option value="reload"{if$mojia['nav'][$magic[0]]['btns']=='reload'} selected{/if} data-url="javascript:location.reload();" data-icon="mo-icon-shuaxin">刷新页面</option>
+						<option value="linker"{if$mojia['nav'][$magic[0]]['btns']=='linker'} selected{/if} data-url="https://mojia.amujie.com" data-icon="mo-icon-lipinka">直接跳转</option>
+					</select>
+				</td>
+				<td>
+					<input type="text" name="mojia[nav][{$magic[0]}][link]" value="{$mojia['nav'][$magic[0]]['link']}" class="layui-input layui-font-select mo-cols-{$mojia['nav'][$magic[0]]['btns']=='artist'?'hide':'show'}" placeholder="请填写链接地址">
+					<select name="mojia[nav][{$magic[0]}][artid]" lay-filter="" class="mo-cols-{$mojia['nav'][$magic[0]]['btns']=='artist'?'show':'hide'}">
+						<option value="">请选择</option>
+						{maccms:art num="10" order="desc" by="time" level="all"}
+						<option value="{$vo.art_id}"{if$mojia['nav'][$magic[0]]['artid']==$vo.art_id} selected{/if}>{$vo.art_name}</option>
+						{/maccms:art}
+					</select>
+				</td>
+				<td><input type="checkbox" name="mojia[nav][{$magic[0]}][desktop]" title="右上角第{$magic[1]}个图标设置" lay-skin="primary" disabled></td>
+			</tr>
 			{/maccms:foreach}
-			<tr>
-				<td><input type="text" name="mojia[nav][icon][name]" value="{$mojia['nav']['icon']['name']}" class="layui-input" placeholder="图标设置"></td>
-				<td><input type="text" name="mojia[nav][icon][icon]" value="{$mojia['nav']['icon']['icon']}" class="layui-input layui-font-info"></td>
-				<td>
-					<input type="hidden" name="mojia[nav][icon][type]" value="icon" />
-					<select name="mojia[nav][icon][btns]" lay-filter="iconer">
-						<option value="record"{if$mojia['nav']['icon']['btns']=='record'} selected{/if} data-url="javascript:;" data-icon="mo-icon-shijian-line">播放记录</option>
-						<option value="center"{if$mojia['nav']['icon']['btns']=='center'} selected{/if} data-url="javascript:;" data-icon="mo-icon-shequ-line">个人中心</option>
-						<option value="shares"{if$mojia['nav']['icon']['btns']=='shares'} selected{/if} data-url="javascript:;" data-icon="mo-icon-fenxiang">点击分享</option>
-						<option value="artist"{if$mojia['nav']['icon']['btns']=='artist'} selected{/if} data-url="" data-icon="mo-icon-zengjia-line">推荐文章</option>
-						<option value="reload"{if$mojia['nav']['icon']['btns']=='reload'} selected{/if} data-url="javascript:location.reload();" data-icon="mo-icon-shuaxin">刷新页面</option>
-						<option value="linker"{if$mojia['nav']['icon']['btns']=='linker'} selected{/if} data-url="https://mojia.amujie.com" data-icon="mo-icon-lipinka">直接跳转</option>
-					</select>
-				</td>
-				<td>
-					<input type="text" name="mojia[nav][icon][link]" value="{$mojia['nav']['icon']['link']}" class="layui-input layui-font-select mo-cols-{$mojia['nav']['icon']['btns']=='artist'?'hide':'show'}" placeholder="请填写链接地址">
-					<select name="mojia[nav][icon][artid]" lay-filter="" class="mo-cols-{$mojia['nav']['icon']['btns']=='artist'?'show':'hide'}">
-						<option value="">请选择</option>
-						{maccms:art num="10" order="desc" by="time" level="all"}
-						<option value="{$vo.art_id}"{if$mojia['nav']['icon']['artid']==$vo.art_id} selected{/if}>{$vo.art_name}</option>
-						{/maccms:art}
-					</select>
-				</td>
-				<td><input type="checkbox" name="mojia[nav][icon][desktop]" title="右上角第一个图标设置" lay-skin="primary" disabled></td>
-			</tr>
-			<tr>
-				<td><input type="text" name="mojia[nav][font][name]" value="{$mojia['nav']['font']['name']}" class="layui-input" placeholder="图标设置"></td>
-				<td><input type="text" name="mojia[nav][font][icon]" value="{$mojia['nav']['font']['icon']}" class="layui-input layui-font-info"></td>
-				<td>
-					<input type="hidden" name="mojia[nav][font][type]" value="icon" />
-					<select name="mojia[nav][font][btns]" lay-filter="iconer">
-						<option value="record"{if$mojia['nav']['font']['btns']=='record'} selected{/if} data-url="javascript:;" data-icon="mo-icon-shijian-line">播放记录</option>
-						<option value="center"{if$mojia['nav']['font']['btns']=='center'} selected{/if} data-url="javascript:;" data-icon="mo-icon-shequ-line">个人中心</option>
-						<option value="shares"{if$mojia['nav']['font']['btns']=='shares'} selected{/if} data-url="javascript:;" data-icon="mo-icon-fenxiang">点击分享</option>
-						<option value="artist"{if$mojia['nav']['font']['btns']=='artist'} selected{/if} data-url="" data-icon="mo-icon-zengjia-line">推荐文章</option>
-						<option value="reload"{if$mojia['nav']['font']['btns']=='reload'} selected{/if} data-url="javascript:location.reload();" data-icon="mo-icon-shuaxin">刷新页面</option>
-						<option value="linker"{if$mojia['nav']['font']['btns']=='linker'} selected{/if} data-url="https://mojia.amujie.com" data-icon="mo-icon-lipinka">直接跳转</option>
-					</select>
-				</td>
-				<td>
-					<input type="text" name="mojia[nav][font][link]" value="{$mojia['nav']['font']['link']}" class="layui-input layui-font-select mo-cols-{$mojia['nav']['font']['btns']=='artist'?'hide':'show'}" placeholder="请填写链接地址">
-					<select name="mojia[nav][font][artid]" lay-filter="" class="mo-cols-{$mojia['nav']['font']['btns']=='artist'?'show':'hide'}">
-						<option value="">请选择</option>
-						{maccms:art num="10" order="desc" by="time" level="all"}
-						<option value="{$vo.art_id}"{if$mojia['nav']['font']['artid']==$vo.art_id} selected{/if}>{$vo.art_name}</option>
-						{/maccms:art}
-					</select>
-				</td>
-				<td><input type="checkbox" name="mojia[nav][font][desktop]" title="右上角第二个图标设置" lay-skin="primary" disabled></td>
-			</tr>
 		</tbody>
 	</table>
 </div>

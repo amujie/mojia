@@ -1,0 +1,19 @@
+{if$mojia['home']['second']['state']}
+<div class="mo-cols-lays mo-back-white mo-part-round mo-cols-rows">
+	<div class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs12 mo-cols-lg5">
+		{php}$__LIST1__ = $mojia['home']['second']['advs']?model("Art")->listCacheData('{"ids":"'.$mojia['home']['second']['advs'].'"}')['list']:array('list'=>array());{/php}
+		{php}$__LIST2__ = model('Topic')->listCacheData('{"num":"'.$mojia['home']['second']['num'].'","order":"'.$mojia['home']['second']['order'].'","by":"'.$mojia['home']['second']['sort'].'","level":"'.$mojia['home']['second']['level'].'"}')['list'];{/php}
+		{php}$__LIST3__ = model('Vod')->listCacheData('{"num":"'.$mojia['home']['second']['num'].'","type":"'.$mojia['home']['second']['type'].'","order":"'.$mojia['home']['second']['order'].'","by":"'.$mojia['home']['second']['sort'].'","level":"'.$mojia['home']['second']['level'].'"}')['list'];{/php}
+		{include file="basics/banner" type="index" data=":mac_default(array_filter(array_merge($__LIST1__,$__LIST2__,$__LIST3__)))" top=":mac_default('')" style=":mac_default(' mo-byxs-3by2 mo-bylg-5by3')"}
+	</div>
+	<div class="mo-cols-info mo-cols-xs12 mo-cols-lg7">
+		<ul class="mo-cols-rows">
+			{maccms:vod num="6" type="'.$mojia['home']['second']['type'].'" level="'.$mojia['home']['second']['sub'].'" order="desc" by="'.$mojia['home']['second']['sort'].'"}
+			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6 mo-cols-sm4">
+			{include file="basics/picture" type="vod" style=":mac_default(' mo-lazy-broad mo-byxs-5by3')" tips=":mac_default(($vo['vod_points']+$vo['vod_points_play']+$vo['vod_points_down'])?'VIP':($vo['vod_level']?'推荐':($vo['vod_douban_score']>0?'豆瓣'.$vo['vod_douban_score']:$vo['vod_hits'].'播放')))" remark=":mac_default(mac_substring($vo['vod_remarks'],12),date('Y-m-d H:i',$vo['vod_time']))" name=":mac_filter_html($vo['vod_name'])" desc=":mac_default(mac_filter_html($vo['vod_actor']),'暂无简介')" image=":mac_url_img(trim($vo['vod_pic']))" href=":mac_url_vod_detail($vo)" title="hide" lazy="open"}
+			</li>
+			{/maccms:vod}
+		</ul>
+	</div>
+</div>
+{/if}

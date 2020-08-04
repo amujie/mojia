@@ -1,6 +1,6 @@
 {include file="public/header"}
 <div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="child" title=":mac_default('角色列表')" more="hide" href=":mac_default($obj.parent?mac_url_type($obj.parent):mac_url(mac_get_mid_code($maccms.mid).'/index'))"}
+	{include file="basics/titles" module="role" title=":mac_default('角色列表')" more="hide" href=":mac_default($obj.parent?mac_url_type($obj.parent):mac_url(mac_get_mid_code($maccms.mid).'/index'))"}
 	<ul class="mo-cols-rows">
 		{maccms:role num="48" pageurl="role/type" paging="yes" half="3" rid="'.$sub['role_id'].'" order="desc" by="time"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">

@@ -1,7 +1,7 @@
 {include file="public/header,index/siteer"}
 {maccms:type ids="parent" order="asc" by="sort" mid="11" id="magic"}
 <div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="blog" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
+	{include file="basics/titles" module="siteer" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
 	<ul class="mo-cols-rows">
 		{maccms:website num="12" type="'.$magic['type_id'].'" order="asc" by="sort"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">

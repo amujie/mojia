@@ -1,7 +1,7 @@
 {assign name="maccms['aid']" value="71"}
 {include file="public/header"}
 <div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="hots" title=":mac_default($mojia['home']['hots']['name'])" btns="筛选" href=":mac_url_type(['type_mid'=>1],['id'=>1],'show')"}
+	{include file="basics/titles" module="cinema" title=":mac_default($mojia['home']['hots']['name'])" btns="筛选" href=":mac_url_type(['type_mid'=>1],['id'=>1],'show')"}
 	<ul class="mo-cols-rows">
 		{maccms:vod num="96" order="desc" by="time" level="'.$_GET['level'].'"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs4 mo-cols-sm3 mo-cols-lg2">

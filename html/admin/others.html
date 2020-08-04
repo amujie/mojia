@@ -40,10 +40,16 @@
 			<tr>
 				<td><input type="input" name="mojia[other][cdns][name]" value="{$mojia['other']['cdns']['name']}" class="layui-input" placeholder="静态加速"></td>
 				<td><input type="input" name="mojia[other][cdns][link]" value="{$mojia['other']['cdns']['link']}" class="layui-input" placeholder="静态文件加速地址"></td>
-				<td colspan="2">
+				<td>
+					<select name="mojia[other][cdns][local]" lay-verify="">
+						<option value="1"{if$mojia['other']['cdns']['local']==1} selected{/if}>本地载入通用脚本</option>
+						<option value="0"{if$mojia['other']['cdns']['local']==0} selected{/if}>远程载入通用脚本</option>
+					</select>
+				</td>
+				<td>
 					<select name="mojia[other][cdns][debug]" lay-verify="">
-						<option value="1"{if$mojia['other']['cdns']['debug']==1} selected{/if}>显示版本号后缀</option>
-						<option value="0"{if$mojia['other']['cdns']['debug']==0} selected{/if}>显示时间戳后缀</option>
+						<option value="1"{if$mojia['other']['cdns']['debug']==1} selected{/if}>版本号</option>
+						<option value="0"{if$mojia['other']['cdns']['debug']==0} selected{/if}>时间戳</option>
 					</select>
 				</td>
 				<td>

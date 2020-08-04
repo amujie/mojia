@@ -1,17 +1,17 @@
-{if$mojia['home']['week']['state']}
+{if$mojia['home']['sunday']['state']}
 <div class="mo-cols-lays mo-back-white mo-part-round">
 	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$mojia['home']['week']['name']}<span class="mo-week-date mo-plxs-10px mo-fsxs-12px">{:date('m-d')}</span></h2>
+		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px">{$mojia['home']['sunday']['name']}<span class="mo-week-date mo-plxs-10px mo-fsxs-12px">{:date('m-d')}</span></h2>
 		<ul class="mo-part-more mo-paxs-5px mo-pamd-10px mo-cols-zero">
-			{assign name="days" value=":array('week','monday','tuesday','wednesday','thursday','friday','saturday','sunday')"}
+			{assign name="days" value=":array('sunday','monday','tuesday','wednesday','thursday','friday','saturday','sunday')"}
 			{assign name="week" value=":array('周','一','二','三','四','五','六','日')"}{assign name="nows" value=":date('w')==0?7:date('w')"}
 			{maccms:foreach name="$week"}{if$key>0}
 			<li class="mo-coxs-iblock mo-fsxs-14px mo-lhxs-24px"><a class="mo-coxs-iblock mo-week-btns{if$key==$nows} mo-text-mojia{/if}" href="javascript:;" data-date="{:date('m-d',($key==$nows?time():strtotime('next '.$days[$key])))}">{if$key==$nows}<span class="mo-coxs-iblock mo-week-name">今</span><span class="mo-coxs-none mo-cosm-iblock">日</span>{else}<span class="mo-coxs-none mo-cosm-iblock">周</span><span class="mo-week-name mo-cosm-iblock">{$week[$key]}</span>{/if}</a>{if(7>$key)}<span class="mo-text-muted mo-coxs-iblock mo-pnxs-5px">/</span>{/if}</li>
 			{/if}{/maccms:foreach}
 		</ul>
 	</div>
-	<ul class="mo-week-boxs mo-cols-rows" data-href="{:mac_url('label/week')}" data-week="{$week[$nows].','.$nows}" data-nums="{$mojia['home']['week']['num']}">
-		{include file="basics/advert,basics/lister" module="week" count="mojia['home']['week']['num']"}
+	<ul class="mo-week-boxs mo-cols-rows" data-href="{:mac_url('label/week')}" data-week="{$week[$nows].','.$nows}" data-nums="{$mojia['home']['sunday']['num']}">
+		{include file="basics/advert,basics/lister" module="sunday" count="mojia['home']['sunday']['num']"}
 	</ul>
 </div>
 {/if}

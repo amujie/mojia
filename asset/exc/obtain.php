@@ -9,7 +9,7 @@ function moJiaPath($path) {
 	$install = '../../../../';
 	$maccms = file_exists($install . 'application/extra/maccms.php') ? @require ($install . 'application/extra/maccms.php') : @require ('application/extra/maccms.php');
 	if ($path == 'mojia') {
-		return file_exists($install . 'application/extra/mojiaopt.php') ? @require ($install . 'application/extra/mojiaopt.php') : @require ('config.php');
+		return file_exists($install . 'application/extra/mojiaopt.php') ? array_replace_recursive(@require ('config.php'), @require ($install . 'application/extra/mojiaopt.php')) : @require ('config.php');
 	} elseif ($path == 'temp') {
 		return $maccms['site']['install_dir'] . 'template/' . $maccms['site']['template_dir'] . '/';
 	} elseif ($path == 'base') {

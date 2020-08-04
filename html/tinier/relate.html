@@ -1,6 +1,6 @@
 {if$obj.vod_rel_art||$obj.art_rel_art}
 <div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="rel" title=":mac_default('相关文章')" btns="更多" more="hide"}
+	{include file="basics/titles" module="relate" title=":mac_default('相关文章')" btns="更多" more="hide"}
 	<ul class="mo-cols-rows">
 		{volist name=":explode(',',$obj[($maccms.mid==1?'vod':'art').'_rel_art'])" id="magic"}
 		{if!is_numeric($magic)}{maccms:art wd="'.$magic.'"}
@@ -16,7 +16,7 @@
 </div>
 {/if}{if$obj.vod_rel_vod||$obj.art_rel_vod}
 <div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="rel" title=":mac_default('相关视频')" btns="更多" more="hide"}
+	{include file="basics/titles" module="relate" title=":mac_default('相关视频')" btns="更多" more="hide"}
 	<ul class="mo-cols-rows">
 		{volist name=":explode(',',$obj[($maccms.mid==1?'vod':'art').'_rel_vod'])" id="magic"}{if!is_numeric($magic)}{maccms:vod wd="'.$magic.'"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">
@@ -31,7 +31,7 @@
 </div>
 {/if}
 <div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="rel" title=":mac_default('猜你喜欢')" btns="更多" href=":mac_default($obj&&$maccms.mid==1?mac_url_type($obj):mac_url(mac_get_mid_code(1).'/index'))"}
+	{include file="basics/titles" module="relate" title=":mac_default('猜你喜欢')" btns="更多" href=":mac_default($obj&&$maccms.mid==1?mac_url_type($obj):mac_url(mac_get_mid_code(1).'/index'))"}
 	<ul class="mo-cols-rows">
 		{maccms:vod num="12" not="'.$obj['vod_id'].'" type="'.($maccms['mid']==1?'current':'').'" order="desc" by="time"}
 		<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if stristr($obj['type_name'].$obj['parent']['type_name'],'直播')==true} mo-cols-xs6 mo-cols-sm4 mo-cols-lg3{else} mo-cols-xs4 mo-cols-sm3 mo-cols-lg2{/if}">

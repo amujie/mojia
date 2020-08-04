@@ -110,7 +110,7 @@
 			</li>
 			{/if}{if$mojia['other']['share']['state']}
 			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">
-				<a class="mo-play-share mo-java-event" href="javascript:;" data-api="{$mojia['other']['share']['apis']}" data-tpl="{$template}" data-chain="{:mac_default($mojia['other']['chain']['apis'],'asset/exc/create.php?id=url&pic=')}" data-agent="{$mojia['other']['share']['agent']}"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-fenxiang"></i>分享</a>
+				<a class="mo-play-share mo-java-event" href="javascript:;" data-api="{$mojia['other']['share']['apis']?1:0}" data-tpl="{$template}" data-chain="{:mac_default($mojia['other']['chain']['apis'],'asset/exc/create.php?id=url&pic=')}" data-agent="{$mojia['other']['share']['agent']}"><i class="mo-part-bold mo-prxs-2px mo-icon-font mo-icon-fenxiang"></i>分享</a>
 			</li>
 			{/if}
 			<li class="mo-plxs-0px mo-prxs-0px mo-paxs-5px mo-pamd-10px mo-cols-cell mo-coxs-center">

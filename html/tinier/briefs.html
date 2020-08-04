@@ -1,4 +1,9 @@
 {if$maccms.aid!=15}
+{if in_array(mac_default($user['group_id'],1), explode(',',$mojia['advs']['info']['group']))}
+<div class="mo-back-white mo-mtxs-10px mo-mtmd-20px">
+{:moJiaHtmlTags($mojia['advs']['info']['area'])}
+</div>
+{/if}
 <div class="mo-cols-lays mo-back-white mo-part-round mo-cols-rows">
 	{include file="module/videos"}
 </div>

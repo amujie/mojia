@@ -24,7 +24,7 @@
 		{/if}{if$mojia['other']['chat']['state']}
 		<li class="mo-coxs-center"><a class="mo-goto-chats mo-goto-lump mo-back-white mo-bord-round mo-bsxs-shadow mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-icon-font mo-icon-weixin mo-java-event" href="javascript:;" data-tips="{$mojia['other']['chat']['tips']}" data-link="{$mojia['other']['chat']['link']}" data-pics="{$mojia['other']['chat']['pics']|mac_url_img}"></a></li>
 		{/if}{if$mojia['other']['share']['state']}
-		<li class="mo-coxs-center"><a class="mo-goto-share mo-goto-lump mo-back-white mo-bord-round mo-bsxs-shadow mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-icon-font mo-icon-fenxiang mo-java-event" href="javascript:;" data-api="{$mojia['other']['share']['apis']}" data-tpl="{$template}" data-chain="{:mac_default($mojia['other']['chain']['apis'],'asset/exc/create.php?id=url&pic=')}" data-agent="{$mojia['other']['share']['agent']}"></a></li>
+		<li class="mo-coxs-center"><a class="mo-goto-share mo-goto-lump mo-back-white mo-bord-round mo-bsxs-shadow mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-icon-font mo-icon-fenxiang mo-java-event" href="javascript:;" data-api="{$mojia['other']['share']['apis']?1:0}" data-tpl="{$template}" data-chain="{:mac_default($mojia['other']['chain']['apis'],'asset/exc/create.php?id=url&pic=')}" data-agent="{$mojia['other']['share']['agent']}"></a></li>
 		{/if}{if$mojia['color']['type']['name']!=2}
 		<li class="mo-coxs-center"><a class="mo-goto-black mo-goto-lump mo-back-white mo-bord-round mo-bsxs-shadow mo-fsxs-20px mo-fsmd-24px mo-cols-show mo-icon-font mo-icon-yingyuan-line" href="javascript:;"></a></li>
 		{/if}
@@ -45,7 +45,7 @@
 {/if}
 <script src="{$cdnpath}asset/inc/layui.js?v={$version}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	var magic = {'path': '{$install}', 'tpl': '{$template}', 'cdn': '{$cdnpath}', 'ver': '{$version}'};
+	var magic = {'path': '{$install}', 'comm': '{$mojia["other"]["cdns"]["local"]}', 'tpl': '{$template}', 'cdn': '{$cdnpath}', 'ver': '{$version}'};
 	{:require(substr($template, strlen($install)).'asset/js/mojia.js')}
 </script>
 </body>

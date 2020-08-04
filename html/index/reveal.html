@@ -1,12 +1,26 @@
-{if$mojia['home']['shop']['state']}
+{if$mojia['home']['reveal']['state']}
 <div class="mo-cols-lays mo-back-white mo-part-round">
 	<ul class="mo-cols-rows">
-		{maccms:art num="'.$mojia['home']['shop']['num'].'" type="'.$mojia['home']['shop']['type'].'" level="'.$mojia['home']['shop']['level'].'" order="'.$mojia['home']['shop']['order'].'" by="'.$mojia['home']['shop']['sort'].'"}
-		<li class="mo-cols-info mo-cols-xs6 mo-cols-lg4{if$mojia['home']['shop']['num']=='3'&&$key>2} mo-coxs-none mo-colg-block{/if}">
+		{assign name="advert" value="$mojia['home']['reveal']['advs']?'1':'0'"}{if$advert}{maccms:art ids="'.$mojia['home']['reveal']['advs'].'"}{assign name="image" value=":mac_url_img(trim($vo['art_pic']))"}
+		{assign name="chain" value="$mojia['other']['chain']['state']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true&&stristr($image,'//')==true?$template:'').(stristr($image,'//')==true?$mojia['other']['chain']['apis']:''):''"}
+		<li class="mo-cols-info mo-cols-xs6 mo-cols-lg4">
 			<h2 class="mo-mnxs-5px mo-paxs-5px mo-pamd-10px mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-coxs-center mo-wrap-arow">{$vo.art_name|mac_filter_html}</h2>
-			<p class="mo-pnmd-20px mo-fsxs-12px mo-fsmd-14px mo-coxs-center mo-wrap-arow mo-text-muted">{$vo.art_sub|mac_filter_html|mac_default='主题演示'}</p>
+			<p class="mo-pnmd-20px mo-fsxs-12px mo-fsmd-14px mo-lhxs-20px mo-coxs-center mo-wrap-arow mo-text-muted">{$vo.art_sub|mac_filter_html|mac_default='主题演示'}</p>
 			<div class="mo-paxs-5px mo-pamd-10px">
-				<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-bord-round mo-byxs-2by1" data-original="{$mojia['other']['chain']['state']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''.stristr($vo['art_pic'],'//')==true?$mojia['other']['chain']['apis']:''):''}{:mac_url_img(trim($vo['art_pic']))}"></a>
+				<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-bord-round mo-byxs-2by1" data-original="{$chain.$image}"></a>
+			</div>
+			<ul class="mo-paxs-5px mo-pamd-10px mo-cols-rows">
+				<li class="mo-cols-cell mo-coxs-center"><a class="mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-34px mo-lhmd-36px mo-mrxs-5px mo-mrmd-10px mo-wrap-arow mo-back-click" href="{:mac_url_art_detail($vo)}">查看详情</a></li>
+				<li class="mo-cols-cell mo-coxs-center"><a class="mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-34px mo-lhmd-36px mo-mlxs-5px mo-mlmd-10px mo-wrap-arow mo-back-mojia" href="{$vo.art_jumpurl}" target="_blank">{$vo.art_from|mac_default='主题演示'}</a></li>
+			</ul>
+		</li>
+		{/maccms:art}{/if}{maccms:art num="'.($mojia['home']['reveal']['num']-$advert).'" type="'.$mojia['home']['reveal']['type'].'" level="'.$mojia['home']['reveal']['level'].'" order="'.$mojia['home']['reveal']['order'].'" by="'.$mojia['home']['reveal']['sort'].'"}{assign name="image" value=":mac_url_img(trim($vo['art_pic']))"}
+		{assign name="chain" value="$mojia['other']['chain']['state']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true&&stristr($image,'//')==true?$template:'').(stristr($image,'//')==true?$mojia['other']['chain']['apis']:''):''"}
+		<li class="mo-cols-info mo-cols-xs6 mo-cols-lg4{if$mojia['home']['reveal']['num']=='3'&&$key>(2-$advert)} mo-coxs-none mo-colg-block{/if}">
+			<h2 class="mo-mnxs-5px mo-paxs-5px mo-pamd-10px mo-fsxs-14px mo-fsss-16px mo-fsmd-18px mo-coxs-center mo-wrap-arow">{$vo.art_name|mac_filter_html}</h2>
+			<p class="mo-pnmd-20px mo-fsxs-12px mo-fsmd-14px mo-lhxs-20px mo-coxs-center mo-wrap-arow mo-text-muted">{$vo.art_sub|mac_filter_html|mac_default='主题演示'}</p>
+			<div class="mo-paxs-5px mo-pamd-10px">
+				<a class="mo-situ-pics mo-situ-lazy mo-lazy-color mo-bord-round mo-byxs-2by1" data-original="{$chain.$image}"></a>
 			</div>
 			<ul class="mo-paxs-5px mo-pamd-10px mo-cols-rows">
 				<li class="mo-cols-cell mo-coxs-center"><a class="mo-part-btns mo-bord-muted mo-bord-round mo-lhxs-34px mo-lhmd-36px mo-mrxs-5px mo-mrmd-10px mo-wrap-arow mo-back-click" href="{:mac_url_art_detail($vo)}">查看详情</a></li>

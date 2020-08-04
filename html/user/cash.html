@@ -24,7 +24,7 @@
 	</form>
 </div>
 <div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="opts" type="0" del=":mac_url('user/cash_del')" title=":mac_default('提现记录')" btns="返回" href=":mac_url('user/index')" more="hide"}
+	{include file="basics/titles" module="option" type="0" del=":mac_url('user/cash_del')" title=":mac_default('提现记录')" btns="返回" href=":mac_url('user/index')" more="hide"}
 	<form class="mo-user-form" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
 		<ul class="mo-cols-rows mo-paxs-0px{if count($list)} mo-pamd-5px{/if}">
 			{volist name="list" id="vo"}

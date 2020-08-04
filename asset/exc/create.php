@@ -26,7 +26,7 @@ function moJiaOptions() {
 			die(json_encode(array('ver' => $version['version'])));
 		} elseif (@$_POST['ver'] == 'new') {
 			$versnew = moJiaCurlGet(moJiaPath('vers'));
-			preg_match_all('/<option\s+value="amujie\/mojia@(.*)">/i', $versnew, $match);
+			preg_match_all('/<option\s+value=\"amujie\/mojia@(.*)\">/i', $versnew, $match);
 			die(json_encode(array('ver' => $match[1][0], 'key' => md5('mojia-' . $match[1][0]))));
 		} elseif (@$_POST['ver'] == 'log') {
 			die(moJiaCurlGet(str_replace('latest', $_POST['new'], moJiaPath('vers')) . 'about/changelog.json'));
@@ -80,26 +80,36 @@ function moJiaOptions() {
 		$option = @require (moJiaPath('path') . 'application/extra/maccms.php');
 		$option['site']['template_dir'] = @$_POST['tpl'];
 		if (file_put_contents(moJiaPath('path') . 'application/extra/maccms.php', '<?php ' . PHP_EOL . 'return ' . var_export($option, true) . ';')) {
+			$array = array();
 			@unlink('../../../' . $_POST['tpl'] . '.zip');
-			$seokey = @require (moJiaPath('path') . 'application/extra/mojiaopt.php');
-			$html = file_get_contents('../../html/basics/seokey.html');
-			foreach ($seokey['seo'] as $value => $key) {
-				foreach ($seokey['seo'][$value] as $item => $sub) {
-					$html = str_replace('{' . $item . $seokey['seo'][$value]['aid'] . '}', $sub, $html);
+			$mojia = moJiaPath('mojia');
+			array_multisort(array_column($mojia['home'], 'id'), SORT_ASC, $mojia['home']);
+			foreach ($mojia['home'] as $value => $key) {
+				if ($mojia['home'][$value]['id'] && $mojia['home'][$value]['state']) {
+					array_push($array, 'index/' . $value);
 				}
 			}
-			if (!file_put_contents('../../html/tinier/seokey.html', $html)) {
+			if (!file_put_contents('../../../' . $_POST['tpl'] . '/html/index/index.html', '{include file="public/header,' . implode(',', $array) . ',public/footer"}')) {
+				die(json_encode(array('msg' => '首页设置更新失败,请检查文件权限')));
+			}
+			$html = file_get_contents('../../html/basics/seokey.html');
+			foreach ($mojia['seo'] as $value => $key) {
+				foreach ($mojia['seo'][$value] as $item => $sub) {
+					$html = str_replace('{' . $item . $mojia['seo'][$value]['aid'] . '}', $sub, $html);
+				}
+			}
+			if (!file_put_contents('../../../' . $_POST['tpl'] . '/html/tinier/seokey.html', $html)) {
 				die(json_encode(array('msg' => 'SEO设置更新失败,请检查文件权限')));
 			}
-			$option = @require (moJiaPath('path') . 'application/extra/maccms.php');
-			die(json_encode(array('msg' => $option['site']['template_dir'])));
+			$maccms = @require (moJiaPath('path') . 'application/extra/maccms.php');
+			die(json_encode(array('msg' => $maccms['site']['template_dir'])));
 		} else {
 			die(json_encode(array('msg' => '执行失败')));
 		}
 	} elseif (isset($_POST['seo'])) {
 		$option = @require (moJiaPath('path') . 'application/extra/mojiaopt.php');
-		unset($option['seo']);
 		$seokey = @require ('config.php');
+		unset($option['seo']);
 		$option['seo'] = $seokey['seo'];
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiaopt.php', '<?php ' . PHP_EOL . 'return ' . var_export($option, true) . ';')) {
 			$html = file_get_contents('../../html/basics/seokey.html');
@@ -117,6 +127,17 @@ function moJiaOptions() {
 		}
 	} elseif (isset($_POST['mojia'])) {
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiaopt.php', '<?php ' . PHP_EOL . 'return ' . var_export($_POST['mojia'], true) . ';')) {
+			$array = array();
+			$home = $_POST['mojia']['home'];
+			array_multisort(array_column($home, 'id'), SORT_ASC, $home);
+			foreach ($home as $value => $key) {
+				if ($home[$value]['state']) {
+					array_push($array, 'index/' . $value);
+				}
+			}
+			if (!file_put_contents('../../html/index/index.html', '{include file="public/header,' . implode(',', $array) . ',public/footer"}')) {
+				die(json_encode(array('msg' => '首页设置保存失败')));
+			}
 			$html = file_get_contents('../../html/basics/seokey.html');
 			$seokey = $_POST['mojia']['seo'];
 			foreach ($seokey as $value => $key) {

@@ -1,5 +1,5 @@
 <dd class="mo-paxs-5px mo-pamd-10px mo-coxs-none mo-colg-block mo-cols-info{if$maccms.mid==0||$maccms.mid==2} mo-cols-xs12{else} mo-cols-lg3{/if}">
-	<div class="mo-code-info mo-part-code mo-coxs-center{if$maccms.mid!=3} mo-paxs-5px mo-pamd-10px{/if}" data-api="{$mojia['other']['share']['apis']}">
+	<div class="mo-code-info mo-part-code mo-coxs-center{if$maccms.mid!=3} mo-paxs-5px mo-pamd-10px{/if}" data-api="{$mojia['other']['share']['apis']?1:0}">
 		<p class="mo-text-muted mo-pbxs-10px{if$maccms.mid!=0&&$maccms.mid!=2} mo-pbxl-20px{/if} mo-lhxs-24px">扫描二维码打开</p>
 		{assign name="chain" value="$mojia['other']['share']['agent']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true&&stristr($mojia['other']['icon']['pics'],'//')==true?$template:'').(stristr($mojia['other']['icon']['pics'],'//')==true?$mojia['other']['chain']['apis']:''):''"}
 		<img src="{$chain}{$mojia['other']['icon']['pics']|mac_url_img}" id="mo-code-pics" class="mo-cols-hide" crossorigin="anonymous"/>

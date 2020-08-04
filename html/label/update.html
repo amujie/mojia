@@ -31,7 +31,7 @@
 				<p>可以继续浏览本站哦~</p>
 			</div>
 			<div class="mo-brow-main mo-part-core mo-part-maxw mo-coxs-center mo-paxs-20px">
-				<div class="mo-brow-code mo-code-info mo-coxs-center mo-paxs-5px mo-pamd-10px" data-api="{$mojia['other']['share']['apis']}">
+				<div class="mo-brow-code mo-code-info mo-coxs-center mo-paxs-5px mo-pamd-10px" data-api="{$mojia['other']['share']['apis']?1:0}">
 					{assign name="chain" value="$mojia['other']['share']['agent']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true&&stristr($image,'//')==true?$template:'').(stristr($image,'//')==true?$mojia['other']['chain']['apis']:''):''"}
 					<img src="{$chain}{$mojia['other']['icon']['pics']|mac_url_img}" id="mo-code-pics" class="mo-cols-hide" crossorigin="anonymous" />
 				</div>

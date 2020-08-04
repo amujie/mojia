@@ -170,21 +170,11 @@ return array (
       'artid' => '',
     ),
   ),
-  'home' => 
+  'home' =>
   array (
-    'slide' => 
+    'notice' => 
     array (
-      'name' => '大图轮播',
-      'advs' => '',
-      'type' => '',
-      'level' => '9',
-      'sort' => 'time',
-      'order' => 'desc',
-      'num' => '5',
-      'state' => '1',
-    ),
-    'note' =>
-    array (
+      'id' => '2',
       'name' => '站内公告',
       'index' => '',
       'type' => '1',
@@ -194,8 +184,9 @@ return array (
       'num' => '3',
       'state' => '0',
     ),
-    'small' => 
+    'second' => 
     array (
+      'id' => '3',
       'name' => '小图轮播',
       'advs' => '',
       'type' => '',
@@ -205,9 +196,23 @@ return array (
       'num' => '5',
       'state' => '0',
     ),
-    'shop' => 
+    'banner' => 
     array (
+      'id' => '1',
+      'name' => '大图轮播',
+      'advs' => '',
+      'type' => '',
+      'level' => '9',
+      'sort' => 'time',
+      'order' => 'desc',
+      'num' => '5',
+      'state' => '1',
+    ),
+    'reveal' => 
+    array (
+      'id' => '4',
       'name' => '吐血推荐',
+      'advs' => '',
       'type' => '',
       'level' => '8',
       'sort' => 'time',
@@ -215,19 +220,9 @@ return array (
       'num' => '3',
       'state' => '0',
     ),
-    'taoke' => 
+    'cinema' => 
     array (
-      'name' => '精品推荐',
-      'qiang' => '',
-      'type' => '',
-      'brand' => '',
-      'sort' => '0',
-      'ver' => '1.2.3',
-      'num' => '12',
-      'state' => '0',
-    ),
-    'hots' => 
-    array (
+      'id' => '5',
       'name' => '正在热播',
       'advs' => '',
       'type' => '',
@@ -237,8 +232,9 @@ return array (
       'num' => '12',
       'state' => '0',
     ),
-    'video' => 
+    'latest' => 
     array (
+      'id' => '6',
       'name' => '最近更新',
       'advs' => '',
       'type' => '',
@@ -248,8 +244,9 @@ return array (
       'num' => '12',
       'state' => '1',
     ),
-    'week' => 
+    'sunday' => 
     array (
+      'id' => '7',
       'name' => '周更剧场',
       'advs' => '',
       'type' => '',
@@ -259,8 +256,9 @@ return array (
       'num' => '12',
       'state' => '0',
     ),
-    'news' => 
+    'newest' => 
     array (
+      'id' => '8',
       'name' => '最新资讯',
       'advs' => '',
       'type' => '',
@@ -268,10 +266,11 @@ return array (
       'sort' => 'time',
       'order' => 'desc',
       'num' => '8',
-      'state' => '0',
+      'state' => '1',
     ),
-    'class' => 
+    'sorted' => 
     array (
+      'id' => '9',
       'name' => '视频分类',
       'advs' => '',
       'type' => '1,2,3,4',
@@ -281,8 +280,9 @@ return array (
       'num' => '12',
       'state' => '1',
     ),
-    'info' => 
+    'artist' => 
     array (
+      'id' => '10',
       'name' => '文章分类',
       'advs' => '',
       'type' => '5',
@@ -292,8 +292,9 @@ return array (
       'num' => '4',
       'state' => '0',
     ),
-    'blog' => 
+    'bloger' => 
     array (
+      'id' => '11',
       'name' => '博客布局',
       'advs' => '',
       'type' => '',
@@ -303,8 +304,9 @@ return array (
       'num' => '5',
       'state' => '0',
     ),
-    'actor' => 
+    'actors' => 
     array (
+      'id' => '12',
       'name' => '饭团剧场',
       'advs' => '',
       'type' => '',
@@ -314,17 +316,9 @@ return array (
       'num' => '6',
       'state' => '0',
     ),
-    'topic' => 
+    'siteer' => 
     array (
-      'name' => '最新专题',
-      'level' => '',
-      'sort' => 'time',
-      'order' => 'desc',
-      'num' => '6',
-      'state' => '0',
-    ),
-    'site' => 
-    array (
+      'id' => '13',
       'name' => '推荐站点',
       'advs' => '',
       'type' => '',
@@ -334,8 +328,31 @@ return array (
       'num' => '6',
       'state' => '0',
     ),
-    'link' => 
+    'taobao' => 
     array (
+      'id' => '14',
+      'name' => '精品推荐',
+      'qiang' => '',
+      'type' => '',
+      'brand' => '',
+      'sort' => '0',
+      'ver' => '1.2.3',
+      'num' => '12',
+      'state' => '0',
+    ),
+    'topics' => 
+    array (
+      'id' => '15',
+      'name' => '最新专题',
+      'level' => '',
+      'sort' => 'time',
+      'order' => 'desc',
+      'num' => '6',
+      'state' => '0',
+    ),
+    'friend' => 
+    array (
+      'id' => '16',
       'name' => '友情链接',
       'advs' => '1',
       'type' => 'font',
@@ -505,12 +522,12 @@ return array (
     'delta' => 
     array (
       'name' => '下拉三角',
-      'back' => '#999999',
+      'text' => '#999999',
     ),
     'lines' => 
     array (
       'name' => '全局线条',
-      'back' => '#dedede',
+      'text' => '#dedede',
     ),
     'plain' => 
     array (
@@ -1062,8 +1079,9 @@ return array (
     array (
       'name' => '静态加速',
       'link' => 'https://cdn.jsdelivr.net/gh/amujie/mojia',
-      'debug' => '1',
-      'state' => '1',
+      'local' => '1',
+	  'debug' => '0',
+      'state' => '0',
     ),
     'demo' => 
     array (
