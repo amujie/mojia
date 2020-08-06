@@ -78,6 +78,7 @@ function moJiaOptions() {
 		}
 	} elseif (isset($_POST['tpl'])) {
 		$option = @require (moJiaPath('path') . 'application/extra/maccms.php');
+		$option['site']['mob_template_dir'] = @$_POST['tpl'];
 		$option['site']['template_dir'] = @$_POST['tpl'];
 		if (file_put_contents(moJiaPath('path') . 'application/extra/maccms.php', '<?php ' . PHP_EOL . 'return ' . var_export($option, true) . ';')) {
 			$array = array();
@@ -312,7 +313,7 @@ function moJiaCommon() {
 		$mojia = moJiaPath('mojia');
 		$url = $mojia['other']['share']['host'] ? $mojia['other']['share']['host'] . parse_url(@$_POST['url'], PHP_URL_PATH) : @$_POST['url'];
 		preg_match_all(($mojia['other']['share']['regex'] ? $mojia['other']['share']['regex'] : '/(.*)/i'), moJiaCurlGet($mojia['other']['share']['apis'] . rawurlencode($url)), $match);
-		die(json_encode(array('msg' => $match[1][0])));
+		die(json_encode(array('msg' => str_replace('\\', '', $match[1][0]))));
 	} elseif (isset($_GET['pic'])) {
 		header('Content-Type: image/jpeg; charset=utf-8');
 		$time = isset($_GET['time']) ? $_GET['time'] : 5;

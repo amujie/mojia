@@ -6,7 +6,7 @@ return array (
     array (
       'name' => '基本设置',
       'status' => '1',
-      'loadon' => '0',
+      'typing' => '0',
       'search' => '1',
     ),
     'logo' => 
@@ -15,6 +15,7 @@ return array (
       'link' => '/',
       'type' => 'logo',
       'desktop' => 'on',
+      'mobile' => '0',
     ),
     'home' => 
     array (
@@ -33,6 +34,8 @@ return array (
       'name' => '辣品',
       'link' => '/index.php/label/index.html',
       'type' => 'mid',
+      'desktop' => '0',
+      'mobile' => '0',
     ),
     'level' => 
     array (
@@ -60,6 +63,7 @@ return array (
       'link' => '/index.php/vod/type/id/2.html',
       'type' => 'cat',
       'desktop' => 'on',
+      'mobile' => '0',
     ),
     'variety' => 
     array (
@@ -69,6 +73,7 @@ return array (
       'link' => '/index.php/vod/type/id/3.html',
       'type' => 'cat',
       'desktop' => 'on',
+      'mobile' => '0',
     ),
     'comic' => 
     array (
@@ -78,6 +83,7 @@ return array (
       'link' => '/index.php/vod/type/id/4.html',
       'type' => 'cat',
       'desktop' => 'on',
+      'mobile' => '0',
     ),
     'music' => 
     array (
@@ -86,6 +92,8 @@ return array (
       'name' => '',
       'link' => '',
       'type' => 'cat',
+      'desktop' => '0',
+      'mobile' => '0',
     ),
     'live' => 
     array (
@@ -94,6 +102,8 @@ return array (
       'name' => '',
       'link' => '',
       'type' => 'cat',
+      'desktop' => '0',
+      'mobile' => '0',
     ),
     'art' => 
     array (
@@ -113,6 +123,7 @@ return array (
       'link' => '/index.php/actor/index.html',
       'type' => 'mid',
       'desktop' => 'on',
+      'mobile' => '0',
     ),
     'topic' => 
     array (
@@ -122,6 +133,7 @@ return array (
       'link' => '/index.php/topic/index.html',
       'type' => 'mid',
       'desktop' => 'on',
+      'mobile' => '0',
     ),
     'site' => 
     array (
@@ -131,6 +143,7 @@ return array (
       'link' => '/index.php/website/index.html',
       'type' => 'mid',
       'desktop' => 'on',
+      'mobile' => '0',
     ),
     'gbook' => 
     array (
@@ -149,6 +162,7 @@ return array (
       'name' => '我的',
       'link' => '/index.php/user/index.html',
       'type' => 'mid',
+      'desktop' => '0',
       'mobile' => 'on',
     ),
     'icon' => 
@@ -1079,9 +1093,9 @@ return array (
     array (
       'name' => '静态加速',
       'link' => 'https://cdn.jsdelivr.net/gh/amujie/mojia',
-      'local' => '1',
-	  'debug' => '0',
-      'state' => '0',
+      'local' => '0',
+	  'debug' => '1',
+      'state' => '1',
     ),
     'demo' => 
     array (

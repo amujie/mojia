@@ -35,7 +35,9 @@ layui.define(['income', 'iconfonts', 'multiple', 'sortable'], function(exports) 
 					}
 				});
 				layui.form.on('submit(submit)', function(data) {
+					layer.load(2);
 					$.post($('.layui-form-pane').attr('action'), data.field, function(data) {
+						layer.closeAll();
 						layer.msg(data.msg, {
 							time: 1000
 						}, function() {

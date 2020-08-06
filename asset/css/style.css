@@ -828,7 +828,6 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-word-info iframe {max-width: 100%;}
 @media(min-width:768px) {
 	/* 组件 */
-	.mo-part-slip {overflow-x: hidden}
 	.mo-part-left {left: 0 !important}
 	.mo-part-round {box-shadow: 0 0 1px rgba(0, 0, 0, 0.1)}
 	.mo-situ-pics:hover .mo-situ-play {opacity: 1;z-index: 1}

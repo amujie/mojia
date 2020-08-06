@@ -1,6 +1,6 @@
 {include file="public/include"}
 <div class="mo-head-info mo-back-white mo-cols-minw{if$mojia['nav']['base']['status']} mo-part-fixs{/if}">
-	<div class="mo-cols-case" data-load="{$mojia['nav']['base']['loadon']}" data-url="{:mac_url('label/navbar')}" data-mid="{$maccms.mid}" data-aid="{$maccms.aid}" data-tid="{$GLOBALS['type_id']}" data-pid="{$GLOBALS['type_pid']}">
+	<div class="mo-cols-case" data-load="{$mojia['nav']['base']['typing']}" data-url="{:mac_url('label/navbar')}" data-mid="{$maccms.mid}" data-aid="{$maccms.aid}" data-tid="{$GLOBALS['type_id']}" data-pid="{$GLOBALS['type_pid']}">
 		{include file="basics/navbar" mid="mac_filter_html($maccms['mid'])" aid="mac_filter_html($maccms['aid'])" name=":md5($_SERVER['SE'.'RV'.'ER_AD'.'DR'])" tid="mac_filter_html($GLOBALS['type_id'])" pid="mac_filter_html($GLOBALS['type_pid'])"}
 	</div>
 </div>
