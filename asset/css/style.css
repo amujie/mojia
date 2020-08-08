@@ -647,6 +647,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-situ-name {margin-top: .375rem;line-height: 1.125rem}
 .mo-situ-desc {margin-top: .3125rem;line-height: 1rem}
 .mo-situ-npic {background: rgba(255, 255, 255, .3)}
+.mo-situ-pics:hover .mo-situ-play {opacity: 1;z-index: 1}
 /* 文本框 */
 .mo-form-info {box-sizing: border-box;border: 0;display: block;padding: 0 .625rem;width: 100%;height: 2.5rem;line-height: 2.5rem}
 .mo-form-area {padding: .625rem;height: auto;line-height: 1.25rem}
@@ -830,7 +831,6 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 	/* 组件 */
 	.mo-part-left {left: 0 !important}
 	.mo-part-round {box-shadow: 0 0 1px rgba(0, 0, 0, 0.1)}
-	.mo-situ-pics:hover .mo-situ-play {opacity: 1;z-index: 1}
 	/* 导航栏 */
 	.mo-head-info {box-shadow: 0 .0625rem .25rem rgba(0, 0, 0, 0.1)}
 	.mo-head-info .mo-navs-logo {height: 3.125rem}

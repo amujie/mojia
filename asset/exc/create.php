@@ -49,6 +49,7 @@ function moJiaOptions() {
 	} elseif (isset($_POST['def'])) {
 		if (file_exists(moJiaPath('path') . 'application/extra/mojiaopt.php')) {
 			if (@unlink(moJiaPath('path') . 'application/extra/mojiaopt.php')) {
+				chmod('../../html/tinier/seokey.html', 0755);
 				$html = file_get_contents('../../html/basics/seokey.html');
 				$seokey = @require ('config.php');
 				foreach ($seokey['seo'] as $value => $key) {
@@ -113,6 +114,7 @@ function moJiaOptions() {
 		unset($option['seo']);
 		$option['seo'] = $seokey['seo'];
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiaopt.php', '<?php ' . PHP_EOL . 'return ' . var_export($option, true) . ';')) {
+			chmod('../../html/tinier/seokey.html', 0755);
 			$html = file_get_contents('../../html/basics/seokey.html');
 			foreach ($seokey['seo'] as $value => $key) {
 				foreach ($seokey['seo'][$value] as $item => $sub) {
@@ -128,6 +130,8 @@ function moJiaOptions() {
 		}
 	} elseif (isset($_POST['mojia'])) {
 		if (file_put_contents(moJiaPath('path') . 'application/extra/mojiaopt.php', '<?php ' . PHP_EOL . 'return ' . var_export($_POST['mojia'], true) . ';')) {
+			chmod('../../html/tinier/seokey.html', 0755);
+			chmod('../../html/index/index.html', 0755);
 			$array = array();
 			$home = $_POST['mojia']['home'];
 			array_multisort(array_column($home, 'id'), SORT_ASC, $home);

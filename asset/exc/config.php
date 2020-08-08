@@ -446,6 +446,7 @@ return array (
       'pass' => '1',
       'sees' => '0',
       'auto' => '1',
+	  'prim' => '0',
       'cuts' => '0',
     ),
   ),
@@ -464,7 +465,7 @@ return array (
     'muted' => 
     array (
       'name' => '灰色背景',
-      'back' => '#f6f6f6',
+      'back' => '#f2f3f6',
       'text' => '#666666',
     ),
     'black' => 

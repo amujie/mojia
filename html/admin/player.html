@@ -139,7 +139,13 @@
 						<option value="0"{if$mojia['play']['other']['auto']==0} selected{/if}>关闭自动播放</option>
 					</select>
 				</td>
-				<td colspan="2">
+				<td>
+					<select name="mojia[play][other][prim]" lay-verify="">
+						<option value="1"{if$mojia['play']['other']['prim']==1} selected{/if}>开启移动端原生播放器</option>
+						<option value="0"{if$mojia['play']['other']['prim']==0} selected{/if}>关闭移动端原生播放器</option>
+					</select>
+				</td>
+				<td>
 					<select name="mojia[play][other][cuts]" lay-verify="">
 						<option value="1"{if$mojia['play']['other']['cuts']==1} selected{/if}>开启视频解析切换</option>
 						<option value="0"{if$mojia['play']['other']['cuts']==0} selected{/if}>关闭视频解析切换</option>

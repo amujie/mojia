@@ -791,7 +791,7 @@ layui.define(['jquery'], function(exports) {
 						}
 					});
 					player.on('loadstart', function() {
-						if (mojia.global.mobile()) {
+						if ($(str).attr('data-prim') == 1 && mojia.global.mobile()) {
 							$('video').attr('controls', 'true');
 							$('.dplayer-controller,.dplayer-mobile-play').hide();
 						}

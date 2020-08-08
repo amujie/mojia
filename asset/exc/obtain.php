@@ -124,11 +124,11 @@ function moJiaHtmlTags($html) {
 	$content = preg_split('/(<[^>]+>)/si', $html, null, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 	foreach ($content as $value) {
 		if (preg_match('/<(\w+)[^>]*>/si', $value, $match) && in_array(strtolower($match[1]), $single)) {
-			$result .= PHP_EOL . $value;
+			$result .= $value;
 		} else if (preg_match('/<(\w+)[^>]*\/>/si', $value, $match)) {
 			$result .= $value;
 		} else if (preg_match('/<(\w+)[^>]*>/si', $value, $match)) {
-			$result .= PHP_EOL . str_repeat("\t", count($stack)) . $value;
+			$result .= $value;
 			array_push($stack, $match[1]);
 		} else if (preg_match('/<\/(\w+)[^>]*>/si', $value, $match)) {
 			if (strtolower(end($stack)) == strtolower($match[1])) {
@@ -141,7 +141,6 @@ function moJiaHtmlTags($html) {
 	}
 	while ($stack) {
 		$result .= "</" . array_pop($stack) . ">";
-		$result .= PHP_EOL;
 	}
 	return $result;
 }
