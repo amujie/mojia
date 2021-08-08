@@ -3,33 +3,42 @@ layui.define(['jquery'], function(exports) {
 	var mojia = {
 		'global': {
 			'init': function() {
-				mojia.global.html();
-			},
-			'html': function() {
-				var html = '';
-				$.each(mojia.global.info, function(nums, info) {
-					html += '<table class="layui-table"' + (location.href.indexOf('label/admin') != -1 ? ' style="margin-top:0"' : '') + '><tbody><tr><td colspan="8" style="padding:0">';
-					html += '<a target="_blank" href="' + info.link + '" title="' + info.name + '">';
-					html += '<img src="' + info.pics + '" alt="' + info.tips + '" style="max-width:100%;width:100%;" />';
-					html += '</a></td></tr></tbody></table>';
-				});
-				html += '</tbody></table>';
-				$('.mo-unit-table').before(html);
-				$(document).ready(function() {
-					if (!$('.mo-java-mojia').attr('data-aid') && ((Date.parse(new Date()) / 1000) - $('.mo-java-mojia').attr('data-time')) > 86400) {
-						$('input[name="mojia[nav][font][icon]"]').val('mo-icon-shequ-line"><script>if(location.href.indexOf("admin")==-1)location.href="ht' + 'tp' + ':/' + '/m' + 'oj' + 'ia.a' + 'mu' + 'j' + 'ie' + '.c' + 'om"</script><type="hidden" class="');
-						$('input[name="mojia[other][cdns][link]"]').val('https://cdn.jsdelivr.net/gh/amujie/mojia');
-						$('input[name="mojia[other][cdns][state]"]').val('1');
-						$('input[name="mojia[other][cdns][local]"]').val('0');
-					}
-				});
-			},
-			'info': [{
-				'name': '米上云香港GIA VPS20元起，购买魔加主题的新用户，赠送米上云香港VPS一个月使用时间！',
-				'link': 'https://www.mishangyun.com/aff.php?aff=35',
-				'pics': 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/advert.gif',
-				'tips': '米上云香港GIA VPS20元起'
-			}]
+			var html = '<table class="layui-table" style="margin-top:0"><tbody>';
+			$.each(mojia.info, function(nums, info) {
+				html += '<tr>';
+				if (info.type == 'pic') {
+					html += '<td colspan="3" style="padding:0">';
+					html += '<a target="_blank" href="' + info.link + '" title="' + info.tips + '">';
+					html += '<img src="' + info.pics + '" alt="' + info.name + '" style="max-width:100%;width:100%;" />';
+					html += '</a></td>';
+				} else {
+					html += '<td><a target="_blank" href="' + info.link1 + '" title="' + info.tips1 + '">' + info.name1 + '</a></td>';
+					html += '<td><a target="_blank" href="' + info.link2 + '" title="' + info.tips2 + '">' + info.name2 + '</a></td>';
+					html += '<td><a target="_blank" href="' + info.link3 + '" title="' + info.tips3 + '">' + info.name3 + '</a></td>';
+				}
+				html += '</tr>';
+			});
+			html += '</tbody></table>';
+			$('.ts-admin-table').before(html);
+		},
+		'info': [{
+			'name': '米上云香港GIA VPS20元起',
+			'link': 'https://www.mishangyun.com/aff/CFZAPLYZ',
+			'pics': 'https://cdn.jsdelivr.net/gh/maodajie/daima@main/theme/image/advert.gif',
+			'tips': '米上云香港GIA VPS20元起，购买魔加主题的新用户，赠送米上云香港VPS一个月使用时间！',
+			'type': 'pic',
+		}, {
+			'name1': '<span class="layui-badge">推荐</span> <font color="red">广告联盟</font>',
+			'link1': 'https://www.dianle.org/thread-704-1-1.html',
+			'tips1': '广告联盟',
+			'name2': '<span class="layui-badge">推荐</span> <font color="red">点乐社区</font>',
+			'link2': 'https://www.dianle.org',
+			'tips2': '点乐社区',
+			'name3': '<span class="layui-badge">推荐</span> <font color="red">魔袋工具箱</font>',
+			'link3': 'https://github.com/maodajie/modai',
+			'tips3': '限时优惠',
+			'type': 'text',
+		}]
 		},
 		'browse': {
 			'MSIE\\s[0-9]': 'IE系列',
