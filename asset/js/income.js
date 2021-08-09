@@ -19,7 +19,7 @@ layui.define(['jquery'], function(exports) {
 					html += '</tr>';
 				});
 				html += '</tbody></table>';
-				$('.ts-admin-table').before(html);
+				$('.mo-unit-table').before(html);
 			},
 			'info': [{
 				'name': '米上云香港GIA VPS20元起',
