@@ -29,7 +29,7 @@ layui.define(['jquery'], function(exports) {
 				'type': 'pic',
 			}, {
 				'name1': '<span class="layui-badge">推荐</span> <font color="red">广告联盟</font>',
-				'link1': 'https://www.dianle.org/thread-704-1-1.html',
+				'link1': 'https://www.izzlm.com/tiezi-1.html',
 				'tips1': '广告联盟',
 				'name2': '<span class="layui-badge">推荐</span> <font color="red">点乐社区</font>',
 				'link2': 'https://www.dianle.org',
